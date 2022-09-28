@@ -1,23 +1,15 @@
-import React from 'react'
-
-enum variants {
-  "default",
-  "accent-cool",
-  "accent-warm",
-  "base",
-  "outline"
-}
+import React, { ReactNode } from 'react'
 
 export interface ButtonProps {
-  label: string
-  onClick: Function
-  variant?: string[variants]
+  children?: ReactNode
+  onClick?: Function
+  variant?: string
 }
 
-const Button: React.FC<ButtonProps> = (props: ButtonProps) => {
+const Button: React.FC<ButtonProps> = ({ onClick, children, variant }: ButtonProps) => {
   return (
-    <button data-testid="button" className={`usa-button usa-button--${props.variant || "default"}`} onClick={(e) => props.onClick(e)}>
-      {props.label}
+    <button data-testid="button" className={`usa-button usa-button--${variant || 'default'}`} onClick={(e) => (onClick != null) ? onClick(e) : {}}>
+      {children || <></>}
     </button>
   )
 }
