@@ -1,0 +1,2 @@
+"use strict";function t(t){return t&&"object"==typeof t&&"default"in t?t:{default:t}}Object.defineProperty(exports,"__esModule",{value:!0}),require("~uswds/dist/css/uswds.min.css"),require("~uswds/dist/js/uswds-init.min.js"),require("~uswds/dist/js/uswds.min.js");var e=t(require("react"));exports.Button=t=>e.default.createElement("button",{"data-testid":"button",className:"usa-button usa-button--default",onClick:e=>t.onClick(e)},t.label);
+//# sourceMappingURL=index.js.map

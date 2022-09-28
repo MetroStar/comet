@@ -1,0 +1,1 @@
+{"version":3,"file":"index.js","sources":["../../src/components/Button/Button.tsx"],"sourcesContent":[null],"names":["Button","props","React","createElement","className","onClick","e","label"],"mappings":"wIAOA,MAAMA,EAAiCC,GAEnCC,EAAoBC,cAAA,SAAA,CAAA,cAAA,SAASC,UAAU,iCAAiCC,QAAUC,GAAML,EAAMI,QAAQC,IACnGL,EAAMM"}
