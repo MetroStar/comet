@@ -1,20 +1,28 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useState } from "react";
+import "./accordion.style.css";
 
 interface Fold {
-  label: string
-  child: ReactNode
+  label: string;
+  child: ReactNode;
 }
 
-interface AccordionProps {
-  fold: Fold
+export interface AccordionProps {
+  folds: Fold[];
 }
 
-export const Accordion: React.FC<AccordionProps> = ({
-  fold,
-}: AccordionProps) => {
+const Accordion: React.FC<AccordionProps> = ({ folds }: AccordionProps) => {
+  const [hide, setHide] = useState<boolean[]>(Array(folds.length).fill(true));
+
+  const onAccClick = (i: number): void => {
+    const hidden = [...hide];
+    hidden[i] = !hidden[i];
+    console.log(hidden);
+    setHide(hidden);
+  };
+
   return (
     <div className="usa-accordion">
-      {Object.keys(fold).map((e, i) => (
+      {folds.map((e, i) => (
         <div
           className="accordion-item"
           key={`accordion-item-${i}`}
@@ -24,21 +32,28 @@ export const Accordion: React.FC<AccordionProps> = ({
             <button
               type="button"
               className="usa-accordion__button"
-              aria-expanded={false}
-              aria-controls={`a${i}`}
-              data-testid="prescriptions-acc-button"
+              aria-expanded={!hide[i]}
+              data-testid="acc-button"
+              onClick={() => onAccClick(i)}
             >
-              {/* Label */}
+              {e.label}
             </button>
           </h4>
           <div
-            id={`a${i}`}
             className="usa-accordion__content usa-prose text-left"
-            hidden={true}
-            data-testid="prescriptions-acc"
-          ></div>
+            style={{
+              display: hide[i] ? "none" : "block",
+              visibility: "visible",
+            }}
+            hidden={hide[i]}
+            data-testid="acc-content-body"
+          >
+            {e.child}
+          </div>
         </div>
       ))}
     </div>
-  )
-}
+  );
+};
+
+export default Accordion;

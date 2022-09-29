@@ -1,25 +1,25 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode } from "react";
 
 export interface ButtonProps {
-  children?: ReactNode
-  onClick?: Function
-  variant?: string
+  children?: ReactNode;
+  onClick?: Function;
+  variant?: string;
 }
 
 const Button: React.FC<ButtonProps> = ({
-  onClick,
-  children,
-  variant
+  onClick = () => {},
+  children = <></>,
+  variant = "default",
 }: ButtonProps) => {
   return (
     <button
       data-testid="button"
-      className={`usa-button usa-button--${variant || 'default'}`}
-      onClick={(e) => (onClick != null ? onClick(e) : {})}
+      className={`usa-button usa-button--${variant}`}
+      onClick={(e) => onClick(e)}
     >
-      {children || <></>}
+      {children}
     </button>
-  )
-}
+  );
+};
 
-export default Button
+export default Button;
