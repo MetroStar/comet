@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { ReactNode } from "react";
 export interface ButtonProps {
-    label: string;
-    onClick: Function;
+    children?: ReactNode;
+    onClick?: Function;
+    variant?: string;
 }
 declare const Button: React.FC<ButtonProps>;
 export default Button;
