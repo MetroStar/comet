@@ -48,6 +48,15 @@ interface InputProps {
 }
 declare const Input: React.FC<InputProps>;
 
+interface ModalProps {
+    show?: boolean;
+    close?: Function;
+    header?: React.ReactNode;
+    footer?: React.ReactNode;
+    children?: React.ReactNode;
+}
+declare const Modal: React.FC<ModalProps>;
+
 interface TableProps {
     headers?: string[];
     rows?: any[][];
@@ -56,4 +65,4 @@ interface TableProps {
 }
 declare const Table: React.FC<TableProps>;
 
-export { Accordion, Breadcrumb, Button, Card, Checklist, Input, Table };
+export { Accordion, Breadcrumb, Button, Card, Checklist, Input, Modal, Table };

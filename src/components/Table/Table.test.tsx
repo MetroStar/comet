@@ -26,6 +26,12 @@ test("Table primaryCol and actions work", () => {
   expect(spy).toHaveBeenCalledWith("bar");
 });
 
+test("Table primaryCol click without action does nothing", () => {
+  render(<Table headers={["foo"]} rows={[["bar", { a: 1 }]]} primaryCol={0} />);
+
+  fireEvent.click(screen.getByText("bar"));
+});
+
 test("Table can handle non primitives", () => {
   render(<Table headers={["foo"]} rows={[[{ name: "one" }]]} />);
   expect(screen.getByText(JSON.stringify({ name: "one" }))).toBeVisible();
