@@ -48,4 +48,12 @@ interface InputProps {
 }
 declare const Input: React.FC<InputProps>;
 
-export { Accordion, Breadcrumb, Button, Card, Checklist, Input };
+interface TableProps {
+    headers?: string[];
+    rows?: any[][];
+    primaryCol?: number;
+    primaryColAction?: Function;
+}
+declare const Table: React.FC<TableProps>;
+
+export { Accordion, Breadcrumb, Button, Card, Checklist, Input, Table };
