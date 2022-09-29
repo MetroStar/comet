@@ -1,0 +1,8 @@
+.checklist .label {
+    font-weight: bold;
+}
+
+.checklist .checkbox {
+    padding-left: 15px;
+    user-select: none;
+}

@@ -16,7 +16,6 @@ const Accordion: React.FC<AccordionProps> = ({ folds }: AccordionProps) => {
   const onAccClick = (i: number): void => {
     const hidden = [...hide];
     hidden[i] = !hidden[i];
-    console.log(hidden);
     setHide(hidden);
   };
 

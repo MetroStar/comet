@@ -14,6 +14,7 @@ const Input: React.FC<InputProps> = (props: InputProps) => {
       placeholder={props.placeholder}
       type={props.type}
       style={props.style}
+      data-testid="input"
       onChange={props.onChange as ChangeEventHandler<HTMLInputElement>}
     />
   );
