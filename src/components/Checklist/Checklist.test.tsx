@@ -23,5 +23,5 @@ test("Checklist sends box state back on change", () => {
 test("Checklist skips callback update when onChange is not available", () => {
   render(<Checklist label="Items:" items={["one", "two"]} />);
   fireEvent.click(screen.getAllByTestId("checkbox")[0]);
-  expect(screen.getAllByTestId("checkbox")[0]).toBeChecked()
-})
+  expect(screen.getAllByTestId("checkbox")[0]).toBeChecked();
+});

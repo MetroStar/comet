@@ -26,6 +26,20 @@ interface ButtonProps {
 }
 declare const Button: React.FC<ButtonProps>;
 
+interface CardProps {
+    header?: React.ReactNode;
+    children?: React.ReactNode;
+    footer?: React.ReactNode;
+}
+declare const Card: React.FC<CardProps>;
+
+interface ChecklistProps {
+    items?: string[];
+    onChange?: Function;
+    label?: string;
+}
+declare const Checklist: React.FC<ChecklistProps>;
+
 interface InputProps {
     onChange: Function;
     placeholder?: string;
@@ -34,4 +48,4 @@ interface InputProps {
 }
 declare const Input: React.FC<InputProps>;
 
-export { Accordion, Breadcrumb, Button, Input };
+export { Accordion, Breadcrumb, Button, Card, Checklist, Input };
