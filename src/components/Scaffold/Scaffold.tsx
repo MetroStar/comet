@@ -19,7 +19,7 @@ const Scaffold: React.FC<ScaffoldProps> = ({
   footer,
 }: ScaffoldProps) => {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/">
       <HeaderWithNavigate {...header} />
       <div className="usa-nav-container scaffold-body">
         <Routes>

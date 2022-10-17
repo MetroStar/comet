@@ -53,7 +53,6 @@ Default.args = {
   ],
   header: {
     logo: "USWDS Site",
-    root: "/",
     simple: [
       { label: "Apple", path: "/" },
       { label: "Mango", path: "/mango" },

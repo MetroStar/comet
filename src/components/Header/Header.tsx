@@ -26,7 +26,6 @@ export interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({
   logo,
-  root,
   onNavigate = (path: string): void => {},
   folding,
   simple,
