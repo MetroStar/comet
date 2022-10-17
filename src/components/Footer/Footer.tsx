@@ -33,7 +33,7 @@ const Footer: React.FC<FooterProps> = ({
   socials,
 }: FooterProps) => {
   return (
-    <footer className="usa-footer">
+    <footer className="usa-footer" data-testid="footer">
       <div className="grid-container usa-footer__return-to-top">
         <span
           style={{

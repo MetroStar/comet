@@ -44,7 +44,7 @@ const Header: React.FC<HeaderProps> = ({
   };
 
   return (
-    <header className="usa-header usa-header--basic">
+    <header className="usa-header usa-header--basic" data-testid="header">
       <div className="usa-nav-container">
         <div className="usa-navbar">
           <div className="usa-logo" id="-logo">
