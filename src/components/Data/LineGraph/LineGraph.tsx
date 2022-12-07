@@ -5,6 +5,7 @@ import ChartProps from "../Chart/Chart";
 export interface LineGraphProps {
   chart: ChartProps;
   colors?: string[];
+  smooth?: boolean;
   data: Array<
     Array<{
       x: number;
@@ -33,6 +34,7 @@ const LineGraph: React.FC<LineGraphProps> = (props: LineGraphProps) => {
             duration: 2000,
             onLoad: { duration: 1000 },
           }}
+          interpolation={props.smooth && props.smooth ? "natural" : undefined}
         />
       ))}
     </VictoryChart>

@@ -5,6 +5,7 @@ import ChartProps from "../Chart/Chart";
 export interface AreaGraphProps {
   chart: ChartProps;
   colors?: string[];
+  smooth?: boolean;
   data: Array<
     Array<{
       x: number;
@@ -29,6 +30,7 @@ const AreaGraph: React.FC<AreaGraphProps> = (props: AreaGraphProps) => {
             },
           }}
           data={d}
+          interpolation={props.smooth && props.smooth ? "natural" : undefined}
           animate={{
             duration: 2000,
             onLoad: { duration: 1000 },
