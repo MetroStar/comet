@@ -1,8 +1,8 @@
 import React from "react";
-import { VictoryChart, VictoryLine } from "victory";
+import { VictoryChart, VictoryArea } from "victory";
 import ChartProps from "../Chart/Chart";
 
-export interface LineGraphProps {
+export interface AreaGraphProps {
   chart: ChartProps;
   colors?: string[];
   data: Array<
@@ -13,15 +13,15 @@ export interface LineGraphProps {
   >;
 }
 
-const LineGraph: React.FC<LineGraphProps> = (props: LineGraphProps) => {
+const AreaGraph: React.FC<AreaGraphProps> = (props: AreaGraphProps) => {
   return (
     <VictoryChart {...props.chart}>
       {props.data.map((d, i) => (
-        <VictoryLine
-          key={`line-${i}`}
+        <VictoryArea
+          key={`area-${i}`}
           style={{
             data: {
-              stroke: props.colors
+              fill: props.colors
                 ? props.colors[i]
                   ? props.colors[i]
                   : props.colors[0]
@@ -39,4 +39,4 @@ const LineGraph: React.FC<LineGraphProps> = (props: LineGraphProps) => {
   );
 };
 
-export default LineGraph;
+export default AreaGraph;
