@@ -1,10 +1,10 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { BarGraph } from "../index";
-import { BarGraphProps } from "../components/Data/BarGraph/BarGraph";
+import { BarGraph } from "../../index";
+import { BarGraphProps } from "../../components/Data/BarGraph/BarGraph";
 
 const meta: ComponentMeta<typeof BarGraph> = {
-  title: "react-uswds/BarGraph",
+  title: "react-uswds/Data/BarGraph",
   component: BarGraph,
 };
 export default meta;
