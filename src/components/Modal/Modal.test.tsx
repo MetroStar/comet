@@ -4,24 +4,14 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import Modal from "./Modal";
 
 test("Modal renders with given props", () => {
-  render(
-    <Modal show={true} header="foo" footer="bar">
-      Yellow
-    </Modal>
-  );
+  render(<Modal show={true}>test</Modal>);
 
-  expect(screen.getByText("foo")).toBeVisible();
-  expect(screen.getByText("bar")).toBeVisible();
-  expect(screen.getByText("Yellow")).toBeVisible();
+  expect(screen.getByText("test")).toBeVisible();
   expect(screen.getByTestId("modal")).toHaveClass("show");
 });
 
 test("Modal invisible when show is false", () => {
-  render(
-    <Modal show={false} header="foo" footer="bar">
-      Yellow
-    </Modal>
-  );
+  render(<Modal show={false}>Yellow</Modal>);
 
   expect(screen.getByTestId("modal")).toHaveClass("hide");
 });

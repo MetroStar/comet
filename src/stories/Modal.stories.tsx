@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { Modal, Button } from "../index";
+import {
+  Modal,
+  Button,
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+} from "../index";
 import { ModalProps } from "../components/Modal/Modal";
 
 const meta: ComponentMeta<typeof Modal> = {
@@ -10,15 +17,20 @@ const meta: ComponentMeta<typeof Modal> = {
 export default meta;
 
 const Template: ComponentStory<typeof Modal> = (args: ModalProps) => (
-  <Modal {...args} />
+  <Modal {...args}>
+    <Card>
+      <CardHeader>Modal Header</CardHeader>
+      <CardBody>Modal Body</CardBody>
+      <CardFooter>
+        <Button variant="outline">Action</Button>
+      </CardFooter>
+    </Card>
+  </Modal>
 );
 
 export const Default = Template.bind({});
 Default.args = {
   show: true,
-  header: "Modal!",
-  children: "This is a modal for sure...",
-  footer: <Button variant="accent-warm">Action</Button>,
 };
 
 const ModalWrapper: React.FC<ModalProps> = (props: ModalProps) => {
@@ -28,12 +40,15 @@ const ModalWrapper: React.FC<ModalProps> = (props: ModalProps) => {
   return (
     <div>
       <Button onClick={() => setShow(true)}>Show Modal</Button>
-      <Modal
-        show={show}
-        close={close}
-        footer={<Button onClick={close}>Close</Button>}
-        {...props}
-      />
+      <Modal show={show} close={close}>
+        <Card>
+          <CardHeader>Modal Header</CardHeader>
+          <CardBody>Modal Body</CardBody>
+          <CardFooter>
+            <Button variant="outline">Action</Button>
+          </CardFooter>
+        </Card>
+      </Modal>
     </div>
   );
 };
@@ -43,14 +58,4 @@ const ActiveTemplate: ComponentStory<typeof Modal> = (args: ModalProps) => (
 );
 
 export const WithInteraction = ActiveTemplate.bind({});
-WithInteraction.args = {
-  header: "Modal...",
-  children: (
-    <div>
-      This modal is rendered through a component, where state controls the
-      `show` attribute.
-      <br />A button is injected into footer with the logic to either close or
-      open the modal by changing state.
-    </div>
-  ),
-};
+WithInteraction.args = {};

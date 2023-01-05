@@ -1,14 +1,12 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { BsFacebook, BsTwitter, BsYoutube, BsInstagram } from "react-icons/bs";
-
-export type Navigate = (path: string) => void;
 
 export interface FooterProps {
   links?: Array<{
     label: string;
     path: string;
   }>;
-  onNavigate?: Navigate;
   logoText?: string;
   logoSrc?: string;
   contactMessage?: string;
@@ -24,7 +22,6 @@ export interface FooterProps {
 
 const Footer: React.FC<FooterProps> = ({
   links,
-  onNavigate = (path: string): void => {},
   logoText,
   logoSrc,
   contactMessage,
@@ -32,6 +29,8 @@ const Footer: React.FC<FooterProps> = ({
   phone,
   socials,
 }: FooterProps) => {
+  const navigate = useNavigate();
+
   return (
     <footer className="usa-footer" data-testid="footer">
       <div className="grid-container usa-footer__return-to-top">
@@ -63,7 +62,7 @@ const Footer: React.FC<FooterProps> = ({
                   data-testid="footer-link"
                   onClick={(event) => {
                     event.preventDefault();
-                    onNavigate(e.path);
+                    navigate(e.path);
                   }}
                 >
                   {e.label}
