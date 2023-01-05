@@ -1,8 +1,6 @@
-import React from "react";
-export interface CardProps {
-    header?: React.ReactNode;
-    children?: React.ReactNode;
-    footer?: React.ReactNode;
-}
-declare const Card: React.FC<CardProps>;
+import React, { PropsWithChildren } from "react";
+declare const Card: React.FC<PropsWithChildren>;
+export declare const CardBody: React.FC<PropsWithChildren>;
+export declare const CardHeader: React.FC<PropsWithChildren>;
+export declare const CardFooter: React.FC<PropsWithChildren>;
 export default Card;

@@ -1,6 +1,6 @@
 {
-  "name": "react-uswds",
-  "version": "1.0.0",
+  "name": "@metrostar/warpspeed",
+  "version": "1.0.8",
   "description": "Lightweight React USWDS components for general use.",
   "author": "Nathan Barber",
   "license": "MIT",
