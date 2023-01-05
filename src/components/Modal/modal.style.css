@@ -1,43 +1,44 @@
 .modal {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    transition: opacity 150ms ease-out;
-    z-index: 1000;
-    opacity: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  transition: opacity 150ms ease-out;
+  z-index: 1000;
+  opacity: 0;
 }
 
 .modal.hide {
-    visibility: hidden;
-    opacity: 0;
+  visibility: hidden;
+  opacity: 0;
 }
 
 .modal.show {
-    visibility: visible;
-    opacity: 1;
-    transition: all 150ms ease-out;
+  visibility: visible;
+  opacity: 1;
+  transition: all 150ms ease-out;
 }
 
 .modal .overlay {
-    background-color: rgba(0, 0, 0, 0.425);
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -10;
+  background-color: rgba(0, 0, 0, 0.425);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -10;
 }
 
 .modal .modal-vis {
-    width: 50%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 60px;
-    z-index: 1000;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 60px;
+  z-index: 1000;
 }
 
-.modal .usa-card, .modal .usa-card__container {
-    border: 0px;
+.modal .usa-card,
+.modal .usa-card__container {
+  border: 0px;
 }
