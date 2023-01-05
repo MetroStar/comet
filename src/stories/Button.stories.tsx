@@ -10,23 +10,18 @@ const meta: ComponentMeta<typeof Button> = {
 export default meta;
 
 const Template: ComponentStory<typeof Button> = (args: ButtonProps) => (
-  <Button {...args} />
+  <Button {...args}>Button</Button>
 );
 
 export const Default = Template.bind({});
-Default.args = {
-  children: "Default Button",
-};
+Default.args = {};
 
 export const WithAction = Template.bind({});
 WithAction.args = {
-  children: "With Action",
   onClick: (e: ReactEventHandler<HTMLButtonElement>) => alert("Clicked!"),
 };
 
 export const WithVariant = Template.bind({});
 WithVariant.args = {
-  children:
-    "With A Variant Prop (accent-cool, accent-warm, base, outline, etc)",
   variant: "outline",
 };

@@ -1,7 +1,6 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { Card, Button } from "../index";
-import { CardProps } from "../components/Card/Card";
+import { Card, CardHeader, CardFooter, CardBody, Button } from "../index";
 
 const meta: ComponentMeta<typeof Card> = {
   title: "react-uswds/Card",
@@ -9,13 +8,14 @@ const meta: ComponentMeta<typeof Card> = {
 };
 export default meta;
 
-const Template: ComponentStory<typeof Card> = (args: CardProps) => (
-  <Card {...args} />
+const Template: ComponentStory<typeof Card> = () => (
+  <Card>
+    <CardHeader>Card Header</CardHeader>
+    <CardBody>The meat of the card...</CardBody>
+    <CardFooter>
+      <Button variant="outline">Click me...</Button>
+    </CardFooter>
+  </Card>
 );
 
 export const Default = Template.bind({});
-Default.args = {
-  header: "Card!",
-  children: "Lorum ipsum blah blah...",
-  footer: <Button variant="outline">Action!</Button>,
-};

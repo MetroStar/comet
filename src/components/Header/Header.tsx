@@ -1,14 +1,13 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { MdOutlineSearch } from "react-icons/md";
 import "./header.style.css";
 
-export type Navigate = (path: string) => void;
 export type Search = (search: string) => void;
 
 export interface HeaderProps {
   logo?: React.ReactNode;
   root?: string;
-  onNavigate?: Navigate;
   folding?: Array<{
     label: string;
     items: Array<{
@@ -26,12 +25,12 @@ export interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({
   logo,
-  onNavigate = (path: string): void => {},
   folding,
   simple,
   showSearch,
   onSearch = (search: string): void => {},
 }: HeaderProps) => {
+  const navigate = useNavigate();
   const [showFold, setShowFold] = useState(
     Array(folding?.length ?? 0).fill(false)
   );
@@ -89,7 +88,7 @@ const Header: React.FC<HeaderProps> = ({
                         href=""
                         onClick={(event) => {
                           event.preventDefault();
-                          onNavigate(l.path);
+                          navigate(l.path);
                         }}
                       >
                         <span>{l.label}</span>
@@ -106,7 +105,7 @@ const Header: React.FC<HeaderProps> = ({
                   className="usa-nav-link"
                   onClick={(event) => {
                     event.preventDefault();
-                    onNavigate(e.path);
+                    navigate(e.path);
                   }}
                 >
                   <span>{e.label}</span>

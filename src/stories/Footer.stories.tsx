@@ -1,6 +1,7 @@
 import React from "react";
+import { HashRouter, Routes, Route } from "react-router-dom";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { Footer } from "../index";
+import { Footer, Card, CardHeader } from "../index";
 import { FooterProps } from "../components/Footer/Footer";
 
 const meta: ComponentMeta<typeof Footer> = {
@@ -10,7 +11,37 @@ const meta: ComponentMeta<typeof Footer> = {
 export default meta;
 
 const Template: ComponentStory<typeof Footer> = (args: FooterProps) => (
-  <Footer {...args} />
+  <HashRouter>
+    <Routes>
+      <Route
+        path="/"
+        element={
+          <Card>
+            <CardHeader>Home</CardHeader>
+          </Card>
+        }
+      />
+      <Route
+        path="/orange"
+        element={
+          <Card>
+            <CardHeader>Orange</CardHeader>
+          </Card>
+        }
+      />
+      <Route
+        path="/apple"
+        element={
+          <Card>
+            <CardHeader>Apple</CardHeader>
+          </Card>
+        }
+      />
+    </Routes>
+    <br />
+    <br />
+    <Footer {...args} />
+  </HashRouter>
 );
 
 export const Default = Template.bind({});
@@ -19,6 +50,14 @@ Default.args = {
     {
       label: "Orange",
       path: "/orange",
+    },
+    {
+      label: "Apple",
+      path: "/apple",
+    },
+    {
+      label: "Home",
+      path: "/",
     },
   ],
   logoText: "React USWDS",

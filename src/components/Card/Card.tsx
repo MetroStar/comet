@@ -1,25 +1,35 @@
-import React from "react";
+import React, { PropsWithChildren } from "react";
 
-export interface CardProps {
-  header?: React.ReactNode;
-  children?: React.ReactNode;
-  footer?: React.ReactNode;
-}
-
-const Card: React.FC<CardProps> = ({ header, children, footer }: CardProps) => {
+const Card: React.FC<PropsWithChildren> = ({ children }: PropsWithChildren) => {
   return (
     <div className="usa-card usa-card desktop:grid-col-12">
-      <div className="usa-card__container">
-        <div className="usa-card__header">
-          <h2 className="usa-card__heading text-primary-dark">
-            {header ?? ""}
-          </h2>
-        </div>
-        <div className="usa-card__body">{children ?? <></>}</div>
-        <div className="usa-card__footer">{footer ?? <></>}</div>
-      </div>
+      <div className="usa-card__container">{children ?? <></>}</div>
     </div>
   );
+};
+
+export const CardBody: React.FC<PropsWithChildren> = ({
+  children,
+}: PropsWithChildren) => {
+  return <div className="usa-card__body">{children ?? <></>}</div>;
+};
+
+export const CardHeader: React.FC<PropsWithChildren> = ({
+  children,
+}: PropsWithChildren) => {
+  return (
+    <div className="usa-card__header">
+      <h2 className="usa-card__heading text-primary-dark">
+        {children ?? <></>}
+      </h2>
+    </div>
+  );
+};
+
+export const CardFooter: React.FC<PropsWithChildren> = ({
+  children,
+}: PropsWithChildren) => {
+  return <div className="usa-card__footer">{children ?? <></>}</div>;
 };
 
 export default Card;

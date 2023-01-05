@@ -1,4 +1,5 @@
 import React from "react";
+import { HashRouter, Routes, Route } from "react-router-dom";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { Scaffold, Button, Alert } from "../index";
 import { ScaffoldProps } from "../components/Scaffold/Scaffold";
@@ -10,7 +11,15 @@ const meta: ComponentMeta<typeof Scaffold> = {
 export default meta;
 
 const Template: ComponentStory<typeof Scaffold> = (args: ScaffoldProps) => (
-  <Scaffold {...args} />
+  <HashRouter>
+    <Scaffold {...args}>
+      <Routes>
+        <Route path="/" element={<FakeBody name="apple" />} />
+        <Route path="/mango" element={<FakeBody name="mango" />} />
+        <Route path="/kiwi" element={<FakeBody name="kiwi" />} />
+      </Routes>
+    </Scaffold>
+  </HashRouter>
 );
 
 interface FakeBodyProps {
@@ -37,20 +46,6 @@ const FakeBody: React.FC<FakeBodyProps> = ({ name }: FakeBodyProps) => {
 
 export const Default = Template.bind({});
 Default.args = {
-  routes: [
-    {
-      path: "/",
-      element: <FakeBody name="apple" />,
-    },
-    {
-      path: "/mango",
-      element: <FakeBody name="mango" />,
-    },
-    {
-      path: "/kiwi",
-      element: <FakeBody name="kiwi" />,
-    },
-  ],
   header: {
     logo: "USWDS Site",
     simple: [
