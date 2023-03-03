@@ -10,13 +10,15 @@ const meta: ComponentMeta<typeof Alert> = {
 export default meta;
 
 const Template: ComponentStory<typeof Alert> = (args: AlertProps) => (
-  <Alert {...args}>This is the alert body</Alert>
+  <div className="width-desktop">
+    <Alert {...args}>This is the alert body</Alert>
+  </div>
 );
 
 export const Default = Template.bind({});
 Default.args = {
   show: true,
   type: "info",
-  slim: true,
+  slim: false,
   // header: "An Alert...",
 };
