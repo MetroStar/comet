@@ -8,6 +8,5 @@ export { default as Footer } from "./Footer";
 export { default as Header } from "./Header";
 export { default as Input } from "./Input";
 export { default as Modal } from "./Modal";
-export { default as Scaffold } from "./Scaffold";
 export { default as Table } from "./Table";
 export * from "./Data";

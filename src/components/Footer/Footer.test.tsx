@@ -2,7 +2,6 @@ import React from "react";
 import "@testing-library/jest-dom";
 import { render, screen, fireEvent } from "@testing-library/react";
 import Footer from "./Footer";
-import { HashRouter } from "react-router-dom";
 
 const props = {
   links: [
@@ -24,40 +23,34 @@ const props = {
   },
 };
 
-const footerJsx = (): any => (
-  <HashRouter>
-    <Footer {...props} />
-  </HashRouter>
-);
-
 test("Footer renders with given props and invokes folded menu", () => {
-  render(footerJsx());
+  render(<Footer {...props} />);
   expect(screen.getByText("React USWDS")).toBeVisible();
 });
 
 test("Footer renders with no props", () => {
-  render(footerJsx());
+  render(<Footer />);
 });
 
-// test("Footer activates navigate callback", () => {
-//   const spy = jest.fn();
-//   render(<Footer {...props} onNavigate={spy} />);
+test("Footer activates navigate callback", () => {
+  const spy = jest.fn();
+  render(<Footer {...props} onNavigate={spy} />);
 
-//   fireEvent.click(screen.getByTestId("footer-link"));
-//   expect(spy).toHaveBeenCalledWith("/orange");
-// });
+  fireEvent.click(screen.getByTestId("footer-link"));
+  expect(spy).toHaveBeenCalledWith("/orange");
+});
 
-// test("Footer calls default onNavigate", () => {
-//   render(<Footer {...props} />);
+test("Footer calls default onNavigate", () => {
+  render(<Footer {...props} />);
 
-//   fireEvent.click(screen.getByTestId("footer-link"));
-// });
+  fireEvent.click(screen.getByTestId("footer-link"));
+});
 
 test("Scroll to top button works", () => {
   const spy = jest.fn();
   window.scrollTo = spy;
   global.scrollTo = spy;
-  render(footerJsx());
+  render(<Footer {...props} />);
 
   fireEvent.click(screen.getByTestId("scroll-top"));
   expect(spy).toHaveBeenCalledWith(0, 0);

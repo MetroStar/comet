@@ -1,6 +1,6 @@
 {
   "name": "@metrostar/warpspeed",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Lightweight React USWDS components for general use.",
   "author": "Nathan Barber",
   "license": "MIT",
@@ -33,13 +33,13 @@
     "@rollup/plugin-commonjs": "^22.0.2",
     "@rollup/plugin-node-resolve": "^14.1.0",
     "@rollup/plugin-typescript": "^8.5.0",
-    "@storybook/addon-actions": "^6.5.12",
-    "@storybook/addon-essentials": "^6.5.12",
-    "@storybook/addon-interactions": "^6.5.12",
-    "@storybook/addon-links": "^6.5.12",
-    "@storybook/builder-webpack5": "^6.5.12",
-    "@storybook/manager-webpack5": "^6.5.12",
-    "@storybook/react": "^6.5.12",
+    "@storybook/addon-actions": "^6.5.16",
+    "@storybook/addon-essentials": "^6.5.16",
+    "@storybook/addon-interactions": "^6.5.16",
+    "@storybook/addon-links": "^6.5.16",
+    "@storybook/builder-webpack5": "^6.5.16",
+    "@storybook/manager-webpack5": "^6.5.16",
+    "@storybook/react": "^6.5.16",
     "@storybook/testing-library": "^0.0.13",
     "@testing-library/dom": "^8.18.1",
     "@testing-library/jest-dom": "^5.16.5",
@@ -60,7 +60,7 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-react": "^7.31.8",
-    "eslint-plugin-storybook": "^0.6.4",
+    "eslint-plugin-storybook": "^0.6.11",
     "jest": "^29.1.1",
     "jest-environment-jsdom": "^29.1.1",
     "jest-transform-stub": "^2.0.0",
@@ -74,14 +74,14 @@
     "style-loader": "^3.3.1",
     "typescript": "*"
   },
+  "peerDependencies": {
+    "react": "^18.2.0"
+  },
   "dependencies": {
     "@uswds/uswds": "3.3.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.4.0",
-    "react-redux": "^8.0.4",
-    "react-router-dom": "^6.6.1",
-    "redux": "^4.2.0",
     "victory": "^36.6.8"
   }
 }
