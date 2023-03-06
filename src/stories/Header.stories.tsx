@@ -1,7 +1,6 @@
 import React from "react";
-import { HashRouter, Routes, Route } from "react-router-dom";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { Header, Card, CardHeader } from "../index";
+import { Header } from "../index";
 import { HeaderProps } from "../components/Header/Header";
 
 const meta: ComponentMeta<typeof Header> = {
@@ -11,52 +10,7 @@ const meta: ComponentMeta<typeof Header> = {
 export default meta;
 
 const Template: ComponentStory<typeof Header> = (args: HeaderProps) => (
-  <HashRouter>
-    <Header {...args} />
-    <br />
-    <Routes>
-      <Route
-        path="/"
-        element={
-          <Card>
-            <CardHeader>Home</CardHeader>
-          </Card>
-        }
-      />
-      <Route
-        path="/kiwi"
-        element={
-          <Card>
-            <CardHeader>Kiwi</CardHeader>
-          </Card>
-        }
-      />
-      <Route
-        path="/orange"
-        element={
-          <Card>
-            <CardHeader>Orange</CardHeader>
-          </Card>
-        }
-      />
-      <Route
-        path="/lemon"
-        element={
-          <Card>
-            <CardHeader>Lemon</CardHeader>
-          </Card>
-        }
-      />
-      <Route
-        path="/lime"
-        element={
-          <Card>
-            <CardHeader>Lime</CardHeader>
-          </Card>
-        }
-      />
-    </Routes>
-  </HashRouter>
+  <Header {...args} />
 );
 
 export const Default = Template.bind({});

@@ -31,8 +31,9 @@ interface BreadcrumbProps {
 declare const Breadcrumb: React.FC<BreadcrumbProps>;
 
 interface ButtonProps {
-    label: string;
-    onClick: Function;
+    children?: ReactNode;
+    onClick?: Function;
+    variant?: string;
 }
 declare const Button: React.FC<ButtonProps>;
 
@@ -48,11 +49,13 @@ interface ChecklistProps {
 }
 declare const Checklist: React.FC<ChecklistProps>;
 
+declare type Navigate$1 = (path: string) => void;
 interface FooterProps {
     links?: Array<{
         label: string;
         path: string;
     }>;
+    onNavigate?: Navigate$1;
     logoText?: string;
     logoSrc?: string;
     contactMessage?: string;
@@ -67,10 +70,12 @@ interface FooterProps {
 }
 declare const Footer: React.FC<FooterProps>;
 
+declare type Navigate = (path: string) => void;
 declare type Search = (search: string) => void;
 interface HeaderProps {
     logo?: React.ReactNode;
     root?: string;
+    onNavigate?: Navigate;
     folding?: Array<{
         label: string;
         items: Array<{
@@ -101,13 +106,6 @@ interface ModalProps {
     children?: React.ReactNode;
 }
 declare const Modal: React.FC<ModalProps>;
-
-interface ScaffoldProps {
-    header: HeaderProps;
-    footer: FooterProps;
-    children?: React.ReactNode;
-}
-declare const Scaffold: React.FC<ScaffoldProps>;
 
 interface TableProps {
     headers?: string[];
@@ -197,4 +195,4 @@ interface PieChartProps {
 }
 declare const PieChart: React.FC<PieChartProps>;
 
-export { Accordion, Alert, AreaGraph, BarGraph, Breadcrumb, Button, Card, CardBody, CardFooter, CardHeader, Checklist, Footer, Header, Input, LineGraph, Modal, PieChart, PolarAxis, Radial, Scaffold, Table };
+export { Accordion, Alert, AreaGraph, BarGraph, Breadcrumb, Button, Card, CardBody, CardFooter, CardHeader, Checklist, Footer, Header, Input, LineGraph, Modal, PieChart, PolarAxis, Radial, Table };
