@@ -1,7 +1,7 @@
 import React from "react";
 import "@testing-library/jest-dom";
 import { render, screen, fireEvent } from "@testing-library/react";
-import Footer from "./Footer";
+import Footer from "./footer";
 
 const props = {
   links: [

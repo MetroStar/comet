@@ -1,1 +1,1 @@
-export { default } from "./Checklist";
+export { default } from "./checklist";

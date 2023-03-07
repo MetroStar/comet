@@ -1,7 +1,7 @@
 import React from "react";
 import "@testing-library/jest-dom";
 import { render } from "@testing-library/react";
-import Alert from "./Alert";
+import Alert from "./alert";
 
 describe("Alert", () => {
   test("should render a default alert", () => {

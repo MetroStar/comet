@@ -22,7 +22,7 @@ export interface FooterProps {
   };
 }
 
-const Footer: React.FC<FooterProps> = ({
+export const Footer = ({
   links,
   onNavigate = (path: string): void => {},
   logoText,
@@ -31,7 +31,7 @@ const Footer: React.FC<FooterProps> = ({
   email,
   phone,
   socials,
-}: FooterProps) => {
+}: FooterProps): React.ReactElement => {
   return (
     <footer className="usa-footer" data-testid="footer">
       <div className="grid-container usa-footer__return-to-top">
