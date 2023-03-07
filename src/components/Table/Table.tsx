@@ -12,13 +12,13 @@ export interface TableProps {
 const handleNonPrimitives = (e: any): any =>
   typeof e === "object" ? JSON.stringify(e) : e;
 
-const Table: React.FC<TableProps> = ({
+export const Table = ({
   id,
   headers,
   rows,
   primaryCol,
   primaryColAction = (e: any): void => {},
-}: TableProps) => {
+}: TableProps): React.ReactElement => {
   return (
     <div className="table" id={id}>
       <table className="usa-table dynamic-table">

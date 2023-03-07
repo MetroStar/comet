@@ -1,7 +1,7 @@
 import React from "react";
 import "@testing-library/jest-dom";
 import { render, screen, fireEvent } from "@testing-library/react";
-import Checklist from "./Checklist";
+import Checklist from "./checklist";
 
 describe("Checklist", () => {
   test("should render with missing props", () => {

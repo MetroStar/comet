@@ -24,14 +24,14 @@ export interface HeaderProps {
   onSearch?: Search;
 }
 
-const Header: React.FC<HeaderProps> = ({
+export const Header = ({
   logo,
   onNavigate = (path: string): void => {},
   folding,
   simple,
   showSearch,
   onSearch = (search: string): void => {},
-}: HeaderProps) => {
+}: HeaderProps): React.ReactElement => {
   const [showFold, setShowFold] = useState(
     Array(folding?.length ?? 0).fill(false)
   );
@@ -146,6 +146,7 @@ const SearchBar: React.FC<SearchProps> = ({ show, onSearch }: SearchProps) => {
           onChange={(event) => setQuery(event.target.value)}
         />
         <button
+          aria-label="search"
           className="usa-button"
           type="submit"
           data-testid="search-button"

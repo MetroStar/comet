@@ -1,7 +1,7 @@
 import React from "react";
 import "@testing-library/jest-dom";
 import { render, screen, fireEvent } from "@testing-library/react";
-import Table from "./Table";
+import Table from "./table";
 
 describe("Table", () => {
   test("should render with basic props", () => {

@@ -1,7 +1,7 @@
 import React from "react";
 import "@testing-library/jest-dom";
 import { render, screen, fireEvent } from "@testing-library/react";
-import Input from "./Input";
+import Input from "./input";
 
 describe("Input", () => {
   test("Input renders with given props and callback works", () => {

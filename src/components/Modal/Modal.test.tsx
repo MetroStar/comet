@@ -1,7 +1,7 @@
 import React from "react";
 import "@testing-library/jest-dom";
 import { render, screen, fireEvent } from "@testing-library/react";
-import Modal from "./Modal";
+import Modal from "./modal";
 
 describe("Modal", () => {
   test("should render with given props", () => {

@@ -1,7 +1,7 @@
 import React from "react";
 import "@testing-library/jest-dom";
 import { render, screen, fireEvent } from "@testing-library/react";
-import Accordion from "./Accordion";
+import Accordion from "./accordion";
 
 describe("Accordion", () => {
   test("should render with given props", () => {

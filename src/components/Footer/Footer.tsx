@@ -22,7 +22,7 @@ export interface FooterProps {
   };
 }
 
-const Footer: React.FC<FooterProps> = ({
+export const Footer = ({
   links,
   onNavigate = (path: string): void => {},
   logoText,
@@ -31,7 +31,7 @@ const Footer: React.FC<FooterProps> = ({
   email,
   phone,
   socials,
-}: FooterProps) => {
+}: FooterProps): React.ReactElement => {
   return (
     <footer className="usa-footer" data-testid="footer">
       <div className="grid-container usa-footer__return-to-top">
@@ -99,7 +99,10 @@ const Footer: React.FC<FooterProps> = ({
                         className="usa-social-link__icon"
                         style={{ padding: "10%" }}
                       >
-                        <BsFacebook style={{ width: "100%", height: "100%" }} />
+                        <BsFacebook
+                          style={{ width: "100%", height: "100%" }}
+                          title="Facebook"
+                        />
                       </div>
                     </a>
                   </div>
@@ -113,7 +116,10 @@ const Footer: React.FC<FooterProps> = ({
                         className="usa-social-link__icon"
                         style={{ padding: "10%" }}
                       >
-                        <BsTwitter style={{ width: "100%", height: "100%" }} />
+                        <BsTwitter
+                          style={{ width: "100%", height: "100%" }}
+                          title="Twitter"
+                        />
                       </div>
                     </a>
                   </div>
@@ -128,7 +134,10 @@ const Footer: React.FC<FooterProps> = ({
                         className="usa-social-link__icon"
                         style={{ padding: "10%" }}
                       >
-                        <BsYoutube style={{ width: "100%", height: "100%" }} />
+                        <BsYoutube
+                          style={{ width: "100%", height: "100%" }}
+                          title="YouTube"
+                        />
                       </div>
                     </a>
                   </div>
@@ -145,6 +154,7 @@ const Footer: React.FC<FooterProps> = ({
                       >
                         <BsInstagram
                           style={{ width: "100%", height: "100%" }}
+                          title="Instagram"
                         />
                       </div>
                     </a>

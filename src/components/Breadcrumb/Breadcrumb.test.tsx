@@ -1,7 +1,7 @@
 import React from "react";
 import "@testing-library/jest-dom";
 import { render, screen, fireEvent } from "@testing-library/react";
-import Breadcrumb from "./Breadcrumb";
+import Breadcrumb from "./breadcrumb";
 
 describe("Breadcrum", () => {
   test("should render with given props and is callable", () => {

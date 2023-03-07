@@ -1,7 +1,7 @@
 import React from "react";
 import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
-import Card, { CardBody, CardHeader, CardFooter } from "./Card";
+import Card, { CardBody, CardHeader, CardFooter } from "./card";
 
 describe("Card", () => {
   test("should render a card and subcomponents", () => {

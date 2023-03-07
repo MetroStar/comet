@@ -9,12 +9,12 @@ export interface ModalProps {
   children?: React.ReactNode;
 }
 
-const Modal: React.FC<ModalProps> = ({
+export const Modal = ({
   id,
   show = false,
   onClose = () => {},
   children,
-}: ModalProps) => {
+}: ModalProps): React.ReactElement => {
   return (
     <div
       id={id}
