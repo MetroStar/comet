@@ -7,10 +7,14 @@ interface Fold {
 }
 
 export interface AccordionProps {
+  id: string;
   folds: Fold[];
 }
 
-const Accordion: React.FC<AccordionProps> = ({ folds }: AccordionProps) => {
+export const Accordion = ({
+  id,
+  folds,
+}: AccordionProps): React.ReactElement => {
   const [hide, setHide] = useState<boolean[]>(Array(folds.length).fill(true));
 
   const onAccClick = (i: number): void => {
@@ -20,19 +24,19 @@ const Accordion: React.FC<AccordionProps> = ({ folds }: AccordionProps) => {
   };
 
   return (
-    <div className="usa-accordion">
+    <div className="usa-accordion" id={id}>
       {folds.map((e, i) => (
         <div
           className="accordion-item"
+          data-testid="accordion-item"
           key={`accordion-item-${i}`}
-          data-testid="encounter"
         >
           <h4 className="usa-accordion__heading">
             <button
               type="button"
               className="usa-accordion__button"
+              data-testid="accordion-button"
               aria-expanded={!hide[i]}
-              data-testid="acc-button"
               onClick={() => onAccClick(i)}
             >
               {e.label}
@@ -40,12 +44,12 @@ const Accordion: React.FC<AccordionProps> = ({ folds }: AccordionProps) => {
           </h4>
           <div
             className="usa-accordion__content usa-prose text-left"
+            data-testid="accordion-content"
             style={{
               display: hide[i] ? "none" : "block",
               visibility: "visible",
             }}
             hidden={hide[i]}
-            data-testid="acc-content-body"
           >
             {e.child}
           </div>

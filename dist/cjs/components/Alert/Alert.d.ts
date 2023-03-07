@@ -1,10 +1,12 @@
 import React from "react";
 export interface AlertProps {
+    id: string;
+    type: "info" | "warning" | "error" | "success";
     show?: boolean;
-    type?: string;
     slim?: boolean;
-    header?: string;
+    noIcon?: boolean;
+    heading?: string;
     children?: React.ReactNode;
 }
-declare const Alert: React.FC<AlertProps>;
+export declare const Alert: ({ id, type, show, slim, noIcon, heading, children, }: AlertProps) => React.ReactElement;
 export default Alert;

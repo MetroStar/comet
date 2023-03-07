@@ -1,4 +1,4 @@
-import React, { ReactNode, PropsWithChildren } from 'react';
+import React, { ReactNode, SyntheticEvent, PropsWithChildren, ChangeEventHandler } from 'react';
 import { ForAxes, DomainTuple, VictoryBarAlignmentType } from 'victory';
 
 interface Fold {
@@ -6,48 +6,60 @@ interface Fold {
     child: ReactNode;
 }
 interface AccordionProps {
+    id: string;
     folds: Fold[];
 }
-declare const Accordion: React.FC<AccordionProps>;
+declare const Accordion: ({ id, folds, }: AccordionProps) => React.ReactElement;
 
 interface AlertProps {
+    id: string;
+    type: "info" | "warning" | "error" | "success";
     show?: boolean;
-    type?: string;
     slim?: boolean;
-    header?: string;
+    noIcon?: boolean;
+    heading?: string;
     children?: React.ReactNode;
 }
-declare const Alert: React.FC<AlertProps>;
+declare const Alert: ({ id, type, show, slim, noIcon, heading, children, }: AlertProps) => React.ReactElement;
 
 interface Crumb {
     path: string;
     name: string;
 }
 interface BreadcrumbProps {
+    id: string;
     crumbs: Crumb[];
     action: Function;
     current?: string;
 }
-declare const Breadcrumb: React.FC<BreadcrumbProps>;
+declare const Breadcrumb: ({ id, crumbs, current, action, }: BreadcrumbProps) => React.ReactElement;
 
 interface ButtonProps {
+    id: string;
+    type?: "button" | "submit" | "reset";
+    variant?: "default" | "secondary" | "accent-cool" | "accent-warm" | "base" | "outline" | "outline-inverse" | "big" | "unstyled";
+    className?: string;
+    onClick?: (param: SyntheticEvent) => void;
     children?: ReactNode;
-    onClick?: Function;
-    variant?: string;
 }
-declare const Button: React.FC<ButtonProps>;
+declare const Button: ({ id, type, variant, className, children, ...props }: ButtonProps & JSX.IntrinsicElements["button"]) => React.ReactElement;
 
-declare const Card: React.FC<PropsWithChildren>;
+interface CardProps {
+    id: string;
+    children: ReactNode;
+}
+declare const Card: ({ id, children }: CardProps) => React.ReactElement;
 declare const CardBody: React.FC<PropsWithChildren>;
 declare const CardHeader: React.FC<PropsWithChildren>;
 declare const CardFooter: React.FC<PropsWithChildren>;
 
 interface ChecklistProps {
+    id: string;
     items?: string[];
     onChange?: Function;
     label?: string;
 }
-declare const Checklist: React.FC<ChecklistProps>;
+declare const Checklist: ({ id, items, label, onChange, }: ChecklistProps) => React.ReactElement;
 
 declare type Navigate$1 = (path: string) => void;
 interface FooterProps {
@@ -93,21 +105,22 @@ interface HeaderProps {
 declare const Header: React.FC<HeaderProps>;
 
 interface InputProps {
-    onChange: Function;
-    placeholder?: string;
-    type?: string;
-    style?: object;
+    id: string;
+    type?: "text" | "email" | "number" | "password" | "search" | "tel" | "url";
+    onChange?: ChangeEventHandler<HTMLInputElement>;
 }
-declare const Input: React.FC<InputProps>;
+declare const Input: ({ id, className, type, onChange, ...props }: InputProps & JSX.IntrinsicElements["input"]) => React.ReactElement;
 
 interface ModalProps {
+    id: string;
     show?: boolean;
-    close?: Function;
+    onClose?: Function;
     children?: React.ReactNode;
 }
 declare const Modal: React.FC<ModalProps>;
 
 interface TableProps {
+    id: string;
     headers?: string[];
     rows?: any[][];
     primaryCol?: number;

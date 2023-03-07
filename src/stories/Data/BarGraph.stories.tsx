@@ -4,7 +4,7 @@ import { BarGraph } from "../../index";
 import { BarGraphProps } from "../../components/Data/BarGraph/BarGraph";
 
 const meta: ComponentMeta<typeof BarGraph> = {
-  title: "react-uswds/Data/BarGraph",
+  title: "Components/Data Visualization/Bar Graph",
   component: BarGraph,
 };
 export default meta;

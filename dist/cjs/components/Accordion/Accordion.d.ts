@@ -5,7 +5,8 @@ interface Fold {
     child: ReactNode;
 }
 export interface AccordionProps {
+    id: string;
     folds: Fold[];
 }
-declare const Accordion: React.FC<AccordionProps>;
+export declare const Accordion: ({ id, folds, }: AccordionProps) => React.ReactElement;
 export default Accordion;

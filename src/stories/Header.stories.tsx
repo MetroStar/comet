@@ -4,7 +4,7 @@ import { Header } from "../index";
 import { HeaderProps } from "../components/Header/Header";
 
 const meta: ComponentMeta<typeof Header> = {
-  title: "react-uswds/Header",
+  title: "Components/Header",
   component: Header,
 };
 export default meta;

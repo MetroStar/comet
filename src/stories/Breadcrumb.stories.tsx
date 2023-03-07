@@ -4,7 +4,7 @@ import { Breadcrumb } from "../index";
 import { BreadcrumbProps, Crumb } from "../components/Breadcrumb/Breadcrumb";
 
 const meta: ComponentMeta<typeof Breadcrumb> = {
-  title: "react-uswds/Breadcrumb",
+  title: "Components/Breadcrumb",
   component: Breadcrumb,
 };
 export default meta;
@@ -15,35 +15,7 @@ const Template: ComponentStory<typeof Breadcrumb> = (args: BreadcrumbProps) => (
 
 export const Default = Template.bind({});
 Default.args = {
-  crumbs: [
-    {
-      name: "Rome",
-      path: "/rome",
-    },
-    {
-      name: "Greece",
-      path: "/greece",
-    },
-  ],
-  current: "Italy",
-};
-
-export const WithoutCurrentLocation = Template.bind({});
-WithoutCurrentLocation.args = {
-  crumbs: [
-    {
-      name: "Rome",
-      path: "/rome",
-    },
-    {
-      name: "Greece",
-      path: "/greece",
-    },
-  ],
-};
-
-export const WithAction = Template.bind({});
-WithAction.args = {
+  id: "breadcrumb-1",
   crumbs: [
     {
       name: "Rome",

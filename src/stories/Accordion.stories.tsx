@@ -4,8 +4,11 @@ import { Accordion } from "../index";
 import { AccordionProps } from "../components/Accordion/Accordion";
 
 const meta: ComponentMeta<typeof Accordion> = {
-  title: "react-uswds/Accordion",
+  title: "Components/Accordion",
   component: Accordion,
+  argTypes: {
+    id: { required: true },
+  },
 };
 export default meta;
 
@@ -15,9 +18,10 @@ const Template: ComponentStory<typeof Accordion> = (args: AccordionProps) => (
 
 export const Default = Template.bind({});
 Default.args = {
+  id: "accordion-1",
   folds: [
     {
-      label: "Item",
+      label: "Item 1",
       child: <span>Hello</span>,
     },
     {

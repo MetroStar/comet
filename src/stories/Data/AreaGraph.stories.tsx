@@ -4,8 +4,11 @@ import { AreaGraph } from "../../index";
 import { AreaGraphProps } from "../../components/Data/AreaGraph/AreaGraph";
 
 const meta: ComponentMeta<typeof AreaGraph> = {
-  title: "react-uswds/Data/AreaGraph",
+  title: "Components/Data Visualization/Area Graph",
   component: AreaGraph,
+  argTypes: {
+    smooth: { control: "boolean" },
+  },
 };
 export default meta;
 
@@ -41,6 +44,7 @@ Default.args = {
       { x: 3, y: 2 },
     ],
   ],
+  smooth: false,
 };
 
 export const Smooth = Template.bind({});
@@ -50,7 +54,6 @@ Smooth.args = {
     height: 400,
   },
   colors: ["#0d7ea2", "#cd425b"],
-  smooth: true,
   data: [
     [
       { x: 0, y: 3 },
@@ -65,4 +68,5 @@ Smooth.args = {
       { x: 3, y: 2 },
     ],
   ],
+  smooth: true,
 };
