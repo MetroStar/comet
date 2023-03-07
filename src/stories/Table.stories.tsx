@@ -4,7 +4,7 @@ import { Table } from "../index";
 import { TableProps } from "../components/Table/Table";
 
 const meta: ComponentMeta<typeof Table> = {
-  title: "react-uswds/Table",
+  title: "Components/Table",
   component: Table,
 };
 export default meta;
@@ -15,6 +15,7 @@ const Template: ComponentStory<typeof Table> = (args: TableProps) => (
 
 export const Default = Template.bind({});
 Default.args = {
+  id: "table-1",
   headers: ["A", "B", "C"],
   rows: [
     [1, 2, 3],
@@ -25,6 +26,7 @@ Default.args = {
 
 export const WithPrimaryColumn = Template.bind({});
 WithPrimaryColumn.args = {
+  id: "table-2",
   headers: ["Animals", "Foods", "Trees"],
   rows: [
     ["Panda", "Sushi", "Oak"],

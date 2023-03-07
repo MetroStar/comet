@@ -3,25 +3,31 @@ import React from "react";
 import "./modal.style.css";
 
 export interface ModalProps {
+  id: string;
   show?: boolean;
-  close?: Function;
+  onClose?: Function;
   children?: React.ReactNode;
 }
 
 const Modal: React.FC<ModalProps> = ({
+  id,
   show = false,
-  close = () => {},
+  onClose = () => {},
   children,
 }: ModalProps) => {
   return (
-    <div data-testid="modal" className={`modal ${show ? "show" : "hide"}`}>
+    <div
+      id={id}
+      data-testid="modal"
+      className={`modal ${show ? "show" : "hide"}`}
+    >
       <div className="modal-vis" data-testid="modal-vis">
         {children ?? <></>}
       </div>
       <div
         data-testid="modal-overlay"
         className="overlay"
-        onClick={close as any}
+        onClick={onClose as any}
       ></div>
     </div>
   );

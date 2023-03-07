@@ -4,7 +4,7 @@ import { PieChart } from "../../index";
 import { PieChartProps } from "../../components/Data/PieChart/PieChart";
 
 const meta: ComponentMeta<typeof PieChart> = {
-  title: "react-uswds/Data/PieChart",
+  title: "Components/Data Visualization/Pie Chart",
   component: PieChart,
 };
 export default meta;
@@ -36,33 +36,34 @@ Default.args = {
       y: 1,
     },
   ],
+  colors: [],
 };
 
 export const CustomAngle = Template.bind({});
 CustomAngle.args = {
+  data: [
+    {
+      x: "dogs",
+      y: 8,
+    },
+    {
+      x: "cats",
+      y: 5,
+    },
+    {
+      x: "fish",
+      y: 1,
+    },
+  ],
+  colors: [],
   angle: {
     start: 90,
     end: -90,
   },
-  data: [
-    {
-      x: "dogs",
-      y: 8,
-    },
-    {
-      x: "cats",
-      y: 5,
-    },
-    {
-      x: "fish",
-      y: 1,
-    },
-  ],
 };
 
 export const CustomColors = Template.bind({});
 CustomColors.args = {
-  colors: ["#0d7ea2", "#cd425b", "#00a871"],
   data: [
     {
       x: "dogs",
@@ -77,4 +78,5 @@ CustomColors.args = {
       y: 1,
     },
   ],
+  colors: ["#0d7ea2", "#cd425b", "#00a871"],
 };

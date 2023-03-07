@@ -1,34 +1,41 @@
 import React from "react";
+import classnames from "classnames";
 
 export interface AlertProps {
+  id: string;
+  type: "info" | "warning" | "error" | "success";
   show?: boolean;
-  type?: string;
   slim?: boolean;
-  header?: string;
+  noIcon?: boolean;
+  heading?: string;
   children?: React.ReactNode;
 }
 
-const Alert: React.FC<AlertProps> = ({
-  show,
-  type = "success",
+export const Alert = ({
+  id,
+  type,
+  show = true,
   slim,
-  header,
+  noIcon,
+  heading,
   children,
-}: AlertProps) => {
+}: AlertProps): React.ReactElement => {
+  const classes = classnames("usa-alert", {
+    "usa-alert--success": type === "success",
+    "usa-alert--warning": type === "warning",
+    "usa-alert--error": type === "error",
+    "usa-alert--info": type === "info",
+    "usa-alert--slim": slim,
+    "usa-alert--no-icon": noIcon,
+  });
+
   if (!show) return <></>;
 
-  const validTypes = ["info", "warning", "success", "error"];
-
   return (
-    <div
-      data-testid="alert"
-      className={`usa-alert usa-alert--${
-        type && validTypes.includes(type) ? type : "info"
-      } ${slim ? "usa-alert--slim usa-alert--no-icon" : ""}`}
-    >
+    <div id={id} className={classes}>
       <div className="usa-alert__body">
-        {header ? <h4 className="usa-alert__heading">{header}</h4> : <></>}
-        {children}
+        {heading && <h4 className="usa-alert__heading">{heading}</h4>}
+        <p className="usa-alert__text">{children}</p>
       </div>
     </div>
   );

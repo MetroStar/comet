@@ -4,8 +4,11 @@ import { LineGraph } from "../../index";
 import { LineGraphProps } from "../../components/Data/LineGraph/LineGraph";
 
 const meta: ComponentMeta<typeof LineGraph> = {
-  title: "react-uswds/Data/LineGraph",
+  title: "Components/Data Visualization/Line Graph",
   component: LineGraph,
+  argTypes: {
+    smooth: { control: "boolean" },
+  },
 };
 export default meta;
 
@@ -41,6 +44,7 @@ Default.args = {
       { x: 3, y: 2 },
     ],
   ],
+  smooth: false,
 };
 
 export const Smooth = Template.bind({});
@@ -49,7 +53,6 @@ Smooth.args = {
     width: 400,
     height: 400,
   },
-  smooth: true,
   colors: ["#0d7ea2", "#cd425b"],
   data: [
     [
@@ -65,4 +68,5 @@ Smooth.args = {
       { x: 3, y: 2 },
     ],
   ],
+  smooth: true,
 };

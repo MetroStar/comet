@@ -4,9 +4,10 @@ export interface Crumb {
     name: string;
 }
 export interface BreadcrumbProps {
+    id: string;
     crumbs: Crumb[];
     action: Function;
     current?: string;
 }
-declare const Breadcrumb: React.FC<BreadcrumbProps>;
+export declare const Breadcrumb: ({ id, crumbs, current, action, }: BreadcrumbProps) => React.ReactElement;
 export default Breadcrumb;

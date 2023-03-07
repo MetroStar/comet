@@ -1,28 +1,50 @@
 import React from "react";
 import "@testing-library/jest-dom";
-import { render, screen } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import Alert from "./Alert";
 
-const props = {
-  show: true,
-  type: "info",
-  header: "An Alert...",
-  body: (
-    <p>
-      This <strong>is</strong> the alert body...
-    </p>
-  ),
-};
+describe("Alert", () => {
+  test("should render a default alert", () => {
+    const { container } = render(<Alert id="alert" type="info" />);
+    expect(container.querySelector("#alert")).toHaveClass("usa-alert--info");
+  });
 
-test("Alert renders with given props", () => {
-  render(<Alert {...props} />);
-});
+  test("should render a warning alert", () => {
+    const { container } = render(<Alert id="alert" type="warning" />);
+    expect(container.querySelector("#alert")).toHaveClass("usa-alert--warning");
+  });
 
-test("Alert renders with no props", () => {
-  render(<Alert />);
-});
+  test("should render an error alert", () => {
+    const { container } = render(<Alert id="alert" type="error" />);
+    expect(container.querySelector("#alert")).toHaveClass("usa-alert--error");
+  });
 
-test("Alert defaults to info with incorrect type", () => {
-  render(<Alert type="red" show={true} />);
-  expect(screen.getByTestId("alert")).toHaveClass("usa-alert--info");
+  test("should render a success alert", () => {
+    const { container } = render(<Alert id="alert" type="success" />);
+    expect(container.querySelector("#alert")).toHaveClass("usa-alert--success");
+  });
+
+  test("should render a slim alert", () => {
+    const { container } = render(<Alert id="alert" type="info" slim={true} />);
+    expect(container.querySelector("#alert")).toHaveClass("usa-alert--slim");
+  });
+
+  test("should render an alert with no icon", () => {
+    const { container } = render(
+      <Alert id="alert" type="info" noIcon={true} />
+    );
+    expect(container.querySelector("#alert")).toHaveClass("usa-alert--no-icon");
+  });
+
+  test("should render an alert with heading", () => {
+    const { container } = render(
+      <Alert id="alert" type="info" heading="some heading" />
+    );
+    expect(container.querySelector(".usa-alert__heading")).toBeTruthy();
+  });
+
+  test("should not render an alert", () => {
+    const { container } = render(<Alert id="alert" type="info" show={false} />);
+    expect(container.querySelector("#alert")).toBeFalsy();
+  });
 });

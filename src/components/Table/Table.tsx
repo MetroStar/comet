@@ -2,6 +2,7 @@ import React from "react";
 import "./table.style.css";
 
 export interface TableProps {
+  id: string;
   headers?: string[];
   rows?: any[][];
   primaryCol?: number;
@@ -12,13 +13,14 @@ const handleNonPrimitives = (e: any): any =>
   typeof e === "object" ? JSON.stringify(e) : e;
 
 const Table: React.FC<TableProps> = ({
+  id,
   headers,
   rows,
   primaryCol,
   primaryColAction = (e: any): void => {},
 }: TableProps) => {
   return (
-    <div className="table">
+    <div className="table" id={id}>
       <table className="usa-table dynamic-table">
         <thead>
           <tr>

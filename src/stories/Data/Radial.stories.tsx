@@ -4,7 +4,7 @@ import { Radial } from "../../index";
 import { RadialProps } from "../../components/Data/Radial/Radial";
 
 const meta: ComponentMeta<typeof Radial> = {
-  title: "react-uswds/Data/Radial",
+  title: "Components/Data Visualization/Radial",
   component: Radial,
 };
 export default meta;

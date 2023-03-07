@@ -2,16 +2,18 @@ import React, { useState } from "react";
 import "./checklist.style.css";
 
 export interface ChecklistProps {
+  id: string;
   items?: string[];
   onChange?: Function;
   label?: string;
 }
 
-const Checklist: React.FC<ChecklistProps> = ({
+export const Checklist = ({
+  id,
   items,
   label,
   onChange,
-}: ChecklistProps) => {
+}: ChecklistProps): React.ReactElement => {
   const [checked, setChecked] = useState(
     Array(items ? items.length : 0).fill(false)
   );
@@ -34,7 +36,7 @@ const Checklist: React.FC<ChecklistProps> = ({
   };
 
   return (
-    <div className="checklist">
+    <div className="checklist" id={id}>
       <span className="label">{label}</span>
       {items ? (
         items.map((item, i) => (

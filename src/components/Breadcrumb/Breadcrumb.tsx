@@ -6,24 +6,30 @@ export interface Crumb {
 }
 
 export interface BreadcrumbProps {
+  id: string;
   crumbs: Crumb[];
   action: Function;
   current?: string;
 }
 
-const Breadcrumb: React.FC<BreadcrumbProps> = ({
+export const Breadcrumb = ({
+  id,
   crumbs,
   current,
   action,
-}: BreadcrumbProps) => {
+}: BreadcrumbProps): React.ReactElement => {
   return (
-    <nav className="usa-breadcrumb breadcrumb" aria-label="Breadcrumbs,,">
+    <nav
+      className="usa-breadcrumb breadcrumb"
+      aria-label="Breadcrumbs,,"
+      id={id}
+    >
       <ol className="usa-breadcrumb__list">
         {crumbs.map((e, i) => (
           <li className="usa-breadcrumb__list-item" key={`breadcrumb-${i}`}>
             <span
               className="usa-breadcrumb__link span-link"
-              data-testid="bc-link"
+              data-testid="breadcrumb-link"
               onClick={() => action(e.path)}
             >
               <span>{e.name}</span>

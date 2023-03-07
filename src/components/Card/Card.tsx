@@ -1,9 +1,14 @@
-import React, { PropsWithChildren } from "react";
+import React, { PropsWithChildren, ReactNode } from "react";
 
-const Card: React.FC<PropsWithChildren> = ({ children }: PropsWithChildren) => {
+export interface CardProps {
+  id: string;
+  children: ReactNode;
+}
+
+export const Card = ({ id, children }: CardProps): React.ReactElement => {
   return (
-    <div className="usa-card usa-card desktop:grid-col-12">
-      <div className="usa-card__container">{children ?? <></>}</div>
+    <div className="usa-card usa-card desktop:grid-col-12" id={id}>
+      <div className="usa-card__container">{children}</div>
     </div>
   );
 };
@@ -11,7 +16,7 @@ const Card: React.FC<PropsWithChildren> = ({ children }: PropsWithChildren) => {
 export const CardBody: React.FC<PropsWithChildren> = ({
   children,
 }: PropsWithChildren) => {
-  return <div className="usa-card__body">{children ?? <></>}</div>;
+  return <div className="usa-card__body">{children}</div>;
 };
 
 export const CardHeader: React.FC<PropsWithChildren> = ({
@@ -19,9 +24,7 @@ export const CardHeader: React.FC<PropsWithChildren> = ({
 }: PropsWithChildren) => {
   return (
     <div className="usa-card__header">
-      <h2 className="usa-card__heading text-primary-dark">
-        {children ?? <></>}
-      </h2>
+      <h2 className="usa-card__heading text-primary-dark">{children}</h2>
     </div>
   );
 };
@@ -29,7 +32,7 @@ export const CardHeader: React.FC<PropsWithChildren> = ({
 export const CardFooter: React.FC<PropsWithChildren> = ({
   children,
 }: PropsWithChildren) => {
-  return <div className="usa-card__footer">{children ?? <></>}</div>;
+  return <div className="usa-card__footer">{children}</div>;
 };
 
 export default Card;

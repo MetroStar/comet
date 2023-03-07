@@ -4,7 +4,7 @@ import { PolarAxis } from "../../index";
 import { PolarAxisProps } from "../../components/Data/PolarAxis/PolarAxis";
 
 const meta: ComponentMeta<typeof PolarAxis> = {
-  title: "react-uswds/Data/PolarAxis",
+  title: "Components/Data Visualization/Polar Axis",
   component: PolarAxis,
 };
 export default meta;

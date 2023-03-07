@@ -31,11 +31,15 @@ export default [
       postcss(),
       terser(),
     ],
+    onwarn: (warning, next) => {
+      if (warning.code === "THIS_IS_UNDEFINED") return; // can ignore warnings
+      next(warning);
+    },
   },
   {
     input: "dist/esm/index.d.ts",
     output: [{ file: "dist/index.d.ts", format: "esm" }],
     plugins: [dts()],
-    external: [/\.css$/]
+    external: [/\.css$/],
   },
 ];

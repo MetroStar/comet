@@ -1,11 +1,17 @@
-import React, { ReactEventHandler } from "react";
+import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { Button } from "../index";
 import { ButtonProps } from "../components/Button/Button";
 
 const meta: ComponentMeta<typeof Button> = {
-  title: "react-uswds/Button",
+  title: "Components/Button",
   component: Button,
+  argTypes: {
+    id: { required: true },
+    type: { control: "select", required: true },
+    variant: { control: "select" },
+    disabled: { control: "boolean" },
+  },
 };
 export default meta;
 
@@ -14,14 +20,10 @@ const Template: ComponentStory<typeof Button> = (args: ButtonProps) => (
 );
 
 export const Default = Template.bind({});
-Default.args = {};
-
-export const WithAction = Template.bind({});
-WithAction.args = {
-  onClick: (e: ReactEventHandler<HTMLButtonElement>) => alert("Clicked!"),
-};
-
-export const WithVariant = Template.bind({});
-WithVariant.args = {
-  variant: "outline",
+Default.args = {
+  id: "button-1",
+  type: "button",
+  variant: "default",
+  className: "",
+  disabled: false,
 };

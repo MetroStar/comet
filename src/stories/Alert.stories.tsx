@@ -4,8 +4,12 @@ import { Alert } from "../index";
 import { AlertProps } from "../components/Alert/Alert";
 
 const meta: ComponentMeta<typeof Alert> = {
-  title: "react-uswds/Alert",
+  title: "Components/Alert",
   component: Alert,
+  argTypes: {
+    id: { required: true },
+    type: { control: "select", required: true },
+  },
 };
 export default meta;
 
@@ -17,8 +21,10 @@ const Template: ComponentStory<typeof Alert> = (args: AlertProps) => (
 
 export const Default = Template.bind({});
 Default.args = {
-  show: true,
+  id: "alert-1",
   type: "info",
   slim: false,
-  // header: "An Alert...",
+  show: true,
+  noIcon: false,
+  heading: "",
 };

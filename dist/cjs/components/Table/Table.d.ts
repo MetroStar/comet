@@ -1,6 +1,7 @@
 import React from "react";
 import "./table.style.css";
 export interface TableProps {
+    id: string;
     headers?: string[];
     rows?: any[][];
     primaryCol?: number;

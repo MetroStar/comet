@@ -1,8 +1,9 @@
 import React from "react";
 import "./modal.style.css";
 export interface ModalProps {
+    id: string;
     show?: boolean;
-    close?: Function;
+    onClose?: Function;
     children?: React.ReactNode;
 }
 declare const Modal: React.FC<ModalProps>;

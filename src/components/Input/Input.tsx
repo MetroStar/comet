@@ -1,21 +1,27 @@
 import React, { ChangeEventHandler } from "react";
+import classnames from "classnames";
 
 export interface InputProps {
-  onChange: Function;
-  placeholder?: string;
-  type?: string;
-  style?: object;
+  id: string;
+  type?: "text" | "email" | "number" | "password" | "search" | "tel" | "url";
+  onChange?: ChangeEventHandler<HTMLInputElement>;
 }
 
-const Input: React.FC<InputProps> = (props: InputProps) => {
+export const Input = ({
+  id,
+  className,
+  type,
+  onChange,
+  ...props
+}: InputProps & JSX.IntrinsicElements["input"]): React.ReactElement => {
   return (
     <input
-      className="usa-input"
-      placeholder={props.placeholder}
-      type={props.type}
-      style={props.style}
+      id={id}
+      className={classnames("usa-input", className)}
+      type={type}
       data-testid="input"
-      onChange={props.onChange as ChangeEventHandler<HTMLInputElement>}
+      onChange={onChange}
+      {...props}
     />
   );
 };

@@ -1,9 +1,8 @@
-import React from "react";
+import React, { ChangeEventHandler } from "react";
 export interface InputProps {
-    onChange: Function;
-    placeholder?: string;
-    type?: string;
-    style?: object;
+    id: string;
+    type?: "text" | "email" | "number" | "password" | "search" | "tel" | "url";
+    onChange?: ChangeEventHandler<HTMLInputElement>;
 }
-declare const Input: React.FC<InputProps>;
+export declare const Input: ({ id, className, type, onChange, ...props }: InputProps & JSX.IntrinsicElements["input"]) => React.ReactElement;
 export default Input;
