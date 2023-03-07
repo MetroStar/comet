@@ -146,6 +146,7 @@ const SearchBar: React.FC<SearchProps> = ({ show, onSearch }: SearchProps) => {
           onChange={(event) => setQuery(event.target.value)}
         />
         <button
+          aria-label="search"
           className="usa-button"
           type="submit"
           data-testid="search-button"
