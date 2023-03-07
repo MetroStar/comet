@@ -11,7 +11,7 @@ describe("Table", () => {
     expect(screen.getByText("bar")).toBeVisible();
   });
 
-  test("should render primaryCol and actions work", () => {
+  test("should render primaryCol and actions should work", () => {
     const spy = jest.fn();
     render(
       <Table
@@ -28,7 +28,7 @@ describe("Table", () => {
     expect(spy).toHaveBeenCalledWith("bar");
   });
 
-  test("should render primaryCol click without action does nothing", () => {
+  test("should do nothing when primaryCol clicked without action", () => {
     render(
       <Table
         id="table"

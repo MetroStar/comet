@@ -14,7 +14,7 @@ describe("Checklist", () => {
     expect(screen.getByText("one")).toBeVisible();
   });
 
-  test("should sends box state back on change", () => {
+  test("should send box state back on change", () => {
     const spy = jest.fn();
     render(
       <Checklist
@@ -28,7 +28,7 @@ describe("Checklist", () => {
     expect(spy).toHaveBeenCalledWith(["one"]);
   });
 
-  test("should skips callback update when onChange is not available", () => {
+  test("should skip callback update when onChange is not available", () => {
     render(<Checklist id="checklist" label="Items:" items={["one", "two"]} />);
     fireEvent.click(screen.getAllByTestId("checkbox")[0]);
     expect(screen.getAllByTestId("checkbox")[0]).toBeChecked();

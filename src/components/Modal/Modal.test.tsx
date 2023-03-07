@@ -25,14 +25,14 @@ describe("Modal", () => {
     expect(screen.getByTestId("modal")).toHaveClass("hide");
   });
 
-  test("should close func is called when overlay clicked", () => {
+  test("should call close function when overlay clicked", () => {
     const spy = jest.fn();
     render(<Modal id="modal" onClose={spy} />);
     fireEvent.click(screen.getByTestId("modal-overlay"));
     expect(spy).toHaveBeenCalled();
   });
 
-  test("should overlay click without close func does nothing", () => {
+  test("should do nothing on overlay click when no close function", () => {
     render(<Modal id="modal" />);
     fireEvent.click(screen.getByTestId("modal-overlay"));
   });
