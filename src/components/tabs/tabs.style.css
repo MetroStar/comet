@@ -1,0 +1,24 @@
+.tabs > ul {
+  display: flex;
+  list-style-type: none;
+  padding: 0 0 0.25rem 0;
+  margin-bottom: 0;
+  border-bottom: 1px solid #dfe1e2; }
+  .tabs > ul button {
+    cursor: pointer;
+    background-color: white;
+    margin-right: 0.25rem;
+    border: none;
+    font-weight: 700;
+    padding: 0.5rem;
+    position: relative; }
+    .tabs > ul button:hover {
+      color: #0076d6; }
+    .tabs > ul button.tabs-active::after {
+      content: '';
+      background-color: #0076d6;
+      position: absolute;
+      height: 0.25rem;
+      bottom: -0.25rem;
+      left: 0rem;
+      right: 0rem; }
