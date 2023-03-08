@@ -1,0 +1,7 @@
+.usa-header .folded-show {
+  visibility: visible;
+}
+
+.usa-header .folded-hide {
+  visibility: hidden;
+}
