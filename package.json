@@ -13,7 +13,7 @@
   "scripts": {
     "lint": "eslint --ext .tsx --ext .ts src/ --fix --config .eslintrc.json",
     "prettier": "npx prettier src --check",
-    "rollup": "rollup -c && rm -rfv dist/cjs/stories && rm -rfv dist/esm/stories",
+    "rollup": "rollup -c && find dist -name '*.stories.d.ts' -delete",
     "test": "jest --coverage",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
@@ -32,6 +32,7 @@
     "@babel/preset-react": "^7.18.6",
     "@babel/preset-typescript": "^7.18.6",
     "@rollup/plugin-commonjs": "^22.0.2",
+    "@rollup/plugin-image": "^3.0.2",
     "@rollup/plugin-node-resolve": "^14.1.0",
     "@rollup/plugin-typescript": "^8.5.0",
     "@storybook/addon-actions": "^6.5.16",
