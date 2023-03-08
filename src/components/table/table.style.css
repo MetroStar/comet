@@ -1,0 +1,14 @@
+.dynamic-table {
+  width: 100%;
+  overflow-x: scroll;
+}
+
+.dynamic-table td {
+  border: 1px black solid;
+}
+
+td .col-primary {
+  text-decoration: underline;
+  cursor: pointer;
+  font-weight: bold;
+}
