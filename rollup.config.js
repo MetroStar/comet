@@ -1,5 +1,6 @@
 import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
+import image from '@rollup/plugin-image';
 import typescript from "@rollup/plugin-typescript";
 import dts from "rollup-plugin-dts";
 import postcss from "rollup-plugin-postcss";
@@ -30,6 +31,7 @@ export default [
       typescript({ tsconfig: "./tsconfig.json" }),
       postcss(),
       terser(),
+      image(),
     ],
     onwarn: (warning, next) => {
       if (warning.code === "THIS_IS_UNDEFINED") return; // can ignore warnings
