@@ -103,7 +103,7 @@ describe("Pagination", () => {
     expect(baseElement.querySelector('[aria-label="Next page"]')).toBeTruthy();
   });
 
-  it("clicking the value should trigger onPage event handler", () => {
+  it("clicking the value should trigger onPage event handler", async () => {
     const onPage = jest.fn();
     const { baseElement } = render(
       <Pagination
@@ -118,16 +118,22 @@ describe("Pagination", () => {
     const nextPageAnchor = baseElement.querySelector(
       '[aria-label="Next page"]'
     ) as Element;
-    userEvent.click(nextPageAnchor);
+    await userEvent.click(nextPageAnchor);
+    expect(onPage).toBeCalledTimes(1);
+    expect(onPage).toBeCalledWith(expect.any(Object), 10);
 
     const previousPageAnchor = baseElement.querySelector(
       '[aria-label="Previous page"]'
     ) as Element;
-    userEvent.click(previousPageAnchor);
+    await userEvent.click(previousPageAnchor);
+    expect(onPage).toBeCalledTimes(2);
+    expect(onPage).toBeCalledWith(expect.any(Object), 8);
 
-    userEvent.click(
+    await userEvent.click(
       baseElement.querySelector('a[aria-label="page 11"]') as Element
     );
+    expect(onPage).toBeCalledTimes(3);
+    expect(onPage).toBeCalledWith(expect.any(Object), 10);
   });
 
   it("clicking the value when no onPage is configured should not crash", () => {

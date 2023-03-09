@@ -1,20 +1,20 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { Input } from "../../index";
-import { InputProps } from "./input";
+import { TextInput } from "../../index";
+import { TextInputProps } from "./text-input";
 
-const meta: ComponentMeta<typeof Input> = {
-  title: "Components/Form Controls/Input",
-  component: Input,
+const meta: ComponentMeta<typeof TextInput> = {
+  title: "Components/Forms/Text Input",
+  component: TextInput,
 };
 export default meta;
 
-const Template: ComponentStory<typeof Input> = (args: InputProps) => (
-  <Input {...args} />
+const Template: ComponentStory<typeof TextInput> = (args: TextInputProps) => (
+  <TextInput {...args} />
 );
 
-export const Default = Template.bind({});
-Default.args = {
+export const Standard = Template.bind({});
+Standard.args = {
   id: "input-1",
   type: "text",
   placeholder: "Input",
