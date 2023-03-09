@@ -13,6 +13,7 @@ export { default as Modal } from "./modal";
 export { default as Pagination } from "./pagination";
 export { default as ProcessList } from "./process-list";
 export { default as Search } from "./search";
+export { default as StepIndicator } from "./step-indicator";
 export { default as SummaryBox } from "./summary-box";
 export { default as Table } from "./table";
 export { default as Tabs, TabPanel } from "./tabs";
