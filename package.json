@@ -1,6 +1,6 @@
 {
   "name": "@metrostar/warpspeed",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "description": "Lightweight React USWDS components for general use.",
   "author": "Nathan Barber",
   "license": "MIT",
@@ -13,7 +13,7 @@
   "scripts": {
     "lint": "eslint --ext .tsx --ext .ts src/ --fix --config .eslintrc.json",
     "prettier": "npx prettier src --check",
-    "rollup": "rollup -c && find dist -name '*.stories.d.ts' -delete",
+    "rollup": "rollup -c && find dist -name '*.stories.d.ts' -delete && find dist -name '*.test.d.ts' -delete",
     "test": "jest --coverage",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
