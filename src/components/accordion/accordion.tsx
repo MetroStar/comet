@@ -34,7 +34,12 @@ export const Accordion = ({
 
     // Ensure cleanup after the effect
     return () => {
-      accordion.off(accordionElement);
+      /* istanbul ignore else */
+      if (accordionElement) {
+        accordionElement.querySelectorAll("button").forEach((elem) => {
+          accordion.off(elem);
+        });
+      }
     };
   });
 
