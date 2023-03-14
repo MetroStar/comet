@@ -1,30 +1,52 @@
-import React, { ReactNode, useState } from "react";
+import React, { ReactNode, useEffect, useRef } from "react";
+import clasnames from "classnames";
+import accordion from "@uswds/uswds/js/usa-accordion";
 import "./accordion.style.css";
 
 interface Fold {
+  id: string;
   label: string;
+  expanded: boolean;
   child: ReactNode;
 }
 
 export interface AccordionProps {
   id: string;
+  allowMultiSelect?: boolean;
   folds: Fold[];
 }
 
 export const Accordion = ({
   id,
+  allowMultiSelect = false,
   folds,
 }: AccordionProps): React.ReactElement => {
-  const [hide, setHide] = useState<boolean[]>(Array(folds.length).fill(true));
+  // Ensure accordion JS is loaded
+  const accordionRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const accordionElement = accordionRef.current;
+    /* istanbul ignore else */
+    if (accordionElement) {
+      accordionElement.querySelectorAll("button").forEach((elem) => {
+        accordion.on(elem);
+      });
+    }
 
-  const onAccClick = (i: number): void => {
-    const hidden = [...hide];
-    hidden[i] = !hidden[i];
-    setHide(hidden);
-  };
+    // Ensure cleanup after the effect
+    return () => {
+      accordion.off(accordionElement);
+    };
+  });
 
   return (
-    <div className="usa-accordion" id={id}>
+    <div
+      id={id}
+      ref={accordionRef}
+      className={clasnames("usa-accordion", {
+        "usa-accordion--multiselectable": allowMultiSelect,
+      })}
+      data-allow-multiple={allowMultiSelect ? true : undefined}
+    >
       {folds.map((e, i) => (
         <div
           className="accordion-item"
@@ -36,20 +58,17 @@ export const Accordion = ({
               type="button"
               className="usa-accordion__button"
               data-testid="accordion-button"
-              aria-expanded={!hide[i]}
-              onClick={() => onAccClick(i)}
+              aria-expanded={folds[i].expanded}
+              aria-controls={folds[i].id}
             >
               {e.label}
             </button>
           </h4>
           <div
+            id={folds[i].id}
             className="usa-accordion__content usa-prose text-left"
             data-testid="accordion-content"
-            style={{
-              display: hide[i] ? "none" : "block",
-              visibility: "visible",
-            }}
-            hidden={hide[i]}
+            hidden={!folds[i].expanded}
           >
             {e.child}
           </div>
