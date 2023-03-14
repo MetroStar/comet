@@ -7,5 +7,5 @@ export interface TableProps {
     primaryCol?: number;
     primaryColAction?: Function;
 }
-declare const Table: React.FC<TableProps>;
+export declare const Table: ({ id, headers, rows, primaryCol, primaryColAction, }: TableProps) => React.ReactElement;
 export default Table;

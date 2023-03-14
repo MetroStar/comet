@@ -6,5 +6,5 @@ export interface ModalProps {
     onClose?: Function;
     children?: React.ReactNode;
 }
-declare const Modal: React.FC<ModalProps>;
+export declare const Modal: ({ id, show, onClose, children, }: ModalProps) => React.ReactElement;
 export default Modal;
