@@ -4,10 +4,6 @@ import tooltip from '@uswds/uswds/js/usa-tooltip';
 /* eslint-disable-next-line */
 export interface TooltipProps {
   /**
-   * The unique identifier for this component
-   */
-  id: string;
-  /**
    * The text value to display in the tooltip
    */
   label: string;
@@ -22,25 +18,22 @@ export interface TooltipProps {
 }
 
 export function Tooltip({ 
-  id,
-  label, 
-  position = 'top', 
-  children, 
-}: TooltipProps) {
+  label,
+  position = "top", 
+  children,
+ }: TooltipProps) {
   const tooltipRef = useRef<HTMLSpanElement>(null);
   useLayoutEffect(() => {
-    const tooltipElement = tooltipRef.current;
-    tooltip.on(tooltipElement);
+    const tooltipElement = tooltipRef.current?.firstChild as HTMLElement;
+    if (tooltipElement) {
+      tooltipElement.classList.add("usa-tooltip");
+      tooltipElement.title = label;
+      tooltipElement.setAttribute("data-position", position);
+      tooltip.on(tooltipElement);
+    }
     return () => tooltip.off(tooltipElement);
   });
-
-  return (
-    <span ref={tooltipRef} id={id}>
-      <span className="usa-tooltip" title={label} data-position={position}>
-        {children}
-      </span>
-    </span>
-  );
-}
+  return <span ref={tooltipRef}>{children}</span>;
+};
 
 export default Tooltip;

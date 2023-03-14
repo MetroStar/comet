@@ -24,120 +24,106 @@ Default.args = {
   size: "size-3",
 };
 
-// export const Types: Story = () => {
-//   const icons: string[] = [];
-//   for (const icon in IconProps.type) {
-//     icons.push(icon);
-//   }
+export const Sizes = () => {
+  return (
+    <>
+      <div>
+        <Icon
+          id="icon1"
+          type="accessibility_new"
+          size="size-3"
+        />
+        <p>size-3</p>
+      </div>
+      
+      <div>
+        <Icon
+          id="icon2"
+          type="accessibility_new"
+          size="size-4"
+        />
+        <p>size-4</p>
+      </div>
 
-//   return (
-//     <div className="grid-container">
-//       <div className="grid-row">
-//         {icons.map((icon: string, index: number) => (
-//           <div
-//             key={`row${index}`}
-//             className="grid-col-1 padding-2"
-//             title={icon as IconType}
-//           >
-//             <Icon id={`icon${index}`} type={icon as IconType} />
-//           </div>
-//         ))}
-//       </div>
-//     </div>
-//   );
-// };
+      <div>
+        <Icon
+          id="icon3"
+          type="accessibility_new"
+          size="size-5"
+        />
+        <p>size-5</p>
+      </div>
 
-// Types.decorators = [
-//   (Story: Story) => (
-//     <>
-//       <p>
-//         <i>Note: mouse over each icon to see its type.</i>
-//       </p>
-//       <Story />
-//     </>
-//   ),
-// ];
+      <div>
+        <Icon
+          id="icon4"
+          type="accessibility_new"
+          size="size-6"
+        />
+        <p>size-6</p>
+      </div>
 
-// export const Sizes: Story = () => {
-//   return (
-//     <>
-//       <Icon
-//         id="icon1"
-//         type={IconType.accessibility_new}
-//         size={IconSize.size3}
-//       />
-//       <Icon
-//         id="icon2"
-//         type={IconType.accessibility_new}
-//         size={IconSize.size4}
-//       />
-//       <Icon
-//         id="icon3"
-//         type={IconType.accessibility_new}
-//         size={IconSize.size5}
-//       />
-//       <Icon
-//         id="icon4"
-//         type={IconType.accessibility_new}
-//         size={IconSize.size6}
-//       />
-//       <Icon
-//         id="icon5"
-//         type={IconType.accessibility_new}
-//         size={IconSize.size7}
-//       />
-//       <Icon
-//         id="icon6"
-//         type={IconType.accessibility_new}
-//         size={IconSize.size8}
-//       />
-//       <Icon
-//         id="icon7"
-//         type={IconType.accessibility_new}
-//         size={IconSize.size9}
-//       />
-//     </>
-//   );
-// };
+      <div>
+        <Icon
+          id="icon5"
+          type="accessibility_new"
+          size="size-7"
+        />
+        <p>size-7</p>
+      </div>
 
-// Sizes.decorators = [
-//   (Story: Story) => (
-//     <>
-//       <Documentation heading={title} body={whenToUse} />
-//       <Story />
-//     </>
-//   ),
-// ];
+      <div>
+        <Icon
+          id="icon6"
+          type="accessibility_new"
+          size="size-8"
+        />
+        <p>size-8</p>
+      </div>
 
-// export const WithColor: Story = () => {
-//   return (
-//     <>
-//       <Icon
-//         id="icon1"
-//         type={IconType.accessibility_new}
-//         size={IconSize.size9}
-//       />
-//       <Icon
-//         id="icon2"
-//         type={IconType.accessibility_new}
-//         size={IconSize.size9}
-//         className="text-primary"
-//       />
-//       <Icon
-//         id="icon3"
-//         type={IconType.accessibility_new}
-//         size={IconSize.size9}
-//         className="text-secondary"
-//       />
-//     </>
-//   );
-// };
+      <div>
+        <Icon
+          id="icon7"
+          type="accessibility_new"
+          size="size-9"
+        />
+        <p>size-9</p>
+      </div>
+    </>
+  )
+};
 
-// WithColor.decorators = [
-//   (Story: Story) => (
-//     <>
-//       <Documentation heading={title} body={whenToUse} />
-//       <Story />
-//     </>
-//   ),
-// ];
+export const Colors = () => {
+  return (
+    <>
+      <div>
+        <Icon
+          id="icon1"
+          type="accessibility_new"
+          size="size-9"
+        />
+        <p>No color class assigned</p>
+      </div>
+      
+      <div>
+        <Icon
+          id="icon2"
+          type="accessibility_new"
+          size="size-9"
+          className="text-primary"
+        />
+        <p>Class of text-primary</p>
+      </div>
+
+      <div>
+        <Icon
+          id="icon3"
+          type="accessibility_new"
+          size="size-9"
+          className="text-secondary"
+        />
+        <p>Class of text-secondary</p>
+      </div>
+    </>
+  )
+};

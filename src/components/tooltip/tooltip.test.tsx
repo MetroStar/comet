@@ -1,19 +1,22 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 
+import Button from './../button';
 import Tooltip from './tooltip';
 
 describe('Tooltip', () => {
   it('should render successfully', () => {
     const { baseElement } = render(
-      <Tooltip id="tooltip-1" label="tooltip">Some element</Tooltip>
+      <Tooltip label="tooltip">
+        <Button id="button-1">Button with a tooltip</Button>
+      </Tooltip>
     );
     expect(baseElement).toBeTruthy();
   });
   it('should render a top tooltip successfully', () => {
     const { baseElement } = render(
-      <Tooltip id="tooltip-1" label="tooltip" position="top">
-        Some element
+      <Tooltip label="tooltip" position="top">
+        <Button id="button-1">Button with a tooltip</Button>
       </Tooltip>
     );
     const button = baseElement.querySelector('.usa-tooltip');
@@ -25,8 +28,8 @@ describe('Tooltip', () => {
   });
   it('should render a right tooltip successfully', () => {
     const { baseElement } = render(
-      <Tooltip id="tooltip-1" label="tooltip" position="right">
-        Some element
+      <Tooltip label="tooltip" position="right">
+        <Button id="button-1">Button with a tooltip</Button>
       </Tooltip>
     );
     const button = baseElement.querySelector('.usa-tooltip');
@@ -38,8 +41,8 @@ describe('Tooltip', () => {
   });
   it('should render a bottom tooltip successfully', () => {
     const { baseElement } = render(
-      <Tooltip id="tooltip-1" label="tooltip" position="bottom">
-        Some element
+      <Tooltip label="tooltip" position="bottom">
+        <Button id="button-1">Button with a tooltip</Button>
       </Tooltip>
     );
     const button = baseElement.querySelector('.usa-tooltip');
@@ -51,8 +54,8 @@ describe('Tooltip', () => {
   });
   it('should render a left tooltip successfully', () => {
     const { baseElement } = render(
-      <Tooltip id="tooltip-1" label="tooltip" position="left">
-        Some element
+      <Tooltip label="tooltip" position="left">
+        <Button id="button-1">Button with a tooltip</Button>
       </Tooltip>
     );
     const button = baseElement.querySelector('.usa-tooltip');

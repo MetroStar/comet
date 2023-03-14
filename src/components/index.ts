@@ -18,7 +18,6 @@ export { default as Form } from "./form";
 export { default as FormGroup } from "./form-group";
 export { default as Header } from "./header";
 export { default as Icon } from "./icon";
-export { default as IconTag } from "./icon-tag";
 export { default as TextInput } from "./text-input";
 export { default as Label } from "./label";
 export { default as Modal } from "./modal";
