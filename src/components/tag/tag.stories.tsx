@@ -7,7 +7,7 @@ const meta: ComponentMeta<typeof Tag> = {
   component: Tag,
   argTypes: {
     id: { required: true },
-    size: { control: "radio", required: true },
+    size: { control: "radio" },
   }
 }
 export default meta;

@@ -7,7 +7,7 @@ const meta: ComponentMeta<typeof SiteAlert> = {
   component: SiteAlert,
   argTypes: {
     id: { required: true},
-    type: { control: "select", required: true },
+    type: { control: "select" },
     slim: { control: "boolean" },
     noIcon: { control: "boolean" },
   },
