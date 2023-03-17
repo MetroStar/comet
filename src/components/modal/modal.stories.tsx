@@ -1,21 +1,14 @@
-import React, { useState } from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
-import {
-  Modal,
-  Button,
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
-} from "../../index";
-import { ModalProps } from "./modal";
+import React, { useState } from 'react';
+import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { Modal, Button, Card, CardHeader, CardBody, CardFooter } from '../../index';
+import { ModalProps } from './modal';
 
 const meta: ComponentMeta<typeof Modal> = {
-  title: "Components/Modal",
+  title: 'Components/Modal',
   component: Modal,
   argTypes: {
     id: { required: true },
-    show: { control: "boolean" },
+    show: { control: 'boolean' },
   },
 };
 export default meta;
@@ -44,12 +37,10 @@ const ModalWrapper: React.FC<ModalProps> = (props: ModalProps) => {
   );
 };
 
-const Template: ComponentStory<typeof Modal> = (args: ModalProps) => (
-  <ModalWrapper {...args} />
-);
+const Template: ComponentStory<typeof Modal> = (args: ModalProps) => <ModalWrapper {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-  id: "modal-1",
+  id: 'modal-1',
   show: false,
 };

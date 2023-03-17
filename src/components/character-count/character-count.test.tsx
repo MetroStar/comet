@@ -1,11 +1,11 @@
-import React from "react";
-import { render } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
-import { Form, FormGroup, Label, TextInput } from "../..";
-import { CharacterCount, CharacterCountContainer } from "./character-count";
+import React from 'react';
+import { render, RenderResult } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { Form, FormGroup, Label, TextInput } from '../..';
+import { CharacterCount, CharacterCountContainer } from './character-count';
 
-describe("Character Count", () => {
-  const renderCharacterCountInputSample = () =>
+describe('Character Count', () => {
+  const renderCharacterCountInputSample = (): RenderResult =>
     render(
       <Form>
         <CharacterCountContainer>
@@ -26,28 +26,24 @@ describe("Character Count", () => {
             You can enter up to 25 characters
           </CharacterCount>
         </CharacterCountContainer>
-      </Form>
+      </Form>,
     );
 
-  it("should render successfully", () => {
+  it('should render successfully', () => {
     const { baseElement } = renderCharacterCountInputSample();
     expect(baseElement).toBeTruthy();
   });
 
-  it("should update character count when typing into input", async () => {
+  it('should update character count when typing into input', async () => {
     const { baseElement } = renderCharacterCountInputSample();
     const characterCountElement = baseElement.querySelector(
-      ".usa-character-count__message"
+      '.usa-character-count__message',
     ) as HTMLSpanElement;
-    const input = baseElement.querySelector("input") as HTMLInputElement;
+    const input = baseElement.querySelector('input') as HTMLInputElement;
 
-    expect(characterCountElement.textContent).toBe(
-      "You can enter up to 25 characters"
-    );
-    await userEvent.type(input, "Hello World"); // 11 characters
-    userEvent.clear(input);
-    expect(characterCountElement.textContent).toBe(
-      "You can enter up to 25 characters"
-    );
+    expect(characterCountElement.textContent).toBe('You can enter up to 25 characters');
+    await userEvent.type(input, 'Hello World'); // 11 characters
+    await userEvent.clear(input);
+    expect(characterCountElement.textContent).toBe('You can enter up to 25 characters');
   });
 });

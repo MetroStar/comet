@@ -1,5 +1,5 @@
-import React, { ReactNode } from "react";
-import classNames from "classnames";
+import React, { ReactNode } from 'react';
+import classNames from 'classnames';
 
 /* eslint-disable-next-line */
 export interface FormGroupProps {
@@ -21,19 +21,19 @@ export interface FormGroupProps {
   children: ReactNode;
 }
 
-export function FormGroup({
+export const FormGroup = ({
   id = undefined,
   errors,
   className,
   children,
-}: FormGroupProps) {
-  const hasErrors = errors && errors.length > 0 ? true : false;
+}: FormGroupProps): React.ReactElement => {
+  const hasErrors = !!(errors && errors.length > 0);
   const classes = classNames(
-    "usa-form-group",
+    'usa-form-group',
     {
-      "usa-form-group--error": hasErrors,
+      'usa-form-group--error': hasErrors,
     },
-    className
+    className,
   );
 
   return (
@@ -41,6 +41,6 @@ export function FormGroup({
       {children}
     </div>
   );
-}
+};
 
 export default FormGroup;

@@ -9,7 +9,7 @@ describe('Tooltip', () => {
     const { baseElement } = render(
       <Tooltip label="tooltip">
         <Button id="button-1">Button with a tooltip</Button>
-      </Tooltip>
+      </Tooltip>,
     );
     expect(baseElement).toBeTruthy();
   });
@@ -17,7 +17,7 @@ describe('Tooltip', () => {
     const { baseElement } = render(
       <Tooltip label="tooltip" position="top">
         <Button id="button-1">Button with a tooltip</Button>
-      </Tooltip>
+      </Tooltip>,
     );
     const button = baseElement.querySelector('.usa-tooltip');
     const trigger = baseElement.querySelector('.usa-tooltip__trigger');
@@ -30,7 +30,7 @@ describe('Tooltip', () => {
     const { baseElement } = render(
       <Tooltip label="tooltip" position="right">
         <Button id="button-1">Button with a tooltip</Button>
-      </Tooltip>
+      </Tooltip>,
     );
     const button = baseElement.querySelector('.usa-tooltip');
     const trigger = baseElement.querySelector('.usa-tooltip__trigger');
@@ -43,7 +43,7 @@ describe('Tooltip', () => {
     const { baseElement } = render(
       <Tooltip label="tooltip" position="bottom">
         <Button id="button-1">Button with a tooltip</Button>
-      </Tooltip>
+      </Tooltip>,
     );
     const button = baseElement.querySelector('.usa-tooltip');
     const trigger = baseElement.querySelector('.usa-tooltip__trigger');
@@ -56,7 +56,7 @@ describe('Tooltip', () => {
     const { baseElement } = render(
       <Tooltip label="tooltip" position="left">
         <Button id="button-1">Button with a tooltip</Button>
-      </Tooltip>
+      </Tooltip>,
     );
     const button = baseElement.querySelector('.usa-tooltip');
     const trigger = baseElement.querySelector('.usa-tooltip__trigger');

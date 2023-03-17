@@ -1,44 +1,42 @@
-import React from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { Header } from "../../index";
-import { HeaderProps } from "./header";
+import React from 'react';
+import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { Header } from '../../index';
+import { HeaderProps } from './header';
 
 const meta: ComponentMeta<typeof Header> = {
-  title: "Components/Header",
+  title: 'Components/Header',
   component: Header,
 };
 export default meta;
 
-const Template: ComponentStory<typeof Header> = (args: HeaderProps) => (
-  <Header {...args} />
-);
+const Template: ComponentStory<typeof Header> = (args: HeaderProps) => <Header {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-  logo: "USWDS Site",
-  root: "/",
+  logo: 'USWDS Site',
+  root: '/',
   folding: [
     {
-      label: "Fruits",
+      label: 'Fruits',
       items: [
         {
-          label: "Home",
-          path: "/",
+          label: 'Home',
+          path: '/',
         },
         {
-          label: "Kiwi",
-          path: "/kiwi",
+          label: 'Kiwi',
+          path: '/kiwi',
         },
         {
-          label: "Orange",
-          path: "/orange",
+          label: 'Orange',
+          path: '/orange',
         },
       ],
     },
   ],
   simple: [
-    { label: "Lemon", path: "/lemon" },
-    { label: "Lime", path: "/lime" },
+    { label: 'Lemon', path: '/lemon' },
+    { label: 'Lime', path: '/lime' },
   ],
   showSearch: true,
 };

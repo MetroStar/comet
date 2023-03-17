@@ -1,5 +1,5 @@
-import classnames from "classnames";
-import React, { createElement } from "react";
+import classnames from 'classnames';
+import React, { createElement } from 'react';
 
 /* eslint-disable-next-line */
 export interface StepIndicatorProps {
@@ -34,7 +34,7 @@ export interface StepIndicatorProps {
   /**
    * Level of the heading (h1, h2, h3, h4, h5, h6). Defaults to h4
    */
-  headingLevel?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+  headingLevel?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 }
 
 export const StepIndicator = ({
@@ -45,13 +45,13 @@ export const StepIndicator = ({
   showCounters = false,
   showSmallCounters = false,
   centerCounters = false,
-  headingLevel = "h4",
+  headingLevel = 'h4',
 }: StepIndicatorProps): React.ReactElement => {
-  const classes = classnames("usa-step-indicator", {
-    "usa-step-indicator--no-labels": hideLabels,
-    "usa-step-indicator--counters": showCounters,
-    "usa-step-indicator--counters-sm": showSmallCounters,
-    "usa-step-indicator--center": centerCounters,
+  const classes = classnames('usa-step-indicator', {
+    'usa-step-indicator--no-labels': hideLabels,
+    'usa-step-indicator--counters': showCounters,
+    'usa-step-indicator--counters-sm': showSmallCounters,
+    'usa-step-indicator--center': centerCounters,
   });
 
   return (
@@ -60,26 +60,25 @@ export const StepIndicator = ({
         {steps.map((step, stepIndex) => {
           const attributes = {
             key: stepIndex,
-            className: "usa-step-indicator__segment",
+            className: 'usa-step-indicator__segment',
           };
-          let segmentSrLabel = "";
+          let segmentSrLabel = '';
           if (stepIndex < currentStep) {
-            attributes.className += " usa-step-indicator__segment--complete";
-            segmentSrLabel = "completed";
+            attributes.className += ' usa-step-indicator__segment--complete';
+            segmentSrLabel = 'completed';
           } else if (stepIndex > currentStep) {
-            segmentSrLabel = "not completed";
+            segmentSrLabel = 'not completed';
           } else {
-            attributes.className += " usa-step-indicator__segment--current";
-            Object.assign(attributes, { "aria-current": true });
+            attributes.className += ' usa-step-indicator__segment--current';
+            Object.assign(attributes, { 'aria-current': true });
           }
 
           return (
+            /* eslint-disable */
             <li {...attributes}>
               <span className="usa-step-indicator__segment-label">
                 {step}
-                {segmentSrLabel !== "" && (
-                  <span className="usa-sr-only">{segmentSrLabel}</span>
-                )}
+                {segmentSrLabel !== '' && <span className="usa-sr-only">{segmentSrLabel}</span>}
               </span>
             </li>
           );
@@ -88,21 +87,15 @@ export const StepIndicator = ({
       <div className="usa-step-indicator__header">
         {createElement(
           headingLevel,
-          { className: "usa-step-indicator__heading" },
+          { className: 'usa-step-indicator__heading' },
           <>
             <span className="usa-step-indicator__heading-counter">
               <span className="usa-sr-only">Step</span>
-              <span className="usa-step-indicator__current-step">
-                {currentStep + 1}
-              </span>
-              <span className="usa-step-indicator__total-steps">
-                &nbsp;of {steps.length}
-              </span>
+              <span className="usa-step-indicator__current-step">{currentStep + 1}</span>
+              <span className="usa-step-indicator__total-steps">&nbsp;of {steps.length}</span>
             </span>
-            <span className="usa-step-indicator__heading-text">
-              {steps[currentStep]}
-            </span>
-          </>
+            <span className="usa-step-indicator__heading-text">{steps[currentStep]}</span>
+          </>,
         )}
       </div>
     </div>

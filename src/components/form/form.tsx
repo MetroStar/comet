@@ -1,5 +1,5 @@
-import React from "react";
-import classNames from "classnames";
+import React from 'react';
+import classNames from 'classnames';
 
 export interface FormProps {
   /**
@@ -8,24 +8,20 @@ export interface FormProps {
   isLarge?: boolean;
 }
 
-export function Form({
+export const Form = ({
   isLarge = false,
   className,
   children,
   ...formProps
-}: FormProps & JSX.IntrinsicElements["form"]) {
+}: FormProps & JSX.IntrinsicElements['form']): React.ReactElement => {
   return (
     <form
-      className={classNames(
-        "usa-form",
-        { "usa-form--large": isLarge },
-        className
-      )}
+      className={classNames('usa-form', { 'usa-form--large': isLarge }, className)}
       {...formProps}
     >
       {children}
     </form>
   );
-}
+};
 
 export default Form;

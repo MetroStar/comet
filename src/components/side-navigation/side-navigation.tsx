@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode } from 'react';
 
 export interface SideNavigationItem {
   /**
@@ -41,14 +41,12 @@ export const SideNavigation = ({
   );
 };
 
-function createSideNavigationItem(item: SideNavigationItem, itemIndex: number) {
+function createSideNavigationItem(item: SideNavigationItem, itemIndex: number): JSX.Element {
   return (
     <li className="usa-sidenav__item" key={itemIndex}>
       {item.anchor}
       {item.items && item.items.length > 0 && (
-        <ul className="usa-sidenav__sublist">
-          {item.items.map(createSideNavigationItem)}
-        </ul>
+        <ul className="usa-sidenav__sublist">{item.items.map(createSideNavigationItem)}</ul>
       )}
     </li>
   );

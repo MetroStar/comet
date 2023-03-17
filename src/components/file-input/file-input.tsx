@@ -1,5 +1,5 @@
-import fileInput from "@uswds/uswds/js/usa-file-input";
-import React, { useLayoutEffect, useRef } from "react";
+import fileInput from '@uswds/uswds/js/usa-file-input';
+import React, { useLayoutEffect, useRef } from 'react';
 
 export interface FileInputProps {
   /**
@@ -12,23 +12,16 @@ export interface FileInputProps {
   name: string;
 }
 
-export function FileInput(
-  inputProps: FileInputProps & JSX.IntrinsicElements["input"]
-) {
+export const FileInput = (
+  inputProps: FileInputProps & JSX.IntrinsicElements['input'],
+): React.ReactElement => {
   const inputRef = useRef<HTMLInputElement>(null);
   useLayoutEffect(() => {
     const inputElement = inputRef.current;
     fileInput.on(inputElement);
     return () => fileInput.off(inputElement);
   });
-  return (
-    <input
-      className="usa-file-input"
-      type="file"
-      ref={inputRef}
-      {...inputProps}
-    />
-  );
-}
+  return <input className="usa-file-input" type="file" ref={inputRef} {...inputProps} />;
+};
 
 export default FileInput;

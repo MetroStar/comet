@@ -1,9 +1,9 @@
-import React from "react";
-import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { DatePicker, DatePickerProps } from "./date-picker";
+import React from 'react';
+import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { DatePicker, DatePickerProps } from './date-picker';
 
 const meta: ComponentMeta<typeof DatePicker> = {
-  title: "Components/Forms/Date Picker",
+  title: 'Components/Forms/Date Picker',
   component: DatePicker,
   argTypes: {
     id: { required: true },
@@ -42,28 +42,28 @@ const Template: ComponentStory<typeof DatePicker> = (args: DatePickerProps) => (
 
 export const Standard = Template.bind({});
 Standard.args = {
-  id: "date-picker-1",
-  name: "date-picker-1",
+  id: 'date-picker-1',
+  name: 'date-picker-1',
 };
 
 export const DefaultValue = Template.bind({});
 DefaultValue.args = {
-  id: "date-picker-2",
-  name: "date-picker-2",
+  id: 'date-picker-2',
+  name: 'date-picker-2',
   defaultValue: today.toString(),
 };
 
 export const MinMax = Template.bind({});
 MinMax.args = {
-  id: "date-picker-3",
-  name: "date-picker-3",
+  id: 'date-picker-3',
+  name: 'date-picker-3',
   minDate: sixtyDaysAgo,
   maxDate: twoWeeksFromNow,
 };
 
 export const DateRange = Template.bind({});
 DateRange.args = {
-  id: "date-picker-4",
-  name: "date-picker-4",
+  id: 'date-picker-4',
+  name: 'date-picker-4',
   dateRange: eightDaysAgo,
 };

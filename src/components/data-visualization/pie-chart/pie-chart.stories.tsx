@@ -1,10 +1,10 @@
-import React from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { PieChart } from "../../../index";
-import { PieChartProps } from "./pie-chart";
+import React from 'react';
+import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { PieChart } from '../../../index';
+import { PieChartProps } from './pie-chart';
 
 const meta: ComponentMeta<typeof PieChart> = {
-  title: "Components/Data Visualization/Pie Chart",
+  title: 'Components/Data Visualization/Pie Chart',
   component: PieChart,
 };
 export default meta;
@@ -12,8 +12,8 @@ export default meta;
 const Template: ComponentStory<typeof PieChart> = (args: PieChartProps) => (
   <div
     style={{
-      width: "400px",
-      height: "400px",
+      width: '400px',
+      height: '400px',
     }}
   >
     <PieChart {...args} />
@@ -24,15 +24,15 @@ export const Default = Template.bind({});
 Default.args = {
   data: [
     {
-      x: "dogs",
+      x: 'dogs',
       y: 8,
     },
     {
-      x: "cats",
+      x: 'cats',
       y: 5,
     },
     {
-      x: "fish",
+      x: 'fish',
       y: 1,
     },
   ],
@@ -42,15 +42,15 @@ export const CustomAngle = Template.bind({});
 CustomAngle.args = {
   data: [
     {
-      x: "dogs",
+      x: 'dogs',
       y: 8,
     },
     {
-      x: "cats",
+      x: 'cats',
       y: 5,
     },
     {
-      x: "fish",
+      x: 'fish',
       y: 1,
     },
   ],
@@ -64,17 +64,17 @@ export const CustomColors = Template.bind({});
 CustomColors.args = {
   data: [
     {
-      x: "dogs",
+      x: 'dogs',
       y: 8,
     },
     {
-      x: "cats",
+      x: 'cats',
       y: 5,
     },
     {
-      x: "fish",
+      x: 'fish',
       y: 1,
     },
   ],
-  colors: ["#0d7ea2", "#cd425b", "#00a871"],
+  colors: ['#0d7ea2', '#cd425b', '#00a871'],
 };

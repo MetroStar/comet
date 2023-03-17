@@ -1,9 +1,9 @@
-import React, { PropsWithChildren, useLayoutEffect, useRef } from "react";
-import dateRangePicker from "@uswds/uswds/js/usa-date-range-picker";
+import React, { PropsWithChildren, useLayoutEffect, useRef } from 'react';
+import dateRangePicker from '@uswds/uswds/js/usa-date-range-picker';
 
-export function DateRangePickerContainer({
+export const DateRangePickerContainer = ({
   children,
-}: PropsWithChildren<unknown>) {
+}: PropsWithChildren<unknown>): React.ReactElement => {
   const dateRangePickerRef = useRef(null);
   useLayoutEffect(() => {
     const dateRangePickerElement = dateRangePickerRef.current;
@@ -15,6 +15,6 @@ export function DateRangePickerContainer({
       {children}
     </div>
   );
-}
+};
 
 export default DateRangePickerContainer;

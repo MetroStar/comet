@@ -13,46 +13,15 @@ describe('Icon', () => {
   it('should render icons of multiple sizes successfully', () => {
     const { baseElement } = render(
       <>
-        <Icon 
-          id="icon0" 
-          type="accessibility_new"
-        />
-        <Icon
-          id="icon1"
-          type="accessibility_new"
-          size="size-3"
-        />
-        <Icon
-          id="icon2"
-          type="accessibility_new"
-          size="size-4"
-        />
-        <Icon
-          id="icon3"
-          type="accessibility_new"
-          size="size-5"
-        />
-        <Icon
-          id="icon4"
-          type="accessibility_new"
-          size="size-6"
-        />
-        <Icon
-          id="icon5"
-          type="accessibility_new"
-          size="size-7"
-        />
-        <Icon
-          id="icon6"
-          type="accessibility_new"
-          size="size-8"
-        />
-        <Icon
-          id="icon7"
-          type="accessibility_new"
-          size="size-9"
-        />
-      </>
+        <Icon id="icon0" type="accessibility_new" />
+        <Icon id="icon1" type="accessibility_new" size="size-3" />
+        <Icon id="icon2" type="accessibility_new" size="size-4" />
+        <Icon id="icon3" type="accessibility_new" size="size-5" />
+        <Icon id="icon4" type="accessibility_new" size="size-6" />
+        <Icon id="icon5" type="accessibility_new" size="size-7" />
+        <Icon id="icon6" type="accessibility_new" size="size-8" />
+        <Icon id="icon7" type="accessibility_new" size="size-9" />
+      </>,
     );
 
     const svgs = baseElement.querySelectorAll('svg');
@@ -79,21 +48,10 @@ describe('Icon', () => {
   it('should render icons of different color successfully', () => {
     const { baseElement } = render(
       <>
-        <Icon 
-          id="icon1" 
-          type="accessibility_new"
-        />
-        <Icon
-          id="icon2"
-          type="accessibility_new"
-          className="text-primary"
-        />
-        <Icon
-          id="icon2"
-          type="accessibility_new"
-          className="text-secondary"
-        />
-      </>
+        <Icon id="icon1" type="accessibility_new" />
+        <Icon id="icon2" type="accessibility_new" className="text-primary" />
+        <Icon id="icon2" type="accessibility_new" className="text-secondary" />
+      </>,
     );
 
     const svgs = baseElement.querySelectorAll('svg');

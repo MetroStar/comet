@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 /* eslint-disable-next-line */
 export interface ErrorMessagesProps {
@@ -12,7 +12,10 @@ export interface ErrorMessagesProps {
   errors: string[];
 }
 
-export function ErrorMessages({ id = undefined, errors }: ErrorMessagesProps) {
+export const ErrorMessages = ({
+  id = undefined,
+  errors,
+}: ErrorMessagesProps): React.ReactElement => {
   return (
     <>
       {errors.map((error, index) => {
@@ -24,6 +27,6 @@ export function ErrorMessages({ id = undefined, errors }: ErrorMessagesProps) {
       })}
     </>
   );
-}
+};
 
 export default ErrorMessages;

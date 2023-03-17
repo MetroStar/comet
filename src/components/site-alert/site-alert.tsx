@@ -33,7 +33,7 @@ export interface SiteAlertProps {
   children: ReactNode;
 }
 
-export function SiteAlert({
+export const SiteAlert = ({
   id,
   type = 'Info',
   heading,
@@ -41,7 +41,7 @@ export function SiteAlert({
   noIcon = false,
   className,
   children,
-}: SiteAlertProps) {
+}: SiteAlertProps): React.ReactElement => {
   const classes = classnames(
     'usa-site-alert',
     {
@@ -50,7 +50,7 @@ export function SiteAlert({
       'usa-site-alert--slim': slim,
       'usa-site-alert--no-icon': noIcon,
     },
-    className
+    className,
   );
 
   return (
@@ -63,6 +63,6 @@ export function SiteAlert({
       </div>
     </section>
   );
-}
+};
 
 export default SiteAlert;

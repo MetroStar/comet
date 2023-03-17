@@ -10,9 +10,7 @@ describe('Search', () => {
   });
 
   it('should render a big search successfully', () => {
-    const { baseElement } = render(
-      <Search id={defaultId} type='big' />
-    );
+    const { baseElement } = render(<Search id={defaultId} type="big" />);
     expect(baseElement).toBeTruthy();
     const search = baseElement.querySelector(`#${defaultId}`);
     expect(search).not.toBeNull();
@@ -22,9 +20,7 @@ describe('Search', () => {
   });
 
   it('should render a small search successfully', () => {
-    const { baseElement } = render(
-      <Search id={defaultId} type='small' />
-    );
+    const { baseElement } = render(<Search id={defaultId} type="small" />);
     expect(baseElement).toBeTruthy();
     const search = baseElement.querySelector(`#${defaultId}`);
     expect(search).not.toBeNull();
@@ -36,14 +32,10 @@ describe('Search', () => {
   it('firing submit event should invoke onSearch callback', () => {
     const searchTerm = 'lorem';
     const onSearchCallback = jest.fn((e: FormEvent) => e.preventDefault());
-    const { baseElement } = render(
-      <Search id={defaultId} onSearch={onSearchCallback} />
-    );
+    const { baseElement } = render(<Search id={defaultId} onSearch={onSearchCallback} />);
     expect(baseElement).toBeTruthy();
-    const searchForm =
-      baseElement.querySelector<HTMLFormElement>(`form.usa-search`);
-    const searchInput =
-      baseElement.querySelector<HTMLInputElement>(`.usa-search input`);
+    const searchForm = baseElement.querySelector<HTMLFormElement>(`form.usa-search`);
+    const searchInput = baseElement.querySelector<HTMLInputElement>(`.usa-search input`);
     expect(searchForm).toBeTruthy();
     expect(searchInput).toBeTruthy();
     if (!searchForm) return; // to help TypeScript, already asserted above for Jest
@@ -51,20 +43,15 @@ describe('Search', () => {
     searchInput.value = searchTerm;
     fireEvent.submit(searchForm);
     expect(onSearchCallback).toBeCalledTimes(1);
-    expect(onSearchCallback).toBeCalledWith<[FormEvent, string]>(
-      expect.any(Object),
-      searchTerm
-    );
+    expect(onSearchCallback).toBeCalledWith<[FormEvent, string]>(expect.any(Object), searchTerm);
   });
 
   it('firing submit event should not invoke false onSearch callback', () => {
     const searchTerm = 'lorem';
     const { baseElement } = render(<Search id={defaultId} />);
     expect(baseElement).toBeTruthy();
-    const searchForm =
-      baseElement.querySelector<HTMLFormElement>(`form.usa-search`);
-    const searchInput =
-      baseElement.querySelector<HTMLInputElement>(`.usa-search input`);
+    const searchForm = baseElement.querySelector<HTMLFormElement>(`form.usa-search`);
+    const searchInput = baseElement.querySelector<HTMLInputElement>(`.usa-search input`);
     expect(searchForm).toBeTruthy();
     expect(searchInput).toBeTruthy();
     if (!searchForm) return; // to help TypeScript, already asserted above for Jest

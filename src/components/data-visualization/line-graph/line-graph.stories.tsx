@@ -1,13 +1,13 @@
-import React from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { LineGraph } from "../../../index";
-import { LineGraphProps } from "./line-graph";
+import React from 'react';
+import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { LineGraph } from '../../../index';
+import { LineGraphProps } from './line-graph';
 
 const meta: ComponentMeta<typeof LineGraph> = {
-  title: "Components/Data Visualization/Line Graph",
+  title: 'Components/Data Visualization/Line Graph',
   component: LineGraph,
   argTypes: {
-    smooth: { control: "boolean" },
+    smooth: { control: 'boolean' },
   },
 };
 export default meta;
@@ -15,8 +15,8 @@ export default meta;
 const Template: ComponentStory<typeof LineGraph> = (args: LineGraphProps) => (
   <div
     style={{
-      width: "400px",
-      height: "400px",
+      width: '400px',
+      height: '400px',
     }}
   >
     <LineGraph {...args} />
@@ -29,7 +29,7 @@ Default.args = {
     width: 400,
     height: 400,
   },
-  colors: ["#0d7ea2", "#cd425b"],
+  colors: ['#0d7ea2', '#cd425b'],
   data: [
     [
       { x: 0, y: 3 },
@@ -53,7 +53,7 @@ Smooth.args = {
     width: 400,
     height: 400,
   },
-  colors: ["#0d7ea2", "#cd425b"],
+  colors: ['#0d7ea2', '#cd425b'],
   data: [
     [
       { x: 0, y: 3 },

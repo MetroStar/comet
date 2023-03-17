@@ -7,78 +7,48 @@ const meta: ComponentMeta<typeof Icon> = {
   component: Icon,
   argTypes: {
     id: { required: true },
-    type: { control: "select" },
-    size: { control: "select" },
+    type: { control: 'select' },
+    size: { control: 'select' },
   },
 };
 export default meta;
 
-const Template: ComponentStory<typeof Icon> = (args: IconProps) => (
-  <Icon {...args} />
-);
+const Template: ComponentStory<typeof Icon> = (args: IconProps) => <Icon {...args} />;
 
 const SizesTemplate: ComponentStory<typeof Icon> = (args: IconProps) => (
   <>
     <div>
-      <Icon
-        id="icon1"
-        type={args.type}
-        size="size-3"
-      />
+      <Icon id="icon1" type={args.type} size="size-3" />
       <p>size-3</p>
     </div>
-    
+
     <div>
-      <Icon
-        id="icon2"
-        type={args.type}
-        size="size-4"
-      />
+      <Icon id="icon2" type={args.type} size="size-4" />
       <p>size-4</p>
     </div>
 
     <div>
-      <Icon
-        id="icon3"
-        type={args.type}
-        size="size-5"
-      />
+      <Icon id="icon3" type={args.type} size="size-5" />
       <p>size-5</p>
     </div>
 
     <div>
-      <Icon
-        id="icon4"
-        type={args.type}
-        size="size-6"
-      />
+      <Icon id="icon4" type={args.type} size="size-6" />
       <p>size-6</p>
     </div>
 
     <div>
-      <Icon
-        id="icon5"
-        type={args.type}
-        size="size-7"
-      />
+      <Icon id="icon5" type={args.type} size="size-7" />
       <p>size-7</p>
     </div>
 
     <div>
-      <Icon
-        id="icon6"
-        type={args.type}
-        size="size-8"
-      />
+      <Icon id="icon6" type={args.type} size="size-8" />
       <p>size-8</p>
     </div>
 
     <div>
-      <Icon
-        id="icon7"
-        type={args.type}
-        size="size-9"
-      />
+      <Icon id="icon7" type={args.type} size="size-9" />
       <p>size-9</p>
     </div>
   </>
@@ -87,31 +57,17 @@ const SizesTemplate: ComponentStory<typeof Icon> = (args: IconProps) => (
 const ColorsTemplate: ComponentStory<typeof Icon> = (args: IconProps) => (
   <>
     <div>
-      <Icon
-        id="icon1"
-        type={args.type}
-        size={args.size}
-      />
+      <Icon id="icon1" type={args.type} size={args.size} />
       <p>No color class assigned</p>
     </div>
-    
+
     <div>
-      <Icon
-        id="icon2"
-        type={args.type}
-        size={args.size}
-        className="text-primary"
-      />
+      <Icon id="icon2" type={args.type} size={args.size} className="text-primary" />
       <p>Class of text-primary</p>
     </div>
 
     <div>
-      <Icon
-        id="icon3"
-        type={args.type}
-        size={args.size}
-        className="text-secondary"
-      />
+      <Icon id="icon3" type={args.type} size={args.size} className="text-secondary" />
       <p>Class of text-secondary</p>
     </div>
   </>
@@ -119,18 +75,18 @@ const ColorsTemplate: ComponentStory<typeof Icon> = (args: IconProps) => (
 
 export const Default = Template.bind({});
 Default.args = {
-  id: "icon-1",
-  type: "accessibility_new",
-  size: "size-3",
+  id: 'icon-1',
+  type: 'accessibility_new',
+  size: 'size-3',
 };
 
 export const Sizes = SizesTemplate.bind({});
 Sizes.args = {
-  type: "accessibility_new",
+  type: 'accessibility_new',
 };
 
 export const Colors = ColorsTemplate.bind({});
 Colors.args = {
-  type: "accessibility_new",
-  size: "size-9",
+  type: 'accessibility_new',
+  size: 'size-9',
 };

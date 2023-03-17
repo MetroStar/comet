@@ -21,17 +21,20 @@ export interface ButtonGroupProps {
   children?: ReactNode;
 }
 
-export function ButtonGroup({
+export const ButtonGroup = ({
   id = undefined,
-  alignment = "left",
+  alignment = 'left',
   className,
   children,
-}: ButtonGroupProps) {
-  const classes = classnames('usa-button-group', {
-    "float-left": alignment === "left",
-    "float-right": alignment === "right",
-  },
-  className);
+}: ButtonGroupProps): React.ReactElement => {
+  const classes = classnames(
+    'usa-button-group',
+    {
+      'float-left': alignment === 'left',
+      'float-right': alignment === 'right',
+    },
+    className,
+  );
 
   return (
     <ul id={id} className={classes}>
@@ -44,6 +47,6 @@ export function ButtonGroup({
       })}
     </ul>
   );
-}
+};
 
 export default ButtonGroup;

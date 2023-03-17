@@ -1,5 +1,5 @@
-import datePicker from "@uswds/uswds/js/usa-date-picker";
-import React, { useLayoutEffect, useRef } from "react";
+import datePicker from '@uswds/uswds/js/usa-date-picker';
+import React, { useLayoutEffect, useRef } from 'react';
 
 export interface DatePickerProps {
   /**
@@ -39,61 +39,54 @@ export interface DatePickerProps {
 }
 
 interface DatePickerAttributes {
-  "data-min-date"?: string;
-  "data-max-date"?: string;
-  "data-range-date"?: string;
-  "data-default-value"?: string;
+  'data-min-date'?: string;
+  'data-max-date'?: string;
+  'data-range-date'?: string;
+  'data-default-value'?: string;
 }
 
-export function DatePicker({
+export const DatePicker = ({
   minDate,
   maxDate,
   dateRange,
   defaultValue,
   onChange,
   ...inputProps
-}: DatePickerProps & JSX.IntrinsicElements["input"]) {
+}: DatePickerProps & JSX.IntrinsicElements['input']): React.ReactElement => {
   const datePickerRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
     const datePickerElement = datePickerRef.current as HTMLInputElement;
     datePicker.on(datePickerElement);
-    const externalInput =
-      datePicker.getDatePickerContext(datePickerElement).externalInputEl;
+    const externalInput = datePicker.getDatePickerContext(datePickerElement).externalInputEl;
     if (onChange) {
-      externalInput.addEventListener("change", onChange);
+      externalInput.addEventListener('change', onChange);
     }
     return () => {
       if (onChange) {
-        externalInput.removeEventListener("change", onChange);
+        externalInput.removeEventListener('change', onChange);
       }
       datePicker.off(datePickerElement);
     };
   });
 
   const datePickerAttributes: DatePickerAttributes = {};
-  if (minDate) datePickerAttributes["data-min-date"] = getDateString(minDate);
-  if (maxDate) datePickerAttributes["data-max-date"] = getDateString(maxDate);
-  if (dateRange)
-    datePickerAttributes["data-range-date"] = getDateString(dateRange);
-  if (defaultValue)
-    datePickerAttributes["data-default-value"] = getDateString(defaultValue);
+  if (minDate) datePickerAttributes['data-min-date'] = getDateString(minDate);
+  if (maxDate) datePickerAttributes['data-max-date'] = getDateString(maxDate);
+  if (dateRange) datePickerAttributes['data-range-date'] = getDateString(dateRange);
+  if (defaultValue) datePickerAttributes['data-default-value'] = getDateString(defaultValue);
 
   return (
-    <div
-      ref={datePickerRef}
-      className="usa-date-picker"
-      {...datePickerAttributes}
-    >
+    <div ref={datePickerRef} className="usa-date-picker" {...datePickerAttributes}>
       <input className="usa-input" type="text" {...inputProps} />
     </div>
   );
-}
+};
 
 export default DatePicker;
 
 function getDateString(minDate: string | Date): string {
-  if (typeof minDate === "string") {
+  if (typeof minDate === 'string') {
     const date = new Date(minDate);
     return date.toISOString().substring(0, 10);
   } else {

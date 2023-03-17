@@ -1,5 +1,5 @@
-import React, { ChangeEventHandler, MouseEventHandler } from "react";
-import classnames from "classnames";
+import React, { ChangeEventHandler, MouseEventHandler } from 'react';
+import classnames from 'classnames';
 
 export interface CheckboxData {
   /**
@@ -9,7 +9,7 @@ export interface CheckboxData {
   /**
    * Default value of the checkbox
    */
-  value?: string | ReadonlyArray<string> | number;
+  value?: string | readonly string[] | number;
   /**
    * Whether the checkbox is checked by default
    */
@@ -39,7 +39,7 @@ export interface CheckboxProps extends CheckboxData {
   onClick?: MouseEventHandler<HTMLInputElement>;
 }
 
-export function Checkbox({
+export const Checkbox = ({
   id,
   name,
   label,
@@ -49,10 +49,10 @@ export function Checkbox({
   onChange,
   onClick,
   ...inputProps
-}: CheckboxProps & JSX.IntrinsicElements["input"]) {
+}: CheckboxProps & JSX.IntrinsicElements['input']): React.ReactElement => {
   const inputId = `${id}__usa-checkbox__input`;
-  const classes = classnames("usa-checkbox__input", {
-    "usa-checkbox__input--tile": isTile,
+  const classes = classnames('usa-checkbox__input', {
+    'usa-checkbox__input--tile': isTile,
   });
 
   return (
@@ -73,7 +73,7 @@ export function Checkbox({
       </label>
     </div>
   );
-}
+};
 
 export default Checkbox;
 
@@ -104,14 +104,14 @@ export interface CheckboxGroupProps {
   onClick?: MouseEventHandler<HTMLInputElement>;
 }
 
-export function CheckboxGroup({
+export const CheckboxGroup = ({
   id,
   name,
   data,
   areTiles,
   onChange,
   onClick,
-}: CheckboxGroupProps) {
+}: CheckboxGroupProps): React.ReactElement => {
   return (
     <>
       {data.map((checkboxData, checkboxIndex) => {
@@ -132,4 +132,4 @@ export function CheckboxGroup({
       })}
     </>
   );
-}
+};
