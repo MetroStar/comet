@@ -2,9 +2,8 @@ import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import Tabs, { TabPanel, TabsProps } from './tabs';
 
-
 const meta: ComponentMeta<typeof Tabs> = {
-  title: "Components/Tabs",
+  title: 'Components/Tabs',
   component: Tabs,
 };
 export default meta;
@@ -25,6 +24,6 @@ const Template: ComponentStory<typeof Tabs> = (args: TabsProps) => (
 
 export const Default = Template.bind({});
 Default.args = {
-  id: "tab1",
-  defaultTabId: "tabPanel1",
+  id: 'tab1',
+  defaultTabId: 'tabPanel1',
 };

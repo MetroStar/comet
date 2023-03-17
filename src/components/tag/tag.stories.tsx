@@ -7,18 +7,16 @@ const meta: ComponentMeta<typeof Tag> = {
   component: Tag,
   argTypes: {
     id: { required: true },
-    size: { control: "radio" },
-  }
-}
+    size: { control: 'radio' },
+  },
+};
 export default meta;
 
-const Template: ComponentStory<typeof Tag> = (args: TagProps) => (
-  <Tag {...args} />
-);
+const Template: ComponentStory<typeof Tag> = (args: TagProps) => <Tag {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-  id: "tag-1",
-  size: "Default",
-  children: "Placeholder tag text"
+  id: 'tag-1',
+  size: 'Default',
+  children: 'Placeholder tag text',
 };

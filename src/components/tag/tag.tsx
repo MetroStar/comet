@@ -21,22 +21,17 @@ export interface TagProps {
 }
 
 const TagSize = {
-  'Default' : 'Default',
-  'Big' : 'Big',
-}
+  Default: 'Default',
+  Big: 'Big',
+};
 
-export function Tag({
-  id,
-  children,
-  size = 'Default',
-  className,
-}: TagProps) {
+export function Tag({ id, children, size = 'Default', className }: TagProps) {
   const classes = classNames(
     'usa-tag',
     {
       'usa-tag--big': size === 'Big',
     },
-    className
+    className,
   );
 
   return (

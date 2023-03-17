@@ -1,5 +1,5 @@
-import classNames from "classnames";
-import React, { ChangeEventHandler } from "react";
+import classNames from 'classnames';
+import React, { ChangeEventHandler } from 'react';
 
 /* eslint-disable-next-line */
 export interface TextAreaProps {
@@ -28,11 +28,11 @@ export function TextArea({
   className,
   onChange,
   ...textAreaProps
-}: TextAreaProps & JSX.IntrinsicElements["textarea"]) {
+}: TextAreaProps & JSX.IntrinsicElements['textarea']) {
   return (
     <textarea
-      className={classNames("usa-textarea", className)}
-      style={rows === undefined ? undefined : { height: "unset" }}
+      className={classNames('usa-textarea', className)}
+      style={rows === undefined ? undefined : { height: 'unset' }}
       id={id}
       name={name}
       rows={rows}

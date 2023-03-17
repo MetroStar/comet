@@ -1,5 +1,5 @@
-import React, { ReactNode } from "react";
-import classnames from "classnames";
+import React, { ReactNode } from 'react';
+import classnames from 'classnames';
 
 export interface ProcessListProps {
   /**
@@ -36,17 +36,14 @@ export interface ProcessListStep {
 
 export const ProcessList = ({
   id,
-  headingElementName = "h4",
+  headingElementName = 'h4',
   headingClassName,
   steps,
 }: ProcessListProps): React.ReactElement => {
   return (
     <ol id={id} className="usa-process-list">
       {steps.map((step, stepIndex) => {
-        const headingClasses = classnames(
-          "usa-process-list__heading",
-          headingClassName
-        );
+        const headingClasses = classnames('usa-process-list__heading', headingClassName);
 
         return (
           <li key={stepIndex} className="usa-process-list__item">
@@ -55,7 +52,7 @@ export const ProcessList = ({
               {
                 className: headingClasses,
               },
-              step.heading
+              step.heading,
             )}
             {step.content}
           </li>

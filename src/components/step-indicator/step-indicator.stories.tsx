@@ -1,10 +1,10 @@
-import React, { useState, Dispatch, SetStateAction } from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { StepIndicator, StepIndicatorProps } from "./step-indicator";
-import Button from "../button/button";
+import React, { useState, Dispatch, SetStateAction } from 'react';
+import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StepIndicator, StepIndicatorProps } from './step-indicator';
+import Button from '../button/button';
 
 const meta: ComponentMeta<typeof StepIndicator> = {
-  title: "Components/Step Indicator",
+  title: 'Components/Step Indicator',
   component: StepIndicator,
   argTypes: {
     id: { required: true },
@@ -14,15 +14,13 @@ const meta: ComponentMeta<typeof StepIndicator> = {
 };
 export default meta;
 
-const steps: string[] = ["Lorem", "Ipsum", "Dolor", "Sit", "Amet"];
+const steps: string[] = ['Lorem', 'Ipsum', 'Dolor', 'Sit', 'Amet'];
 
-const StepIndicatorWrapper: React.FC<StepIndicatorProps> = (
-  props: StepIndicatorProps
-) => {
+const StepIndicatorWrapper: React.FC<StepIndicatorProps> = (props: StepIndicatorProps) => {
   const [currentStep, setCurrentStep] = useState(props.currentStep);
   function prevNextButtons([currentStep, setCurrentStep]: [
     number,
-    Dispatch<SetStateAction<number>>
+    Dispatch<SetStateAction<number>>,
   ]) {
     return (
       <>
@@ -55,18 +53,18 @@ const StepIndicatorWrapper: React.FC<StepIndicatorProps> = (
   );
 };
 
-const Template: ComponentStory<typeof StepIndicator> = (
-  args: StepIndicatorProps
-) => <StepIndicatorWrapper {...args} />;
+const Template: ComponentStory<typeof StepIndicator> = (args: StepIndicatorProps) => (
+  <StepIndicatorWrapper {...args} />
+);
 
 export const Standard = Template.bind({});
 Standard.args = {
-  id: "step-indicator-1",
+  id: 'step-indicator-1',
   steps: steps,
   currentStep: 0,
   hideLabels: false,
   showCounters: false,
   showSmallCounters: false,
   centerCounters: false,
-  headingLevel: "h1",
+  headingLevel: 'h1',
 };

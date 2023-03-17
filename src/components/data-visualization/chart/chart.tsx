@@ -1,5 +1,5 @@
-import React from "react";
-import { ForAxes, DomainTuple } from "victory";
+import React from 'react';
+import { ForAxes, DomainTuple } from 'victory';
 
 type EventHandler = () => void;
 

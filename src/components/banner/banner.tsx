@@ -18,8 +18,8 @@ export interface BannerProps {
 }
 
 const BannerTypeFull = {
-  'gov': 'government',
-  'mil': 'U.S. Department of Defense',
+  gov: 'government',
+  mil: 'U.S. Department of Defense',
 };
 
 export function Banner({ id, type = 'gov' }: BannerProps) {
@@ -49,11 +49,7 @@ export function Banner({ id, type = 'gov' }: BannerProps) {
         <header className="usa-banner__header">
           <div className="usa-banner__inner">
             <div className="grid-col-auto">
-              <img
-                className="usa-banner__header-flag"
-                src={usFlagSmall}
-                alt="U.S. flag"
-              />
+              <img className="usa-banner__header-flag" src={usFlagSmall} alt="U.S. flag" />
             </div>
             <div className="grid-col-fill tablet:grid-col-auto">
               <p className="usa-banner__header-text">
@@ -68,9 +64,7 @@ export function Banner({ id, type = 'gov' }: BannerProps) {
               aria-expanded="false"
               aria-controls="gov-banner-default"
             >
-              <span className="usa-banner__button-text">
-                Here’s how you know
-              </span>
+              <span className="usa-banner__button-text">Here’s how you know</span>
             </button>
           </div>
         </header>
@@ -91,9 +85,8 @@ export function Banner({ id, type = 'gov' }: BannerProps) {
               <div className="usa-media-block__body">
                 <p>
                   <strong> Official websites use .{type} </strong>
-                  <br />A <strong>.{type}</strong> website belongs to an
-                  official {BannerTypeFull[type]} organization in the United
-                  States.
+                  <br />A <strong>.{type}</strong> website belongs to an official{' '}
+                  {BannerTypeFull[type]} organization in the United States.
                 </p>
               </div>
             </div>
@@ -121,9 +114,7 @@ export function Banner({ id, type = 'gov' }: BannerProps) {
                       focusable="false"
                     >
                       <title id="banner-lock-title-default">Lock</title>
-                      <desc id="banner-lock-description-default">
-                        A locked padlock
-                      </desc>
+                      <desc id="banner-lock-description-default">A locked padlock</desc>
                       <path
                         fill="#000000"
                         fillRule="evenodd"
@@ -131,9 +122,8 @@ export function Banner({ id, type = 'gov' }: BannerProps) {
                       />
                     </svg>
                   </span>
-                  ) or <strong>https://</strong> means you’ve safely connected
-                  to the .{type} website. Share sensitive information only on
-                  official, secure websites.
+                  ) or <strong>https://</strong> means you’ve safely connected to the .{type}{' '}
+                  website. Share sensitive information only on official, secure websites.
                 </p>
               </div>
             </div>

@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode } from 'react';
 
 /* eslint-disable-next-line */
 export interface LabelProps {
@@ -21,7 +21,7 @@ export function Label({
   required,
   children,
   ...labelProps
-}: LabelProps & JSX.IntrinsicElements["label"]) {
+}: LabelProps & JSX.IntrinsicElements['label']) {
   return (
     <label className="usa-label" htmlFor={htmlFor} {...labelProps}>
       {children}

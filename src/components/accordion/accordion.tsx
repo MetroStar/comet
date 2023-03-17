@@ -1,7 +1,7 @@
-import React, { ReactNode, useEffect, useRef } from "react";
-import clasnames from "classnames";
-import accordion from "@uswds/uswds/js/usa-accordion";
-import "./accordion.style.css";
+import React, { ReactNode, useEffect, useRef } from 'react';
+import clasnames from 'classnames';
+import accordion from '@uswds/uswds/js/usa-accordion';
+import './accordion.style.css';
 
 interface Fold {
   id: string;
@@ -27,7 +27,7 @@ export const Accordion = ({
     const accordionElement = accordionRef.current;
     /* istanbul ignore else */
     if (accordionElement) {
-      accordionElement.querySelectorAll("button").forEach((elem) => {
+      accordionElement.querySelectorAll('button').forEach((elem) => {
         accordion.on(elem);
       });
     }
@@ -36,7 +36,7 @@ export const Accordion = ({
     return () => {
       /* istanbul ignore else */
       if (accordionElement) {
-        accordionElement.querySelectorAll("button").forEach((elem) => {
+        accordionElement.querySelectorAll('button').forEach((elem) => {
           accordion.off(elem);
         });
       }
@@ -47,17 +47,13 @@ export const Accordion = ({
     <div
       id={id}
       ref={accordionRef}
-      className={clasnames("usa-accordion", {
-        "usa-accordion--multiselectable": allowMultiSelect,
+      className={clasnames('usa-accordion', {
+        'usa-accordion--multiselectable': allowMultiSelect,
       })}
       data-allow-multiple={allowMultiSelect ? true : undefined}
     >
       {folds.map((e, i) => (
-        <div
-          className="accordion-item"
-          data-testid="accordion-item"
-          key={`accordion-item-${i}`}
-        >
+        <div className="accordion-item" data-testid="accordion-item" key={`accordion-item-${i}`}>
           <h4 className="usa-accordion__heading">
             <button
               type="button"

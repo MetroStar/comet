@@ -1,6 +1,6 @@
-import React from "react";
-import { VictoryChart, VictoryBar, VictoryBarAlignmentType } from "victory";
-import ChartProps from "../chart/chart";
+import React from 'react';
+import { VictoryChart, VictoryBar, VictoryBarAlignmentType } from 'victory';
+import ChartProps from '../chart/chart';
 
 export interface BarGraphProps {
   chart: ChartProps;

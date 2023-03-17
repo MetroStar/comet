@@ -1,5 +1,5 @@
-import React, { ChangeEventHandler, MouseEventHandler } from "react";
-import classnames from "classnames";
+import React, { ChangeEventHandler, MouseEventHandler } from 'react';
+import classnames from 'classnames';
 
 export interface RadioButtonData {
   /**
@@ -49,10 +49,10 @@ export function RadioButton({
   onChange,
   onClick,
   ...inputProps
-}: RadioButtonProps & JSX.IntrinsicElements["input"]) {
+}: RadioButtonProps & JSX.IntrinsicElements['input']) {
   const inputId = `${id}__usa-radio__input`;
-  const classes = classnames("usa-radio__input", {
-    "usa-radio__input--tile": isTile,
+  const classes = classnames('usa-radio__input', {
+    'usa-radio__input--tile': isTile,
   });
 
   return (

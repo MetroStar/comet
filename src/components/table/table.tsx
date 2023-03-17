@@ -1,5 +1,5 @@
-import React from "react";
-import "./table.style.css";
+import React from 'react';
+import './table.style.css';
 
 export interface TableProps {
   id: string;
@@ -9,8 +9,7 @@ export interface TableProps {
   primaryColAction?: Function;
 }
 
-const handleNonPrimitives = (e: any): any =>
-  typeof e === "object" ? JSON.stringify(e) : e;
+const handleNonPrimitives = (e: any): any => (typeof e === 'object' ? JSON.stringify(e) : e);
 
 export const Table = ({
   id,
@@ -23,13 +22,7 @@ export const Table = ({
     <div className="table" id={id}>
       <table className="usa-table dynamic-table">
         <thead>
-          <tr>
-            {headers ? (
-              headers.map((e, i) => <th key={`table-head-${i}`}>{e}</th>)
-            ) : (
-              <></>
-            )}
-          </tr>
+          <tr>{headers ? headers.map((e, i) => <th key={`table-head-${i}`}>{e}</th>) : <></>}</tr>
         </thead>
         <tbody>
           {rows ? (

@@ -1,10 +1,10 @@
-import React from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { PolarAxis } from "../../../index";
-import { PolarAxisProps } from "./polar-axis";
+import React from 'react';
+import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { PolarAxis } from '../../../index';
+import { PolarAxisProps } from './polar-axis';
 
 const meta: ComponentMeta<typeof PolarAxis> = {
-  title: "Components/Data Visualization/Polar Axis",
+  title: 'Components/Data Visualization/Polar Axis',
   component: PolarAxis,
 };
 export default meta;
@@ -12,8 +12,8 @@ export default meta;
 const Template: ComponentStory<typeof PolarAxis> = (args: PolarAxisProps) => (
   <div
     style={{
-      width: "400px",
-      height: "400px",
+      width: '400px',
+      height: '400px',
     }}
   >
     <PolarAxis {...args} />
@@ -27,7 +27,7 @@ Default.args = {
     height: 400,
     domain: [0, 10],
   },
-  colors: ["#0d7ea2", "#cd425b"],
+  colors: ['#0d7ea2', '#cd425b'],
   data: [
     [
       { x: 1, y: 8 },

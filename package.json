@@ -12,7 +12,7 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "lint": "eslint --ext .tsx --ext .ts src/ --fix --config .eslintrc.json",
-    "prettier": "npx prettier src --check",
+    "prettier": "npx prettier src --write",
     "rollup": "rollup -c && find dist -name '*.stories.d.ts' -delete && find dist -name '*.test.d.ts' -delete",
     "test": "jest --coverage",
     "storybook": "start-storybook -p 6006",

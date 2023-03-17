@@ -17,23 +17,19 @@ export interface TooltipProps {
   children: ReactNode;
 }
 
-export function Tooltip({ 
-  label,
-  position = "top", 
-  children,
- }: TooltipProps) {
+export function Tooltip({ label, position = 'top', children }: TooltipProps) {
   const tooltipRef = useRef<HTMLSpanElement>(null);
   useLayoutEffect(() => {
     const tooltipElement = tooltipRef.current?.firstChild as HTMLElement;
     if (tooltipElement) {
-      tooltipElement.classList.add("usa-tooltip");
+      tooltipElement.classList.add('usa-tooltip');
       tooltipElement.title = label;
-      tooltipElement.setAttribute("data-position", position);
+      tooltipElement.setAttribute('data-position', position);
       tooltip.on(tooltipElement);
     }
     return () => tooltip.off(tooltipElement);
   });
   return <span ref={tooltipRef}>{children}</span>;
-};
+}
 
 export default Tooltip;

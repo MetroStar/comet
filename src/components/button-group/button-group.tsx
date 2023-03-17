@@ -23,15 +23,18 @@ export interface ButtonGroupProps {
 
 export function ButtonGroup({
   id = undefined,
-  alignment = "left",
+  alignment = 'left',
   className,
   children,
 }: ButtonGroupProps) {
-  const classes = classnames('usa-button-group', {
-    "float-left": alignment === "left",
-    "float-right": alignment === "right",
-  },
-  className);
+  const classes = classnames(
+    'usa-button-group',
+    {
+      'float-left': alignment === 'left',
+      'float-right': alignment === 'right',
+    },
+    className,
+  );
 
   return (
     <ul id={id} className={classes}>

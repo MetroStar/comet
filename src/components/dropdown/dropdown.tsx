@@ -1,5 +1,5 @@
-import classNames from "classnames";
-import React, { ChangeEventHandler } from "react";
+import classNames from 'classnames';
+import React, { ChangeEventHandler } from 'react';
 
 export interface DropdownOption {
   /**
@@ -40,18 +40,14 @@ export interface DropdownProps {
 }
 
 export function Dropdown({
-  defaultOption = { value: "", label: "- Select -" },
+  defaultOption = { value: '', label: '- Select -' },
   options,
   onChange,
   className,
   ...selectProps
-}: DropdownProps & JSX.IntrinsicElements["select"]) {
+}: DropdownProps & JSX.IntrinsicElements['select']) {
   return (
-    <select
-      className={classNames("usa-select", className)}
-      onChange={onChange}
-      {...selectProps}
-    >
+    <select className={classNames('usa-select', className)} onChange={onChange} {...selectProps}>
       {createOption(defaultOption, -1)}
       {options?.map(createOption)}
     </select>

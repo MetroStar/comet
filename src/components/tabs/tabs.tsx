@@ -16,7 +16,7 @@ export interface TabsProps {
 
 export const TabPanel = ({ id, children }: TabPanelProps): React.ReactElement => {
   return <div id={id}>{children}</div>;
-}
+};
 
 export const Tabs = ({ id, defaultTabId, children, className }: TabsProps): React.ReactElement => {
   const [activeTabId, setActiveTabId] = useState<string>(defaultTabId);
@@ -34,9 +34,7 @@ export const Tabs = ({ id, defaultTabId, children, className }: TabsProps): Reac
           <li key={`tab-${child.props.id}`}>
             <button
               onClick={() => handleClick(child.props.id)}
-              className={`text-base-dark ${
-                child.props.id === activeTabId ? 'tabs-active' : ''
-              }`}
+              className={`text-base-dark ${child.props.id === activeTabId ? 'tabs-active' : ''}`}
             >
               {child.props.label}
             </button>
@@ -46,6 +44,6 @@ export const Tabs = ({ id, defaultTabId, children, className }: TabsProps): Reac
       <TabPanel {...currentTab[0]?.props} />
     </div>
   );
-}
+};
 
 export default Tabs;

@@ -1,9 +1,9 @@
-import React from "react";
-import classnames from "classnames";
+import React from 'react';
+import classnames from 'classnames';
 
 export interface AlertProps {
   id: string;
-  type: "info" | "warning" | "error" | "success";
+  type: 'info' | 'warning' | 'error' | 'success';
   show?: boolean;
   slim?: boolean;
   noIcon?: boolean;
@@ -20,13 +20,13 @@ export const Alert = ({
   heading,
   children,
 }: AlertProps): React.ReactElement => {
-  const classes = classnames("usa-alert", {
-    "usa-alert--success": type === "success",
-    "usa-alert--warning": type === "warning",
-    "usa-alert--error": type === "error",
-    "usa-alert--info": type === "info",
-    "usa-alert--slim": slim,
-    "usa-alert--no-icon": noIcon,
+  const classes = classnames('usa-alert', {
+    'usa-alert--success': type === 'success',
+    'usa-alert--warning': type === 'warning',
+    'usa-alert--error': type === 'error',
+    'usa-alert--info': type === 'info',
+    'usa-alert--slim': slim,
+    'usa-alert--no-icon': noIcon,
   });
 
   if (!show) return <></>;

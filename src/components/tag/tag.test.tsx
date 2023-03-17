@@ -19,7 +19,7 @@ describe('Tag', () => {
     const { baseElement } = render(
       <Tag id={defaultId} size="Big">
         {loremText}
-      </Tag>
+      </Tag>,
     );
     expect(baseElement).toBeTruthy();
     const tag = baseElement.querySelector(`#${defaultId}`);
@@ -33,7 +33,7 @@ describe('Tag', () => {
     const { baseElement } = render(
       <Tag id={defaultId} className="bg-base-darkest text-gold">
         {loremText}
-      </Tag>
+      </Tag>,
     );
     expect(baseElement).toBeTruthy();
     const tag = baseElement.querySelector(`#${defaultId}`);

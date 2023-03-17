@@ -1,9 +1,9 @@
-import React from "react";
-import { fireEvent, render } from "@testing-library/react";
-import { Label, FormGroup, DatePicker } from "../..";
-import { DateRangePickerContainer } from "./date-range-picker";
+import React from 'react';
+import { fireEvent, render } from '@testing-library/react';
+import { Label, FormGroup, DatePicker } from '../..';
+import { DateRangePickerContainer } from './date-range-picker';
 
-describe("DateRangePicker", () => {
+describe('DateRangePicker', () => {
   const renderDateRangePicker = () =>
     render(
       <DateRangePickerContainer>
@@ -34,79 +34,63 @@ describe("DateRangePicker", () => {
             aria-describedby="event-date-end-label event-date-end-hint"
           />
         </FormGroup>
-      </DateRangePickerContainer>
+      </DateRangePickerContainer>,
     );
 
-  it("should render successfully", () => {
+  it('should render successfully', () => {
     const { baseElement } = renderDateRangePicker();
     expect(baseElement).toBeTruthy();
-    expect(
-      baseElement.querySelectorAll(".usa-date-picker__button")
-    ).toHaveLength(2);
+    expect(baseElement.querySelectorAll('.usa-date-picker__button')).toHaveLength(2);
   });
 
-  it("selecting start and end date should set min/max", () => {
+  it('selecting start and end date should set min/max', () => {
     const { baseElement } = renderDateRangePicker(); // open calendar
     const [startDatePicker, endDatePicker] = Array.from(
-      baseElement.querySelectorAll(".usa-date-picker")
+      baseElement.querySelectorAll('.usa-date-picker'),
     );
 
-    fireEvent.click(
-      startDatePicker.querySelector(".usa-date-picker__button") as Element
-    );
+    fireEvent.click(startDatePicker.querySelector('.usa-date-picker__button') as Element);
 
     // select year 2020
     fireEvent.click(
-      startDatePicker.querySelector(
-        ".usa-date-picker__calendar__year-selection"
-      ) as Element
+      startDatePicker.querySelector('.usa-date-picker__calendar__year-selection') as Element,
     );
     fireEvent.click(
       startDatePicker.querySelector(
-        '.usa-date-picker__calendar__year[data-value="2020"]'
-      ) as Element
+        '.usa-date-picker__calendar__year[data-value="2020"]',
+      ) as Element,
     );
 
     // select month Jan
     fireEvent.click(
-      startDatePicker.querySelector(
-        ".usa-date-picker__calendar__month-selection"
-      ) as Element
+      startDatePicker.querySelector('.usa-date-picker__calendar__month-selection') as Element,
     );
     fireEvent.click(
-      startDatePicker.querySelector(
-        '.usa-date-picker__calendar__month[data-value="0"]'
-      ) as Element
+      startDatePicker.querySelector('.usa-date-picker__calendar__month[data-value="0"]') as Element,
     );
 
     // select day 01
     fireEvent.click(
-      startDatePicker.querySelector(
-        '.usa-date-picker__calendar__date[data-day="1"]'
-      ) as Element
+      startDatePicker.querySelector('.usa-date-picker__calendar__date[data-day="1"]') as Element,
     );
 
-    expect(
-      startDatePicker.querySelector('input[name="event-date-start"]')?.value
-    ).toEqual("01/01/2020");
-
-    expect(endDatePicker.getAttribute("data-min-date")).toBe("2020-01-01");
-
-    fireEvent.click(
-      endDatePicker.querySelector(".usa-date-picker__button") as Element
+    expect(startDatePicker.querySelector('input[name="event-date-start"]')?.value).toEqual(
+      '01/01/2020',
     );
+
+    expect(endDatePicker.getAttribute('data-min-date')).toBe('2020-01-01');
+
+    fireEvent.click(endDatePicker.querySelector('.usa-date-picker__button') as Element);
 
     // select day 02
     fireEvent.click(
-      endDatePicker.querySelector(
-        '.usa-date-picker__calendar__date[data-day="2"]'
-      ) as Element
+      endDatePicker.querySelector('.usa-date-picker__calendar__date[data-day="2"]') as Element,
     );
 
-    expect(
-      endDatePicker.querySelector('input[name="event-date-end"]')?.value
-    ).toEqual("01/02/2020");
+    expect(endDatePicker.querySelector('input[name="event-date-end"]')?.value).toEqual(
+      '01/02/2020',
+    );
 
-    expect(startDatePicker.getAttribute("data-max-date")).toBe("2020-01-02");
+    expect(startDatePicker.getAttribute('data-max-date')).toBe('2020-01-02');
   });
 });

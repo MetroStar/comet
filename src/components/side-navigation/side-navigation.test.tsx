@@ -1,21 +1,17 @@
-import React from "react";
-import { render } from "@testing-library/react";
-import SideNavigation, { SideNavigationItem } from "./side-navigation";
+import React from 'react';
+import { render } from '@testing-library/react';
+import SideNavigation, { SideNavigationItem } from './side-navigation';
 
-describe("SideNavigation", () => {
-  const defaultId = "side-navigation1";
-  const ariaLabel = "Secondary navigation";
+describe('SideNavigation', () => {
+  const defaultId = 'side-navigation1';
+  const ariaLabel = 'Secondary navigation';
   const createAnchor = (isCurrent = false) => (
-    <a
-      className={isCurrent ? "usa-current" : ""}
-      href="/"
-      onClick={(e) => e.preventDefault()}
-    >
+    <a className={isCurrent ? 'usa-current' : ''} href="/" onClick={(e) => e.preventDefault()}>
       Navigation Link
     </a>
   );
 
-  it("should render a flat side navigation successfully", () => {
+  it('should render a flat side navigation successfully', () => {
     const flatNavigation: SideNavigationItem[] = [
       {
         anchor: createAnchor(true),
@@ -28,16 +24,12 @@ describe("SideNavigation", () => {
     ];
 
     const { baseElement } = render(
-      <SideNavigation
-        id={defaultId}
-        ariaLabel={ariaLabel}
-        items={flatNavigation}
-      />
+      <SideNavigation id={defaultId} ariaLabel={ariaLabel} items={flatNavigation} />,
     );
     expect(baseElement).toBeTruthy();
   });
 
-  it("should render a two level side navigation successfully", () => {
+  it('should render a two level side navigation successfully', () => {
     const twoLevelNavigation: SideNavigationItem[] = [
       {
         anchor: createAnchor(true),
@@ -65,16 +57,12 @@ describe("SideNavigation", () => {
     ];
 
     const { baseElement } = render(
-      <SideNavigation
-        id={defaultId}
-        ariaLabel={ariaLabel}
-        items={twoLevelNavigation}
-      />
+      <SideNavigation id={defaultId} ariaLabel={ariaLabel} items={twoLevelNavigation} />,
     );
     expect(baseElement).toBeTruthy();
   });
 
-  it("should render a three level side navigation successfully", () => {
+  it('should render a three level side navigation successfully', () => {
     const threeLevelNavigation: SideNavigationItem[] = [
       {
         anchor: createAnchor(true),
@@ -122,11 +110,7 @@ describe("SideNavigation", () => {
     ];
 
     const { baseElement } = render(
-      <SideNavigation
-        id={defaultId}
-        ariaLabel={ariaLabel}
-        items={threeLevelNavigation}
-      />
+      <SideNavigation id={defaultId} ariaLabel={ariaLabel} items={threeLevelNavigation} />,
     );
     expect(baseElement).toBeTruthy();
   });

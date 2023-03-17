@@ -1,10 +1,10 @@
-import React from "react";
-import { Story, Meta, ComponentMeta, ComponentStory } from "@storybook/react";
-import { Label, FormGroup, DatePicker } from "../..";
-import { DateRangePickerContainer } from "./date-range-picker";
+import React from 'react';
+import { Story, Meta, ComponentMeta, ComponentStory } from '@storybook/react';
+import { Label, FormGroup, DatePicker } from '../..';
+import { DateRangePickerContainer } from './date-range-picker';
 
 const meta: ComponentMeta<typeof DateRangePickerContainer> = {
-  title: "Components/Forms/Date Range Picker",
+  title: 'Components/Forms/Date Range Picker',
   component: DateRangePickerContainer,
 };
 export default meta;

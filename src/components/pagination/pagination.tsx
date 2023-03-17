@@ -1,12 +1,9 @@
-import React, { ReactNode, SyntheticEvent } from "react";
-import classNames from "classnames";
-import sprite from "@uswds/uswds/img/sprite.svg";
+import React, { ReactNode, SyntheticEvent } from 'react';
+import classNames from 'classnames';
+import sprite from '@uswds/uswds/img/sprite.svg';
 
 export type CreatePageUrlHandler = (page: number) => string | undefined;
-export type OnPageHandler = (
-  event: SyntheticEvent<Element, Event>,
-  page: number
-) => void;
+export type OnPageHandler = (event: SyntheticEvent<Element, Event>, page: number) => void;
 
 /* eslint-disable-next-line */
 export interface PaginationProps {
@@ -52,7 +49,7 @@ export const Pagination = ({
   amountOfPages: pageSize,
   amountOfVisiblePageItems = 3,
   ariaLabel,
-  createPageUrl = () => "#",
+  createPageUrl = () => '#',
   onPage = () => undefined,
 }: PaginationProps): React.ReactElement => {
   // if pageSize is <= 7, there should be no "extra slots"
@@ -61,12 +58,8 @@ export const Pagination = ({
     amountOfVisiblePageItems = 7;
   }
 
-  let startPageIndex = Math.max(
-    0,
-    currentPage - Math.floor(amountOfVisiblePageItems / 2)
-  );
-  const endPageIndex =
-    Math.min(pageSize, startPageIndex + amountOfVisiblePageItems) - 1;
+  let startPageIndex = Math.max(0, currentPage - Math.floor(amountOfVisiblePageItems / 2));
+  const endPageIndex = Math.min(pageSize, startPageIndex + amountOfVisiblePageItems) - 1;
 
   if (endPageIndex === pageSize - 1) {
     startPageIndex = Math.max(0, endPageIndex - amountOfVisiblePageItems + 1);
@@ -92,45 +85,21 @@ export const Pagination = ({
         )}
         {startPageIndex > 0 && (
           <>
-            {buildPaginationItem(
-              0,
-              currentPage,
-              pageSize,
-              createPageUrl,
-              onPage
-            )}
-            <li
-              className="usa-pagination__item usa-pagination__overflow"
-              role="presentation"
-            >
+            {buildPaginationItem(0, currentPage, pageSize, createPageUrl, onPage)}
+            <li className="usa-pagination__item usa-pagination__overflow" role="presentation">
               <span>…</span>
             </li>
           </>
         )}
         {forLoopJsx(startPageIndex, endPageIndex, (page: number) =>
-          buildPaginationItem(
-            page,
-            currentPage,
-            pageSize,
-            createPageUrl,
-            onPage
-          )
+          buildPaginationItem(page, currentPage, pageSize, createPageUrl, onPage),
         )}
         {endPageIndex < pageSize - 1 && (
           <>
-            <li
-              className="usa-pagination__item usa-pagination__overflow"
-              role="presentation"
-            >
+            <li className="usa-pagination__item usa-pagination__overflow" role="presentation">
               <span>…</span>
             </li>
-            {buildPaginationItem(
-              pageSize - 1,
-              currentPage,
-              pageSize,
-              createPageUrl,
-              onPage
-            )}
+            {buildPaginationItem(pageSize - 1, currentPage, pageSize, createPageUrl, onPage)}
           </>
         )}
         {currentPage < pageSize - 1 && (
@@ -156,7 +125,7 @@ export const Pagination = ({
 function forLoopJsx(
   startIndex: number,
   endIndex: number,
-  forLoopCallback: (index: number) => ReactNode
+  forLoopCallback: (index: number) => ReactNode,
 ): ReactNode {
   const reactArray: ReactNode[] = [];
   for (startIndex; startIndex <= endIndex; startIndex++) {
@@ -170,21 +139,20 @@ function buildPaginationItem(
   currentPage: number,
   pageSize: number,
   createPageUrl: CreatePageUrlHandler,
-  onPage: OnPageHandler
+  onPage: OnPageHandler,
 ) {
   const isCurrentPage = page === currentPage;
-  const ariaLabel =
-    pageSize - 1 === page ? `last page, page ${page + 1}` : `page ${page + 1}`;
+  const ariaLabel = pageSize - 1 === page ? `last page, page ${page + 1}` : `page ${page + 1}`;
   return (
     <li key={page} className="usa-pagination__item usa-pagination__page-no">
       <a
         href={createPageUrl(page)}
         onClick={(event) => onPage(event, page)}
-        className={classNames("usa-pagination__button", {
-          "usa-current": isCurrentPage,
+        className={classNames('usa-pagination__button', {
+          'usa-current': isCurrentPage,
         })}
         aria-label={ariaLabel}
-        aria-current={isCurrentPage ? "page" : undefined}
+        aria-current={isCurrentPage ? 'page' : undefined}
       >
         {`${page + 1}`}
       </a>

@@ -1,6 +1,6 @@
-import React from "react";
-import { VictoryChart, VictoryLine } from "victory";
-import ChartProps from "../chart/chart";
+import React from 'react';
+import { VictoryChart, VictoryLine } from 'victory';
+import ChartProps from '../chart/chart';
 
 export interface LineGraphProps {
   chart: ChartProps;
@@ -26,7 +26,7 @@ const LineGraph: React.FC<LineGraphProps> = (props: LineGraphProps) => {
                 ? props.colors[i]
                   ? props.colors[i]
                   : props.colors[0]
-                : "#0d7ea2",
+                : '#0d7ea2',
             },
           }}
           data={d}
@@ -34,7 +34,7 @@ const LineGraph: React.FC<LineGraphProps> = (props: LineGraphProps) => {
             duration: 2000,
             onLoad: { duration: 1000 },
           }}
-          interpolation={props.smooth && props.smooth ? "natural" : undefined}
+          interpolation={props.smooth && props.smooth ? 'natural' : undefined}
         />
       ))}
     </VictoryChart>

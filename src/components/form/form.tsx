@@ -1,5 +1,5 @@
-import React from "react";
-import classNames from "classnames";
+import React from 'react';
+import classNames from 'classnames';
 
 export interface FormProps {
   /**
@@ -13,14 +13,10 @@ export function Form({
   className,
   children,
   ...formProps
-}: FormProps & JSX.IntrinsicElements["form"]) {
+}: FormProps & JSX.IntrinsicElements['form']) {
   return (
     <form
-      className={classNames(
-        "usa-form",
-        { "usa-form--large": isLarge },
-        className
-      )}
+      className={classNames('usa-form', { 'usa-form--large': isLarge }, className)}
       {...formProps}
     >
       {children}

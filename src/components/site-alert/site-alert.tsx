@@ -50,7 +50,7 @@ export function SiteAlert({
       'usa-site-alert--slim': slim,
       'usa-site-alert--no-icon': noIcon,
     },
-    className
+    className,
   );
 
   return (

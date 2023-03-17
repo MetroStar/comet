@@ -8,7 +8,7 @@ describe('SiteAlert', () => {
     const { baseElement } = render(
       <SiteAlert id="alert1" heading="test">
         test alert
-      </SiteAlert>
+      </SiteAlert>,
     );
     expect(baseElement).toBeTruthy();
     expect(baseElement.querySelector('.usa-site-alert')).toBeTruthy();
@@ -17,7 +17,7 @@ describe('SiteAlert', () => {
     const { baseElement } = render(
       <SiteAlert id="alert2" heading="test" type="Info">
         test alert
-      </SiteAlert>
+      </SiteAlert>,
     );
     expect(baseElement).toBeTruthy();
     expect(baseElement.querySelector('.usa-site-alert--info')).toBeTruthy();
@@ -26,18 +26,16 @@ describe('SiteAlert', () => {
     const { baseElement } = render(
       <SiteAlert id="alert3" heading="test" type="Emergency">
         test alert
-      </SiteAlert>
+      </SiteAlert>,
     );
     expect(baseElement).toBeTruthy();
-    expect(
-      baseElement.querySelector('.usa-site-alert--emergency')
-    ).toBeTruthy();
+    expect(baseElement.querySelector('.usa-site-alert--emergency')).toBeTruthy();
   });
   it('should render a slim site alert', () => {
     const { baseElement } = render(
       <SiteAlert id="alert4" slim={true}>
         test alert
-      </SiteAlert>
+      </SiteAlert>,
     );
     expect(baseElement).toBeTruthy();
     expect(baseElement.querySelector('.usa-site-alert--slim')).toBeTruthy();
@@ -46,7 +44,7 @@ describe('SiteAlert', () => {
     const { baseElement } = render(
       <SiteAlert id="alert5" noIcon={true}>
         test alert
-      </SiteAlert>
+      </SiteAlert>,
     );
     expect(baseElement).toBeTruthy();
     expect(baseElement.querySelector('.usa-site-alert--no-icon')).toBeTruthy();

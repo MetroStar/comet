@@ -1,4 +1,4 @@
-import React, { PropsWithChildren, ReactNode } from "react";
+import React, { PropsWithChildren, ReactNode } from 'react';
 
 export interface CardProps {
   id: string;
@@ -13,15 +13,11 @@ export const Card = ({ id, children }: CardProps): React.ReactElement => {
   );
 };
 
-export const CardBody: React.FC<PropsWithChildren> = ({
-  children,
-}: PropsWithChildren) => {
+export const CardBody: React.FC<PropsWithChildren> = ({ children }: PropsWithChildren) => {
   return <div className="usa-card__body">{children}</div>;
 };
 
-export const CardHeader: React.FC<PropsWithChildren> = ({
-  children,
-}: PropsWithChildren) => {
+export const CardHeader: React.FC<PropsWithChildren> = ({ children }: PropsWithChildren) => {
   return (
     <div className="usa-card__header">
       <h2 className="usa-card__heading text-primary-dark">{children}</h2>
@@ -29,9 +25,7 @@ export const CardHeader: React.FC<PropsWithChildren> = ({
   );
 };
 
-export const CardFooter: React.FC<PropsWithChildren> = ({
-  children,
-}: PropsWithChildren) => {
+export const CardFooter: React.FC<PropsWithChildren> = ({ children }: PropsWithChildren) => {
   return <div className="usa-card__footer">{children}</div>;
 };
 

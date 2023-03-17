@@ -1,9 +1,9 @@
-import React from "react";
-import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { Checkbox, CheckboxProps } from "./checkbox";
+import React from 'react';
+import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Checkbox, CheckboxProps } from './checkbox';
 
 const meta: ComponentMeta<typeof Checkbox> = {
-  title: "Components/Forms/Checkbox",
+  title: 'Components/Forms/Checkbox',
   component: Checkbox,
   argTypes: {
     id: { required: true },
@@ -28,12 +28,12 @@ const Template: ComponentStory<typeof Checkbox> = (args: CheckboxProps) => (
   </>
 );
 
-const checkboxName = "lorem-checkbox";
-const loremWords = ["Lorem", "Ipsum", "Dolor", "Sit"];
+const checkboxName = 'lorem-checkbox';
+const loremWords = ['Lorem', 'Ipsum', 'Dolor', 'Sit'];
 
 export const Standard = Template.bind({});
 Standard.args = {
-  id: "checkbox-1",
-  name: "checkbox-1",
+  id: 'checkbox-1',
+  name: 'checkbox-1',
   isTile: false,
 };

@@ -1,12 +1,9 @@
-import React from "react";
-import { ComponentMeta, ComponentStory } from "@storybook/react";
-import SideNavigation, {
-  SideNavigationItem,
-  SideNavigationProps,
-} from "./side-navigation";
+import React from 'react';
+import { ComponentMeta, ComponentStory } from '@storybook/react';
+import SideNavigation, { SideNavigationItem, SideNavigationProps } from './side-navigation';
 
 const meta: ComponentMeta<typeof SideNavigation> = {
-  title: "Components/Side Navigation",
+  title: 'Components/Side Navigation',
   component: SideNavigation,
   argTypes: {
     id: { required: true },
@@ -14,17 +11,13 @@ const meta: ComponentMeta<typeof SideNavigation> = {
 };
 export default meta;
 
-const Template: ComponentStory<typeof SideNavigation> = (
-  args: SideNavigationProps
-) => <SideNavigation {...args} />;
+const Template: ComponentStory<typeof SideNavigation> = (args: SideNavigationProps) => (
+  <SideNavigation {...args} />
+);
 
-const ariaLabel = "Secondary navigation";
+const ariaLabel = 'Secondary navigation';
 const createAnchor = (isCurrent = false) => (
-  <a
-    className={isCurrent ? "usa-current" : ""}
-    href="/"
-    onClick={(e) => e.preventDefault()}
-  >
+  <a className={isCurrent ? 'usa-current' : ''} href="/" onClick={(e) => e.preventDefault()}>
     Navigation Link
   </a>
 );
@@ -41,7 +34,7 @@ const flatNavigation: SideNavigationItem[] = [
 
 export const FlatSideNavigation = Template.bind({});
 FlatSideNavigation.args = {
-  id: "side-navigation-1",
+  id: 'side-navigation-1',
   items: flatNavigation,
   ariaLabel: ariaLabel,
 };
@@ -74,7 +67,7 @@ const twoLevelNavigation: SideNavigationItem[] = [
 
 export const TwoLevelSideNavigation = Template.bind({});
 TwoLevelSideNavigation.args = {
-  id: "side-navigation-2",
+  id: 'side-navigation-2',
   items: twoLevelNavigation,
   ariaLabel: ariaLabel,
 };
@@ -127,7 +120,7 @@ const threeLevelNavigation: SideNavigationItem[] = [
 
 export const ThreeLevelSideNavigation = Template.bind({});
 ThreeLevelSideNavigation.args = {
-  id: "side-navigation-3",
+  id: 'side-navigation-3',
   items: threeLevelNavigation,
   ariaLabel: ariaLabel,
 };

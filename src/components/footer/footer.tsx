@@ -1,5 +1,5 @@
-import React from "react";
-import { BsFacebook, BsTwitter, BsYoutube, BsInstagram } from "react-icons/bs";
+import React from 'react';
+import { BsFacebook, BsTwitter, BsYoutube, BsInstagram } from 'react-icons/bs';
 
 export type Navigate = (path: string) => void;
 
@@ -37,8 +37,8 @@ export const Footer = ({
       <div className="grid-container usa-footer__return-to-top">
         <span
           style={{
-            userSelect: "none",
-            cursor: "pointer",
+            userSelect: 'none',
+            cursor: 'pointer',
           }}
           data-testid="scroll-top"
           onClick={() => window.scrollTo(0, 0)}
@@ -95,14 +95,8 @@ export const Footer = ({
                 {socials?.facebook ? (
                   <div className="grid-col-auto">
                     <a className="usa-social-link" href={socials.facebook}>
-                      <div
-                        className="usa-social-link__icon"
-                        style={{ padding: "10%" }}
-                      >
-                        <BsFacebook
-                          style={{ width: "100%", height: "100%" }}
-                          title="Facebook"
-                        />
+                      <div className="usa-social-link__icon" style={{ padding: '10%' }}>
+                        <BsFacebook style={{ width: '100%', height: '100%' }} title="Facebook" />
                       </div>
                     </a>
                   </div>
@@ -112,14 +106,8 @@ export const Footer = ({
                 {socials?.twitter ? (
                   <div className="grid-col-auto">
                     <a className="usa-social-link" href={socials.twitter}>
-                      <div
-                        className="usa-social-link__icon"
-                        style={{ padding: "10%" }}
-                      >
-                        <BsTwitter
-                          style={{ width: "100%", height: "100%" }}
-                          title="Twitter"
-                        />
+                      <div className="usa-social-link__icon" style={{ padding: '10%' }}>
+                        <BsTwitter style={{ width: '100%', height: '100%' }} title="Twitter" />
                       </div>
                     </a>
                   </div>
@@ -130,14 +118,8 @@ export const Footer = ({
                 {socials?.youtube ? (
                   <div className="grid-col-auto">
                     <a className="usa-social-link" href={socials.youtube}>
-                      <div
-                        className="usa-social-link__icon"
-                        style={{ padding: "10%" }}
-                      >
-                        <BsYoutube
-                          style={{ width: "100%", height: "100%" }}
-                          title="YouTube"
-                        />
+                      <div className="usa-social-link__icon" style={{ padding: '10%' }}>
+                        <BsYoutube style={{ width: '100%', height: '100%' }} title="YouTube" />
                       </div>
                     </a>
                   </div>
@@ -148,14 +130,8 @@ export const Footer = ({
                 {socials?.instagram ? (
                   <div className="grid-col-auto">
                     <a className="usa-social-link" href={socials.instagram}>
-                      <div
-                        className="usa-social-link__icon"
-                        style={{ padding: "10%" }}
-                      >
-                        <BsInstagram
-                          style={{ width: "100%", height: "100%" }}
-                          title="Instagram"
-                        />
+                      <div className="usa-social-link__icon" style={{ padding: '10%' }}>
+                        <BsInstagram style={{ width: '100%', height: '100%' }} title="Instagram" />
                       </div>
                     </a>
                   </div>
@@ -163,9 +139,7 @@ export const Footer = ({
                   <></>
                 )}
               </div>
-              <p className="usa-footer__contact-heading">
-                {contactMessage ?? <></>}
-              </p>
+              <p className="usa-footer__contact-heading">{contactMessage ?? <></>}</p>
               <address className="usa-footer__address">
                 <div className="usa-footer__contact-info grid-row grid-gap">
                   <div className="grid-col-auto">
