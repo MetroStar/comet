@@ -60,7 +60,7 @@ const Template: ComponentStory<typeof StepIndicator> = (args: StepIndicatorProps
 export const Standard = Template.bind({});
 Standard.args = {
   id: 'step-indicator-1',
-  steps: steps,
+  steps,
   currentStep: 0,
   hideLabels: false,
   showCounters: false,

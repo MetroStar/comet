@@ -5,7 +5,7 @@ export interface DropdownOption {
   /**
    * The value for the option
    */
-  value: string | ReadonlyArray<string> | number;
+  value: string | readonly string[] | number;
   /**
    * The label for the option
    */

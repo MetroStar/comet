@@ -100,10 +100,9 @@ describe('RadioButton', () => {
       />,
     );
     expect(baseElement).toBeTruthy();
-    const radioButtonInputs = baseElement.querySelectorAll(
-      '.usa-radio__input',
-    ) as NodeListOf<HTMLInputElement>;
-    radioButtonInputs.forEach((radioButtonInput, index) => {
+    const radioButtonInputs = baseElement.querySelectorAll('.usa-radio__input');
+    const inputs = Array.from(radioButtonInputs) as HTMLInputElement[];
+    inputs.forEach((radioButtonInput, index) => {
       if (index === 0) expect(radioButtonInput.checked).toBeTruthy();
       else expect(radioButtonInput.checked).toBeFalsy();
     });
@@ -145,20 +144,19 @@ describe('RadioButton', () => {
       />,
     );
     expect(baseElement).toBeTruthy();
-    const radioButtonInputs = baseElement.querySelectorAll(
-      '.usa-radio__input',
-    ) as NodeListOf<HTMLInputElement>;
+    const radioButtonInputs = baseElement.querySelectorAll('.usa-radio__input');
+    const inputs = Array.from(radioButtonInputs) as HTMLInputElement[];
 
-    expect(radioButtonInputs[0].checked).toBeTruthy();
+    expect(inputs[0].checked).toBeTruthy();
     expect(onCheck).toBeCalledTimes(0);
     fireEvent.click(radioButtonInputs[0]);
-    expect(radioButtonInputs[0].checked).toBeTruthy();
+    expect(inputs[0].checked).toBeTruthy();
     expect(onCheck).toBeCalledTimes(0);
 
-    expect(radioButtonInputs[1].checked).toBeFalsy();
+    expect(inputs[1].checked).toBeFalsy();
     expect(onCheck).toBeCalledTimes(0);
     fireEvent.click(radioButtonInputs[1]);
-    expect(radioButtonInputs[1].checked).toBeTruthy();
+    expect(inputs[1].checked).toBeTruthy();
     expect(onCheck).toBeCalledTimes(1);
   });
 
@@ -179,20 +177,19 @@ describe('RadioButton', () => {
       />,
     );
     expect(baseElement).toBeTruthy();
-    const radioButtonInputs = baseElement.querySelectorAll(
-      '.usa-radio__input',
-    ) as NodeListOf<HTMLInputElement>;
+    const radioButtonInputs = baseElement.querySelectorAll('.usa-radio__input');
+    const inputs = Array.from(radioButtonInputs) as HTMLInputElement[];
 
-    expect(radioButtonInputs[0].checked).toBeTruthy();
+    expect(inputs[0].checked).toBeTruthy();
     expect(onClick).toBeCalledTimes(0);
     fireEvent.click(radioButtonInputs[0]);
-    expect(radioButtonInputs[0].checked).toBeTruthy();
+    expect(inputs[0].checked).toBeTruthy();
     expect(onClick).toBeCalledTimes(1);
 
-    expect(radioButtonInputs[1].checked).toBeFalsy();
+    expect(inputs[1].checked).toBeFalsy();
     expect(onClick).toBeCalledTimes(1);
     fireEvent.click(radioButtonInputs[1]);
-    expect(radioButtonInputs[1].checked).toBeTruthy();
+    expect(inputs[1].checked).toBeTruthy();
     expect(onClick).toBeCalledTimes(2);
   });
 });

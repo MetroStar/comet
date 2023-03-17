@@ -37,5 +37,5 @@ export const Standard = Template.bind({});
 Standard.args = {
   id: 'dropdown-1',
   name: 'dropdown-1',
-  options: options,
+  options,
 };

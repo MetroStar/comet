@@ -22,7 +22,7 @@ export interface FormGroupProps {
 }
 
 export function FormGroup({ id = undefined, errors, className, children }: FormGroupProps) {
-  const hasErrors = errors && errors.length > 0 ? true : false;
+  const hasErrors = !!(errors && errors.length > 0);
   const classes = classNames(
     'usa-form-group',
     {

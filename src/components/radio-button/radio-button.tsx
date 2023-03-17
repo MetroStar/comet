@@ -9,7 +9,7 @@ export interface RadioButtonData {
   /**
    * Default value of the radioButton
    */
-  value?: string | ReadonlyArray<string> | number;
+  value?: string | readonly string[] | number;
   /**
    * Whether the radioButton is checked by default
    */

@@ -17,7 +17,7 @@ Default.args = {
   id: 'summary-1',
   heading: 'Key information',
   className: '',
-  items: items,
+  items,
 };
 
 export const CustomClass = Template.bind({});
@@ -25,5 +25,5 @@ CustomClass.args = {
   id: 'summary-2',
   heading: 'Key information',
   className: 'bg-base-lightest',
-  items: items,
+  items,
 };

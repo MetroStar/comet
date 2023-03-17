@@ -82,10 +82,9 @@ describe('Checkbox', () => {
       />,
     );
     expect(baseElement).toBeTruthy();
-    const checkboxInputs = baseElement.querySelectorAll(
-      '.usa-checkbox__input',
-    ) as NodeListOf<HTMLInputElement>;
-    checkboxInputs.forEach((checkboxInput, index) => {
+    const checkboxInputs = baseElement.querySelectorAll('.usa-checkbox__input');
+    const inputs = Array.from(checkboxInputs) as HTMLInputElement[];
+    inputs.forEach((checkboxInput, index) => {
       if (index === 0) expect(checkboxInput.checked).toBeTruthy();
       else expect(checkboxInput.checked).toBeFalsy();
     });
@@ -129,20 +128,19 @@ describe('Checkbox', () => {
       />,
     );
     expect(baseElement).toBeTruthy();
-    const checkboxInputs = baseElement.querySelectorAll(
-      '.usa-checkbox__input',
-    ) as NodeListOf<HTMLInputElement>;
+    const checkboxInputs = baseElement.querySelectorAll('.usa-checkbox__input');
+    const inputs = Array.from(checkboxInputs) as HTMLInputElement[];
 
-    expect(checkboxInputs[0].checked).toBeTruthy();
+    expect(inputs[0].checked).toBeTruthy();
     expect(onCheck).toBeCalledTimes(0);
     fireEvent.click(checkboxInputs[0]);
-    expect(checkboxInputs[0].checked).toBeFalsy();
+    expect(inputs[0].checked).toBeFalsy();
     expect(onCheck).toBeCalledTimes(1);
 
-    expect(checkboxInputs[1].checked).toBeFalsy();
+    expect(inputs[1].checked).toBeFalsy();
     expect(onCheck).toBeCalledTimes(1);
     fireEvent.click(checkboxInputs[1]);
-    expect(checkboxInputs[1].checked).toBeTruthy();
+    expect(inputs[1].checked).toBeTruthy();
     expect(onCheck).toBeCalledTimes(2);
   });
 
@@ -163,20 +161,19 @@ describe('Checkbox', () => {
       />,
     );
     expect(baseElement).toBeTruthy();
-    const checkboxInputs = baseElement.querySelectorAll(
-      '.usa-checkbox__input',
-    ) as NodeListOf<HTMLInputElement>;
+    const checkboxInputs = baseElement.querySelectorAll('.usa-checkbox__input');
+    const inputs = Array.from(checkboxInputs) as HTMLInputElement[];
 
-    expect(checkboxInputs[0].checked).toBeTruthy();
+    expect(inputs[0].checked).toBeTruthy();
     expect(onClick).toBeCalledTimes(0);
     fireEvent.click(checkboxInputs[0]);
-    expect(checkboxInputs[0].checked).toBeFalsy();
+    expect(inputs[0].checked).toBeFalsy();
     expect(onClick).toBeCalledTimes(1);
 
-    expect(checkboxInputs[1].checked).toBeFalsy();
+    expect(inputs[1].checked).toBeFalsy();
     expect(onClick).toBeCalledTimes(1);
     fireEvent.click(checkboxInputs[1]);
-    expect(checkboxInputs[1].checked).toBeTruthy();
+    expect(inputs[1].checked).toBeTruthy();
     expect(onClick).toBeCalledTimes(2);
   });
 });

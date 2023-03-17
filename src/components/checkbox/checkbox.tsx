@@ -9,7 +9,7 @@ export interface CheckboxData {
   /**
    * Default value of the checkbox
    */
-  value?: string | ReadonlyArray<string> | number;
+  value?: string | readonly string[] | number;
   /**
    * Whether the checkbox is checked by default
    */

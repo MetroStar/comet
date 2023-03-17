@@ -59,7 +59,7 @@ const steps: ProcessListStep[] = [
 export const Default = Template.bind({});
 Default.args = {
   id: 'process-list-1',
-  steps: steps,
+  steps,
 };
 
 const noContentSteps = steps.map((step) => {

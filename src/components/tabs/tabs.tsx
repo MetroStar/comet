@@ -10,7 +10,7 @@ export interface TabPanelProps {
 export interface TabsProps {
   id: string;
   defaultTabId: string;
-  children: ReactElement<TabPanelProps>[];
+  children: Array<ReactElement<TabPanelProps>>;
   className?: string;
 }
 

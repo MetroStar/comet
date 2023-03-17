@@ -47,7 +47,7 @@ export const Standard = Template.bind({});
 Standard.args = {
   id: 'combo-box-1',
   name: 'combo-box-1',
-  options: options,
+  options,
   placeholder: 'Select...',
   defaultValue: options[0].value,
 };
@@ -56,7 +56,7 @@ export const NoDefault = Template.bind({});
 NoDefault.args = {
   id: 'combo-box-1',
   name: 'combo-box-1',
-  options: options,
+  options,
   placeholder: 'Select...',
   defaultValue: '',
 };

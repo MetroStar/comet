@@ -36,7 +36,7 @@ export const FlatSideNavigation = Template.bind({});
 FlatSideNavigation.args = {
   id: 'side-navigation-1',
   items: flatNavigation,
-  ariaLabel: ariaLabel,
+  ariaLabel,
 };
 
 const twoLevelNavigation: SideNavigationItem[] = [
@@ -69,7 +69,7 @@ export const TwoLevelSideNavigation = Template.bind({});
 TwoLevelSideNavigation.args = {
   id: 'side-navigation-2',
   items: twoLevelNavigation,
-  ariaLabel: ariaLabel,
+  ariaLabel,
 };
 
 const threeLevelNavigation: SideNavigationItem[] = [
@@ -122,5 +122,5 @@ export const ThreeLevelSideNavigation = Template.bind({});
 ThreeLevelSideNavigation.args = {
   id: 'side-navigation-3',
   items: threeLevelNavigation,
-  ariaLabel: ariaLabel,
+  ariaLabel,
 };
