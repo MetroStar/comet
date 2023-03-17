@@ -21,14 +21,14 @@ export interface TextAreaProps {
   onChange?: ChangeEventHandler<HTMLTextAreaElement>;
 }
 
-export function TextArea({
+export const TextArea = ({
   id,
   name,
   rows,
   className,
   onChange,
   ...textAreaProps
-}: TextAreaProps & JSX.IntrinsicElements['textarea']) {
+}: TextAreaProps & JSX.IntrinsicElements['textarea']): React.ReactElement => {
   return (
     <textarea
       className={classNames('usa-textarea', className)}
@@ -40,6 +40,6 @@ export function TextArea({
       {...textAreaProps}
     />
   );
-}
+};
 
 export default TextArea;

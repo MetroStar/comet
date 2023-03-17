@@ -1,10 +1,10 @@
-import { render, RenderOptions } from '@testing-library/react';
+import { render, RenderOptions, RenderResult } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React, { ReactNode } from 'react';
 import FileInput from './file-input';
-const customRender = (ui: React.ReactElement, options?: RenderOptions) =>
+const customRender = (ui: React.ReactElement, options?: RenderOptions): RenderResult =>
   render(ui, { wrapper: Wrapper, ...options });
-const Wrapper = ({ children }: { children?: ReactNode }) => <div>{children}</div>;
+const Wrapper = ({ children }: { children?: ReactNode }): JSX.Element => <div>{children}</div>;
 
 describe('FileInput', () => {
   const defaultId = 'file-input1';

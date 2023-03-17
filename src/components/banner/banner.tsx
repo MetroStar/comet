@@ -22,8 +22,8 @@ const BannerTypeFull = {
   mil: 'U.S. Department of Defense',
 };
 
-export function Banner({ id, type = 'gov' }: BannerProps) {
-  const [isExpanded, setIsExpanded] = useState(false);
+export const Banner = ({ id, type = 'gov' }: BannerProps): React.ReactElement => {
+  const [isExpanded] = useState(false);
   // Ensure banner JS is loaded
   const bannerRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -132,6 +132,6 @@ export function Banner({ id, type = 'gov' }: BannerProps) {
       </div>
     </section>
   );
-}
+};
 
 export default Banner;

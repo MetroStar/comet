@@ -1,5 +1,5 @@
 import React from 'react';
-import { Story, Meta, ComponentMeta, ComponentStory } from '@storybook/react';
+import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { ErrorMessages, ErrorMessagesProps } from './error-messages';
 
 const meta: ComponentMeta<typeof ErrorMessages> = {

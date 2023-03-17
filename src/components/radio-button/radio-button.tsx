@@ -39,7 +39,7 @@ export interface RadioButtonProps extends RadioButtonData {
   onClick?: MouseEventHandler<HTMLInputElement>;
 }
 
-export function RadioButton({
+export const RadioButton = ({
   id,
   name,
   label,
@@ -49,7 +49,7 @@ export function RadioButton({
   onChange,
   onClick,
   ...inputProps
-}: RadioButtonProps & JSX.IntrinsicElements['input']) {
+}: RadioButtonProps & JSX.IntrinsicElements['input']): React.ReactElement => {
   const inputId = `${id}__usa-radio__input`;
   const classes = classnames('usa-radio__input', {
     'usa-radio__input--tile': isTile,
@@ -73,7 +73,7 @@ export function RadioButton({
       </label>
     </div>
   );
-}
+};
 
 export default RadioButton;
 
@@ -104,14 +104,14 @@ export interface RadioButtonGroupProps {
   onClick?: MouseEventHandler<HTMLInputElement>;
 }
 
-export function RadioButtonGroup({
+export const RadioButtonGroup = ({
   id,
   name,
   data,
   areTiles,
   onChange,
   onClick,
-}: RadioButtonGroupProps) {
+}: RadioButtonGroupProps): React.ReactElement => {
   return (
     <>
       {data.map((radioButtonData, radioButtonIndex) => {
@@ -132,4 +132,4 @@ export function RadioButtonGroup({
       })}
     </>
   );
-}
+};

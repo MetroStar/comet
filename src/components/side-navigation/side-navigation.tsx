@@ -41,7 +41,7 @@ export const SideNavigation = ({
   );
 };
 
-function createSideNavigationItem(item: SideNavigationItem, itemIndex: number) {
+function createSideNavigationItem(item: SideNavigationItem, itemIndex: number): JSX.Element {
   return (
     <li className="usa-sidenav__item" key={itemIndex}>
       {item.anchor}

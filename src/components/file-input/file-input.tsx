@@ -12,7 +12,9 @@ export interface FileInputProps {
   name: string;
 }
 
-export function FileInput(inputProps: FileInputProps & JSX.IntrinsicElements['input']) {
+export const FileInput = (
+  inputProps: FileInputProps & JSX.IntrinsicElements['input'],
+): React.ReactElement => {
   const inputRef = useRef<HTMLInputElement>(null);
   useLayoutEffect(() => {
     const inputElement = inputRef.current;
@@ -20,6 +22,6 @@ export function FileInput(inputProps: FileInputProps & JSX.IntrinsicElements['in
     return () => fileInput.off(inputElement);
   });
   return <input className="usa-file-input" type="file" ref={inputRef} {...inputProps} />;
-}
+};
 
 export default FileInput;

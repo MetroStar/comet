@@ -140,7 +140,7 @@ function buildPaginationItem(
   pageSize: number,
   createPageUrl: CreatePageUrlHandler,
   onPage: OnPageHandler,
-) {
+): JSX.Element {
   const isCurrentPage = page === currentPage;
   const ariaLabel = pageSize - 1 === page ? `last page, page ${page + 1}` : `page ${page + 1}`;
   return (

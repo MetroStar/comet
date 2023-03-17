@@ -23,7 +23,7 @@ export const Tabs = ({ id, defaultTabId, children, className }: TabsProps): Reac
 
   const currentTab = children.filter((child) => child.props.id === activeTabId);
 
-  const handleClick = (id: string) => {
+  const handleClick = (id: string): void => {
     setActiveTabId(id);
   };
 

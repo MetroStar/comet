@@ -1,10 +1,10 @@
 import React from 'react';
-import { fireEvent, render } from '@testing-library/react';
+import { fireEvent, render, RenderResult } from '@testing-library/react';
 import { Label, FormGroup, DatePicker } from '../..';
 import { DateRangePickerContainer } from './date-range-picker';
 
 describe('DateRangePicker', () => {
-  const renderDateRangePicker = () =>
+  const renderDateRangePicker = (): RenderResult =>
     render(
       <DateRangePickerContainer>
         <FormGroup>
@@ -74,9 +74,14 @@ describe('DateRangePicker', () => {
       startDatePicker.querySelector('.usa-date-picker__calendar__date[data-day="1"]') as Element,
     );
 
-    expect(startDatePicker.querySelector('input[name="event-date-start"]')?.value).toEqual(
-      '01/01/2020',
-    );
+    const eventDateStart = startDatePicker.querySelector(
+      'input[name="event-date-start"]',
+    ) as HTMLInputElement;
+    const eventEndDate = endDatePicker.querySelector(
+      'input[name="event-date-end"]',
+    ) as HTMLInputElement;
+
+    expect(eventDateStart?.value).toEqual('01/01/2020');
 
     expect(endDatePicker.getAttribute('data-min-date')).toBe('2020-01-01');
 
@@ -87,9 +92,7 @@ describe('DateRangePicker', () => {
       endDatePicker.querySelector('.usa-date-picker__calendar__date[data-day="2"]') as Element,
     );
 
-    expect(endDatePicker.querySelector('input[name="event-date-end"]')?.value).toEqual(
-      '01/02/2020',
-    );
+    expect(eventEndDate?.value).toEqual('01/02/2020');
 
     expect(startDatePicker.getAttribute('data-max-date')).toBe('2020-01-02');
   });

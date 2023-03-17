@@ -45,7 +45,7 @@ export const Search = ({
     </form>
   );
 
-  function onSubmit(event: FormEvent<HTMLFormElement>) {
+  function onSubmit(event: FormEvent<HTMLFormElement>): void {
     if (onSearch) {
       const form = event.target as unknown as {
         elements: { search: { value: string } };

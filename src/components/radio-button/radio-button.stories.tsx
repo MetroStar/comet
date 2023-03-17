@@ -1,5 +1,5 @@
 import React from 'react';
-import { Story, Meta, ComponentMeta, ComponentStory } from '@storybook/react';
+import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { RadioButton, RadioButtonProps } from './radio-button';
 
 const meta: ComponentMeta<typeof RadioButton> = {

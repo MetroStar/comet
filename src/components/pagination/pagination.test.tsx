@@ -82,15 +82,15 @@ describe('Pagination', () => {
     expect(onPage).toBeCalledWith(expect.any(Object), 10);
   });
 
-  it('clicking the value when no onPage is configured should not crash', () => {
+  it('clicking the value when no onPage is configured should not crash', async () => {
     const { baseElement } = render(
       <Pagination id="pagination1" currentPage={9} amountOfPages={24} ariaLabel="Pagination" />,
     );
 
     const nextPageAnchor = baseElement.querySelector('[aria-label="Next page"]') as Element;
-    userEvent.click(nextPageAnchor);
-    const previousPageAnchor = baseElement.querySelector('[aria-label="Previous page"]') as Element;
-    userEvent.click(baseElement.querySelector('a[aria-label="page 11"]') as Element);
+    await userEvent.click(nextPageAnchor);
+    baseElement.querySelector('[aria-label="Previous page"]') as Element;
+    await userEvent.click(baseElement.querySelector('a[aria-label="page 11"]') as Element);
   });
 
   it('should render pagination items with URL', () => {

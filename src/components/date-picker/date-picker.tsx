@@ -45,14 +45,14 @@ interface DatePickerAttributes {
   'data-default-value'?: string;
 }
 
-export function DatePicker({
+export const DatePicker = ({
   minDate,
   maxDate,
   dateRange,
   defaultValue,
   onChange,
   ...inputProps
-}: DatePickerProps & JSX.IntrinsicElements['input']) {
+}: DatePickerProps & JSX.IntrinsicElements['input']): React.ReactElement => {
   const datePickerRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
@@ -81,7 +81,7 @@ export function DatePicker({
       <input className="usa-input" type="text" {...inputProps} />
     </div>
   );
-}
+};
 
 export default DatePicker;
 

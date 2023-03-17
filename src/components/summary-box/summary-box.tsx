@@ -21,7 +21,12 @@ export interface SummaryBoxProps {
   items: string[];
 }
 
-export function SummaryBox({ id, heading, className, items }: SummaryBoxProps) {
+export const SummaryBox = ({
+  id,
+  heading,
+  className,
+  items,
+}: SummaryBoxProps): React.ReactElement => {
   const classes = classnames('usa-summary-box', className);
 
   return (
@@ -40,6 +45,6 @@ export function SummaryBox({ id, heading, className, items }: SummaryBoxProps) {
       </div>
     </div>
   );
-}
+};
 
 export default SummaryBox;

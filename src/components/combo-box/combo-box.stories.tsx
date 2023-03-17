@@ -21,7 +21,8 @@ const options = loremWords.map((word) => {
 
 const ComboBoxWrapper: React.FC<ComboBoxProps> = (props: ComboBoxProps) => {
   const [selectedValue, setSelectedValue] = useState(props.defaultValue);
-  const onChange = (event: ChangeEvent<HTMLSelectElement>) => setSelectedValue(event.target.value);
+  const onChange = (event: ChangeEvent<HTMLSelectElement>): void =>
+    setSelectedValue(event.target.value);
   return (
     <>
       <label className="usa-label" htmlFor={props.id}>

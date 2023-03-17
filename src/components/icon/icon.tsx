@@ -259,7 +259,12 @@ export interface IconProps {
   className?: string;
 }
 
-export function Icon({ id, type, size = 'size-3', className = 'text-base-darkest' }: IconProps) {
+export const Icon = ({
+  id,
+  type,
+  size = 'size-3',
+  className = 'text-base-darkest',
+}: IconProps): React.ReactElement => {
   const classes = classNames('usa-icon', `usa-icon--${size}`, className);
 
   return (
@@ -267,6 +272,6 @@ export function Icon({ id, type, size = 'size-3', className = 'text-base-darkest
       <use xlinkHref={`${iconSprite}#${type}`}></use>
     </svg>
   );
-}
+};
 
 export default Icon;

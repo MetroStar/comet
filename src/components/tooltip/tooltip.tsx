@@ -17,7 +17,11 @@ export interface TooltipProps {
   children: ReactNode;
 }
 
-export function Tooltip({ label, position = 'top', children }: TooltipProps) {
+export const Tooltip = ({
+  label,
+  position = 'top',
+  children,
+}: TooltipProps): React.ReactElement => {
   const tooltipRef = useRef<HTMLSpanElement>(null);
   useLayoutEffect(() => {
     const tooltipElement = tooltipRef.current?.firstChild as HTMLElement;
@@ -30,6 +34,6 @@ export function Tooltip({ label, position = 'top', children }: TooltipProps) {
     return () => tooltip.off(tooltipElement);
   });
   return <span ref={tooltipRef}>{children}</span>;
-}
+};
 
 export default Tooltip;

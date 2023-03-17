@@ -21,7 +21,7 @@ const StepIndicatorWrapper: React.FC<StepIndicatorProps> = (props: StepIndicator
   function prevNextButtons([currentStep, setCurrentStep]: [
     number,
     Dispatch<SetStateAction<number>>,
-  ]) {
+  ]): JSX.Element {
     return (
       <>
         <Button

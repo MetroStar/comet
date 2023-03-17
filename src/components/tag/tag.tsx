@@ -20,12 +20,12 @@ export interface TagProps {
   className?: string;
 }
 
-const TagSize = {
-  Default: 'Default',
-  Big: 'Big',
-};
-
-export function Tag({ id, children, size = 'Default', className }: TagProps) {
+export const Tag = ({
+  id,
+  children,
+  size = 'Default',
+  className,
+}: TagProps): React.ReactElement => {
   const classes = classNames(
     'usa-tag',
     {
@@ -39,6 +39,6 @@ export function Tag({ id, children, size = 'Default', className }: TagProps) {
       {children}
     </span>
   );
-}
+};
 
 export default Tag;

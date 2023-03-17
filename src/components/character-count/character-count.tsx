@@ -2,7 +2,10 @@ import React, { useEffect, useRef } from 'react';
 import classNames from 'classnames';
 import characterCount from '@uswds/uswds/js/usa-character-count';
 
-export function CharacterCountContainer({ className, ...divProps }: JSX.IntrinsicElements['div']) {
+export const CharacterCountContainer = ({
+  className,
+  ...divProps
+}: JSX.IntrinsicElements['div']): React.ReactElement => {
   const ref = useRef(null);
   useEffect(() => {
     const characterCountContainerElement = ref.current;
@@ -14,7 +17,7 @@ export function CharacterCountContainer({ className, ...divProps }: JSX.Intrinsi
       {divProps.children}
     </div>
   );
-}
+};
 
 export interface CharacterCountProps {
   /**
@@ -23,10 +26,10 @@ export interface CharacterCountProps {
   id: string;
 }
 
-export function CharacterCount({
+export const CharacterCount = ({
   id,
   ...spanProps
-}: CharacterCountProps & JSX.IntrinsicElements['span']) {
+}: CharacterCountProps & JSX.IntrinsicElements['span']): React.ReactElement => {
   return (
     <span
       id={id}
@@ -36,6 +39,6 @@ export function CharacterCount({
       {spanProps.children}
     </span>
   );
-}
+};
 
 export default CharacterCount;

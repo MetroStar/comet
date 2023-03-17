@@ -12,7 +12,7 @@ const meta: ComponentMeta<typeof ButtonGroup> = {
 };
 export default meta;
 
-const handleClick = () => {};
+const handleClick = (): void => {};
 const Template: ComponentStory<typeof ButtonGroup> = (args: ButtonGroupProps) => (
   <div className="width-mobile">
     <ButtonGroup {...args}>

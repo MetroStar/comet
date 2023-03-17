@@ -1,11 +1,11 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, RenderResult } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Form, FormGroup, Label, TextInput } from '../..';
 import { CharacterCount, CharacterCountContainer } from './character-count';
 
 describe('Character Count', () => {
-  const renderCharacterCountInputSample = () =>
+  const renderCharacterCountInputSample = (): RenderResult =>
     render(
       <Form>
         <CharacterCountContainer>
@@ -43,7 +43,7 @@ describe('Character Count', () => {
 
     expect(characterCountElement.textContent).toBe('You can enter up to 25 characters');
     await userEvent.type(input, 'Hello World'); // 11 characters
-    userEvent.clear(input);
+    await userEvent.clear(input);
     expect(characterCountElement.textContent).toBe('You can enter up to 25 characters');
   });
 });

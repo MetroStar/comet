@@ -14,7 +14,7 @@ export default meta;
 
 const Template: ComponentStory<typeof Search> = (args: SearchProps) => <Search {...args} />;
 
-const preventDefault = (event: FormEvent) => event.preventDefault();
+const preventDefault = (event: FormEvent): void => event.preventDefault();
 
 export const Default = Template.bind({});
 Default.args = {

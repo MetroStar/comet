@@ -16,7 +16,7 @@ const Template: ComponentStory<typeof SideNavigation> = (args: SideNavigationPro
 );
 
 const ariaLabel = 'Secondary navigation';
-const createAnchor = (isCurrent = false) => (
+const createAnchor = (isCurrent = false): JSX.Element => (
   <a className={isCurrent ? 'usa-current' : ''} href="/" onClick={(e) => e.preventDefault()}>
     Navigation Link
   </a>

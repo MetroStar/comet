@@ -39,22 +39,25 @@ export interface DropdownProps {
   onChange?: ChangeEventHandler<HTMLSelectElement>;
 }
 
-export function Dropdown({
+export const Dropdown = ({
   defaultOption = { value: '', label: '- Select -' },
   options,
   onChange,
   className,
   ...selectProps
-}: DropdownProps & JSX.IntrinsicElements['select']) {
+}: DropdownProps & JSX.IntrinsicElements['select']): React.ReactElement => {
   return (
     <select className={classNames('usa-select', className)} onChange={onChange} {...selectProps}>
       {createOption(defaultOption, -1)}
       {options?.map(createOption)}
     </select>
   );
-}
+};
 
-const createOption = (option: DropdownOption | null, optionIndex: number) =>
+const createOption = (
+  option: DropdownOption | null,
+  optionIndex: number,
+): React.ReactElement | null =>
   option && (
     <option value={option.value} key={optionIndex}>
       {option.label}

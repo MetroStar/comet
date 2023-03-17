@@ -12,7 +12,7 @@ export default meta;
 const FormWrapper: React.FC<FormProps> = (props: FormProps) => {
   const [name, setName] = useState('');
   const [formSubmittedLabel, setFormSubmittedLabel] = useState('');
-  const handleSubmit = (event: FormEvent) => {
+  const handleSubmit = (event: FormEvent): void => {
     event.preventDefault();
     if (name === '') {
       setFormSubmittedLabel(`Form submitted with no value`);

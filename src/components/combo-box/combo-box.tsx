@@ -8,7 +8,7 @@ export type ComboBoxProps = {
 } & DropdownProps &
   JSX.IntrinsicElements['select'];
 
-export function ComboBox({ placeholder, ...comboBoxProps }: ComboBoxProps) {
+export const ComboBox = ({ placeholder, ...comboBoxProps }: ComboBoxProps): React.ReactElement => {
   const comboBoxRef = useRef<HTMLDivElement>(null);
   useLayoutEffect(() => {
     const comboBoxElement = comboBoxRef.current;
@@ -36,6 +36,6 @@ export function ComboBox({ placeholder, ...comboBoxProps }: ComboBoxProps) {
       <Dropdown {...comboBoxProps} />
     </div>
   );
-}
+};
 
 export default ComboBox;

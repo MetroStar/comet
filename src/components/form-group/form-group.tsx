@@ -21,7 +21,12 @@ export interface FormGroupProps {
   children: ReactNode;
 }
 
-export function FormGroup({ id = undefined, errors, className, children }: FormGroupProps) {
+export const FormGroup = ({
+  id = undefined,
+  errors,
+  className,
+  children,
+}: FormGroupProps): React.ReactElement => {
   const hasErrors = !!(errors && errors.length > 0);
   const classes = classNames(
     'usa-form-group',
@@ -36,6 +41,6 @@ export function FormGroup({ id = undefined, errors, className, children }: FormG
       {children}
     </div>
   );
-}
+};
 
 export default FormGroup;

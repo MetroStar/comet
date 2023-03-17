@@ -20,7 +20,8 @@ const options = loremWords.map((word) => {
 
 const DropdownWrapper: React.FC<DropdownProps> = (props: DropdownProps) => {
   const [selectedValue, setSelectedValue] = useState('');
-  const onChange = (event: ChangeEvent<HTMLSelectElement>) => setSelectedValue(event.target.value);
+  const onChange = (event: ChangeEvent<HTMLSelectElement>): void =>
+    setSelectedValue(event.target.value);
   return (
     <>
       <Label htmlFor={props.id}>Dropdown label</Label>

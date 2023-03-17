@@ -74,6 +74,7 @@ export const StepIndicator = ({
           }
 
           return (
+            /* eslint-disable */
             <li {...attributes}>
               <span className="usa-step-indicator__segment-label">
                 {step}

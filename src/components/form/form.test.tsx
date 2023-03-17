@@ -10,7 +10,7 @@ describe('Form', () => {
   });
   it('should render a form and submit successfully', () => {
     let isSubmitted = false;
-    const handleSubmit = (e: FormEvent) => {
+    const handleSubmit = (e: FormEvent): void => {
       e.preventDefault();
       isSubmitted = true;
     };
@@ -24,7 +24,7 @@ describe('Form', () => {
   });
   it('should render a form and reset successfully', () => {
     let isReset = false;
-    const handleReset = (e: FormEvent) => {
+    const handleReset = (e: FormEvent): void => {
       e.preventDefault();
       isReset = true;
     };
