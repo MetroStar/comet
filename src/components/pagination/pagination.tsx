@@ -86,7 +86,7 @@ export const Pagination = ({
         {startPageIndex > 0 && (
           <>
             {buildPaginationItem(0, currentPage, pageSize, createPageUrl, onPage)}
-            <li className="usa-pagination__item usa-pagination__overflow" role="presentation">
+            <li className="usa-pagination__item usa-pagination__overflow">
               <span>…</span>
             </li>
           </>
@@ -96,7 +96,7 @@ export const Pagination = ({
         )}
         {endPageIndex < pageSize - 1 && (
           <>
-            <li className="usa-pagination__item usa-pagination__overflow" role="presentation">
+            <li className="usa-pagination__item usa-pagination__overflow">
               <span>…</span>
             </li>
             {buildPaginationItem(pageSize - 1, currentPage, pageSize, createPageUrl, onPage)}
