@@ -37,7 +37,9 @@ const FormWrapper: React.FC<FormProps> = (props: FormProps) => {
           Submit
         </Button>
       </ButtonGroup>
-      <Label>{formSubmittedLabel}</Label>
+      <div className="float-left padding-left-3 padding-top-1">
+        <Label>{formSubmittedLabel}</Label>
+      </div>
     </Form>
   );
 };

@@ -17,6 +17,7 @@ export const Form = ({
   return (
     <form
       className={classNames('usa-form', { 'usa-form--large': isLarge }, className)}
+      style={{ maxWidth: 'unset' }}
       {...formProps}
     >
       {children}
