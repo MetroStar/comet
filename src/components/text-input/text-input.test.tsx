@@ -59,6 +59,20 @@ describe('Input', () => {
     expect(input).toHaveAttribute('inputMode', 'decimal');
   });
 
+  test('should render with a prefix', () => {
+    render(<TextInput id="input" prefix="pref" />);
+    const input = screen.getByTestId('input');
+    expect(input).toHaveClass('usa-input');
+    expect(input.parentNode).toHaveClass('usa-input-group');
+  });
+
+  test('should render with a suffix', () => {
+    render(<TextInput id="input" suffix="suff" />);
+    const input = screen.getByTestId('input');
+    expect(input).toHaveClass('usa-input');
+    expect(input.parentNode).toHaveClass('usa-input-group');
+  });
+
   test('Input renders with given props and callback works', () => {
     const spy = jest.fn();
     render(<TextInput id="input" placeholder="foo" onChange={spy} />);
