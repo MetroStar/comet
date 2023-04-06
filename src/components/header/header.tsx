@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { MdOutlineSearch } from "react-icons/md";
-import "./header.style.css";
+import React, { useState } from 'react';
+import { MdOutlineSearch } from 'react-icons/md';
+import './header.style.css';
 
 export type Navigate = (path: string) => void;
 export type Search = (search: string) => void;
@@ -32,9 +32,7 @@ export const Header = ({
   showSearch,
   onSearch = (search: string): void => {},
 }: HeaderProps): React.ReactElement => {
-  const [showFold, setShowFold] = useState(
-    Array(folding?.length ?? 0).fill(false)
-  );
+  const [showFold, setShowFold] = useState(Array(folding?.length ?? 0).fill(false));
 
   const onFoldClick = (i: number): void => {
     const current = [...showFold];
@@ -59,15 +57,12 @@ export const Header = ({
           </button>
           <ul className="usa-nav__primary usa-accordion">
             {folding?.map((e, i) => (
-              <li
-                className="usa-nav__primary-item"
-                key={`folding-navigation-${i}`}
-              >
+              <li className="usa-nav__primary-item" key={`folding-navigation-${i}`}>
                 <button
                   type="button"
                   className="usa-accordion__button usa-nav__link usa-current"
                   aria-controls="basic-nav-section-one"
-                  aria-expanded={showFold[i] ? "true" : "false"}
+                  aria-expanded={showFold[i] ? 'true' : 'false'}
                   data-testid="fold-control"
                   onClick={() => onFoldClick(i)}
                 >
@@ -76,9 +71,7 @@ export const Header = ({
                 <ul
                   id="basic-nav-section-one"
                   data-testid="folding"
-                  className={`usa-nav__submenu ${
-                    showFold[i] ? "folded-show" : "folded-hide"
-                  }`}
+                  className={`usa-nav__submenu ${showFold[i] ? 'folded-show' : 'folded-hide'}`}
                 >
                   {e.items.map((l, j) => (
                     <li
@@ -127,7 +120,7 @@ interface SearchProps {
 }
 
 const SearchBar: React.FC<SearchProps> = ({ show, onSearch }: SearchProps) => {
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState('');
 
   if (!show) return <></>;
 

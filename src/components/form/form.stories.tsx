@@ -1,20 +1,20 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
-import React, { FormEvent, useState } from "react";
-import { Form, FormProps } from "./form";
-import { FormGroup, Button, TextInput, Label, ButtonGroup } from "../..";
+import { ComponentMeta, ComponentStory } from '@storybook/react';
+import React, { FormEvent, useState } from 'react';
+import { Form, FormProps } from './form';
+import { FormGroup, Button, TextInput, Label, ButtonGroup } from '../..';
 
 const meta: ComponentMeta<typeof Form> = {
-  title: "Components/Forms/Form",
+  title: 'Components/Forms/Form',
   component: Form,
 };
 export default meta;
 
 const FormWrapper: React.FC<FormProps> = (props: FormProps) => {
-  const [name, setName] = useState("");
-  const [formSubmittedLabel, setFormSubmittedLabel] = useState("");
-  const handleSubmit = (event: FormEvent) => {
+  const [name, setName] = useState('');
+  const [formSubmittedLabel, setFormSubmittedLabel] = useState('');
+  const handleSubmit = (event: FormEvent): void => {
     event.preventDefault();
-    if (name === "") {
+    if (name === '') {
       setFormSubmittedLabel(`Form submitted with no value`);
     } else {
       setFormSubmittedLabel(`Form submitted with: ${name}`);
@@ -37,13 +37,13 @@ const FormWrapper: React.FC<FormProps> = (props: FormProps) => {
           Submit
         </Button>
       </ButtonGroup>
-      <Label>{formSubmittedLabel}</Label>
+      <div className="float-left padding-left-3 padding-top-1">
+        <Label>{formSubmittedLabel}</Label>
+      </div>
     </Form>
   );
 };
 
-const Template: ComponentStory<typeof Form> = (args: FormProps) => (
-  <FormWrapper {...args} />
-);
+const Template: ComponentStory<typeof Form> = (args: FormProps) => <FormWrapper {...args} />;
 
 export const BasicForm = Template.bind({});

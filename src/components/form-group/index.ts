@@ -1,1 +1,1 @@
-export { default } from "./form-group";
+export { default } from './form-group';

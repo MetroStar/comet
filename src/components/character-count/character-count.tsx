@@ -1,11 +1,11 @@
-import React, { useEffect, useRef } from "react";
-import classNames from "classnames";
-import characterCount from "@uswds/uswds/js/usa-character-count";
+import React, { useEffect, useRef } from 'react';
+import classNames from 'classnames';
+import characterCount from '@uswds/uswds/js/usa-character-count';
 
-export function CharacterCountContainer({
+export const CharacterCountContainer = ({
   className,
   ...divProps
-}: JSX.IntrinsicElements["div"]) {
+}: JSX.IntrinsicElements['div']): React.ReactElement => {
   const ref = useRef(null);
   useEffect(() => {
     const characterCountContainerElement = ref.current;
@@ -13,15 +13,11 @@ export function CharacterCountContainer({
     return () => characterCount.off(characterCountContainerElement);
   });
   return (
-    <div
-      ref={ref}
-      className={classNames("usa-character-count", className)}
-      {...divProps}
-    >
+    <div ref={ref} className={classNames('usa-character-count', className)} {...divProps}>
       {divProps.children}
     </div>
   );
-}
+};
 
 export interface CharacterCountProps {
   /**
@@ -30,23 +26,19 @@ export interface CharacterCountProps {
   id: string;
 }
 
-export function CharacterCount({
+export const CharacterCount = ({
   id,
   ...spanProps
-}: CharacterCountProps & JSX.IntrinsicElements["span"]) {
+}: CharacterCountProps & JSX.IntrinsicElements['span']): React.ReactElement => {
   return (
     <span
       id={id}
-      className={classNames(
-        "usa-hint",
-        "usa-character-count__message",
-        spanProps.className
-      )}
+      className={classNames('usa-hint', 'usa-character-count__message', spanProps.className)}
       aria-live="polite"
     >
       {spanProps.children}
     </span>
   );
-}
+};
 
 export default CharacterCount;

@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 export interface Crumb {
   path: string;
@@ -19,11 +19,7 @@ export const Breadcrumb = ({
   action,
 }: BreadcrumbProps): React.ReactElement => {
   return (
-    <nav
-      className="usa-breadcrumb breadcrumb"
-      aria-label="Breadcrumbs,,"
-      id={id}
-    >
+    <nav className="usa-breadcrumb breadcrumb" aria-label="Breadcrumbs,," id={id}>
       <ol className="usa-breadcrumb__list">
         {crumbs.map((e, i) => (
           <li className="usa-breadcrumb__list-item" key={`breadcrumb-${i}`}>
@@ -37,10 +33,7 @@ export const Breadcrumb = ({
           </li>
         ))}
         {current ? (
-          <li
-            className="usa-breadcrumb__list-item usa-current"
-            aria-current="true"
-          >
+          <li className="usa-breadcrumb__list-item usa-current" aria-current="true">
             <span>{current}</span>
           </li>
         ) : (

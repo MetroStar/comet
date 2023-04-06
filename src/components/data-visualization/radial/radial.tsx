@@ -1,6 +1,6 @@
-import React from "react";
-import { VictoryChart, VictoryBar, VictoryPolarAxis } from "victory";
-import ChartProps from "../chart/chart";
+import React from 'react';
+import { VictoryChart, VictoryBar, VictoryPolarAxis } from 'victory';
+import ChartProps from '../chart/chart';
 
 export interface RadialProps {
   chart: ChartProps;
@@ -15,9 +15,9 @@ const Radial: React.FC<RadialProps> = (props: RadialProps) => {
       <VictoryPolarAxis
         dependentAxis
         style={{
-          axis: { stroke: "none" },
-          tickLabels: { fill: "none" },
-          grid: { stroke: "grey", strokeDasharray: "4, 8" },
+          axis: { stroke: 'none' },
+          tickLabels: { fill: 'none' },
+          grid: { stroke: 'grey', strokeDasharray: '4, 8' },
         }}
       />
       <VictoryPolarAxis tickValues={props.ticks} />

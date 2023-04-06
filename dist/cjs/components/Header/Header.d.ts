@@ -20,5 +20,5 @@ export interface HeaderProps {
     showSearch?: boolean;
     onSearch?: Search;
 }
-declare const Header: React.FC<HeaderProps>;
+export declare const Header: ({ logo, onNavigate, folding, simple, showSearch, onSearch, }: HeaderProps) => React.ReactElement;
 export default Header;

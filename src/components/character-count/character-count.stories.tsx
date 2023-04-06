@@ -1,14 +1,10 @@
-import React from "react";
-import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { Form, FormGroup, Label, TextInput, TextArea } from "../..";
-import {
-  CharacterCount,
-  CharacterCountContainer,
-  CharacterCountProps,
-} from "./character-count";
+import React from 'react';
+import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Form, FormGroup, Label, TextInput, TextArea } from '../..';
+import { CharacterCount, CharacterCountContainer, CharacterCountProps } from './character-count';
 
 const meta: ComponentMeta<typeof CharacterCount> = {
-  title: "Components/Forms/Character Count",
+  title: 'Components/Forms/Character Count',
   component: CharacterCount,
   argTypes: {
     id: { requred: true },
@@ -16,9 +12,7 @@ const meta: ComponentMeta<typeof CharacterCount> = {
 };
 export default meta;
 
-const Template: ComponentStory<typeof CharacterCount> = (
-  args: CharacterCountProps
-) => (
+const Template: ComponentStory<typeof CharacterCount> = (args: CharacterCountProps) => (
   <Form>
     <CharacterCountContainer id={args.id}>
       <FormGroup>
@@ -34,21 +28,17 @@ const Template: ComponentStory<typeof CharacterCount> = (
           aria-describedby="with-hint-input-info with-hint-input-hint"
         />
       </FormGroup>
-      <CharacterCount id="with-hint-input-info">
-        You can enter up to 25 characters
-      </CharacterCount>
+      <CharacterCount id="with-hint-input-info">You can enter up to 25 characters</CharacterCount>
     </CharacterCountContainer>
   </Form>
 );
 
 export const InputExample = Template.bind({});
 InputExample.args = {
-  id: "character-count-1",
+  id: 'character-count-1',
 };
 
-const TextAreaTemplate: ComponentStory<typeof CharacterCount> = (
-  args: CharacterCountProps
-) => (
+const TextAreaTemplate: ComponentStory<typeof CharacterCount> = (args: CharacterCountProps) => (
   <Form>
     <CharacterCountContainer id={args.id}>
       <FormGroup>
@@ -74,5 +64,5 @@ const TextAreaTemplate: ComponentStory<typeof CharacterCount> = (
 
 export const TextAreaExample = TextAreaTemplate.bind({});
 TextAreaExample.args = {
-  id: "character-count-2",
+  id: 'character-count-2',
 };

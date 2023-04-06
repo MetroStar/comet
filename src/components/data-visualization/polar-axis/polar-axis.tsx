@@ -1,6 +1,6 @@
-import React from "react";
-import { VictoryChart, VictoryPolarAxis, VictoryLine } from "victory";
-import ChartProps from "../chart/chart";
+import React from 'react';
+import { VictoryChart, VictoryPolarAxis, VictoryLine } from 'victory';
+import ChartProps from '../chart/chart';
 
 export interface PolarAxisProps {
   chart: ChartProps;
@@ -20,9 +20,9 @@ const PolarAxis: React.FC<PolarAxisProps> = (props: PolarAxisProps) => {
       <VictoryPolarAxis
         dependentAxis
         style={{
-          axis: { stroke: "none" },
-          tickLabels: { fill: "none" },
-          grid: { stroke: "grey", strokeDasharray: "4, 8" },
+          axis: { stroke: 'none' },
+          tickLabels: { fill: 'none' },
+          grid: { stroke: 'grey', strokeDasharray: '4, 8' },
         }}
       />
       <VictoryPolarAxis tickValues={props.ticks} />
@@ -31,7 +31,7 @@ const PolarAxis: React.FC<PolarAxisProps> = (props: PolarAxisProps) => {
           ? props.colors[i]
             ? props.colors[i]
             : props.colors[0]
-          : "#0d7ea2";
+          : '#0d7ea2';
 
         return (
           <VictoryLine

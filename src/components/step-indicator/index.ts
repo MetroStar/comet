@@ -1,1 +1,1 @@
-export { default } from "./step-indicator";
+export { default } from './step-indicator';

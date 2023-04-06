@@ -1,5 +1,4 @@
-import React from "react";
-import { FormEvent } from 'react';
+import React, { FormEvent } from 'react';
 import classnames from 'classnames';
 
 export interface SearchProps {
@@ -41,20 +40,12 @@ export const Search = ({
         {...props}
       />
       <button className="usa-button" type="submit">
-        <span
-          className={
-            type === 'small'
-              ? 'usa-sr-only'
-              : 'usa-search__submit-text'
-          }
-        >
-          Search
-        </span>
+        <span className={type === 'small' ? 'usa-sr-only' : 'usa-search__submit-text'}>Search</span>
       </button>
     </form>
   );
 
-  function onSubmit(event: FormEvent<HTMLFormElement>) {
+  function onSubmit(event: FormEvent<HTMLFormElement>): void {
     if (onSearch) {
       const form = event.target as unknown as {
         elements: { search: { value: string } };
@@ -62,6 +53,6 @@ export const Search = ({
       onSearch(event, form.elements.search.value);
     }
   }
-}
+};
 
 export default Search;

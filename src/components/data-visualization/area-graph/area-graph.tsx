@@ -1,6 +1,6 @@
-import React from "react";
-import { VictoryChart, VictoryArea } from "victory";
-import ChartProps from "../chart/chart";
+import React from 'react';
+import { VictoryChart, VictoryArea } from 'victory';
+import ChartProps from '../chart/chart';
 
 export interface AreaGraphProps {
   chart: ChartProps;
@@ -26,11 +26,11 @@ const AreaGraph: React.FC<AreaGraphProps> = (props: AreaGraphProps) => {
                 ? props.colors[i]
                   ? props.colors[i]
                   : props.colors[0]
-                : "#0d7ea2",
+                : '#0d7ea2',
             },
           }}
           data={d}
-          interpolation={props.smooth && props.smooth ? "natural" : undefined}
+          interpolation={props.smooth && props.smooth ? 'natural' : undefined}
           animate={{
             duration: 2000,
             onLoad: { duration: 1000 },

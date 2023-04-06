@@ -1,16 +1,11 @@
-import React, { ChangeEventHandler } from "react";
-import classnames from "classnames";
-import {
-  getInputMode,
-  getPattern,
-  getPlaceholder,
-  getType,
-} from "./input-utils";
+import React, { ChangeEventHandler } from 'react';
+import classnames from 'classnames';
+import { getInputMode, getPattern, getPlaceholder, getType } from './input-utils';
 
 export interface TextInputProps {
   id: string;
-  type?: "text" | "email" | "number" | "password" | "search" | "tel" | "url";
-  mask?: "ssn" | "phone_number" | "zip_5_digit" | "zip_9_digit";
+  type?: 'text' | 'email' | 'number' | 'password' | 'search' | 'tel' | 'url';
+  mask?: 'ssn' | 'phone_number' | 'zip_5_digit' | 'zip_9_digit';
   onChange?: ChangeEventHandler<HTMLInputElement>;
 }
 
@@ -21,13 +16,13 @@ export const TextInput = ({
   mask,
   onChange,
   ...props
-}: TextInputProps & JSX.IntrinsicElements["input"]): React.ReactElement => {
+}: TextInputProps & JSX.IntrinsicElements['input']): React.ReactElement => {
   const classes = classnames(
-    "usa-input",
+    'usa-input',
     {
-      "usa-masked": mask,
+      'usa-masked': mask,
     },
-    className
+    className,
   );
 
   return (

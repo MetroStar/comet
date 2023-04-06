@@ -1,15 +1,10 @@
-import React, {
-  Dispatch,
-  SetStateAction,
-  SyntheticEvent,
-  useState,
-} from "react";
-import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { Pagination } from "../../index";
-import { PaginationProps } from "./pagination";
+import React, { Dispatch, SetStateAction, SyntheticEvent, useState } from 'react';
+import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Pagination } from '../../index';
+import { PaginationProps } from './pagination';
 
 const meta: ComponentMeta<typeof Pagination> = {
-  title: "Components/Pagination",
+  title: 'Components/Pagination',
   component: Pagination,
   argTypes: {
     id: { required: true },
@@ -24,9 +19,7 @@ const onPage =
     setPage(page);
   };
 
-const PaginationWrapper: React.FC<PaginationProps> = (
-  props: PaginationProps
-) => {
+const PaginationWrapper: React.FC<PaginationProps> = (props: PaginationProps) => {
   const [currentPage1, setCurrentPage1] = useState(props.currentPage);
 
   const newProps = { ...props };
@@ -42,18 +35,18 @@ const Template: ComponentStory<typeof Pagination> = (args: PaginationProps) => (
 
 export const LargePagination = Template.bind({});
 LargePagination.args = {
-  id: "pagination-1",
+  id: 'pagination-1',
   currentPage: 9,
   amountOfPages: 24,
-  ariaLabel: "Pagination 1",
+  ariaLabel: 'Pagination 1',
   amountOfVisiblePageItems: 3,
 };
 
 export const SmallPagination = Template.bind({});
 SmallPagination.args = {
-  id: "pagination-2",
+  id: 'pagination-2',
   currentPage: 2,
   amountOfPages: 5,
-  ariaLabel: "Pagination 2",
+  ariaLabel: 'Pagination 2',
   amountOfVisiblePageItems: 1,
 };

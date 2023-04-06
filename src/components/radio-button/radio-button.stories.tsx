@@ -1,24 +1,22 @@
-import React from "react";
-import { Story, Meta, ComponentMeta, ComponentStory } from "@storybook/react";
-import { RadioButton, RadioButtonProps } from "./radio-button";
+import React from 'react';
+import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { RadioButton, RadioButtonProps } from './radio-button';
 
 const meta: ComponentMeta<typeof RadioButton> = {
-  title: "Components/Forms/Radio Button",
+  title: 'Components/Forms/Radio Button',
   component: RadioButton,
   argTypes: {
     id: { required: true },
     name: { required: true },
-    isTile: { type: "boolean" },
+    isTile: { type: 'boolean' },
   },
 };
 export default meta;
 
-const radioButtonName = "lorem-radio-button";
-const loremWords = ["Lorem", "Ipsum", "Dolor", "Sit"];
+const radioButtonName = 'lorem-radio-button';
+const loremWords = ['Lorem', 'Ipsum', 'Dolor', 'Sit'];
 
-const Template: ComponentStory<typeof RadioButton> = (
-  args: RadioButtonProps
-) => (
+const Template: ComponentStory<typeof RadioButton> = (args: RadioButtonProps) => (
   <>
     {loremWords.map((word, wordIndex) => (
       <RadioButton
@@ -36,7 +34,7 @@ const Template: ComponentStory<typeof RadioButton> = (
 
 export const Standard = Template.bind({});
 Standard.args = {
-  id: "radio-button-1",
-  name: "radio-button-1",
+  id: 'radio-button-1',
+  name: 'radio-button-1',
   isTile: false,
 };

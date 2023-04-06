@@ -1,13 +1,13 @@
-import React from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { AreaGraph } from "../../../index";
-import { AreaGraphProps } from "./area-graph";
+import React from 'react';
+import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { AreaGraph } from '../../../index';
+import { AreaGraphProps } from './area-graph';
 
 const meta: ComponentMeta<typeof AreaGraph> = {
-  title: "Components/Data Visualization/Area Graph",
+  title: 'Components/Data Visualization/Area Graph',
   component: AreaGraph,
   argTypes: {
-    smooth: { control: "boolean" },
+    smooth: { control: 'boolean' },
   },
 };
 export default meta;
@@ -15,8 +15,8 @@ export default meta;
 const Template: ComponentStory<typeof AreaGraph> = (args: AreaGraphProps) => (
   <div
     style={{
-      width: "400px",
-      height: "400px",
+      width: '400px',
+      height: '400px',
     }}
   >
     <AreaGraph {...args} />
@@ -29,7 +29,7 @@ Default.args = {
     width: 400,
     height: 400,
   },
-  colors: ["#0d7ea2", "#cd425b"],
+  colors: ['#0d7ea2', '#cd425b'],
   data: [
     [
       { x: 0, y: 3 },
@@ -53,7 +53,7 @@ Smooth.args = {
     width: 400,
     height: 400,
   },
-  colors: ["#0d7ea2", "#cd425b"],
+  colors: ['#0d7ea2', '#cd425b'],
   data: [
     [
       { x: 0, y: 3 },

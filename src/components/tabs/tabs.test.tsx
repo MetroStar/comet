@@ -12,7 +12,7 @@ describe('Tabs', () => {
         <TabPanel id="2" label="UNIT TEST 2">
           UNIT TEST 2
         </TabPanel>
-      </Tabs>
+      </Tabs>,
     );
 
     expect(baseElement).toBeTruthy();
@@ -27,7 +27,7 @@ describe('Tabs', () => {
         <TabPanel id="2" label="UNIT TEST LABEL 2">
           UNIT TEST 2
         </TabPanel>
-      </Tabs>
+      </Tabs>,
     );
 
     const firstTabElement = baseElement.querySelector('button');
@@ -43,7 +43,7 @@ describe('Tabs', () => {
         <TabPanel id="2" label="UNIT TEST 2">
           UNIT TEST 2
         </TabPanel>
-      </Tabs>
+      </Tabs>,
     );
 
     const firstTabElement = baseElement.querySelector('button');
@@ -59,7 +59,7 @@ describe('Tabs', () => {
         <TabPanel id="2" label="UNIT TEST LABEL 2">
           UNIT TEST 2
         </TabPanel>
-      </Tabs>
+      </Tabs>,
     );
 
     const tabsElement = baseElement.querySelector('.UNIT-TEST-CLASS');
@@ -75,7 +75,7 @@ describe('Tabs', () => {
         <TabPanel id="2" label="UNIT TEST LABEL 2">
           UNIT TEST 2
         </TabPanel>
-      </Tabs>
+      </Tabs>,
     );
 
     let tabsElement = screen.getByText('UNIT TEST LABEL 1');

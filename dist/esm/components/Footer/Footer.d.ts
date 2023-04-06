@@ -18,5 +18,5 @@ export interface FooterProps {
         instagram?: string;
     };
 }
-declare const Footer: React.FC<FooterProps>;
+export declare const Footer: ({ links, onNavigate, logoText, logoSrc, contactMessage, email, phone, socials, }: FooterProps) => React.ReactElement;
 export default Footer;

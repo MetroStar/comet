@@ -1,5 +1,5 @@
-import React from "react";
-import { VictoryPie } from "victory";
+import React from 'react';
+import { VictoryPie } from 'victory';
 
 export interface PieChartProps {
   colors?: string[];

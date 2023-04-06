@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import { render } from '@testing-library/react';
 import { Button } from '../button/button';
 
@@ -13,12 +13,10 @@ describe('ButtonGroup', () => {
     const { baseElement } = render(
       <ButtonGroup>
         <Button id="button1">Button 1</Button>
-      </ButtonGroup>
+      </ButtonGroup>,
     );
     const buttonGroup = baseElement.querySelector('.usa-button-group');
-    const buttonGroupitems = baseElement.querySelectorAll(
-      '.usa-button-group__item'
-    );
+    const buttonGroupitems = baseElement.querySelectorAll('.usa-button-group__item');
     expect(buttonGroup).toBeTruthy();
     expect(buttonGroupitems).toHaveLength(1);
   });
@@ -27,12 +25,10 @@ describe('ButtonGroup', () => {
       <ButtonGroup>
         <Button id="button1">Button 1</Button>
         <Button id="button2">Button 2</Button>
-      </ButtonGroup>
+      </ButtonGroup>,
     );
     const buttonGroup = baseElement.querySelector('.usa-button-group');
-    const buttonGroupitems = baseElement.querySelectorAll(
-      '.usa-button-group__item'
-    );
+    const buttonGroupitems = baseElement.querySelectorAll('.usa-button-group__item');
     expect(buttonGroup).toBeTruthy();
     expect(buttonGroupitems).toHaveLength(2);
   });
