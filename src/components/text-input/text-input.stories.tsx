@@ -1,9 +1,9 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { Icon, TextInput } from '../../index';
+import { StoryFn, Meta } from '@storybook/react';
+import { TextInput } from '../../index';
 import { TextInputProps } from './text-input';
 
-const meta: ComponentMeta<typeof TextInput> = {
+const meta: Meta<typeof TextInput> = {
   title: 'Components/Forms/Text Input',
   component: TextInput,
   argTypes: {
@@ -12,9 +12,7 @@ const meta: ComponentMeta<typeof TextInput> = {
 };
 export default meta;
 
-const Template: ComponentStory<typeof TextInput> = (args: TextInputProps) => (
-  <TextInput {...args} />
-);
+const Template: StoryFn<typeof TextInput> = (args: TextInputProps) => <TextInput {...args} />;
 
 export const Standard = Template.bind({});
 Standard.args = {

@@ -1,8 +1,8 @@
 import React from 'react';
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import { Banner, BannerProps } from './banner';
 
-const meta: ComponentMeta<typeof Banner> = {
+const meta: Meta<typeof Banner> = {
   title: 'Components/Banner',
   component: Banner,
   argTypes: {
@@ -12,7 +12,7 @@ const meta: ComponentMeta<typeof Banner> = {
 };
 export default meta;
 
-const Template: ComponentStory<typeof Banner> = (args: BannerProps) => <Banner {...args} />;
+const Template: StoryFn<typeof Banner> = (args: BannerProps) => <Banner {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {

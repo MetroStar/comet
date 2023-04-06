@@ -1,9 +1,9 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 import { Accordion } from '../../index';
 import { AccordionProps } from './accordion';
 
-const meta: ComponentMeta<typeof Accordion> = {
+const meta: Meta<typeof Accordion> = {
   title: 'Components/Accordion',
   component: Accordion,
   argTypes: {
@@ -12,9 +12,7 @@ const meta: ComponentMeta<typeof Accordion> = {
 };
 export default meta;
 
-const Template: ComponentStory<typeof Accordion> = (args: AccordionProps) => (
-  <Accordion {...args} />
-);
+const Template: StoryFn<typeof Accordion> = (args: AccordionProps) => <Accordion {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {

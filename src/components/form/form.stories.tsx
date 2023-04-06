@@ -1,9 +1,9 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import React, { FormEvent, useState } from 'react';
 import { Form, FormProps } from './form';
 import { FormGroup, Button, TextInput, Label, ButtonGroup } from '../..';
 
-const meta: ComponentMeta<typeof Form> = {
+const meta: Meta<typeof Form> = {
   title: 'Components/Forms/Form',
   component: Form,
 };
@@ -44,6 +44,6 @@ const FormWrapper: React.FC<FormProps> = (props: FormProps) => {
   );
 };
 
-const Template: ComponentStory<typeof Form> = (args: FormProps) => <FormWrapper {...args} />;
+const Template: StoryFn<typeof Form> = (args: FormProps) => <FormWrapper {...args} />;
 
 export const BasicForm = Template.bind({});

@@ -1,8 +1,8 @@
 import React from 'react';
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import Tag, { TagProps } from './tag';
 
-const meta: ComponentMeta<typeof Tag> = {
+const meta: Meta<typeof Tag> = {
   title: 'Components/Tag',
   component: Tag,
   argTypes: {
@@ -12,7 +12,7 @@ const meta: ComponentMeta<typeof Tag> = {
 };
 export default meta;
 
-const Template: ComponentStory<typeof Tag> = (args: TagProps) => <Tag {...args} />;
+const Template: StoryFn<typeof Tag> = (args: TagProps) => <Tag {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {

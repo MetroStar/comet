@@ -1,8 +1,8 @@
 import React, { ReactHTMLElement } from 'react';
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import { ProcessList, ProcessListProps, ProcessListStep } from './process-list';
 
-const meta: ComponentMeta<typeof ProcessList> = {
+const meta: Meta<typeof ProcessList> = {
   title: 'Components/Process List',
   component: ProcessList,
   argTypes: {
@@ -11,9 +11,7 @@ const meta: ComponentMeta<typeof ProcessList> = {
 };
 export default meta;
 
-const Template: ComponentStory<typeof ProcessList> = (args: ProcessListProps) => (
-  <ProcessList {...args} />
-);
+const Template: StoryFn<typeof ProcessList> = (args: ProcessListProps) => <ProcessList {...args} />;
 
 const steps: ProcessListStep[] = [
   {

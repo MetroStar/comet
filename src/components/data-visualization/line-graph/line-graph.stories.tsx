@@ -1,9 +1,9 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 import { LineGraph } from '../../../index';
 import { LineGraphProps } from './line-graph';
 
-const meta: ComponentMeta<typeof LineGraph> = {
+const meta: Meta<typeof LineGraph> = {
   title: 'Components/Data Visualization/Line Graph',
   component: LineGraph,
   argTypes: {
@@ -12,7 +12,7 @@ const meta: ComponentMeta<typeof LineGraph> = {
 };
 export default meta;
 
-const Template: ComponentStory<typeof LineGraph> = (args: LineGraphProps) => (
+const Template: StoryFn<typeof LineGraph> = (args: LineGraphProps) => (
   <div
     style={{
       width: '400px',

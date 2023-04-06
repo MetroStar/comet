@@ -1,9 +1,9 @@
 import React from 'react';
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import Label from '../label/label';
 import { TextArea, TextAreaProps } from './text-area';
 
-const meta: ComponentMeta<typeof TextArea> = {
+const meta: Meta<typeof TextArea> = {
   title: 'Components/Forms/Text Area',
   component: TextArea,
   argTypes: {
@@ -13,7 +13,7 @@ const meta: ComponentMeta<typeof TextArea> = {
 };
 export default meta;
 
-const Template: ComponentStory<typeof TextArea> = (args: TextAreaProps) => (
+const Template: StoryFn<typeof TextArea> = (args: TextAreaProps) => (
   <>
     <Label htmlFor={args.id}>Text Area label</Label>
     <TextArea {...args} />

@@ -1,9 +1,9 @@
 import React from 'react';
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import { Form, FormGroup, Label, TextInput, TextArea } from '../..';
 import { CharacterCount, CharacterCountContainer, CharacterCountProps } from './character-count';
 
-const meta: ComponentMeta<typeof CharacterCount> = {
+const meta: Meta<typeof CharacterCount> = {
   title: 'Components/Forms/Character Count',
   component: CharacterCount,
   argTypes: {
@@ -12,7 +12,7 @@ const meta: ComponentMeta<typeof CharacterCount> = {
 };
 export default meta;
 
-const Template: ComponentStory<typeof CharacterCount> = (args: CharacterCountProps) => (
+const Template: StoryFn<typeof CharacterCount> = (args: CharacterCountProps) => (
   <Form>
     <CharacterCountContainer id={args.id}>
       <FormGroup>
@@ -38,7 +38,7 @@ InputExample.args = {
   id: 'character-count-1',
 };
 
-const TextAreaTemplate: ComponentStory<typeof CharacterCount> = (args: CharacterCountProps) => (
+const TextAreaTemplate: StoryFn<typeof CharacterCount> = (args: CharacterCountProps) => (
   <Form>
     <CharacterCountContainer id={args.id}>
       <FormGroup>

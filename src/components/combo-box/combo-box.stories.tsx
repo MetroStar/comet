@@ -1,8 +1,8 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import React, { ChangeEvent, useState } from 'react';
 import { ComboBox, ComboBoxOption, ComboBoxProps } from './combo-box';
 
-const meta: ComponentMeta<typeof ComboBox> = {
+const meta: Meta<typeof ComboBox> = {
   title: 'Components/Forms/Combo Box',
   component: ComboBox,
   argTypes: {
@@ -40,9 +40,7 @@ const ComboBoxWrapper: React.FC<ComboBoxProps> = (props: ComboBoxProps) => {
   );
 };
 
-const Template: ComponentStory<typeof ComboBox> = (args: ComboBoxProps) => (
-  <ComboBoxWrapper {...args} />
-);
+const Template: StoryFn<typeof ComboBox> = (args: ComboBoxProps) => <ComboBoxWrapper {...args} />;
 
 export const Standard = Template.bind({});
 Standard.args = {

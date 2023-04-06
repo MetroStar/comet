@@ -1,15 +1,15 @@
 import React from 'react';
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import { FormGroup, FormGroupProps } from '../form-group/form-group';
 import { TextInput, Label } from '../..';
 
-const meta: ComponentMeta<typeof FormGroup> = {
+const meta: Meta<typeof FormGroup> = {
   title: 'Components/Forms/Form Group',
   component: FormGroup,
 };
 export default meta;
 
-const Template: ComponentStory<typeof FormGroup> = (args: FormGroupProps) => (
+const Template: StoryFn<typeof FormGroup> = (args: FormGroupProps) => (
   <div className="padding-left-1">
     <FormGroup id={args.id} errors={args.errors}>
       <Label htmlFor="input1">Name</Label>

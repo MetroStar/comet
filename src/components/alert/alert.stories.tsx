@@ -1,9 +1,9 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 import { Alert } from '../../index';
 import { AlertProps } from './alert';
 
-const meta: ComponentMeta<typeof Alert> = {
+const meta: Meta<typeof Alert> = {
   title: 'Components/Alert',
   component: Alert,
   argTypes: {
@@ -13,7 +13,7 @@ const meta: ComponentMeta<typeof Alert> = {
 };
 export default meta;
 
-const Template: ComponentStory<typeof Alert> = (args: AlertProps) => (
+const Template: StoryFn<typeof Alert> = (args: AlertProps) => (
   <div className="width-desktop">
     <Alert {...args}>This is the alert body</Alert>
   </div>

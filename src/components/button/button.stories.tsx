@@ -1,9 +1,9 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 import { Button } from '../../index';
 import { ButtonProps } from './button';
 
-const meta: ComponentMeta<typeof Button> = {
+const meta: Meta<typeof Button> = {
   title: 'Components/Button',
   component: Button,
   argTypes: {
@@ -15,9 +15,7 @@ const meta: ComponentMeta<typeof Button> = {
 };
 export default meta;
 
-const Template: ComponentStory<typeof Button> = (args: ButtonProps) => (
-  <Button {...args}>Button</Button>
-);
+const Template: StoryFn<typeof Button> = (args: ButtonProps) => <Button {...args}>Button</Button>;
 
 export const Default = Template.bind({});
 Default.args = {

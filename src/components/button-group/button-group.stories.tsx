@@ -1,9 +1,9 @@
 import React from 'react';
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import Button from '../button/button';
 import { ButtonGroup, ButtonGroupProps } from './button-group';
 
-const meta: ComponentMeta<typeof ButtonGroup> = {
+const meta: Meta<typeof ButtonGroup> = {
   title: 'Components/Button Group',
   component: ButtonGroup,
   argTypes: {
@@ -13,7 +13,7 @@ const meta: ComponentMeta<typeof ButtonGroup> = {
 export default meta;
 
 const handleClick = (): void => {};
-const Template: ComponentStory<typeof ButtonGroup> = (args: ButtonGroupProps) => (
+const Template: StoryFn<typeof ButtonGroup> = (args: ButtonGroupProps) => (
   <div className="width-mobile">
     <ButtonGroup {...args}>
       <Button id="cancel" variant="secondary" onClick={handleClick}>
