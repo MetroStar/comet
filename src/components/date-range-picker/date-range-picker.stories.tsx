@@ -1,15 +1,15 @@
 import React from 'react';
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import { Label, FormGroup, DatePicker } from '../..';
 import { DateRangePickerContainer } from './date-range-picker';
 
-const meta: ComponentMeta<typeof DateRangePickerContainer> = {
+const meta: Meta<typeof DateRangePickerContainer> = {
   title: 'Components/Forms/Date Range Picker',
   component: DateRangePickerContainer,
 };
 export default meta;
 
-const Template: ComponentStory<typeof DateRangePickerContainer> = () => (
+const Template: StoryFn<typeof DateRangePickerContainer> = () => (
   <DateRangePickerContainer>
     <FormGroup>
       <Label id="event-date-start-label" htmlFor="event-date-start">

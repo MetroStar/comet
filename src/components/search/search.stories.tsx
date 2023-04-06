@@ -1,8 +1,8 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import React, { FormEvent } from 'react';
 import { Search, SearchProps } from './search';
 
-const meta: ComponentMeta<typeof Search> = {
+const meta: Meta<typeof Search> = {
   title: 'Components/Search',
   component: Search,
   argTypes: {
@@ -12,7 +12,7 @@ const meta: ComponentMeta<typeof Search> = {
 };
 export default meta;
 
-const Template: ComponentStory<typeof Search> = (args: SearchProps) => <Search {...args} />;
+const Template: StoryFn<typeof Search> = (args: SearchProps) => <Search {...args} />;
 
 const preventDefault = (event: FormEvent): void => event.preventDefault();
 

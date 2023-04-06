@@ -1,9 +1,9 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import React, { ChangeEvent, useState } from 'react';
 import Label from '../label/label';
 import { Dropdown, DropdownOption, DropdownProps } from './dropdown';
 
-const meta: ComponentMeta<typeof Dropdown> = {
+const meta: Meta<typeof Dropdown> = {
   title: 'Components/Forms/Dropdown',
   component: Dropdown,
   argTypes: {
@@ -31,9 +31,7 @@ const DropdownWrapper: React.FC<DropdownProps> = (props: DropdownProps) => {
   );
 };
 
-const Template: ComponentStory<typeof Dropdown> = (args: DropdownProps) => (
-  <DropdownWrapper {...args} />
-);
+const Template: StoryFn<typeof Dropdown> = (args: DropdownProps) => <DropdownWrapper {...args} />;
 export const Standard = Template.bind({});
 Standard.args = {
   id: 'dropdown-1',

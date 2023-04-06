@@ -1,8 +1,8 @@
 import React from 'react';
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import SideNavigation, { SideNavigationItem, SideNavigationProps } from './side-navigation';
 
-const meta: ComponentMeta<typeof SideNavigation> = {
+const meta: Meta<typeof SideNavigation> = {
   title: 'Components/Side Navigation',
   component: SideNavigation,
   argTypes: {
@@ -11,7 +11,7 @@ const meta: ComponentMeta<typeof SideNavigation> = {
 };
 export default meta;
 
-const Template: ComponentStory<typeof SideNavigation> = (args: SideNavigationProps) => (
+const Template: StoryFn<typeof SideNavigation> = (args: SideNavigationProps) => (
   <SideNavigation {...args} />
 );
 

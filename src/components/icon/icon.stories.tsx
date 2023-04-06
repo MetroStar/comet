@@ -1,8 +1,8 @@
 import React from 'react';
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import { Icon, IconProps } from './icon';
 
-const meta: ComponentMeta<typeof Icon> = {
+const meta: Meta<typeof Icon> = {
   title: 'Components/Icon',
   component: Icon,
   argTypes: {
@@ -13,9 +13,9 @@ const meta: ComponentMeta<typeof Icon> = {
 };
 export default meta;
 
-const Template: ComponentStory<typeof Icon> = (args: IconProps) => <Icon {...args} />;
+const Template: StoryFn<typeof Icon> = (args: IconProps) => <Icon {...args} />;
 
-const SizesTemplate: ComponentStory<typeof Icon> = (args: IconProps) => (
+const SizesTemplate: StoryFn<typeof Icon> = (args: IconProps) => (
   <>
     <div>
       <Icon id="icon1" type={args.type} size="size-3" />
@@ -54,7 +54,7 @@ const SizesTemplate: ComponentStory<typeof Icon> = (args: IconProps) => (
   </>
 );
 
-const ColorsTemplate: ComponentStory<typeof Icon> = (args: IconProps) => (
+const ColorsTemplate: StoryFn<typeof Icon> = (args: IconProps) => (
   <>
     <div>
       <Icon id="icon1" type={args.type} size={args.size} />

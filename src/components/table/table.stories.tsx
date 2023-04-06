@@ -1,15 +1,15 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 import { Table } from '../../index';
 import { TableProps } from './table';
 
-const meta: ComponentMeta<typeof Table> = {
+const meta: Meta<typeof Table> = {
   title: 'Components/Table',
   component: Table,
 };
 export default meta;
 
-const Template: ComponentStory<typeof Table> = (args: TableProps) => <Table {...args} />;
+const Template: StoryFn<typeof Table> = (args: TableProps) => <Table {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {

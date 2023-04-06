@@ -1,8 +1,8 @@
 import React from 'react';
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import { RadioButton, RadioButtonProps } from './radio-button';
 
-const meta: ComponentMeta<typeof RadioButton> = {
+const meta: Meta<typeof RadioButton> = {
   title: 'Components/Forms/Radio Button',
   component: RadioButton,
   argTypes: {
@@ -16,7 +16,7 @@ export default meta;
 const radioButtonName = 'lorem-radio-button';
 const loremWords = ['Lorem', 'Ipsum', 'Dolor', 'Sit'];
 
-const Template: ComponentStory<typeof RadioButton> = (args: RadioButtonProps) => (
+const Template: StoryFn<typeof RadioButton> = (args: RadioButtonProps) => (
   <>
     {loremWords.map((word, wordIndex) => (
       <RadioButton

@@ -1,9 +1,9 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 import { AreaGraph } from '../../../index';
 import { AreaGraphProps } from './area-graph';
 
-const meta: ComponentMeta<typeof AreaGraph> = {
+const meta: Meta<typeof AreaGraph> = {
   title: 'Components/Data Visualization/Area Graph',
   component: AreaGraph,
   argTypes: {
@@ -12,7 +12,7 @@ const meta: ComponentMeta<typeof AreaGraph> = {
 };
 export default meta;
 
-const Template: ComponentStory<typeof AreaGraph> = (args: AreaGraphProps) => (
+const Template: StoryFn<typeof AreaGraph> = (args: AreaGraphProps) => (
   <div
     style={{
       width: '400px',

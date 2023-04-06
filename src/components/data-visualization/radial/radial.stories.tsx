@@ -1,15 +1,15 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 import { Radial } from '../../../index';
 import { RadialProps } from './radial';
 
-const meta: ComponentMeta<typeof Radial> = {
+const meta: Meta<typeof Radial> = {
   title: 'Components/Data Visualization/Radial',
   component: Radial,
 };
 export default meta;
 
-const Template: ComponentStory<typeof Radial> = (args: RadialProps) => (
+const Template: StoryFn<typeof Radial> = (args: RadialProps) => (
   <div
     style={{
       width: '400px',

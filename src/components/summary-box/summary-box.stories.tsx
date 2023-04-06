@@ -1,17 +1,15 @@
 import React from 'react';
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import { SummaryBox, SummaryBoxProps } from './summary-box';
 
-const meta: ComponentMeta<typeof SummaryBox> = {
+const meta: Meta<typeof SummaryBox> = {
   title: 'Components/Summary Box',
   component: SummaryBox,
 };
 export default meta;
 
 const items = ['Item 1', 'Item 2', 'Item 3'];
-const Template: ComponentStory<typeof SummaryBox> = (args: SummaryBoxProps) => (
-  <SummaryBox {...args} />
-);
+const Template: StoryFn<typeof SummaryBox> = (args: SummaryBoxProps) => <SummaryBox {...args} />;
 export const Default = Template.bind({});
 Default.args = {
   id: 'summary-1',

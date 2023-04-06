@@ -1,15 +1,15 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 import { PieChart } from '../../../index';
 import { PieChartProps } from './pie-chart';
 
-const meta: ComponentMeta<typeof PieChart> = {
+const meta: Meta<typeof PieChart> = {
   title: 'Components/Data Visualization/Pie Chart',
   component: PieChart,
 };
 export default meta;
 
-const Template: ComponentStory<typeof PieChart> = (args: PieChartProps) => (
+const Template: StoryFn<typeof PieChart> = (args: PieChartProps) => (
   <div
     style={{
       width: '400px',

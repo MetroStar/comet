@@ -1,15 +1,15 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 import { PolarAxis } from '../../../index';
 import { PolarAxisProps } from './polar-axis';
 
-const meta: ComponentMeta<typeof PolarAxis> = {
+const meta: Meta<typeof PolarAxis> = {
   title: 'Components/Data Visualization/Polar Axis',
   component: PolarAxis,
 };
 export default meta;
 
-const Template: ComponentStory<typeof PolarAxis> = (args: PolarAxisProps) => (
+const Template: StoryFn<typeof PolarAxis> = (args: PolarAxisProps) => (
   <div
     style={{
       width: '400px',

@@ -1,8 +1,8 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 import SiteAlert, { SiteAlertProps } from './site-alert';
 
-const meta: ComponentMeta<typeof SiteAlert> = {
+const meta: Meta<typeof SiteAlert> = {
   title: 'Components/Site Alert',
   component: SiteAlert,
   argTypes: {
@@ -14,9 +14,7 @@ const meta: ComponentMeta<typeof SiteAlert> = {
 };
 export default meta;
 
-const Template: ComponentStory<typeof SiteAlert> = (args: SiteAlertProps) => (
-  <SiteAlert {...args} />
-);
+const Template: StoryFn<typeof SiteAlert> = (args: SiteAlertProps) => <SiteAlert {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {

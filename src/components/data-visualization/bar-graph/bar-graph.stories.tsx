@@ -1,15 +1,15 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 import { BarGraph } from '../../../index';
 import { BarGraphProps } from './bar-graph';
 
-const meta: ComponentMeta<typeof BarGraph> = {
+const meta: Meta<typeof BarGraph> = {
   title: 'Components/Data Visualization/Bar Graph',
   component: BarGraph,
 };
 export default meta;
 
-const Template: ComponentStory<typeof BarGraph> = (args: BarGraphProps) => (
+const Template: StoryFn<typeof BarGraph> = (args: BarGraphProps) => (
   <div
     style={{
       width: '400px',

@@ -1,9 +1,9 @@
 import React from 'react';
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import { Button } from '../button/button';
 import { Tooltip, TooltipProps } from './tooltip';
 
-const meta: ComponentMeta<typeof Tooltip> = {
+const meta: Meta<typeof Tooltip> = {
   title: 'Components/Tooltip',
   component: Tooltip,
   argTypes: {
@@ -13,7 +13,7 @@ const meta: ComponentMeta<typeof Tooltip> = {
 };
 export default meta;
 
-const Template: ComponentStory<typeof Tooltip> = (args: TooltipProps) => (
+const Template: StoryFn<typeof Tooltip> = (args: TooltipProps) => (
   <Tooltip {...args}>
     <Button id="button">Button with a tooltip {args.position}</Button>
   </Tooltip>

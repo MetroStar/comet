@@ -1,8 +1,8 @@
 import React from 'react';
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import { Checkbox, CheckboxProps } from './checkbox';
 
-const meta: ComponentMeta<typeof Checkbox> = {
+const meta: Meta<typeof Checkbox> = {
   title: 'Components/Forms/Checkbox',
   component: Checkbox,
   argTypes: {
@@ -12,7 +12,7 @@ const meta: ComponentMeta<typeof Checkbox> = {
 };
 export default meta;
 
-const Template: ComponentStory<typeof Checkbox> = (args: CheckboxProps) => (
+const Template: StoryFn<typeof Checkbox> = (args: CheckboxProps) => (
   <>
     {loremWords.map((word, wordIndex) => (
       <Checkbox

@@ -1,9 +1,9 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 import { Card, CardHeader, CardFooter, CardBody, Button } from '../../index';
 import { CardProps } from './card';
 
-const meta: ComponentMeta<typeof Card> = {
+const meta: Meta<typeof Card> = {
   title: 'Components/Card',
   component: Card,
   argTypes: {
@@ -12,7 +12,7 @@ const meta: ComponentMeta<typeof Card> = {
 };
 export default meta;
 
-const Template: ComponentStory<typeof Card> = (args: CardProps) => (
+const Template: StoryFn<typeof Card> = (args: CardProps) => (
   <Card {...args}>
     <CardHeader>Card Header</CardHeader>
     <CardBody>The meat of the card...</CardBody>

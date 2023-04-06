@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 import { Modal, Button, Card, CardHeader, CardBody, CardFooter } from '../../index';
 import { ModalProps } from './modal';
 
-const meta: ComponentMeta<typeof Modal> = {
+const meta: Meta<typeof Modal> = {
   title: 'Components/Modal',
   component: Modal,
   argTypes: {
@@ -37,7 +37,7 @@ const ModalWrapper: React.FC<ModalProps> = (props: ModalProps) => {
   );
 };
 
-const Template: ComponentStory<typeof Modal> = (args: ModalProps) => <ModalWrapper {...args} />;
+const Template: StoryFn<typeof Modal> = (args: ModalProps) => <ModalWrapper {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {

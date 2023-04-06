@@ -1,9 +1,9 @@
 import React, { Dispatch, SetStateAction, SyntheticEvent, useState } from 'react';
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import { Pagination } from '../../index';
 import { PaginationProps } from './pagination';
 
-const meta: ComponentMeta<typeof Pagination> = {
+const meta: Meta<typeof Pagination> = {
   title: 'Components/Pagination',
   component: Pagination,
   argTypes: {
@@ -29,7 +29,7 @@ const PaginationWrapper: React.FC<PaginationProps> = (props: PaginationProps) =>
   return <Pagination {...newProps} />;
 };
 
-const Template: ComponentStory<typeof Pagination> = (args: PaginationProps) => (
+const Template: StoryFn<typeof Pagination> = (args: PaginationProps) => (
   <PaginationWrapper {...args} />
 );
 

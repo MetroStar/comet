@@ -1,14 +1,14 @@
 import React from 'react';
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import Tabs, { TabPanel, TabsProps } from './tabs';
 
-const meta: ComponentMeta<typeof Tabs> = {
+const meta: Meta<typeof Tabs> = {
   title: 'Components/Tabs',
   component: Tabs,
 };
 export default meta;
 
-const Template: ComponentStory<typeof Tabs> = (args: TabsProps) => (
+const Template: StoryFn<typeof Tabs> = (args: TabsProps) => (
   <Tabs {...args}>
     <TabPanel id="tabPanel1" label="Tab 1">
       <p>Content of Tab 1</p>

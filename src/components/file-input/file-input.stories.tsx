@@ -1,8 +1,8 @@
 import React from 'react';
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import { FileInput, FileInputProps } from './file-input';
 
-const meta: ComponentMeta<typeof FileInput> = {
+const meta: Meta<typeof FileInput> = {
   title: 'Components/Forms/File Input',
   component: FileInput,
   argTypes: {
@@ -13,7 +13,7 @@ const meta: ComponentMeta<typeof FileInput> = {
 };
 export default meta;
 
-const Template: ComponentStory<typeof FileInput> = (args: FileInputProps) => (
+const Template: StoryFn<typeof FileInput> = (args: FileInputProps) => (
   <div className="usa-form-group">
     <label className="usa-label" htmlFor={args.id}>
       Input accepts a single file
@@ -29,7 +29,7 @@ Standard.args = {
   multiple: false,
 };
 
-const MultipleTemplate: ComponentStory<typeof FileInput> = (args: FileInputProps) => (
+const MultipleTemplate: StoryFn<typeof FileInput> = (args: FileInputProps) => (
   <div className="usa-form-group">
     <label className="usa-label" htmlFor={args.id}>
       Input accepts a multiple files

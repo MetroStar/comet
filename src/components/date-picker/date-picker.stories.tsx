@@ -1,8 +1,8 @@
 import React from 'react';
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import { DatePicker, DatePickerProps } from './date-picker';
 
-const meta: ComponentMeta<typeof DatePicker> = {
+const meta: Meta<typeof DatePicker> = {
   title: 'Components/Forms/Date Picker',
   component: DatePicker,
   argTypes: {
@@ -20,7 +20,7 @@ sixtyDaysAgo.setDate(sixtyDaysAgo.getDate() - 60);
 const twoWeeksFromNow = new Date(today);
 twoWeeksFromNow.setDate(twoWeeksFromNow.getDate() + 14);
 
-const Template: ComponentStory<typeof DatePicker> = (args: DatePickerProps) => (
+const Template: StoryFn<typeof DatePicker> = (args: DatePickerProps) => (
   <div className="usa-form-group">
     <label className="usa-label" id="appointment-date-label" htmlFor={args.id}>
       Appointment date

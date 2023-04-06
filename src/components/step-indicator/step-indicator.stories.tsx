@@ -1,9 +1,9 @@
 import React, { useState, Dispatch, SetStateAction } from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 import { StepIndicator, StepIndicatorProps } from './step-indicator';
 import Button from '../button/button';
 
-const meta: ComponentMeta<typeof StepIndicator> = {
+const meta: Meta<typeof StepIndicator> = {
   title: 'Components/Step Indicator',
   component: StepIndicator,
   argTypes: {
@@ -53,7 +53,7 @@ const StepIndicatorWrapper: React.FC<StepIndicatorProps> = (props: StepIndicator
   );
 };
 
-const Template: ComponentStory<typeof StepIndicator> = (args: StepIndicatorProps) => (
+const Template: StoryFn<typeof StepIndicator> = (args: StepIndicatorProps) => (
   <StepIndicatorWrapper {...args} />
 );
 

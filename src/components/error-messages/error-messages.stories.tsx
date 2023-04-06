@@ -1,14 +1,14 @@
 import React from 'react';
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import { ErrorMessages, ErrorMessagesProps } from './error-messages';
 
-const meta: ComponentMeta<typeof ErrorMessages> = {
+const meta: Meta<typeof ErrorMessages> = {
   title: 'Components/Forms/Error Messages',
   component: ErrorMessages,
 };
 export default meta;
 
-const Template: ComponentStory<typeof ErrorMessages> = (args: ErrorMessagesProps) => (
+const Template: StoryFn<typeof ErrorMessages> = (args: ErrorMessagesProps) => (
   <ErrorMessages {...args} />
 );
 
