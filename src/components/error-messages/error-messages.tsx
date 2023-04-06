@@ -20,7 +20,7 @@ export const ErrorMessages = ({
     <>
       {errors.map((error, index) => {
         return (
-          <span id={id} key={index} className="usa-error-message">
+          <span id={`${id}-${index}`} key={index} className="usa-error-message">
             {error}
           </span>
         );

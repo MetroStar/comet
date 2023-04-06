@@ -10,10 +10,12 @@ const meta: ComponentMeta<typeof FormGroup> = {
 export default meta;
 
 const Template: ComponentStory<typeof FormGroup> = (args: FormGroupProps) => (
-  <FormGroup id={args.id} errors={args.errors}>
-    <Label htmlFor="input1">Name</Label>
-    <TextInput id="input1" name="input1" />
-  </FormGroup>
+  <div className="padding-left-1">
+    <FormGroup id={args.id} errors={args.errors}>
+      <Label htmlFor="input1">Name</Label>
+      <TextInput id="input1" name="input1" />
+    </FormGroup>
+  </div>
 );
 
 export const Standard = Template.bind({});
