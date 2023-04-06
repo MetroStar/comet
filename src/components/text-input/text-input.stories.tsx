@@ -35,15 +35,15 @@ WithPrefix.args = {
   id: 'input-3',
   type: 'text',
   prefix: <Icon id="credit-card-icon" type="credit_card" />,
-  'aria-label': 'input 3',
+  'aria-label': 'Input credit card',
 };
 
 export const WithSuffix = Template.bind({});
 WithSuffix.args = {
   id: 'input-4',
-  type: 'text',
+  type: 'number',
   suffix: 'lbs',
-  'aria-label': 'input 4',
+  'aria-label': 'Input pounds',
 };
 
 export const WithChangeEvent = Template.bind({});
