@@ -2,7 +2,7 @@ export const getPattern = (
   mask: string | undefined,
   pattern: string | undefined
 ) => {
-  let newPattern = pattern ? pattern : undefined;
+  let newPattern = pattern || undefined;
   switch (mask) {
     case "ssn":
       newPattern = "^(?!(000|666|9))d{3} (?!00)d{2} (?!0000)d{4}$";
@@ -25,7 +25,7 @@ export const getPlaceholder = (
   mask: string | undefined,
   placeholder: string | undefined
 ) => {
-  let newPlaceholder = placeholder ? placeholder : undefined;
+  let newPlaceholder = placeholder || undefined;
   switch (mask) {
     case "ssn":
       newPlaceholder = "___ __ ____";
@@ -44,8 +44,8 @@ export const getPlaceholder = (
   return newPlaceholder;
 };
 
-export const getType = (mask: string | undefined, type: string) => {
-  let newType = type ? type : "text";
+export const getType = (mask: string | undefined, type: string | undefined) => {
+  let newType = type || "text";
   switch (mask) {
     case "phone_number":
       newType = "tel";
@@ -68,7 +68,7 @@ export const getInputMode = (
     | "decimal"
     | undefined
 ) => {
-  let newInputMode = inputMode ? inputMode : "text";
+  let newInputMode = inputMode || "text";
   switch (mask) {
     case "ssn":
     case "phone_number":

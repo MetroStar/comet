@@ -17,7 +17,7 @@ export interface TextInputProps {
 export const TextInput = ({
   id,
   className,
-  type = "text",
+  type,
   mask,
   onChange,
   ...props
