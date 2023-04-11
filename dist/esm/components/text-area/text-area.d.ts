@@ -1,4 +1,4 @@
-import { ChangeEventHandler } from "react";
+import React, { ChangeEventHandler } from 'react';
 export interface TextAreaProps {
     /**
      * The unique identifier for the textarea
@@ -17,5 +17,8 @@ export interface TextAreaProps {
      */
     onChange?: ChangeEventHandler<HTMLTextAreaElement>;
 }
-export declare function TextArea({ id, name, rows, className, onChange, ...textAreaProps }: TextAreaProps & JSX.IntrinsicElements["textarea"]): JSX.Element;
+/**
+ * A text area allows users to enter any combination of letters, numbers, or symbols.
+ */
+export declare const TextArea: ({ id, name, rows, className, onChange, ...textAreaProps }: TextAreaProps & JSX.IntrinsicElements['textarea']) => React.ReactElement;
 export default TextArea;

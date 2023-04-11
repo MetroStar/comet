@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 export interface TooltipProps {
     /**
      * The text value to display in the tooltip
@@ -13,5 +13,8 @@ export interface TooltipProps {
      */
     children: ReactNode;
 }
-export declare function Tooltip({ label, position, children, }: TooltipProps): JSX.Element;
+/**
+ * A tooltip is a short descriptive message that appears when a user hovers or focuses on an element.
+ */
+export declare const Tooltip: ({ label, position, children, }: TooltipProps) => React.ReactElement;
 export default Tooltip;

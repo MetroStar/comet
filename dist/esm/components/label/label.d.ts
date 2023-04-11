@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import React, { ReactNode } from 'react';
 export interface LabelProps {
     /**
      * The HTML element that this is labeling
@@ -13,5 +13,8 @@ export interface LabelProps {
      */
     children: ReactNode;
 }
-export declare function Label({ htmlFor, required, children, ...labelProps }: LabelProps & JSX.IntrinsicElements["label"]): JSX.Element;
+/**
+ * Defines a label for an HTML element.
+ */
+export declare const Label: ({ htmlFor, required, children, ...labelProps }: LabelProps & JSX.IntrinsicElements['label']) => React.ReactElement;
 export default Label;

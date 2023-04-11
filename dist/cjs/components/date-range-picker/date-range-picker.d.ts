@@ -1,3 +1,6 @@
-import { PropsWithChildren } from "react";
-export declare function DateRangePickerContainer({ children, }: PropsWithChildren<unknown>): JSX.Element;
+import React, { PropsWithChildren } from 'react';
+/**
+ * A date range picker helps users select a range between two dates.
+ */
+export declare const DateRangePickerContainer: ({ children, }: PropsWithChildren<unknown>) => React.ReactElement;
 export default DateRangePickerContainer;

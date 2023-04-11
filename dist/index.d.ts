@@ -1,29 +1,76 @@
-/// <reference types="react" />
 import React, { ReactNode, SyntheticEvent, PropsWithChildren, ChangeEventHandler, MouseEventHandler, FormEvent, ReactElement } from 'react';
 import { ForAxes, DomainTuple, VictoryBarAlignmentType } from 'victory';
 
 interface Fold {
+    /**
+     * The unique identifier for the fold
+     */
     id: string;
+    /**
+     * The label value for the fold
+     */
     label: string;
+    /**
+     * Whether or not the fold is expanded
+     */
     expanded: boolean;
+    /**
+     * The body of the fold
+     */
     child: ReactNode;
 }
 interface AccordionProps {
+    /**
+     * The unique identifier for this component
+     */
     id: string;
+    /**
+     * Whether or not to allow multiple folds to be expanded at once
+     */
     allowMultiSelect?: boolean;
+    /**
+     * An array of Fold objects, used to build the accordion
+     */
     folds: Fold[];
 }
+/**
+ * An accordion is a list of headers that hide or reveal additional content when selected.
+ */
 declare const Accordion: ({ id, allowMultiSelect, folds, }: AccordionProps) => React.ReactElement;
 
 interface AlertProps {
+    /**
+     * The unique identifier for this component
+     */
     id: string;
-    type: "info" | "warning" | "error" | "success";
+    /**
+     * The type of alert to display
+     */
+    type: 'info' | 'warning' | 'error' | 'success';
+    /**
+     * Whether or not to display the alert
+     */
     show?: boolean;
+    /**
+     * Whether or not to display a slim version of the alert
+     */
     slim?: boolean;
+    /**
+     * Whether or not to display the alert icon
+     */
     noIcon?: boolean;
+    /**
+     * Whether or not to display the alert heading
+     */
     heading?: string;
+    /**
+     * The body of the alert
+     */
     children?: React.ReactNode;
 }
+/**
+ * An alert keeps users informed of important and sometimes time-sensitive changes.
+ */
 declare const Alert: ({ id, type, show, slim, noIcon, heading, children, }: AlertProps) => React.ReactElement;
 
 interface BannerProps {
@@ -36,29 +83,74 @@ interface BannerProps {
      */
     type?: 'gov' | 'mil';
 }
-declare function Banner({ id, type }: BannerProps): JSX.Element;
+/**
+ * Banners identify official websites of government organizations in the United States. They also help visitors understand whether a website is official and secure.
+ */
+declare const Banner: ({ id, type }: BannerProps) => React.ReactElement;
 
 interface Crumb {
+    /**
+     * The intended url path for the item
+     */
     path: string;
+    /**
+     * The display value for this bread crumb item
+     */
     name: string;
 }
 interface BreadcrumbProps {
+    /**
+     * The unique identifier for this component
+     */
     id: string;
+    /**
+     * An array of bread crumb objects to display
+     */
     crumbs: Crumb[];
+    /**
+     * Custom callback for when breadcrumb item is clicked
+     */
     action: Function;
+    /**
+     * Custom value to display as the current location
+     */
     current?: string;
 }
+/**
+ * Breadcrumbs provide secondary navigation to help users understand where they are in a website.
+ */
 declare const Breadcrumb: ({ id, crumbs, current, action, }: BreadcrumbProps) => React.ReactElement;
 
 interface ButtonProps {
+    /**
+     * The unique identifier for this component
+     */
     id: string;
-    type?: "button" | "submit" | "reset";
-    variant?: "default" | "secondary" | "accent-cool" | "accent-warm" | "base" | "outline" | "outline-inverse" | "big" | "unstyled";
+    /**
+     * The type of button to display
+     */
+    type?: 'button' | 'submit' | 'reset';
+    /**
+     * The style variant of button to display
+     */
+    variant?: 'default' | 'secondary' | 'accent-cool' | 'accent-warm' | 'base' | 'outline' | 'outline-inverse' | 'big' | 'unstyled';
+    /**
+     * A custom class to apply to the component
+     */
     className?: string;
+    /**
+     * Custom callback for when button is clicked
+     */
     onClick?: (param: SyntheticEvent) => void;
+    /**
+     * The contents of the button
+     */
     children?: ReactNode;
 }
-declare const Button: ({ id, type, variant, className, children, ...props }: ButtonProps & JSX.IntrinsicElements["button"]) => React.ReactElement;
+/**
+ * A button draws attention to important actions with a large selectable surface.
+ */
+declare const Button: ({ id, type, variant, className, children, ...props }: ButtonProps & JSX.IntrinsicElements['button']) => React.ReactElement;
 
 interface ButtonGroupProps {
     /**
@@ -78,12 +170,24 @@ interface ButtonGroupProps {
      */
     children?: ReactNode;
 }
-declare function ButtonGroup({ id, alignment, className, children, }: ButtonGroupProps): JSX.Element;
+/**
+ * A button group collects similar or related actions.
+ */
+declare const ButtonGroup: ({ id, alignment, className, children, }: ButtonGroupProps) => React.ReactElement;
 
 interface CardProps {
+    /**
+     * The unique identifier for this component
+     */
     id: string;
+    /**
+     * The body of the card
+     */
     children: ReactNode;
 }
+/**
+ * Cards contain content and actions about a single subject.
+ */
 declare const Card: ({ id, children }: CardProps) => React.ReactElement;
 declare const CardBody: React.FC<PropsWithChildren>;
 declare const CardHeader: React.FC<PropsWithChildren>;
@@ -95,7 +199,10 @@ interface CharacterCountProps {
      */
     id: string;
 }
-declare function CharacterCount({ id, ...spanProps }: CharacterCountProps & JSX.IntrinsicElements["span"]): JSX.Element;
+/**
+ * Character count helps users know how much text they can enter when there is a limit on the number of characters.
+ */
+declare const CharacterCount: ({ id, ...spanProps }: CharacterCountProps & JSX.IntrinsicElements['span']) => React.ReactElement;
 
 interface CheckboxData {
     /**
@@ -105,7 +212,7 @@ interface CheckboxData {
     /**
      * Default value of the checkbox
      */
-    value?: string | ReadonlyArray<string> | number;
+    value?: string | readonly string[] | number;
     /**
      * Whether the checkbox is checked by default
      */
@@ -133,13 +240,16 @@ interface CheckboxProps extends CheckboxData {
      */
     onClick?: MouseEventHandler<HTMLInputElement>;
 }
-declare function Checkbox({ id, name, label, value, checked, isTile, onChange, onClick, ...inputProps }: CheckboxProps & JSX.IntrinsicElements["input"]): JSX.Element;
+/**
+ * Checkboxes allow users to select one or more options from a list.
+ */
+declare const Checkbox: ({ id, name, label, value, checked, isTile, onChange, onClick, ...inputProps }: CheckboxProps & JSX.IntrinsicElements['input']) => React.ReactElement;
 
 interface DropdownOption {
     /**
      * The value for the option
      */
-    value: string | ReadonlyArray<string> | number;
+    value: string | readonly string[] | number;
     /**
      * The label for the option
      */
@@ -167,12 +277,21 @@ interface DropdownProps {
      */
     onChange?: ChangeEventHandler<HTMLSelectElement>;
 }
-declare function Dropdown({ defaultOption, options, onChange, className, ...selectProps }: DropdownProps & JSX.IntrinsicElements["select"]): JSX.Element;
+/**
+ * A dropdown component allows users to choose one option from a temporary modal menu.
+ */
+declare const Dropdown: ({ defaultOption, options, onChange, className, ...selectProps }: DropdownProps & JSX.IntrinsicElements['select']) => React.ReactElement;
 
 declare type ComboBoxProps = {
+    /**
+     * The placeholder value to display in the control
+     */
     placeholder?: string;
-} & DropdownProps & JSX.IntrinsicElements["select"];
-declare function ComboBox({ placeholder, ...comboBoxProps }: ComboBoxProps): JSX.Element;
+} & DropdownProps & JSX.IntrinsicElements['select'];
+/**
+ * A combo box helps users select an item from a large list of options.
+ */
+declare const ComboBox: ({ placeholder, ...comboBoxProps }: ComboBoxProps) => React.ReactElement;
 
 interface DatePickerProps {
     /**
@@ -204,9 +323,15 @@ interface DatePickerProps {
      */
     onChange?: (this: HTMLInputElement, event: Event) => void;
 }
-declare function DatePicker({ minDate, maxDate, dateRange, defaultValue, onChange, ...inputProps }: DatePickerProps & JSX.IntrinsicElements["input"]): JSX.Element;
+/**
+ * A date picker helps users select a single date.
+ */
+declare const DatePicker: ({ minDate, maxDate, dateRange, defaultValue, onChange, ...inputProps }: DatePickerProps & JSX.IntrinsicElements['input']) => React.ReactElement;
 
-declare function DateRangePickerContainer({ children, }: PropsWithChildren<unknown>): JSX.Element;
+/**
+ * A date range picker helps users select a range between two dates.
+ */
+declare const DateRangePickerContainer: ({ children, }: PropsWithChildren<unknown>) => React.ReactElement;
 
 interface ErrorMessagesProps {
     /**
@@ -218,7 +343,10 @@ interface ErrorMessagesProps {
      */
     errors: string[];
 }
-declare function ErrorMessages({ id, errors }: ErrorMessagesProps): JSX.Element;
+/**
+ * Outputs a list of error messages as HTML.
+ */
+declare const ErrorMessages: ({ id, errors, }: ErrorMessagesProps) => React.ReactElement;
 
 interface FileInputProps {
     /**
@@ -230,20 +358,47 @@ interface FileInputProps {
      */
     name: string;
 }
-declare function FileInput(inputProps: FileInputProps & JSX.IntrinsicElements["input"]): JSX.Element;
+/**
+ * File input allows users to attach one or multiple files.
+ */
+declare const FileInput: (inputProps: FileInputProps & JSX.IntrinsicElements['input']) => React.ReactElement;
 
 declare type Navigate$1 = (path: string) => void;
 interface FooterProps {
+    /**
+     * An array of navigation items
+     */
     links?: Array<{
         label: string;
         path: string;
     }>;
+    /**
+     * Custom callback for navigation change
+     */
     onNavigate?: Navigate$1;
+    /**
+     * A text value to display next to the logo
+     */
     logoText?: string;
+    /**
+     * The URL to the logo
+     */
     logoSrc?: string;
+    /**
+     * A text message to display with the contact information
+     */
     contactMessage?: string;
+    /**
+     * Contact email to display
+     */
     email?: string;
+    /**
+     * Contact phone number to display
+     */
     phone?: string;
+    /**
+     * An object of URLs to link to socials
+     */
     socials?: {
         facebook?: string;
         twitter?: string;
@@ -251,15 +406,25 @@ interface FooterProps {
         instagram?: string;
     };
 }
+/**
+ * A footer serves site visitors who arrive at the bottom of a page without finding what they want.
+ */
 declare const Footer: ({ links, onNavigate, logoText, logoSrc, contactMessage, email, phone, socials, }: FooterProps) => React.ReactElement;
 
 interface FormProps {
+    /**
+     * The unique identifier for the dropdown
+     */
+    id: string;
     /**
      * Whether to render a large form
      */
     isLarge?: boolean;
 }
-declare function Form({ isLarge, className, children, ...formProps }: FormProps & JSX.IntrinsicElements["form"]): JSX.Element;
+/**
+ * A form allows users to enter information into a page.
+ */
+declare const Form: ({ id, isLarge, className, children, ...formProps }: FormProps & JSX.IntrinsicElements['form']) => React.ReactElement;
 
 interface FormGroupProps {
     /**
@@ -279,14 +444,29 @@ interface FormGroupProps {
      */
     children: ReactNode;
 }
-declare function FormGroup({ id, errors, className, children, }: FormGroupProps): JSX.Element;
+/**
+ * A wrapper for form elements used to provide validation formatting.
+ */
+declare const FormGroup: ({ id, errors, className, children, }: FormGroupProps) => React.ReactElement;
 
 declare type Navigate = (path: string) => void;
 declare type Search$1 = (search: string) => void;
 interface HeaderProps {
+    /**
+     * An element to display as the logo for the header
+     */
     logo?: React.ReactNode;
+    /**
+     * A root value for the header
+     */
     root?: string;
+    /**
+     * Custom callback for navigation change
+     */
     onNavigate?: Navigate;
+    /**
+     * An array of navigation groups
+     */
     folding?: Array<{
         label: string;
         items: Array<{
@@ -294,13 +474,25 @@ interface HeaderProps {
             path: string;
         }>;
     }>;
+    /**
+     * An array of navigation items
+     */
     simple?: Array<{
         label: string;
         path: string;
     }>;
+    /**
+     * Whether or not to display search component
+     */
     showSearch?: boolean;
+    /**
+     * Custom callback for search event
+     */
     onSearch?: Search$1;
 }
+/**
+ * A header helps users identify where they are and provides a quick, organized way to reach the main sections of a website.
+ */
 declare const Header: ({ logo, onNavigate, folding, simple, showSearch, onSearch, }: HeaderProps) => React.ReactElement;
 
 interface IconProps {
@@ -321,14 +513,41 @@ interface IconProps {
      */
     className?: string;
 }
-declare function Icon({ id, type, size, className, }: IconProps): JSX.Element;
+/**
+ * Icons help communicate meaning, actions, status, or feedback.
+ */
+declare const Icon: ({ id, type, size, className, }: IconProps) => React.ReactElement;
 
 interface TextInputProps {
+    /**
+     * The unique identifier for this component
+     */
     id: string;
-    type?: "text" | "email" | "number" | "password" | "search" | "tel" | "url";
+    /**
+     * The type of input to display
+     */
+    type?: 'text' | 'email' | 'number' | 'password' | 'search' | 'tel' | 'url';
+    /**
+     * The type of mask to apply to the input
+     */
+    mask?: 'ssn' | 'phone_number' | 'zip_5_digit' | 'zip_9_digit';
+    /**
+     * Custom element to display before the input
+     */
+    prefix?: ReactNode;
+    /**
+     * Custom element to display after the input
+     */
+    suffix?: ReactNode;
+    /**
+     * Custom callback for when input is changed
+     */
     onChange?: ChangeEventHandler<HTMLInputElement>;
 }
-declare const TextInput: ({ id, className, type, onChange, ...props }: TextInputProps & JSX.IntrinsicElements["input"]) => React.ReactElement;
+/**
+ * A text input allows users to enter any combination of letters, numbers, or symbols.
+ */
+declare const TextInput: ({ id, className, type, mask, prefix, suffix, onChange, ...props }: TextInputProps & Omit<JSX.IntrinsicElements['input'], 'prefix' | 'suffix'>) => React.ReactElement;
 
 interface LabelProps {
     /**
@@ -344,14 +563,32 @@ interface LabelProps {
      */
     children: ReactNode;
 }
-declare function Label({ htmlFor, required, children, ...labelProps }: LabelProps & JSX.IntrinsicElements["label"]): JSX.Element;
+/**
+ * Defines a label for an HTML element.
+ */
+declare const Label: ({ htmlFor, required, children, ...labelProps }: LabelProps & JSX.IntrinsicElements['label']) => React.ReactElement;
 
 interface ModalProps {
+    /**
+     * The unique identifier for this component
+     */
     id: string;
+    /**
+     * Whether or not to display the modal
+     */
     show?: boolean;
+    /**
+     * Custom callback for when modal is closed
+     */
     onClose?: Function;
+    /**
+     * The body of the modal
+     */
     children?: React.ReactNode;
 }
+/**
+ * A modal disables page content and focuses the user’s attention on a single task or message.
+ */
 declare const Modal: ({ id, show, onClose, children, }: ModalProps) => React.ReactElement;
 
 declare type CreatePageUrlHandler = (page: number) => string | undefined;
@@ -386,6 +623,9 @@ interface PaginationProps {
      */
     onPage?: OnPageHandler;
 }
+/**
+ * Pagination is navigation for paginated content.
+ */
 declare const Pagination: ({ id, currentPage, amountOfPages: pageSize, amountOfVisiblePageItems, ariaLabel, createPageUrl, onPage, }: PaginationProps) => React.ReactElement;
 
 interface ProcessListProps {
@@ -416,6 +656,9 @@ interface ProcessListStep {
      */
     content: ReactNode;
 }
+/**
+ * A process list displays the steps or stages of important instructions or processes.
+ */
 declare const ProcessList: ({ id, headingElementName, headingClassName, steps, }: ProcessListProps) => React.ReactElement;
 
 interface RadioButtonData {
@@ -426,7 +669,7 @@ interface RadioButtonData {
     /**
      * Default value of the radioButton
      */
-    value?: string | ReadonlyArray<string> | number;
+    value?: string | readonly string[] | number;
     /**
      * Whether the radioButton is checked by default
      */
@@ -454,7 +697,10 @@ interface RadioButtonProps extends RadioButtonData {
      */
     onClick?: MouseEventHandler<HTMLInputElement>;
 }
-declare function RadioButton({ id, name, label, value, checked, isTile, onChange, onClick, ...inputProps }: RadioButtonProps & JSX.IntrinsicElements["input"]): JSX.Element;
+/**
+ * Radio buttons allow users to select exactly one choice from a group.
+ */
+declare const RadioButton: ({ id, name, label, value, checked, isTile, onChange, onClick, ...inputProps }: RadioButtonProps & JSX.IntrinsicElements['input']) => React.ReactElement;
 
 interface SearchProps {
     /**
@@ -466,10 +712,13 @@ interface SearchProps {
      */
     type?: 'default' | 'small' | 'big';
     /**
-     * The placeholder of the search
+     * Custom callback for when a search is performed
      */
     onSearch?: (event: FormEvent<HTMLFormElement>, searchText: string) => void;
 }
+/**
+ * Search allows users to search for specific content if they know what search terms to use or can’t find desired content in the main navigation
+ */
 declare const Search: ({ id, type, onSearch, ...props }: SearchProps & JSX.IntrinsicElements['input']) => React.ReactElement;
 
 interface SiteAlertProps {
@@ -502,7 +751,10 @@ interface SiteAlertProps {
      */
     children: ReactNode;
 }
-declare function SiteAlert({ id, type, heading, slim, noIcon, className, children, }: SiteAlertProps): JSX.Element;
+/**
+ * A site alert communicates urgent sitewide information.
+ */
+declare const SiteAlert: ({ id, type, heading, slim, noIcon, className, children, }: SiteAlertProps) => React.ReactElement;
 
 interface StepIndicatorProps {
     /**
@@ -536,8 +788,11 @@ interface StepIndicatorProps {
     /**
      * Level of the heading (h1, h2, h3, h4, h5, h6). Defaults to h4
      */
-    headingLevel?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+    headingLevel?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 }
+/**
+ * A step indicator updates users on their progress through a multi-step process.
+ */
 declare const StepIndicator: ({ id, steps, currentStep, hideLabels, showCounters, showSmallCounters, centerCounters, headingLevel, }: StepIndicatorProps) => React.ReactElement;
 
 interface SummaryBoxProps {
@@ -558,29 +813,74 @@ interface SummaryBoxProps {
      */
     items: string[];
 }
-declare function SummaryBox({ id, heading, className, items }: SummaryBoxProps): JSX.Element;
+/**
+ * A summary box highlights key information from a longer page or displays next steps.
+ */
+declare const SummaryBox: ({ id, heading, className, items, }: SummaryBoxProps) => React.ReactElement;
 
 interface TableProps {
+    /**
+     * The unique identifier for this component
+     */
     id: string;
+    /**
+     * An string array of table header items
+     */
     headers?: string[];
+    /**
+     * An array of row objects
+     */
     rows?: any[][];
+    /**
+     * The index of the primary column
+     */
     primaryCol?: number;
+    /**
+     * Custom callback for when primary column is clicked
+     */
     primaryColAction?: Function;
 }
+/**
+ * A table shows information in columns and rows.
+ */
 declare const Table: ({ id, headers, rows, primaryCol, primaryColAction, }: TableProps) => React.ReactElement;
 
 interface TabPanelProps {
+    /**
+     * The unique identifier for the tab panel
+     */
     id: string;
+    /**
+     * The label value for the tab panel
+     */
     label: string;
+    /**
+     * The contents of the button
+     */
     children: ReactNode;
 }
 interface TabsProps {
+    /**
+     * The unique identifier for this component
+     */
     id: string;
+    /**
+     * The id of a tab panel to show by default
+     */
     defaultTabId: string;
-    children: ReactElement<TabPanelProps>[];
+    /**
+     * An array of child tab panels
+     */
+    children: Array<ReactElement<TabPanelProps>>;
+    /**
+     * A custom class to apply to the component
+     */
     className?: string;
 }
 declare const TabPanel: ({ id, children }: TabPanelProps) => React.ReactElement;
+/**
+ * Used to organize and allow navigation between groups of content.
+ */
 declare const Tabs: ({ id, defaultTabId, children, className }: TabsProps) => React.ReactElement;
 
 interface TagProps {
@@ -601,7 +901,10 @@ interface TagProps {
      */
     className?: string;
 }
-declare function Tag({ id, children, size, className, }: TagProps): JSX.Element;
+/**
+ * A tag draws attention to new or categorized content elements.
+ */
+declare const Tag: ({ id, children, size, className, }: TagProps) => React.ReactElement;
 
 interface TextAreaProps {
     /**
@@ -621,7 +924,10 @@ interface TextAreaProps {
      */
     onChange?: ChangeEventHandler<HTMLTextAreaElement>;
 }
-declare function TextArea({ id, name, rows, className, onChange, ...textAreaProps }: TextAreaProps & JSX.IntrinsicElements["textarea"]): JSX.Element;
+/**
+ * A text area allows users to enter any combination of letters, numbers, or symbols.
+ */
+declare const TextArea: ({ id, name, rows, className, onChange, ...textAreaProps }: TextAreaProps & JSX.IntrinsicElements['textarea']) => React.ReactElement;
 
 interface TooltipProps {
     /**
@@ -637,7 +943,10 @@ interface TooltipProps {
      */
     children: ReactNode;
 }
-declare function Tooltip({ label, position, children, }: TooltipProps): JSX.Element;
+/**
+ * A tooltip is a short descriptive message that appears when a user hovers or focuses on an element.
+ */
+declare const Tooltip: ({ label, position, children, }: TooltipProps) => React.ReactElement;
 
 declare type EventHandler = () => void;
 interface ChartProps {
@@ -657,53 +966,131 @@ interface ChartProps {
 }
 
 interface BarGraphProps {
+    /**
+     * An object providing chart specific attributes
+     */
     chart: ChartProps;
+    /**
+     * An string value used to colorize chart sections
+     */
     color?: string;
+    /**
+     * A string value indicating how to justify chart data
+     */
     alignment?: VictoryBarAlignmentType;
+    /**
+     * A number value indicating the width ratio of the bar to display
+     */
     barRatio?: number;
+    /**
+     * An array of data values
+     */
     data: number[];
 }
+/**
+ * Renders a dataset as series of bars.
+ */
 declare const BarGraph: React.FC<BarGraphProps>;
 
 interface LineGraphProps {
+    /**
+     * An object providing chart specific attributes
+     */
     chart: ChartProps;
+    /**
+     * An string array of color values used to colorize chart sections
+     */
     colors?: string[];
+    /**
+     * Whether or not to display smooth chart lines
+     */
     smooth?: boolean;
+    /**
+     * An array of data points
+     */
     data: Array<Array<{
         x: number;
         y: number;
     }>>;
 }
+/**
+ * Renders a dataset as a single line path.
+ */
 declare const LineGraph: React.FC<LineGraphProps>;
 
 interface AreaGraphProps {
+    /**
+     * An object providing chart specific attributes
+     */
     chart: ChartProps;
+    /**
+     * An string array of color values used to colorize chart sections
+     */
     colors?: string[];
+    /**
+     * Whether or not to display smooth chart lines
+     */
     smooth?: boolean;
+    /**
+     * An array of data points
+     */
     data: Array<Array<{
         x: number;
         y: number;
     }>>;
 }
+/**
+ * Renders a dataset as a single area path.
+ */
 declare const AreaGraph: React.FC<AreaGraphProps>;
 
 interface PolarAxisProps {
+    /**
+     * An object providing chart specific attributes
+     */
     chart: ChartProps;
+    /**
+     * An string array of color values used to colorize chart sections
+     */
     colors?: string[];
+    /**
+     * An number array of labels for the chart
+     */
     ticks?: number[];
+    /**
+     * An array of data points
+     */
     data: Array<Array<{
         x: number;
         y: number;
     }>>;
 }
+/**
+ * Renders a single polar axis chart.
+ */
 declare const PolarAxis: React.FC<PolarAxisProps>;
 
 interface RadialProps {
+    /**
+     * An object providing chart specific attributes
+     */
     chart: ChartProps;
+    /**
+     * An string array of color values used to colorize chart sections
+     */
     color?: string;
+    /**
+     * An number array of labels for the chart
+     */
     ticks?: number[];
+    /**
+     * An array of data values
+     */
     data: number[];
 }
+/**
+ * Renders a single axis polar axis chart with fill.
+ */
 declare const Radial: React.FC<RadialProps>;
 
 interface PieChartProps {
@@ -717,6 +1104,9 @@ interface PieChartProps {
         y: number;
     }>;
 }
+/**
+ * Renders a dataset as a pie chart.
+ */
 declare const PieChart: React.FC<PieChartProps>;
 
 export { Accordion, Alert, AreaGraph, Banner, BarGraph, Breadcrumb, Button, ButtonGroup, Card, CardBody, CardFooter, CardHeader, CharacterCount, Checkbox, ComboBox, DatePicker, DateRangePickerContainer as DateRangePicker, Dropdown, ErrorMessages, FileInput, Footer, Form, FormGroup, Header, Icon, Label, LineGraph, Modal, Pagination, PieChart, PolarAxis, ProcessList, Radial, RadioButton, Search, SiteAlert, StepIndicator, SummaryBox, TabPanel, Table, Tabs, Tag, TextArea, TextInput, Tooltip };

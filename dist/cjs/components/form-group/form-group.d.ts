@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import React, { ReactNode } from 'react';
 export interface FormGroupProps {
     /**
      * The unique identifier for this component
@@ -17,5 +17,8 @@ export interface FormGroupProps {
      */
     children: ReactNode;
 }
-export declare function FormGroup({ id, errors, className, children, }: FormGroupProps): JSX.Element;
+/**
+ * A wrapper for form elements used to provide validation formatting.
+ */
+export declare const FormGroup: ({ id, errors, className, children, }: FormGroupProps) => React.ReactElement;
 export default FormGroup;

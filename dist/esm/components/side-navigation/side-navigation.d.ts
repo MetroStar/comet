@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode } from 'react';
 export interface SideNavigationItem {
     /**
      * Anchor to render for current SideNavigationItem
@@ -23,5 +23,8 @@ export interface SideNavigationProps {
      */
     items: SideNavigationItem[];
 }
+/**
+ * Hierarchical, vertical navigation to place at the side of a page.
+ */
 export declare const SideNavigation: ({ id, ariaLabel, items, }: SideNavigationProps) => React.ReactElement;
 export default SideNavigation;

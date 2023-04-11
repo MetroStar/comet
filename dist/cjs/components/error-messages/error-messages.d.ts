@@ -1,4 +1,4 @@
-/// <reference types="react" />
+import React from 'react';
 export interface ErrorMessagesProps {
     /**
      * The unique identifier for this component
@@ -9,5 +9,8 @@ export interface ErrorMessagesProps {
      */
     errors: string[];
 }
-export declare function ErrorMessages({ id, errors }: ErrorMessagesProps): JSX.Element;
+/**
+ * Outputs a list of error messages as HTML.
+ */
+export declare const ErrorMessages: ({ id, errors, }: ErrorMessagesProps) => React.ReactElement;
 export default ErrorMessages;

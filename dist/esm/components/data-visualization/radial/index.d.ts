@@ -1,1 +1,1 @@
-export { default } from "./radial";
+export { default } from './radial';

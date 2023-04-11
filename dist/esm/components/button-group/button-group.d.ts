@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 export interface ButtonGroupProps {
     /**
      * The unique identifier for this component
@@ -17,5 +17,8 @@ export interface ButtonGroupProps {
      */
     children?: ReactNode;
 }
-export declare function ButtonGroup({ id, alignment, className, children, }: ButtonGroupProps): JSX.Element;
+/**
+ * A button group collects similar or related actions.
+ */
+export declare const ButtonGroup: ({ id, alignment, className, children, }: ButtonGroupProps) => React.ReactElement;
 export default ButtonGroup;

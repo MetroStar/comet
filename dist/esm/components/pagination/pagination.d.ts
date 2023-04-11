@@ -1,4 +1,4 @@
-import React, { SyntheticEvent } from "react";
+import React, { SyntheticEvent } from 'react';
 export declare type CreatePageUrlHandler = (page: number) => string | undefined;
 export declare type OnPageHandler = (event: SyntheticEvent<Element, Event>, page: number) => void;
 export interface PaginationProps {
@@ -31,5 +31,8 @@ export interface PaginationProps {
      */
     onPage?: OnPageHandler;
 }
+/**
+ * Pagination is navigation for paginated content.
+ */
 export declare const Pagination: ({ id, currentPage, amountOfPages: pageSize, amountOfVisiblePageItems, ariaLabel, createPageUrl, onPage, }: PaginationProps) => React.ReactElement;
 export default Pagination;

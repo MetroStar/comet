@@ -1,9 +1,9 @@
-import { ChangeEventHandler } from "react";
+import React, { ChangeEventHandler } from 'react';
 export interface DropdownOption {
     /**
      * The value for the option
      */
-    value: string | ReadonlyArray<string> | number;
+    value: string | readonly string[] | number;
     /**
      * The label for the option
      */
@@ -31,5 +31,8 @@ export interface DropdownProps {
      */
     onChange?: ChangeEventHandler<HTMLSelectElement>;
 }
-export declare function Dropdown({ defaultOption, options, onChange, className, ...selectProps }: DropdownProps & JSX.IntrinsicElements["select"]): JSX.Element;
+/**
+ * A dropdown component allows users to choose one option from a temporary modal menu.
+ */
+export declare const Dropdown: ({ defaultOption, options, onChange, className, ...selectProps }: DropdownProps & JSX.IntrinsicElements['select']) => React.ReactElement;
 export default Dropdown;

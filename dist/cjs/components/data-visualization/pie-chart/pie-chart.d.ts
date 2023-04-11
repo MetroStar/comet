@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 export interface PieChartProps {
     colors?: string[];
     angle?: {
@@ -10,5 +10,8 @@ export interface PieChartProps {
         y: number;
     }>;
 }
+/**
+ * Renders a dataset as a pie chart.
+ */
 declare const PieChart: React.FC<PieChartProps>;
 export default PieChart;
