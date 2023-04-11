@@ -33,6 +33,9 @@ export interface SiteAlertProps {
   children: ReactNode;
 }
 
+/**
+ * A site alert communicates urgent sitewide information.
+ */
 export const SiteAlert = ({
   id,
   type = 'Info',

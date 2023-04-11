@@ -39,6 +39,9 @@ export const TabPanel = ({ id, children }: TabPanelProps): React.ReactElement =>
   return <div id={id}>{children}</div>;
 };
 
+/**
+ * Used to organize and allow navigation between groups of content.
+ */
 export const Tabs = ({ id, defaultTabId, children, className }: TabsProps): React.ReactElement => {
   const [activeTabId, setActiveTabId] = useState<string>(defaultTabId);
 

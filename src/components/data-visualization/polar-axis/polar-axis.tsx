@@ -26,6 +26,9 @@ export interface PolarAxisProps {
   >;
 }
 
+/**
+ * Renders a single polar axis chart.
+ */
 const PolarAxis: React.FC<PolarAxisProps> = (props: PolarAxisProps) => {
   return (
     <VictoryChart {...props.chart} polar>

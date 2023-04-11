@@ -21,6 +21,9 @@ export interface TextAreaProps {
   onChange?: ChangeEventHandler<HTMLTextAreaElement>;
 }
 
+/**
+ * A text area allows users to enter any combination of letters, numbers, or symbols.
+ */
 export const TextArea = ({
   id,
   name,

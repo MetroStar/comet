@@ -32,6 +32,9 @@ export interface AlertProps {
   children?: React.ReactNode;
 }
 
+/**
+ * An alert keeps users informed of important and sometimes time-sensitive changes.
+ */
 export const Alert = ({
   id,
   type,

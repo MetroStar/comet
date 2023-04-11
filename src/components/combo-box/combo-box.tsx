@@ -11,6 +11,9 @@ export type ComboBoxProps = {
 } & DropdownProps &
   JSX.IntrinsicElements['select'];
 
+/**
+ * A combo box helps users select an item from a large list of options.
+ */
 export const ComboBox = ({ placeholder, ...comboBoxProps }: ComboBoxProps): React.ReactElement => {
   const comboBoxRef = useRef<HTMLDivElement>(null);
   useLayoutEffect(() => {

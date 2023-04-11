@@ -17,6 +17,9 @@ export interface TooltipProps {
   children: ReactNode;
 }
 
+/**
+ * A tooltip is a short descriptive message that appears when a user hovers or focuses on an element.
+ */
 export const Tooltip = ({
   label,
   position = 'top',

@@ -39,6 +39,9 @@ export interface RadioButtonProps extends RadioButtonData {
   onClick?: MouseEventHandler<HTMLInputElement>;
 }
 
+/**
+ * Radio buttons allow users to select exactly one choice from a group.
+ */
 export const RadioButton = ({
   id,
   name,

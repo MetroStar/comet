@@ -26,6 +26,9 @@ export interface SideNavigationProps {
   items: SideNavigationItem[];
 }
 
+/**
+ * Hierarchical, vertical navigation to place at the side of a page.
+ */
 export const SideNavigation = ({
   id,
   ariaLabel,

@@ -259,6 +259,9 @@ export interface IconProps {
   className?: string;
 }
 
+/**
+ * Icons help communicate meaning, actions, status, or feedback.
+ */
 export const Icon = ({
   id,
   type,

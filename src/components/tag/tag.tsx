@@ -20,6 +20,9 @@ export interface TagProps {
   className?: string;
 }
 
+/**
+ * A tag draws attention to new or categorized content elements.
+ */
 export const Tag = ({
   id,
   children,

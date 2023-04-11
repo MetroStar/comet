@@ -30,6 +30,9 @@ export interface BreadcrumbProps {
   current?: string;
 }
 
+/**
+ * Breadcrumbs provide secondary navigation to help users understand where they are in a website.
+ */
 export const Breadcrumb = ({
   id,
   crumbs,

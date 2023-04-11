@@ -37,6 +37,9 @@ export interface ButtonProps {
   children?: ReactNode;
 }
 
+/**
+ * A button draws attention to important actions with a large selectable surface.
+ */
 export const Button = ({
   id,
   type = 'button',

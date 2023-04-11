@@ -26,6 +26,9 @@ export interface TableProps {
 
 const handleNonPrimitives = (e: any): any => (typeof e === 'object' ? JSON.stringify(e) : e);
 
+/**
+ * A table shows information in columns and rows.
+ */
 export const Table = ({
   id,
   headers,

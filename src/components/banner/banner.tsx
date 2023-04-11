@@ -22,6 +22,9 @@ const BannerTypeFull = {
   mil: 'U.S. Department of Defense',
 };
 
+/**
+ * Banners identify official websites of government organizations in the United States. They also help visitors understand whether a website is official and secure.
+ */
 export const Banner = ({ id, type = 'gov' }: BannerProps): React.ReactElement => {
   const [isExpanded] = useState(false);
   // Ensure banner JS is loaded

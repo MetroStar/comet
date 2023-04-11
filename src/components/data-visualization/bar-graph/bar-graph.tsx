@@ -25,6 +25,9 @@ export interface BarGraphProps {
   data: number[];
 }
 
+/**
+ * Renders a dataset as series of bars.
+ */
 const BarGraph: React.FC<BarGraphProps> = (props: BarGraphProps) => {
   return (
     <VictoryChart {...props.chart}>

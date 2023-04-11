@@ -29,6 +29,9 @@ export interface TextInputProps {
   onChange?: ChangeEventHandler<HTMLInputElement>;
 }
 
+/**
+ * A text input allows users to enter any combination of letters, numbers, or symbols.
+ */
 export const TextInput = ({
   id,
   className,

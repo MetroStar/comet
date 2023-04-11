@@ -16,6 +16,9 @@ export interface LabelProps {
   children: ReactNode;
 }
 
+/**
+ * Defines a label for an HTML element.
+ */
 export const Label = ({
   htmlFor,
   required,

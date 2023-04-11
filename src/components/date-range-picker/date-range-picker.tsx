@@ -1,6 +1,9 @@
 import React, { PropsWithChildren, useLayoutEffect, useRef } from 'react';
 import dateRangePicker from '@uswds/uswds/js/usa-date-range-picker';
 
+/**
+ * A date range picker helps users select a range between two dates.
+ */
 export const DateRangePickerContainer = ({
   children,
 }: PropsWithChildren<unknown>): React.ReactElement => {

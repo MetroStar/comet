@@ -21,6 +21,9 @@ export interface ModalProps {
   children?: React.ReactNode;
 }
 
+/**
+ * A modal disables page content and focuses the user’s attention on a single task or message.
+ */
 export const Modal = ({
   id,
   show = false,

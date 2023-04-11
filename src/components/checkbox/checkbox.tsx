@@ -39,6 +39,9 @@ export interface CheckboxProps extends CheckboxData {
   onClick?: MouseEventHandler<HTMLInputElement>;
 }
 
+/**
+ * Checkboxes allow users to select one or more options from a list.
+ */
 export const Checkbox = ({
   id,
   name,

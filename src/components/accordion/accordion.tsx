@@ -37,6 +37,9 @@ export interface AccordionProps {
   folds: Fold[];
 }
 
+/**
+ * An accordion is a list of headers that hide or reveal additional content when selected.
+ */
 export const Accordion = ({
   id,
   allowMultiSelect = false,

@@ -21,6 +21,9 @@ export interface RadialProps {
   data: number[];
 }
 
+/**
+ * Renders a single axis polar axis chart with fill.
+ */
 const Radial: React.FC<RadialProps> = (props: RadialProps) => {
   return (
     <VictoryChart {...props.chart} polar>

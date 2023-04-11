@@ -46,6 +46,9 @@ export interface FooterProps {
   };
 }
 
+/**
+ * A footer serves site visitors who arrive at the bottom of a page without finding what they want.
+ */
 export const Footer = ({
   links,
   onNavigate = (path: string): void => {},

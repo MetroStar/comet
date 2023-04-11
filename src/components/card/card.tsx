@@ -11,6 +11,9 @@ export interface CardProps {
   children: ReactNode;
 }
 
+/**
+ * Cards contain content and actions about a single subject.
+ */
 export const Card = ({ id, children }: CardProps): React.ReactElement => {
   return (
     <div className="usa-card usa-card desktop:grid-col-12" id={id}>

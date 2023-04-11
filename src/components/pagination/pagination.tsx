@@ -37,6 +37,9 @@ export interface PaginationProps {
   onPage?: OnPageHandler;
 }
 
+/**
+ * Pagination is navigation for paginated content.
+ */
 export const Pagination = ({
   id,
   currentPage,

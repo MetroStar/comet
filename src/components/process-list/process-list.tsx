@@ -31,6 +31,9 @@ export interface ProcessListStep {
   content: ReactNode;
 }
 
+/**
+ * A process list displays the steps or stages of important instructions or processes.
+ */
 export const ProcessList = ({
   id,
   headingElementName = 'h4',

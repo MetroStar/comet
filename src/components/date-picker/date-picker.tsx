@@ -39,6 +39,9 @@ interface DatePickerAttributes {
   'data-default-value'?: string;
 }
 
+/**
+ * A date picker helps users select a single date.
+ */
 export const DatePicker = ({
   minDate,
   maxDate,

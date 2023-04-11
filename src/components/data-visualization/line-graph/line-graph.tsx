@@ -26,6 +26,9 @@ export interface LineGraphProps {
   >;
 }
 
+/**
+ * Renders a dataset as a single line path.
+ */
 const LineGraph: React.FC<LineGraphProps> = (props: LineGraphProps) => {
   return (
     <VictoryChart {...props.chart}>

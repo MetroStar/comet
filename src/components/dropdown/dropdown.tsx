@@ -35,6 +35,9 @@ export interface DropdownProps {
   onChange?: ChangeEventHandler<HTMLSelectElement>;
 }
 
+/**
+ * A dropdown component allows users to choose one option from a temporary modal menu.
+ */
 export const Dropdown = ({
   defaultOption = { value: '', label: '- Select -' },
   options,

@@ -26,6 +26,9 @@ export interface AreaGraphProps {
   >;
 }
 
+/**
+ * Renders a dataset as a single area path.
+ */
 const AreaGraph: React.FC<AreaGraphProps> = (props: AreaGraphProps) => {
   return (
     <VictoryChart {...props.chart}>

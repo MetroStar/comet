@@ -12,6 +12,9 @@ export interface FormProps {
   isLarge?: boolean;
 }
 
+/**
+ * A form allows users to enter information into a page.
+ */
 export const Form = ({
   id,
   isLarge = false,

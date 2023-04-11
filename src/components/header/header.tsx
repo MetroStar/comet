@@ -45,6 +45,9 @@ export interface HeaderProps {
   onSearch?: Search;
 }
 
+/**
+ * A header helps users identify where they are and provides a quick, organized way to reach the main sections of a website.
+ */
 export const Header = ({
   logo,
   onNavigate = (path: string): void => {},
