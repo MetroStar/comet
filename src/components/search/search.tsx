@@ -11,7 +11,7 @@ export interface SearchProps {
    */
   type?: 'default' | 'small' | 'big';
   /**
-   * The placeholder of the search
+   * Custom callback for when a search is performed
    */
   onSearch?: (event: FormEvent<HTMLFormElement>, searchText: string) => void;
 }

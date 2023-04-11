@@ -4,6 +4,9 @@ import React, { RefObject, useLayoutEffect, useRef } from 'react';
 
 export type ComboBoxOption = DropdownOption;
 export type ComboBoxProps = {
+  /**
+   * The placeholder value to display in the control
+   */
   placeholder?: string;
 } & DropdownProps &
   JSX.IntrinsicElements['select'];

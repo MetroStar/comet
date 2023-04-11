@@ -11,32 +11,26 @@ export interface PaginationProps {
    * The unique identifier for the pagination
    */
   id: string;
-
   /**
    * The current page (0 indexed)
    */
   currentPage: number;
-
   /**
    * The amount of pages
    */
   amountOfPages: number;
-
   /**
    * The amount of page items to show
    */
   amountOfVisiblePageItems?: number;
-
   /**
    * Defines a string value that labels the current element.
    */
   ariaLabel: string;
-
   /**
    * Pass a function in to create href URLs
    */
   createPageUrl?: CreatePageUrlHandler;
-
   /**
    * Event handler for when a pagination item is clicked
    */

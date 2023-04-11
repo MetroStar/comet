@@ -1,7 +1,13 @@
 import React, { PropsWithChildren, ReactNode } from 'react';
 
 export interface CardProps {
+  /**
+   * The unique identifier for this component
+   */
   id: string;
+  /**
+   * The body of the card
+   */
   children: ReactNode;
 }
 

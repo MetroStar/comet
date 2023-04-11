@@ -6,17 +6,14 @@ export interface ProcessListProps {
    * The unique identifier for this component
    */
   id: string;
-
   /**
    * The level of the headings
    */
   headingElementName?: string;
-
   /**
    * Additional class names for the heading element
    */
   headingClassName?: string;
-
   /**
    * The level of the headings
    */

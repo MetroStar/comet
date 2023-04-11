@@ -5,7 +5,7 @@ import Form from './form';
 
 describe('Form', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<Form>Some form</Form>);
+    const { baseElement } = render(<Form id="form">Some form</Form>);
     expect(baseElement).toBeTruthy();
   });
   it('should render a form and submit successfully', () => {
@@ -14,7 +14,11 @@ describe('Form', () => {
       e.preventDefault();
       isSubmitted = true;
     };
-    const { baseElement } = render(<Form onSubmit={handleSubmit}>Some form</Form>);
+    const { baseElement } = render(
+      <Form id="form" onSubmit={handleSubmit}>
+        Some form
+      </Form>,
+    );
 
     const form = baseElement.querySelector<HTMLFormElement>('form');
     if (!form) return; // to help TypeScript, already asserted above for Jest
@@ -28,7 +32,11 @@ describe('Form', () => {
       e.preventDefault();
       isReset = true;
     };
-    const { baseElement } = render(<Form onReset={handleReset}>Some form</Form>);
+    const { baseElement } = render(
+      <Form id="form" onReset={handleReset}>
+        Some form
+      </Form>,
+    );
 
     const form = baseElement.querySelector<HTMLFormElement>('form');
     if (!form) return; // to help TypeScript, already asserted above for Jest

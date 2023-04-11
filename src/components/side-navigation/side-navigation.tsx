@@ -5,7 +5,6 @@ export interface SideNavigationItem {
    * Anchor to render for current SideNavigationItem
    */
   anchor: ReactNode;
-
   /**
    * Items of the navigation
    */
@@ -17,12 +16,10 @@ export interface SideNavigationProps {
    * The unique identifier for this component
    */
   id: string;
-
   /**
    * The aria-label for the navigation element
    */
   ariaLabel: string;
-
   /**
    * Items of the navigation
    */
