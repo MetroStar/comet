@@ -1,4 +1,4 @@
-import { ChangeEventHandler, MouseEventHandler } from "react";
+import React, { ChangeEventHandler, MouseEventHandler } from 'react';
 export interface RadioButtonData {
     /**
      * The text inside of the radioButton
@@ -7,7 +7,7 @@ export interface RadioButtonData {
     /**
      * Default value of the radioButton
      */
-    value?: string | ReadonlyArray<string> | number;
+    value?: string | readonly string[] | number;
     /**
      * Whether the radioButton is checked by default
      */
@@ -35,7 +35,10 @@ export interface RadioButtonProps extends RadioButtonData {
      */
     onClick?: MouseEventHandler<HTMLInputElement>;
 }
-export declare function RadioButton({ id, name, label, value, checked, isTile, onChange, onClick, ...inputProps }: RadioButtonProps & JSX.IntrinsicElements["input"]): JSX.Element;
+/**
+ * Radio buttons allow users to select exactly one choice from a group.
+ */
+export declare const RadioButton: ({ id, name, label, value, checked, isTile, onChange, onClick, ...inputProps }: RadioButtonProps & JSX.IntrinsicElements['input']) => React.ReactElement;
 export default RadioButton;
 export interface RadioButtonGroupProps {
     /**
@@ -63,4 +66,4 @@ export interface RadioButtonGroupProps {
      */
     onClick?: MouseEventHandler<HTMLInputElement>;
 }
-export declare function RadioButtonGroup({ id, name, data, areTiles, onChange, onClick, }: RadioButtonGroupProps): JSX.Element;
+export declare const RadioButtonGroup: ({ id, name, data, areTiles, onChange, onClick, }: RadioButtonGroupProps) => React.ReactElement;

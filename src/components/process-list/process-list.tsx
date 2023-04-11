@@ -6,17 +6,14 @@ export interface ProcessListProps {
    * The unique identifier for this component
    */
   id: string;
-
   /**
    * The level of the headings
    */
   headingElementName?: string;
-
   /**
    * Additional class names for the heading element
    */
   headingClassName?: string;
-
   /**
    * The level of the headings
    */
@@ -34,6 +31,9 @@ export interface ProcessListStep {
   content: ReactNode;
 }
 
+/**
+ * A process list displays the steps or stages of important instructions or processes.
+ */
 export const ProcessList = ({
   id,
   headingElementName = 'h4',

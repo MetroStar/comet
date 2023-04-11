@@ -1,4 +1,4 @@
-/// <reference types="react" />
+import React from 'react';
 export interface DatePickerProps {
     /**
      * The unique identifier for the input field
@@ -29,5 +29,8 @@ export interface DatePickerProps {
      */
     onChange?: (this: HTMLInputElement, event: Event) => void;
 }
-export declare function DatePicker({ minDate, maxDate, dateRange, defaultValue, onChange, ...inputProps }: DatePickerProps & JSX.IntrinsicElements["input"]): JSX.Element;
+/**
+ * A date picker helps users select a single date.
+ */
+export declare const DatePicker: ({ minDate, maxDate, dateRange, defaultValue, onChange, ...inputProps }: DatePickerProps & JSX.IntrinsicElements['input']) => React.ReactElement;
 export default DatePicker;

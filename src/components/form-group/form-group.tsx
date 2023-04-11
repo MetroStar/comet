@@ -21,6 +21,9 @@ export interface FormGroupProps {
   children: ReactNode;
 }
 
+/**
+ * A wrapper for form elements used to provide validation formatting.
+ */
 export const FormGroup = ({
   id = undefined,
   errors,

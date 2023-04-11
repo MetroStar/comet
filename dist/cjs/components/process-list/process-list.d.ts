@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode } from 'react';
 export interface ProcessListProps {
     /**
      * The unique identifier for this component
@@ -27,5 +27,8 @@ export interface ProcessListStep {
      */
     content: ReactNode;
 }
+/**
+ * A process list displays the steps or stages of important instructions or processes.
+ */
 export declare const ProcessList: ({ id, headingElementName, headingClassName, steps, }: ProcessListProps) => React.ReactElement;
 export default ProcessList;

@@ -1,4 +1,4 @@
-/// <reference types="react" />
+import React from 'react';
 export interface IconProps {
     /**
      * The unique identifier for this component
@@ -17,5 +17,8 @@ export interface IconProps {
      */
     className?: string;
 }
-export declare function Icon({ id, type, size, className, }: IconProps): JSX.Element;
+/**
+ * Icons help communicate meaning, actions, status, or feedback.
+ */
+export declare const Icon: ({ id, type, size, className, }: IconProps) => React.ReactElement;
 export default Icon;

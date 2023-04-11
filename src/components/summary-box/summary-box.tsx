@@ -21,6 +21,9 @@ export interface SummaryBoxProps {
   items: string[];
 }
 
+/**
+ * A summary box highlights key information from a longer page or displays next steps.
+ */
 export const SummaryBox = ({
   id,
   heading,

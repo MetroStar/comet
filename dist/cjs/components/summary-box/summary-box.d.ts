@@ -1,4 +1,4 @@
-/// <reference types="react" />
+import React from 'react';
 export interface SummaryBoxProps {
     /**
      * The unique identifier for this component
@@ -17,5 +17,8 @@ export interface SummaryBoxProps {
      */
     items: string[];
 }
-export declare function SummaryBox({ id, heading, className, items }: SummaryBoxProps): JSX.Element;
+/**
+ * A summary box highlights key information from a longer page or displays next steps.
+ */
+export declare const SummaryBox: ({ id, heading, className, items, }: SummaryBoxProps) => React.ReactElement;
 export default SummaryBox;

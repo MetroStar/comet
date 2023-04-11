@@ -7,7 +7,7 @@ import { CharacterCount, CharacterCountContainer } from './character-count';
 describe('Character Count', () => {
   const renderCharacterCountInputSample = (): RenderResult =>
     render(
-      <Form>
+      <Form id="form-1">
         <CharacterCountContainer>
           <FormGroup>
             <Label htmlFor="with-hint-input">Text input</Label>

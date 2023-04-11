@@ -1,4 +1,4 @@
-import { ChangeEventHandler, MouseEventHandler } from "react";
+import React, { ChangeEventHandler, MouseEventHandler } from 'react';
 export interface CheckboxData {
     /**
      * The text inside of the checkbox
@@ -7,7 +7,7 @@ export interface CheckboxData {
     /**
      * Default value of the checkbox
      */
-    value?: string | ReadonlyArray<string> | number;
+    value?: string | readonly string[] | number;
     /**
      * Whether the checkbox is checked by default
      */
@@ -35,7 +35,10 @@ export interface CheckboxProps extends CheckboxData {
      */
     onClick?: MouseEventHandler<HTMLInputElement>;
 }
-export declare function Checkbox({ id, name, label, value, checked, isTile, onChange, onClick, ...inputProps }: CheckboxProps & JSX.IntrinsicElements["input"]): JSX.Element;
+/**
+ * Checkboxes allow users to select one or more options from a list.
+ */
+export declare const Checkbox: ({ id, name, label, value, checked, isTile, onChange, onClick, ...inputProps }: CheckboxProps & JSX.IntrinsicElements['input']) => React.ReactElement;
 export default Checkbox;
 export interface CheckboxGroupProps {
     /**
@@ -63,4 +66,4 @@ export interface CheckboxGroupProps {
      */
     onClick?: MouseEventHandler<HTMLInputElement>;
 }
-export declare function CheckboxGroup({ id, name, data, areTiles, onChange, onClick, }: CheckboxGroupProps): JSX.Element;
+export declare const CheckboxGroup: ({ id, name, data, areTiles, onChange, onClick, }: CheckboxGroupProps) => React.ReactElement;

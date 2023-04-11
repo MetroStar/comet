@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 export interface TagProps {
     /**
      * The unique identifier for this component
@@ -17,5 +17,8 @@ export interface TagProps {
      */
     className?: string;
 }
-export declare function Tag({ id, children, size, className, }: TagProps): JSX.Element;
+/**
+ * A tag draws attention to new or categorized content elements.
+ */
+export declare const Tag: ({ id, children, size, className, }: TagProps) => React.ReactElement;
 export default Tag;

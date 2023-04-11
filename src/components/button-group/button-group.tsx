@@ -21,6 +21,9 @@ export interface ButtonGroupProps {
   children?: ReactNode;
 }
 
+/**
+ * A button group collects similar or related actions.
+ */
 export const ButtonGroup = ({
   id = undefined,
   alignment = 'left',

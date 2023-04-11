@@ -12,6 +12,9 @@ export interface FileInputProps {
   name: string;
 }
 
+/**
+ * File input allows users to attach one or multiple files.
+ */
 export const FileInput = (
   inputProps: FileInputProps & JSX.IntrinsicElements['input'],
 ): React.ReactElement => {

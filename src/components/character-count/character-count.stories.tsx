@@ -13,7 +13,7 @@ const meta: Meta<typeof CharacterCount> = {
 export default meta;
 
 const Template: StoryFn<typeof CharacterCount> = (args: CharacterCountProps) => (
-  <Form>
+  <Form id="form-1">
     <CharacterCountContainer id={args.id}>
       <FormGroup>
         <Label htmlFor="with-hint-input">Text input</Label>
@@ -39,7 +39,7 @@ InputExample.args = {
 };
 
 const TextAreaTemplate: StoryFn<typeof CharacterCount> = (args: CharacterCountProps) => (
-  <Form>
+  <Form id="form-2">
     <CharacterCountContainer id={args.id}>
       <FormGroup>
         <Label htmlFor="with-hint-textarea">Textarea</Label>

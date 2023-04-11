@@ -3,9 +3,21 @@ import { VictoryChart, VictoryArea } from 'victory';
 import ChartProps from '../chart/chart';
 
 export interface AreaGraphProps {
+  /**
+   * An object providing chart specific attributes
+   */
   chart: ChartProps;
+  /**
+   * An string array of color values used to colorize chart sections
+   */
   colors?: string[];
+  /**
+   * Whether or not to display smooth chart lines
+   */
   smooth?: boolean;
+  /**
+   * An array of data points
+   */
   data: Array<
     Array<{
       x: number;
@@ -14,6 +26,9 @@ export interface AreaGraphProps {
   >;
 }
 
+/**
+ * Renders a dataset as a single area path.
+ */
 const AreaGraph: React.FC<AreaGraphProps> = (props: AreaGraphProps) => {
   return (
     <VictoryChart {...props.chart}>

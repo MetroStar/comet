@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 export interface StepIndicatorProps {
     /**
      * The unique identifier for this component
@@ -31,7 +31,10 @@ export interface StepIndicatorProps {
     /**
      * Level of the heading (h1, h2, h3, h4, h5, h6). Defaults to h4
      */
-    headingLevel?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+    headingLevel?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 }
+/**
+ * A step indicator updates users on their progress through a multi-step process.
+ */
 export declare const StepIndicator: ({ id, steps, currentStep, hideLabels, showCounters, showSmallCounters, centerCounters, headingLevel, }: StepIndicatorProps) => React.ReactElement;
 export default StepIndicator;

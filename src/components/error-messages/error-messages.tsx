@@ -12,6 +12,9 @@ export interface ErrorMessagesProps {
   errors: string[];
 }
 
+/**
+ * Outputs a list of error messages as HTML.
+ */
 export const ErrorMessages = ({
   id = undefined,
   errors,

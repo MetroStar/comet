@@ -3,9 +3,21 @@ import { VictoryChart, VictoryPolarAxis, VictoryLine } from 'victory';
 import ChartProps from '../chart/chart';
 
 export interface PolarAxisProps {
+  /**
+   * An object providing chart specific attributes
+   */
   chart: ChartProps;
+  /**
+   * An string array of color values used to colorize chart sections
+   */
   colors?: string[];
+  /**
+   * An number array of labels for the chart
+   */
   ticks?: number[];
+  /**
+   * An array of data points
+   */
   data: Array<
     Array<{
       x: number;
@@ -14,6 +26,9 @@ export interface PolarAxisProps {
   >;
 }
 
+/**
+ * Renders a single polar axis chart.
+ */
 const PolarAxis: React.FC<PolarAxisProps> = (props: PolarAxisProps) => {
   return (
     <VictoryChart {...props.chart} polar>

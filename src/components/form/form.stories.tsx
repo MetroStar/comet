@@ -22,7 +22,7 @@ const FormWrapper: React.FC<FormProps> = (props: FormProps) => {
   };
 
   return (
-    <Form onSubmit={handleSubmit} isLarge={props.isLarge}>
+    <Form id="form-1" onSubmit={handleSubmit} isLarge={props.isLarge}>
       <FormGroup>
         <Label htmlFor="input1">Name</Label>
         <TextInput

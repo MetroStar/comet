@@ -1,1 +1,1 @@
-export { default } from "./character-count";
+export { default } from './character-count';

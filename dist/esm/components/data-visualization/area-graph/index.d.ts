@@ -1,1 +1,1 @@
-export { default } from "./area-graph";
+export { default } from './area-graph';

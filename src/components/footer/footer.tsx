@@ -4,16 +4,40 @@ import { BsFacebook, BsTwitter, BsYoutube, BsInstagram } from 'react-icons/bs';
 export type Navigate = (path: string) => void;
 
 export interface FooterProps {
+  /**
+   * An array of navigation items
+   */
   links?: Array<{
     label: string;
     path: string;
   }>;
+  /**
+   * Custom callback for navigation change
+   */
   onNavigate?: Navigate;
+  /**
+   * A text value to display next to the logo
+   */
   logoText?: string;
+  /**
+   * The URL to the logo
+   */
   logoSrc?: string;
+  /**
+   * A text message to display with the contact information
+   */
   contactMessage?: string;
+  /**
+   * Contact email to display
+   */
   email?: string;
+  /**
+   * Contact phone number to display
+   */
   phone?: string;
+  /**
+   * An object of URLs to link to socials
+   */
   socials?: {
     facebook?: string;
     twitter?: string;
@@ -22,6 +46,9 @@ export interface FooterProps {
   };
 }
 
+/**
+ * A footer serves site visitors who arrive at the bottom of a page without finding what they want.
+ */
 export const Footer = ({
   links,
   onNavigate = (path: string): void => {},
@@ -33,7 +60,7 @@ export const Footer = ({
   socials,
 }: FooterProps): React.ReactElement => {
   return (
-    <footer className="usa-footer" data-testid="footer">
+    <footer className="usa-footer" id="footer" data-testid="footer">
       <div className="grid-container usa-footer__return-to-top">
         <span
           style={{

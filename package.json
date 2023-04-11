@@ -1,6 +1,6 @@
 {
   "name": "@metrostar/warpspeed",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Lightweight React USWDS components for general use.",
   "author": "Nathan Barber",
   "license": "MIT",
@@ -80,11 +80,12 @@
     "typescript": "*"
   },
   "peerDependencies": {
+    "@uswds/uswds": "3.4.1",
     "react": "^18.2.0"
   },
   "dependencies": {
     "@storybook/addon-a11y": "^7.0.2",
-    "@uswds/uswds": "3.3.0",
+    "@uswds/uswds": "3.4.1",
     "classnames": "^2.3.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

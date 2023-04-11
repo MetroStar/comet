@@ -1,10 +1,19 @@
 import React, { PropsWithChildren, ReactNode } from 'react';
 
 export interface CardProps {
+  /**
+   * The unique identifier for this component
+   */
   id: string;
+  /**
+   * The body of the card
+   */
   children: ReactNode;
 }
 
+/**
+ * Cards contain content and actions about a single subject.
+ */
 export const Card = ({ id, children }: CardProps): React.ReactElement => {
   return (
     <div className="usa-card usa-card desktop:grid-col-12" id={id}>

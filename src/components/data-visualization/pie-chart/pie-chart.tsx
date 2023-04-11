@@ -13,6 +13,9 @@ export interface PieChartProps {
   }>;
 }
 
+/**
+ * Renders a dataset as a pie chart.
+ */
 const PieChart: React.FC<PieChartProps> = (props: PieChartProps) => {
   return (
     <VictoryPie

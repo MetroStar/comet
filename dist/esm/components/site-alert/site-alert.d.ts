@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 export interface SiteAlertProps {
     /**
      * The unique identifier for this component
@@ -29,5 +29,8 @@ export interface SiteAlertProps {
      */
     children: ReactNode;
 }
-export declare function SiteAlert({ id, type, heading, slim, noIcon, className, children, }: SiteAlertProps): JSX.Element;
+/**
+ * A site alert communicates urgent sitewide information.
+ */
+export declare const SiteAlert: ({ id, type, heading, slim, noIcon, className, children, }: SiteAlertProps) => React.ReactElement;
 export default SiteAlert;

@@ -11,11 +11,14 @@ export interface SearchProps {
    */
   type?: 'default' | 'small' | 'big';
   /**
-   * The placeholder of the search
+   * Custom callback for when a search is performed
    */
   onSearch?: (event: FormEvent<HTMLFormElement>, searchText: string) => void;
 }
 
+/**
+ * Search allows users to search for specific content if they know what search terms to use or can’t find desired content in the main navigation
+ */
 export const Search = ({
   id,
   type = 'default',

@@ -6,9 +6,21 @@ export type Navigate = (path: string) => void;
 export type Search = (search: string) => void;
 
 export interface HeaderProps {
+  /**
+   * An element to display as the logo for the header
+   */
   logo?: React.ReactNode;
+  /**
+   * A root value for the header
+   */
   root?: string;
+  /**
+   * Custom callback for navigation change
+   */
   onNavigate?: Navigate;
+  /**
+   * An array of navigation groups
+   */
   folding?: Array<{
     label: string;
     items: Array<{
@@ -16,14 +28,26 @@ export interface HeaderProps {
       path: string;
     }>;
   }>;
+  /**
+   * An array of navigation items
+   */
   simple?: Array<{
     label: string;
     path: string;
   }>;
+  /**
+   * Whether or not to display search component
+   */
   showSearch?: boolean;
+  /**
+   * Custom callback for search event
+   */
   onSearch?: Search;
 }
 
+/**
+ * A header helps users identify where they are and provides a quick, organized way to reach the main sections of a website.
+ */
 export const Header = ({
   logo,
   onNavigate = (path: string): void => {},
@@ -41,7 +65,7 @@ export const Header = ({
   };
 
   return (
-    <header className="usa-header usa-header--basic" data-testid="header">
+    <header className="usa-header usa-header--basic" id="header" data-testid="header">
       <div className="usa-nav-container">
         <div className="usa-navbar">
           <div className="usa-logo" id="-logo">

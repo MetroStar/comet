@@ -1,6 +1,6 @@
 import React from 'react';
 import { StoryFn, Meta } from '@storybook/react';
-import { TextInput } from '../../index';
+import { Icon, TextInput } from '../../index';
 import { TextInputProps } from './text-input';
 
 const meta: Meta<typeof TextInput> = {

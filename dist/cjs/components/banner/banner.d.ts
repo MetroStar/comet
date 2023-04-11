@@ -1,4 +1,4 @@
-/// <reference types="react" />
+import React from 'react';
 export interface BannerProps {
     /**
      * The unique identifier for this component
@@ -9,5 +9,8 @@ export interface BannerProps {
      */
     type?: 'gov' | 'mil';
 }
-export declare function Banner({ id, type }: BannerProps): JSX.Element;
+/**
+ * Banners identify official websites of government organizations in the United States. They also help visitors understand whether a website is official and secure.
+ */
+export declare const Banner: ({ id, type }: BannerProps) => React.ReactElement;
 export default Banner;

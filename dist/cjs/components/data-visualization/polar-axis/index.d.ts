@@ -1,1 +1,1 @@
-export { default } from "./polar-axis";
+export { default } from './polar-axis';
