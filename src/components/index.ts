@@ -32,5 +32,6 @@ export { default as Table } from './table';
 export { default as Tabs, TabPanel } from './tabs';
 export { default as Tag } from './tag';
 export { default as TextArea } from './text-area';
+export { default as TimePicker } from './time-picker';
 export { default as Tooltip } from './tooltip';
 export * from './data-visualization';
