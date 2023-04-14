@@ -1,46 +1,62 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { StoryFn, Meta } from '@storybook/react';
-import { Modal, Button, Card, CardHeader, CardBody, CardFooter } from '../../index';
-import { ModalProps } from './modal';
+import { Modal, ModalProps } from './modal';
 
 const meta: Meta<typeof Modal> = {
   title: 'Components/Modal',
   component: Modal,
   argTypes: {
-    id: { required: true },
-    show: { control: 'boolean' },
+    size: { control: 'select' },
   },
 };
 export default meta;
 
-const ModalWrapper: React.FC<ModalProps> = (props: ModalProps) => {
-  const [show, setShow] = useState(props.show);
-  const close = (): void => setShow(false);
+const heading = 'Are you sure you want to continue?';
+const body = 'You have unsaved changes that will be lost.';
+const footer = (
+  <ul className="usa-button-group">
+    <li className="usa-button-group__item">
+      <button type="button" className="usa-button" data-close-modal>
+        Continue without saving
+      </button>
+    </li>
+    <li className="usa-button-group__item">
+      <button
+        type="button"
+        className="usa-button usa-button--unstyled padding-105 text-center"
+        data-close-modal
+      >
+        Go back
+      </button>
+    </li>
+  </ul>
+);
+const Template: StoryFn<typeof Modal> = (args: ModalProps) => (
+  <>
+    <a href={`#${args.id}`} className="usa-button" aria-controls={args.id} data-open-modal>
+      Open Modal
+    </a>
+    <Modal id={args.id} size={args.size} heading={args.heading} footer={args.footer}>
+      {args.children}
+    </Modal>
+  </>
+);
 
-  return (
-    <div>
-      <Button id="show-modal" onClick={() => setShow(true)}>
-        Show Modal
-      </Button>
-      <Modal id={props.id} show={show} onClose={close}>
-        <Card id="card-1">
-          <CardHeader>Modal Header</CardHeader>
-          <CardBody>Modal Body</CardBody>
-          <CardFooter>
-            <Button id="action-1" variant="outline">
-              Action
-            </Button>
-          </CardFooter>
-        </Card>
-      </Modal>
-    </div>
-  );
+export const Standard = Template.bind({});
+
+Standard.args = {
+  id: 'modal-1',
+  size: 'small',
+  children: body,
+  heading,
+  footer,
 };
 
-const Template: StoryFn<typeof Modal> = (args: ModalProps) => <ModalWrapper {...args} />;
-
-export const Default = Template.bind({});
-Default.args = {
+export const LargeModal = Template.bind({});
+LargeModal.args = {
   id: 'modal-1',
-  show: false,
+  size: 'large',
+  children: body,
+  heading,
+  footer,
 };

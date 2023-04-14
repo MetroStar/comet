@@ -1,6 +1,7 @@
-import React from 'react';
-
-import './modal.style.css';
+import React, { ReactNode, useLayoutEffect, useRef } from 'react';
+import modal from '@uswds/uswds/js/usa-modal';
+import iconSprite from '@uswds/uswds/img/sprite.svg';
+import classnames from 'classnames';
 
 export interface ModalProps {
   /**
@@ -8,17 +9,21 @@ export interface ModalProps {
    */
   id: string;
   /**
-   * Whether or not to display the modal
+   * The type of modal to display
    */
-  show?: boolean;
+  size?: 'small' | 'large';
   /**
-   * Custom callback for when modal is closed
+   * The heading for the alert
    */
-  onClose?: Function;
+  heading: string;
   /**
-   * The body of the modal
+   * The footer for the alert
    */
-  children?: React.ReactNode;
+  footer?: ReactNode;
+  /**
+   * The contents of the alert
+   */
+  children: ReactNode;
 }
 
 /**
@@ -26,16 +31,50 @@ export interface ModalProps {
  */
 export const Modal = ({
   id,
-  show = false,
-  onClose = () => {},
+  heading,
+  size = 'small',
+  footer,
   children,
 }: ModalProps): React.ReactElement => {
+  const modalRef = useRef<HTMLDivElement>(null);
+  useLayoutEffect(() => {
+    const modalElement = modalRef.current;
+    modal.on(modalElement);
+    return () => modal.off(modalElement);
+  });
+
+  const classes = classnames('usa-modal', {
+    'usa-modal--lg': size === 'large',
+  });
+
   return (
-    <div id={id} data-testid="modal" className={`modal ${show ? 'show' : 'hide'}`}>
-      <div className="modal-vis" data-testid="modal-vis">
-        {children ?? <></>}
+    <div
+      ref={modalRef}
+      className={classes}
+      id={id}
+      aria-labelledby={`${id}-heading`}
+      aria-describedby={`${id}-description`}
+    >
+      <div className="usa-modal__content">
+        <div className="usa-modal__main">
+          <h2 className="usa-modal__heading" id={`${id}-heading`}>
+            {heading}
+          </h2>
+          <div className="usa-prose">
+            <p id={`${id}-description`}>{children}</p>
+          </div>
+          <div className="usa-modal__footer">{footer}</div>
+        </div>
+        <button
+          className="usa-button usa-modal__close"
+          aria-label="Close this window"
+          data-close-modal
+        >
+          <svg className="usa-icon" aria-hidden="true" focusable="false" role="img">
+            <use xlinkHref={`${iconSprite}#close`}></use>
+          </svg>
+        </button>
       </div>
-      <div data-testid="modal-overlay" className="overlay" onClick={onClose as any}></div>
     </div>
   );
 };
