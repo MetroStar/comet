@@ -1,7 +1,6 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
-import { Label } from '../label/label';
-import { LabelProps } from 'victory';
+import { Label, LabelProps } from '../label/label';
 
 const meta: Meta<typeof Label> = {
   title: 'Components/Forms/Label',
