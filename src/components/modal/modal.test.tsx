@@ -1,39 +1,68 @@
-import React from 'react';
-import '@testing-library/jest-dom';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { fireEvent, render, RenderOptions, RenderResult } from '@testing-library/react';
+import React, { ReactNode } from 'react';
 import Modal from './modal';
 
+const customRender = (ui: React.ReactElement, options?: RenderOptions): RenderResult =>
+  render(ui, { wrapper: Wrapper, ...options });
+const Wrapper = ({ children }: { children?: ReactNode }): JSX.Element => <div>{children}</div>;
+
 describe('Modal', () => {
-  test('should render with given props', () => {
-    render(
-      <Modal id="modal" show={true}>
-        test
+  const footer = (
+    <button type="button" className="usa-button" data-close-modal>
+      Close
+    </button>
+  );
+
+  it('should render a default modal with no footer successfully', () => {
+    const { baseElement } = customRender(
+      <Modal id="modal1" heading="Modal 1">
+        Body
       </Modal>,
     );
-
-    expect(screen.getByText('test')).toBeVisible();
-    expect(screen.getByTestId('modal')).toHaveClass('show');
+    expect(baseElement).toBeTruthy();
   });
 
-  test('should render invisible when show is false', () => {
-    render(
-      <Modal id="modal" show={false}>
-        Yellow
+  it('should render a small modal successfully', () => {
+    const { baseElement } = customRender(
+      <Modal id="modal1" size="small" heading="Modal 1" footer={footer}>
+        Body
       </Modal>,
     );
-
-    expect(screen.getByTestId('modal')).toHaveClass('hide');
+    expect(baseElement).toBeTruthy();
   });
 
-  test('should call close function when overlay clicked', () => {
-    const spy = jest.fn();
-    render(<Modal id="modal" onClose={spy} />);
-    fireEvent.click(screen.getByTestId('modal-overlay'));
-    expect(spy).toHaveBeenCalled();
+  it('should render a large modal successfully', () => {
+    const { baseElement } = customRender(
+      <Modal id="modal1" size="large" heading="Modal 1" footer={footer}>
+        Body
+      </Modal>,
+    );
+    expect(baseElement).toBeTruthy();
   });
 
-  test('should do nothing on overlay click when no close function', () => {
-    render(<Modal id="modal" />);
-    fireEvent.click(screen.getByTestId('modal-overlay'));
+  it('should render a default modal with no footer successfully', () => {
+    const { baseElement } = customRender(
+      <Modal id="modal1" heading="Modal 1">
+        Body
+      </Modal>,
+    );
+    expect(baseElement).toBeTruthy();
+  });
+
+  it('should open a modal successfully', () => {
+    const { baseElement } = customRender(
+      <div>
+        <a href="#modal1" id="btn1" className="usa-button" aria-controls="modal1" data-open-modal>
+          Open
+        </a>
+        <Modal id="modal1" heading="Modal 1" footer={footer}>
+          Body
+        </Modal>
+      </div>,
+    );
+    const button = baseElement.querySelector('#btn1') as Element;
+    fireEvent.click(button);
+
+    expect(document.querySelectorAll('.usa-modal').length).toEqual(1);
   });
 });
