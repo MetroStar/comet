@@ -3,7 +3,7 @@ import { StoryFn, Meta } from '@storybook/react';
 import { Modal, ModalProps } from './modal';
 
 const meta: Meta<typeof Modal> = {
-  title: 'Components/Modal',
+  title: 'USWDS/Modal',
   component: Modal,
   argTypes: {
     size: { control: 'select' },

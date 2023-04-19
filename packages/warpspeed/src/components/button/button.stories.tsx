@@ -4,7 +4,7 @@ import { Button } from '../../index';
 import { ButtonProps } from './button';
 
 const meta: Meta<typeof Button> = {
-  title: 'Components/Button',
+  title: 'USWDS/Button',
   component: Button,
   argTypes: {
     id: { required: true },

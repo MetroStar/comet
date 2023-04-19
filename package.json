@@ -11,6 +11,7 @@
     "storybook": "storybook dev -p 6006",
     "build:storybook": "storybook build",
     "build:warpspeed": "cd packages/warpspeed && rollup -c",
+    "build:warpspeed-data-viz": "cd packages/warpspeed-data-viz && rollup -c",
     "build:warpspeed-extras": "cd packages/warpspeed-extras && rollup -c"
   },
   "devDependencies": {

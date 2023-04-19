@@ -3,7 +3,7 @@ import { Meta, StoryFn } from '@storybook/react';
 import { Icon, IconProps } from './icon';
 
 const meta: Meta<typeof Icon> = {
-  title: 'Components/Icon',
+  title: 'USWDS/Icon',
   component: Icon,
   argTypes: {
     id: { required: true },

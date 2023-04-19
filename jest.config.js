@@ -8,11 +8,11 @@ export default {
     '^.+.(svg|css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$': 'jest-transform-stub',
   },
   collectCoverageFrom: [
-    '**/src/components/**/*.{ts,tsx}',
+    'packages/warpspeed/src/components/**/*.{ts,tsx}',
+    'packages/warpspeed-extras/src/components/**/*.{ts,tsx}',
     '!**/*.d.ts',
     '!**/*.stories.tsx',
     '!**/index.ts',
-    '!**/src/components/data-visualization/**',
   ],
   coverageThreshold: {
     global: {

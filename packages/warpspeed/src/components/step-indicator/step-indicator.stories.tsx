@@ -4,7 +4,7 @@ import { StepIndicator, StepIndicatorProps } from './step-indicator';
 import Button from '../button/button';
 
 const meta: Meta<typeof StepIndicator> = {
-  title: 'Components/Step Indicator',
+  title: 'USWDS/Step Indicator',
   component: StepIndicator,
   argTypes: {
     id: { required: true },

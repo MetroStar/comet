@@ -4,7 +4,7 @@ import { Footer } from '../../index';
 import { FooterProps } from './footer';
 
 const meta: Meta<typeof Footer> = {
-  title: 'Components/Footer',
+  title: 'USWDS/Footer',
   component: Footer,
 };
 export default meta;

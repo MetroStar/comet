@@ -4,7 +4,7 @@ import Button from '../button/button';
 import { ButtonGroup, ButtonGroupProps } from './button-group';
 
 const meta: Meta<typeof ButtonGroup> = {
-  title: 'Components/Button Group',
+  title: 'USWDS/Button Group',
   component: ButtonGroup,
   argTypes: {
     alignment: { control: 'select' },

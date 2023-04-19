@@ -3,7 +3,7 @@ import React, { ChangeEvent, useState } from 'react';
 import { ComboBox, ComboBoxOption, ComboBoxProps } from './combo-box';
 
 const meta: Meta<typeof ComboBox> = {
-  title: 'Components/Forms/Combo Box',
+  title: 'USWDS/Forms/Combo Box',
   component: ComboBox,
   argTypes: {
     id: { required: true },

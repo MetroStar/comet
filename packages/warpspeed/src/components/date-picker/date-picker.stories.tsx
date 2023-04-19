@@ -3,7 +3,7 @@ import { Meta, StoryFn } from '@storybook/react';
 import { DatePicker, DatePickerProps } from './date-picker';
 
 const meta: Meta<typeof DatePicker> = {
-  title: 'Components/Forms/Date Picker',
+  title: 'USWDS/Forms/Date Picker',
   component: DatePicker,
   argTypes: {
     id: { required: true },

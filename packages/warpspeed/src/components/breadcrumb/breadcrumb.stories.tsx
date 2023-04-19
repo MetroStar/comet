@@ -4,7 +4,7 @@ import { Breadcrumb } from '../../index';
 import { BreadcrumbProps, Crumb } from './breadcrumb';
 
 const meta: Meta<typeof Breadcrumb> = {
-  title: 'Components/Breadcrumb',
+  title: 'USWDS/Breadcrumb',
   component: Breadcrumb,
 };
 export default meta;

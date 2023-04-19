@@ -4,7 +4,7 @@ import Label from '../label/label';
 import { Dropdown, DropdownOption, DropdownProps } from './dropdown';
 
 const meta: Meta<typeof Dropdown> = {
-  title: 'Components/Forms/Dropdown',
+  title: 'USWDS/Forms/Dropdown',
   component: Dropdown,
   argTypes: {
     id: { required: true },

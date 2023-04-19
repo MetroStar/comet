@@ -3,7 +3,7 @@ import { Meta, StoryFn } from '@storybook/react';
 import { Label, LabelProps } from './label';
 
 const meta: Meta<typeof Label> = {
-  title: 'Components/Forms/Label',
+  title: 'USWDS/Forms/Label',
   component: Label,
   argTypes: {
     required: { type: 'boolean' },

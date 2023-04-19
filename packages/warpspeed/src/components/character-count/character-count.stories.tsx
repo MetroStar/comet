@@ -4,7 +4,7 @@ import { Form, FormGroup, Label, TextInput, TextArea } from '../..';
 import { CharacterCount, CharacterCountContainer, CharacterCountProps } from './character-count';
 
 const meta: Meta<typeof CharacterCount> = {
-  title: 'Components/Forms/Character Count',
+  title: 'USWDS/Forms/Character Count',
   component: CharacterCount,
   argTypes: {
     id: { requred: true },

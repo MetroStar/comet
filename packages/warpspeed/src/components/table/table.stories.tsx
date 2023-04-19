@@ -4,7 +4,7 @@ import { Table } from '../../index';
 import { TableProps } from './table';
 
 const meta: Meta<typeof Table> = {
-  title: 'Components/Table',
+  title: 'USWDS/Table',
   component: Table,
 };
 export default meta;

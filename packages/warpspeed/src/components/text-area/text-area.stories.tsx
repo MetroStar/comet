@@ -4,7 +4,7 @@ import Label from '../label/label';
 import { TextArea, TextAreaProps } from './text-area';
 
 const meta: Meta<typeof TextArea> = {
-  title: 'Components/Forms/Text Area',
+  title: 'USWDS/Forms/Text Area',
   component: TextArea,
   argTypes: {
     id: { required: true },

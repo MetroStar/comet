@@ -4,7 +4,7 @@ import { Label, FormGroup, DatePicker } from '../..';
 import { DateRangePickerContainer } from './date-range-picker';
 
 const meta: Meta<typeof DateRangePickerContainer> = {
-  title: 'Components/Forms/Date Range Picker',
+  title: 'USWDS/Forms/Date Range Picker',
   component: DateRangePickerContainer,
 };
 export default meta;

@@ -4,7 +4,7 @@ import { Header } from '../../index';
 import { HeaderProps } from './header';
 
 const meta: Meta<typeof Header> = {
-  title: 'Components/Header',
+  title: 'USWDS/Header',
   component: Header,
 };
 export default meta;

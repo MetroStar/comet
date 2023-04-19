@@ -4,7 +4,7 @@ import { Button } from '../button/button';
 import { Tooltip, TooltipProps } from './tooltip';
 
 const meta: Meta<typeof Tooltip> = {
-  title: 'Components/Tooltip',
+  title: 'USWDS/Tooltip',
   component: Tooltip,
   argTypes: {
     label: { required: true },

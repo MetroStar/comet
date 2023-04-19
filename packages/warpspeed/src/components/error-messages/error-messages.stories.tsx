@@ -3,7 +3,7 @@ import { Meta, StoryFn } from '@storybook/react';
 import { ErrorMessages, ErrorMessagesProps } from './error-messages';
 
 const meta: Meta<typeof ErrorMessages> = {
-  title: 'Components/Forms/Error Messages',
+  title: 'USWDS/Forms/Error Messages',
   component: ErrorMessages,
 };
 export default meta;

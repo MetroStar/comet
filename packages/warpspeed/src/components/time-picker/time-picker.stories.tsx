@@ -4,7 +4,7 @@ import { TimePicker, TimePickerProps } from './time-picker';
 import React from 'react';
 
 const meta: Meta<typeof TimePicker> = {
-  title: 'Components/Forms/Time Picker',
+  title: 'USWDS/Forms/Time Picker',
   component: TimePicker,
 };
 export default meta;

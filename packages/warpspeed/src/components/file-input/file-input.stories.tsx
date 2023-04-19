@@ -3,7 +3,7 @@ import { Meta, StoryFn } from '@storybook/react';
 import { FileInput, FileInputProps } from './file-input';
 
 const meta: Meta<typeof FileInput> = {
-  title: 'Components/Forms/File Input',
+  title: 'USWDS/Forms/File Input',
   component: FileInput,
   argTypes: {
     id: { required: true },

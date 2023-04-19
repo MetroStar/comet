@@ -4,7 +4,7 @@ import { Pagination } from '../../index';
 import { PaginationProps } from './pagination';
 
 const meta: Meta<typeof Pagination> = {
-  title: 'Components/Pagination',
+  title: 'USWDS/Pagination',
   component: Pagination,
   argTypes: {
     id: { required: true },

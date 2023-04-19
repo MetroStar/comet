@@ -2,6 +2,7 @@ const path = require('path');
 module.exports = {
   stories: [
     '../packages/warpspeed/src/**/*.stories.@(tsx|mdx)',
+    '../packages/warpspeed-data-viz/src/**/*.stories.@(tsx|mdx)',
     '../packages/warpspeed-extras/src/**/*.stories.@(tsx|mdx)',
   ],
   addons: [

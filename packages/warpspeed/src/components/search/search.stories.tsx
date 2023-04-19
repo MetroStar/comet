@@ -3,7 +3,7 @@ import React, { FormEvent } from 'react';
 import { Search, SearchProps } from './search';
 
 const meta: Meta<typeof Search> = {
-  title: 'Components/Search',
+  title: 'USWDS/Search',
   component: Search,
   argTypes: {
     id: { required: true },

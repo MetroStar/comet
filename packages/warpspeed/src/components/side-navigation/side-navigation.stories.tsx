@@ -3,7 +3,7 @@ import { Meta, StoryFn } from '@storybook/react';
 import SideNavigation, { SideNavigationItem, SideNavigationProps } from './side-navigation';
 
 const meta: Meta<typeof SideNavigation> = {
-  title: 'Components/Side Navigation',
+  title: 'USWDS/Side Navigation',
   component: SideNavigation,
   argTypes: {
     id: { required: true },

@@ -4,7 +4,7 @@ import { Alert } from '../../index';
 import { AlertProps } from './alert';
 
 const meta: Meta<typeof Alert> = {
-  title: 'Components/Alert',
+  title: 'USWDS/Alert',
   component: Alert,
   argTypes: {
     id: { required: true },

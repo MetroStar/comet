@@ -3,7 +3,7 @@ import { Meta, StoryFn } from '@storybook/react';
 import Tag, { TagProps } from './tag';
 
 const meta: Meta<typeof Tag> = {
-  title: 'Components/Tag',
+  title: 'USWDS/Tag',
   component: Tag,
   argTypes: {
     id: { required: true },

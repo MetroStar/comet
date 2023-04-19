@@ -3,7 +3,7 @@ import { Meta, StoryFn } from '@storybook/react';
 import { RadioButton, RadioButtonProps } from './radio-button';
 
 const meta: Meta<typeof RadioButton> = {
-  title: 'Components/Forms/Radio Button',
+  title: 'USWDS/Forms/Radio Button',
   component: RadioButton,
   argTypes: {
     id: { required: true },

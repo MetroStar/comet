@@ -4,7 +4,7 @@ import { Form, FormProps } from './form';
 import { FormGroup, Button, TextInput, Label, ButtonGroup } from '../..';
 
 const meta: Meta<typeof Form> = {
-  title: 'Components/Forms/Form',
+  title: 'USWDS/Forms/Form',
   component: Form,
 };
 export default meta;

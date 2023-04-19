@@ -4,7 +4,7 @@ import { Icon, TextInput } from '../../index';
 import { TextInputProps } from './text-input';
 
 const meta: Meta<typeof TextInput> = {
-  title: 'Components/Forms/Text Input',
+  title: 'USWDS/Forms/Text Input',
   component: TextInput,
   argTypes: {
     mask: { control: 'select' },

@@ -4,7 +4,7 @@ import { Card, CardHeader, CardFooter, CardBody, Button } from '../../index';
 import { CardProps } from './card';
 
 const meta: Meta<typeof Card> = {
-  title: 'Components/Card',
+  title: 'USWDS/Card',
   component: Card,
   argTypes: {
     id: { required: true },

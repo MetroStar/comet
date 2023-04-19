@@ -4,7 +4,7 @@ import { FormGroup, FormGroupProps } from './form-group';
 import { TextInput, Label } from '../..';
 
 const meta: Meta<typeof FormGroup> = {
-  title: 'Components/Forms/Form Group',
+  title: 'USWDS/Forms/Form Group',
   component: FormGroup,
 };
 export default meta;

@@ -3,7 +3,7 @@ import { Meta, StoryFn } from '@storybook/react';
 import { Banner, BannerProps } from './banner';
 
 const meta: Meta<typeof Banner> = {
-  title: 'Components/Banner',
+  title: 'USWDS/Banner',
   component: Banner,
   argTypes: {
     id: { required: true },

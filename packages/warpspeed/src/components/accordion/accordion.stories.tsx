@@ -4,7 +4,7 @@ import { Accordion } from '../../index';
 import { AccordionProps } from './accordion';
 
 const meta: Meta<typeof Accordion> = {
-  title: 'Components/Accordion',
+  title: 'USWDS/Accordion',
   component: Accordion,
   argTypes: {
     id: { required: true },

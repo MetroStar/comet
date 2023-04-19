@@ -3,7 +3,7 @@ import { Meta, StoryFn } from '@storybook/react';
 import { SummaryBox, SummaryBoxProps } from './summary-box';
 
 const meta: Meta<typeof SummaryBox> = {
-  title: 'Components/Summary Box',
+  title: 'USWDS/Summary Box',
   component: SummaryBox,
 };
 export default meta;

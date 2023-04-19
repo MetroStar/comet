@@ -3,7 +3,7 @@ import { Meta, StoryFn } from '@storybook/react';
 import { ProcessList, ProcessListProps, ProcessListStep } from './process-list';
 
 const meta: Meta<typeof ProcessList> = {
-  title: 'Components/Process List',
+  title: 'USWDS/Process List',
   component: ProcessList,
   argTypes: {
     id: { required: true },

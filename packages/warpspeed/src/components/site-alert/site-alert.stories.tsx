@@ -3,7 +3,7 @@ import { StoryFn, Meta } from '@storybook/react';
 import SiteAlert, { SiteAlertProps } from './site-alert';
 
 const meta: Meta<typeof SiteAlert> = {
-  title: 'Components/Site Alert',
+  title: 'USWDS/Site Alert',
   component: SiteAlert,
   argTypes: {
     id: { required: true },

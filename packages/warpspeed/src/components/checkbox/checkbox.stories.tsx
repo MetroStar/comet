@@ -3,7 +3,7 @@ import { Meta, StoryFn } from '@storybook/react';
 import { Checkbox, CheckboxProps } from './checkbox';
 
 const meta: Meta<typeof Checkbox> = {
-  title: 'Components/Forms/Checkbox',
+  title: 'USWDS/Forms/Checkbox',
   component: Checkbox,
   argTypes: {
     id: { required: true },
