@@ -1,20 +1,18 @@
-module.exports = {
-  testEnvironment: "jsdom",
+export default {
+  testEnvironment: 'jsdom',
   transform: {
-    "^.+\\.(ts|tsx)$": "babel-jest",
-    ".+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2|svg)$":
-      "jest-transform-stub",
+    '^.+\\.(ts|tsx)$': 'babel-jest',
+    '.+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2|svg)$': 'jest-transform-stub',
   },
   moduleNameMapper: {
-    "^.+.(svg|css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$":
-      "jest-transform-stub",
+    '^.+.(svg|css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$': 'jest-transform-stub',
   },
   collectCoverageFrom: [
-    "src/components/**/*.{ts,tsx}",
-    "!**/*.d.ts",
-    "!**/*.stories.tsx",
-    "!**/index.ts",
-    "!**/src/components/data-visualization/**",
+    '**/src/components/**/*.{ts,tsx}',
+    '!**/*.d.ts',
+    '!**/*.stories.tsx',
+    '!**/index.ts',
+    '!**/src/components/data-visualization/**',
   ],
   coverageThreshold: {
     global: {

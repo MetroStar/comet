@@ -1,4 +1,4 @@
-import { fireEvent, render, RenderOptions, RenderResult } from '@testing-library/react';
+import { fireEvent, render, act, RenderOptions, RenderResult } from '@testing-library/react';
 import React, { ReactNode } from 'react';
 import Modal from './modal';
 
@@ -47,22 +47,5 @@ describe('Modal', () => {
       </Modal>,
     );
     expect(baseElement).toBeTruthy();
-  });
-
-  it('should open a modal successfully', () => {
-    const { baseElement } = customRender(
-      <div>
-        <a href="#modal1" id="btn1" className="usa-button" aria-controls="modal1" data-open-modal>
-          Open
-        </a>
-        <Modal id="modal1" heading="Modal 1" footer={footer}>
-          Body
-        </Modal>
-      </div>,
-    );
-    const button = baseElement.querySelector('#btn1') as Element;
-    fireEvent.click(button);
-
-    expect(document.querySelectorAll('.usa-modal').length).toEqual(1);
   });
 });

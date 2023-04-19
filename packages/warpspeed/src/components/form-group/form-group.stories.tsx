@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
-import { FormGroup, FormGroupProps } from '../form-group/form-group';
+import { FormGroup, FormGroupProps } from './form-group';
 import { TextInput, Label } from '../..';
 
 const meta: Meta<typeof FormGroup> = {
