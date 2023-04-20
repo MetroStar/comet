@@ -1,0 +1,21 @@
+{
+  "name": "@metrostar/warpspeed-data-viz",
+  "version": "1.0.0",
+  "description": "A collection of charts and data vizualization tools.",
+  "author": "Johnny Bouder",
+  "license": "MIT",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "files": [
+    "./dist"
+  ],
+  "types": "./dist/index.d.ts",
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "victory": "^36.6.8"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0"
+  }
+}
