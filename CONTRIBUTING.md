@@ -19,7 +19,7 @@ npm install
 To run storybook, run:
 
 ```sh
-npm run storybook
+npm run start
 ```
 
 ## Running Unit Tests
@@ -34,11 +34,11 @@ Ensure to review the coverage directory for code coverage details.
 
 ## Running Code Quality Checks
 
-To make sure your changes adhere to code quality standards, run the following:
+To make sure your changes adhere to additional code quality standards, run the following:
 
 ```sh
 npm run lint
-npm run prettier
+npm run format
 ```
 
 ## Publishing to NPM
