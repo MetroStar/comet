@@ -1,4 +1,4 @@
-import { fireEvent, render, act, RenderOptions, RenderResult } from '@testing-library/react';
+import { render, RenderOptions, RenderResult } from '@testing-library/react';
 import React, { ReactNode } from 'react';
 import Modal from './modal';
 
