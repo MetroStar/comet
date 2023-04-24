@@ -1,6 +1,6 @@
 # WarpSpeed
 
-WarpSpeed is a React/TypeScript implementation of USWDS (United States Web Design System).
+WarpSpeed is a Lightweight React USWDS (United States Web Design System) component library.
 
 ## Getting Started
 
