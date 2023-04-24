@@ -1,13 +1,23 @@
 {
   "name": "@metrostar/warpspeed-data-viz",
   "version": "1.0.0",
-  "description": "A collection of charts and data vizualization tools.",
-  "author": "Johnny Bouder",
-  "license": "MIT",
+  "description": "A collection of charts and data visualization tools.",
+  "license": "Apache-2.0",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
+  "keywords": [
+    "victory",
+    "react",
+    "components",
+    "library",
+    "open source",
+    "charts",
+    "data visualization",
+    "data viz"
+  ],
   "files": [
-    "./dist"
+    "./dist",
+    "README.md"
   ],
   "types": "./dist/index.d.ts",
   "dependencies": {
@@ -17,5 +27,10 @@
   },
   "peerDependencies": {
     "react": "^18.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MetroStar/warpspeed-react.git",
+    "directory": "packages/warpspeed-data-viz"
   }
 }

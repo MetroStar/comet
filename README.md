@@ -1,18 +1,29 @@
-# WarpSpeed USWDS Component Library
+# WarpSpeed
 
-This component library was built in React with Typescript, based on the United States Web Design System (USWDS) 3.0 Design System. The primary goal of this project is to provide a simplified react version of USWDS.
+WarpSpeed is a React Web App accelerator for government agencies, who utilize USWDS.
+
+In the beginning, WarpSpeed was built as a React/TypeScript component library for USWDS. Today however, it has become more of a framework for React Apps which require USWDS, as well as other functionality (charts, custom components, etc). And in the end, we hope to provide a set of tools, which can be all used together, or each as needed.
+
+## Table of Contents
+
+1. [Overview](#overview)
+2. [Getting Started](#getting-started)
+3. [What to help?](#contributing)
+
+## Overview
+
+`warpspeed` - The base USWDS component library implemented in React with TypeScript.
+
+`warpspeed-data-viz` - A set of Victory Chart components provided as a WarpSpeed wrapper.
+
+`warpspeed-extras` - A set of custom components, intended to fill in the gaps where USWDS does not provide an implementation.
 
 ## Getting Started
 
-- `npm install` to install all project dependencies.
-- `npm run storybook` to load up the Design System.
+In order to simplify the process of getting started, we have provided a starter app which includes each of the packages listed above. This app also provides some additional opinionated tools to further accelerate the process of getting started. These additions are not required. The starter app repo can be found here: [WarpSpeed Starter App](https://github.com/MetroStar/warpspeed-starter-app).
 
-## Other Useful Commands
+See each package directory for additional information on getting started.
 
-- `npm run test` to run Jest tests and code coverage.
-- `npm run lint` to run ESLint on the Typescript code.
-- `npm run prettier` to enforce code style with Prettier.
+## What to help?
 
-## Contributing
-
-To publish a new version, first update the `version` tag in package.json, then run an `npm run rollup` to compile the release. Finally, run `npm publish` to make your updates available from npm install.
+Interested in contributing to any of the packages in this project? Review our contributing info here: [Contributing](https://github.com/MetroStar/warpspeed/blob/main/CONTRIBUTING.md).

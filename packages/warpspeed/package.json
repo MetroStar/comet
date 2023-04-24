@@ -2,12 +2,19 @@
   "name": "@metrostar/warpspeed",
   "version": "1.3.0",
   "description": "Lightweight React USWDS components for general use.",
-  "author": "Nathan Barber",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
+  "keywords": [
+    "uswds",
+    "react",
+    "components",
+    "library",
+    "open source"
+  ],
   "files": [
-    "./dist"
+    "./dist",
+    "README.md"
   ],
   "types": "./dist/index.d.ts",
   "dependencies": {
@@ -20,5 +27,10 @@
   "peerDependencies": {
     "@uswds/uswds": "3.4.1",
     "react": "^18.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MetroStar/warpspeed-react.git",
+    "directory": "packages/warpspeed"
   }
 }

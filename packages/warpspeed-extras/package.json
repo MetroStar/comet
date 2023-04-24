@@ -2,12 +2,18 @@
   "name": "@metrostar/warpspeed-extras",
   "version": "1.0.0",
   "description": "A collection of extra components to fill in the USWDS gaps.",
-  "author": "Johnny Bouder",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
+  "keywords": [
+    "react",
+    "components",
+    "library",
+    "open source"
+  ],
   "files": [
-    "./dist"
+    "./dist",
+    "README.md"
   ],
   "types": "./dist/index.d.ts",
   "dependencies": {
@@ -16,5 +22,10 @@
   },
   "peerDependencies": {
     "react": "^18.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MetroStar/warpspeed-react.git",
+    "directory": "packages/warpspeed-extras"
   }
 }
