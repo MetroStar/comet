@@ -5,10 +5,11 @@
     "packages/*"
   ],
   "scripts": {
-    "lint": "eslint --ext .tsx --ext .ts packages/**/src/ --fix --config .eslintrc.json",
-    "prettier": "npx prettier packages/**/src --write",
-    "test": "jest --coverage",
+    "start": "storybook dev -p 6006",
     "storybook": "storybook dev -p 6006",
+    "test": "jest --coverage",
+    "lint": "eslint --ext .tsx --ext .ts packages/**/src/ --fix --config .eslintrc.json",
+    "format": "npx prettier packages/**/src --write",
     "build:storybook": "storybook build",
     "build:warpspeed": "cd packages/warpspeed && rollup -c",
     "build:warpspeed-data-viz": "cd packages/warpspeed-data-viz && rollup -c",
