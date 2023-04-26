@@ -17,3 +17,4 @@ declare module '@uswds/uswds/img/us_flag_small.png';
 declare module '@uswds/uswds/img/icon-https.svg';
 declare module '@uswds/uswds/img/icon-dot-gov.svg';
 declare module '@uswds/uswds/img/sprite.svg';
+declare module '@uswds/uswds/img/usa-icons-bg/search--white.svg';

@@ -23,10 +23,13 @@ describe('Search', () => {
     const { baseElement } = render(<Search id={defaultId} type="small" />);
     expect(baseElement).toBeTruthy();
     const search = baseElement.querySelector(`#${defaultId}`);
+    const icon = baseElement.querySelector('img');
     expect(search).not.toBeNull();
     expect(search).toHaveProperty('id', defaultId);
     expect(search?.classList).toContain('usa-search');
     expect(search?.classList).toContain('usa-search--small');
+    expect(icon).not.toBeNull();
+    expect(icon?.classList).toContain('usa-search__submit-icon');
   });
 
   it('firing submit event should invoke onSearch callback', () => {
