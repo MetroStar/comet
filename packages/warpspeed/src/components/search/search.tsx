@@ -1,5 +1,6 @@
 import React, { FormEvent } from 'react';
 import classnames from 'classnames';
+import searchIcon from '@uswds/uswds/img/usa-icons-bg/search--white.svg';
 
 export interface SearchProps {
   /**
@@ -44,6 +45,7 @@ export const Search = ({
       />
       <button className="usa-button" type="submit">
         <span className={type === 'small' ? 'usa-sr-only' : 'usa-search__submit-text'}>Search</span>
+        <img src={searchIcon} className="usa-search__submit-icon" alt="Search icon" />
       </button>
     </form>
   );
