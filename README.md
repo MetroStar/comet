@@ -8,7 +8,7 @@ In the beginning, WarpSpeed was built as a React/TypeScript component library fo
 
 1. [Overview](#overview)
 2. [Getting Started](#getting-started)
-3. [What to help?](#contributing)
+3. [Want to help?](#want-to-help)
 
 ## Overview
 
@@ -24,6 +24,6 @@ In order to simplify the process of getting started, we have provided a starter 
 
 See each package directory for additional information on getting started.
 
-## What to help?
+## Want to help?
 
 Interested in contributing to any of the packages in this project? Review our contributing info here: [Contributing](https://github.com/MetroStar/warpspeed/blob/main/CONTRIBUTING.md).
