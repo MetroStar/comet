@@ -24,6 +24,7 @@ export { default as Modal } from './modal';
 export { default as Pagination } from './pagination';
 export { default as ProcessList } from './process-list';
 export { default as RadioButton } from './radio-button';
+export { default as RangeSlider } from './range-slider';
 export { default as Search } from './search';
 export { default as SiteAlert } from './site-alert';
 export { default as StepIndicator } from './step-indicator';
