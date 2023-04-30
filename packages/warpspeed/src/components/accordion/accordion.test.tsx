@@ -5,7 +5,7 @@ import Accordion from './accordion';
 
 describe('Accordion', () => {
   test('should render with given props', () => {
-    const folds = [
+    const items = [
       {
         id: 'item-1',
         label: 'foo',
@@ -13,7 +13,7 @@ describe('Accordion', () => {
         child: <span>bar</span>,
       },
     ];
-    render(<Accordion id="accordion" folds={folds} />);
+    render(<Accordion id="accordion" items={items} />);
 
     expect(screen.getByText('foo')).toBeVisible();
     expect(screen.getByText('bar')).not.toBeVisible();
@@ -24,7 +24,7 @@ describe('Accordion', () => {
   });
 
   test('should render with expanded', () => {
-    const folds = [
+    const items = [
       {
         id: 'item-1',
         label: 'foo',
@@ -32,7 +32,7 @@ describe('Accordion', () => {
         child: <span>bar</span>,
       },
     ];
-    render(<Accordion id="accordion" folds={folds} />);
+    render(<Accordion id="accordion" items={items} />);
 
     expect(screen.getByText('foo')).toBeVisible();
     expect(screen.getByText('bar')).toBeVisible();
@@ -43,7 +43,7 @@ describe('Accordion', () => {
   });
 
   test('should render with multi-select', () => {
-    const folds = [
+    const items = [
       {
         id: 'item-1',
         label: 'foo',
@@ -51,7 +51,7 @@ describe('Accordion', () => {
         child: <span>bar</span>,
       },
     ];
-    render(<Accordion id="accordion" folds={folds} allowMultiSelect={true} />);
+    render(<Accordion id="accordion" items={items} allowMultiSelect={true} />);
 
     expect(screen.getByText('foo')).toBeVisible();
     expect(screen.getByText('bar')).not.toBeVisible();

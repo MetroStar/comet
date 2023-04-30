@@ -1,6 +1,5 @@
 import React from 'react';
 
-/* eslint-disable-next-line */
 export interface ErrorMessagesProps {
   /**
    * The unique identifier for this component

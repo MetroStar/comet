@@ -1,6 +1,5 @@
 import React, { ReactNode } from 'react';
 
-/* eslint-disable-next-line */
 export interface LabelProps {
   /**
    * The HTML element that this is labeling

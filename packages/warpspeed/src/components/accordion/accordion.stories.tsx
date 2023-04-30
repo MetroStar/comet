@@ -18,7 +18,7 @@ export const Default = Template.bind({});
 Default.args = {
   id: 'accordion-1',
   allowMultiSelect: false,
-  folds: [
+  items: [
     {
       id: 'item-1',
       label: 'Item 1',
@@ -38,7 +38,7 @@ export const MultiSelect = Template.bind({});
 MultiSelect.args = {
   id: 'accordion-2',
   allowMultiSelect: true,
-  folds: [
+  items: [
     {
       id: 'item-1',
       label: 'Item 1',

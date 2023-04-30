@@ -1,7 +1,6 @@
 import classnames from 'classnames';
 import React, { createElement } from 'react';
 
-/* eslint-disable-next-line */
 export interface StepIndicatorProps {
   /**
    * The unique identifier for this component

@@ -1,7 +1,6 @@
 import React, { ReactNode, Children } from 'react';
 import classnames from 'classnames';
 
-/* eslint-disable-next-line */
 export interface ButtonGroupProps {
   /**
    * The unique identifier for this component
