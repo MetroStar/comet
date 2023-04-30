@@ -28,7 +28,7 @@ export interface AccordionProps {
    */
   id: string;
   /**
-   * Whether or not to allow multiple folds to be expanded at once
+   * Whether or not to allow multiple items to be expanded at once
    */
   allowMultiSelect?: boolean;
   /**
