@@ -5,19 +5,19 @@ import './accordion.style.css';
 
 interface AccordionItem {
   /**
-   * The unique identifier for the fold
+   * The unique identifier for the accordion item
    */
   id: string;
   /**
-   * The label value for the fold
+   * The label value for the accordion item
    */
   label: string;
   /**
-   * Whether or not the fold is expanded
+   * Whether or not the accordion item is expanded
    */
   expanded: boolean;
   /**
-   * The body of the fold
+   * The body of the accordion item
    */
   child: ReactNode;
 }
