@@ -9,6 +9,10 @@ export interface TimePickerProps {
    */
   id: string;
   /**
+   * The name of the input
+   */
+  name?: string;
+  /**
    * The time picker will use this regular expression to filter the time picker options.
    */
   filter?: string;

@@ -20,7 +20,7 @@ export interface DropdownProps {
   /**
    * The name of the dropdown
    */
-  name: string;
+  name?: string;
   /**
    * The default option of the dropdown
    */

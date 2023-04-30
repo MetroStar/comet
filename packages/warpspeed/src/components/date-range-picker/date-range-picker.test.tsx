@@ -6,7 +6,7 @@ import { DateRangePickerContainer } from './date-range-picker';
 describe('DateRangePicker', () => {
   const renderDateRangePicker = (): RenderResult =>
     render(
-      <DateRangePickerContainer>
+      <DateRangePickerContainer id="date-range-picker">
         <FormGroup>
           <Label id="event-date-start-label" htmlFor="event-date-start">
             Event start date

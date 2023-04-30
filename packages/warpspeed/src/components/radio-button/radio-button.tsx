@@ -24,7 +24,7 @@ export interface RadioButtonProps extends RadioButtonData {
   /**
    * The name for the radioButton input field
    */
-  name: string;
+  name?: string;
   /**
    * Whether the component is rendered as a tile
    */

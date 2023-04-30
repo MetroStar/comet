@@ -5,6 +5,14 @@ import React, { RefObject, useLayoutEffect, useRef } from 'react';
 export type ComboBoxOption = DropdownOption;
 export type ComboBoxProps = {
   /**
+   * The unique identifier for this component
+   */
+  id: string;
+  /**
+   * The name for the combo box input field
+   */
+  name?: string;
+  /**
    * The placeholder value to display in the control
    */
   placeholder?: string;

@@ -8,6 +8,10 @@ export interface TextInputProps {
    */
   id: string;
   /**
+   * The name of the text input
+   */
+  name?: string;
+  /**
    * The type of input to display
    */
   type?: 'text' | 'email' | 'number' | 'password' | 'search' | 'tel' | 'url';
@@ -34,6 +38,7 @@ export interface TextInputProps {
  */
 export const TextInput = ({
   id,
+  name,
   className,
   type,
   mask,
@@ -54,6 +59,7 @@ export const TextInput = ({
   const getInputElement = (
     <input
       id={id}
+      name={name}
       className={classes}
       data-testid="input"
       type={getType(mask, type)}

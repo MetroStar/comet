@@ -24,7 +24,7 @@ export interface CheckboxProps extends CheckboxData {
   /**
    * The name for the checkbox input field
    */
-  name: string;
+  name?: string;
   /**
    * Whether the component is rendered as a tile
    */

@@ -9,7 +9,7 @@ export interface TextAreaProps {
   /**
    * The name of the textarea
    */
-  name: string;
+  name?: string;
   /**
    * The number of rows to render for the textarea
    */
