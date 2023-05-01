@@ -2,7 +2,7 @@
 
 WarpSpeed is a React with TypeScript Component Library based on USWDS.
 
-In the beginning, WarpSpeed was built as a React/TypeScript component library for USWDS. Today however, it has become more of a framework for React Apps which require USWDS, as well as other functionality (charts, custom components, etc). In the end, we hope to provide a set of modular tools to accelerate developer productivity and simplify the use of Design Systems, particularly USWDS.
+In the beginning, WarpSpeed was built with a primary focus of USWDS. Today however, it has become more of a framework for React Apps which require USWDS, as well as other functionality (charts, custom components, etc). In the end, we hope to provide a set of modular tools to accelerate developer productivity and simplify the use of Design Systems, particularly USWDS.
 
 ## Table of Contents
 
