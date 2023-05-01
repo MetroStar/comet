@@ -1,8 +1,8 @@
 # WarpSpeed
 
-WarpSpeed is a React Web App accelerator for government agencies, who utilize USWDS.
+WarpSpeed is a React with TypeScript Component Library based on USWDS.
 
-In the beginning, WarpSpeed was built as a React/TypeScript component library for USWDS. Today however, it has become more of a framework for React Apps which require USWDS, as well as other functionality (charts, custom components, etc). And in the end, we hope to provide a set of tools, which can be all used together, or each as needed.
+In the beginning, WarpSpeed was built as a React/TypeScript component library for USWDS. Today however, it has become more of a framework for React Apps which require USWDS, as well as other functionality (charts, custom components, etc). In the end, we hope to provide a set of modular tools to accelerate developer productivity and simplify the use of Design Systems, particularly USWDS.
 
 ## Table of Contents
 
@@ -20,7 +20,7 @@ In the beginning, WarpSpeed was built as a React/TypeScript component library fo
 
 ## Getting Started
 
-In order to simplify the process of getting started, we have provided a starter app which includes each of the packages listed above. This app also provides some additional opinionated tools to further accelerate the process of getting started. These additions are not required. The starter app repo can be found here: [WarpSpeed Starter App](https://github.com/MetroStar/warpspeed-starter-app).
+In order to simplify the process of getting started, we have provided a starter app which includes our components. This app also provides some additional opinionated tools to further accelerate the process of getting started. These additions are not required. The starter app repo can be found here: [Comet Starter App](https://github.com/MetroStar/comet-starter).
 
 See each package directory for additional information on getting started.
 
