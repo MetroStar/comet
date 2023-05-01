@@ -1,14 +1,14 @@
 import React from 'react';
 import '@testing-library/jest-dom';
-import userEvent, { render, screen, fireEvent } from '@testing-library/react';
+import /* userEvent, */ { render, screen /* fireEvent */} from '@testing-library/react';
 import { MemorableDate } from './memorable-date';
 
 describe('Memorable Date', () => {
-  const memorableDate = <MemorableDate id="memorable-date" monthId='month' dayId='day' yearId='year' />;
+  const memorableDate = <MemorableDate id="1" />;
 
   test('should render', () => {
     render(memorableDate);
-    expect(screen.getByTestId('memorable-date')).toBeTruthy();
+    expect(screen.getByTestId('memorable-date-1')).toBeTruthy();
   });
 
   // it('should set date to Jan 2 2020 using keyboard', async () => {

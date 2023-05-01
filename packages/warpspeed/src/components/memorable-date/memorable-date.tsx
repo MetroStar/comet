@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ChangeEventHandler } from 'react';
 
 export interface MemorableDateProps {
     /**
@@ -6,41 +6,23 @@ export interface MemorableDateProps {
      */
     id: string;
     /**
-     * The unique identifier for the month field
-     */
-    monthId: string;
-    /**
-     * The unique identifier for the day field
-     */
-    dayId: string;
-    /**
-     * The unique identifier for the year field
-     */
-    yearId: string;
-    /**
-     * The name for the month field
-     */
-    monthName?: string;
-    /**
-     * The name for the day field
-     */
-    dayName?: string;
-    /**
-     * The name for the year field
-     */
-    yearName?: string;
-    /**
      * The default value for the day field
      */
-    dayValue?: number;
+    defaultDayValue?: number;
     /**
      * The default value for the year field
      */
-    monthValue?: number;
+    defaultMonthValue?: number;
     /**
      * The default value for the year field
      */
-    yearValue?: number;
+    defaultYearValue?: number;
+    /**
+     * Event handler will be triggered when a value changes
+     */
+    onMonthChange?: ChangeEventHandler<HTMLSelectElement>;
+    onDayChange?: ChangeEventHandler<HTMLSelectElement>;
+    onYearChange?: ChangeEventHandler<HTMLSelectElement>;
   }
 
   /**
@@ -48,26 +30,24 @@ export interface MemorableDateProps {
    */
   export const MemorableDate = ({
     id,
-    monthId,
-    dayId,
-    yearId,
-    monthName,
-    dayName,
-    yearName,
-    monthValue,
-    dayValue,
-    yearValue,
+    defaultMonthValue,
+    defaultDayValue,
+    defaultYearValue,
+    onMonthChange,
+    onDayChange,
+    onYearChange,
     ...props
   }: MemorableDateProps): React.ReactElement => {
     return (
-      <div id={id} className="usa-memorable-date" data-testid="memorable-date" {...props}>
+      <div id={`memorable-date-${id}`} className="usa-memorable-date" data-testid="memorable-date" {...props}>
         <div className="usa-form-group usa-form-group--month usa-form-group--select">
-          <label className="usa-label" htmlFor={monthId}>Month</label>
+          <label className="usa-label" htmlFor={`memorable-date-month-${id}`}>Month</label>
           <select
             className="usa-select"
-            id={monthId}
-            name={monthName}
-            value={monthValue}
+            id={`memorable-date-month-${id}`}
+            name={`memorable-date-month-${id}`}
+            defaultValue={defaultMonthValue}
+            onChange={onMonthChange}
           >
             <option value="">- Select -</option>
             <option value={1}>01 - January</option>
@@ -85,29 +65,31 @@ export interface MemorableDateProps {
           </select>
         </div>
         <div className="usa-form-group usa-form-group--day">
-          <label className="usa-label" htmlFor={dayId}>Day</label>
+          <label className="usa-label" htmlFor={`memorable-date-day-${id}`}>Day</label>
           <input
             className="usa-input"
-            id={dayId}
-            name={dayName}
+            id={`memorable-date-day-${id}`}
+            name={`memorable-date-day-${id}`}
             minLength={1}
             maxLength={2}
             pattern="[0-9]*"
             inputMode="numeric"
-            value={dayValue}
+            defaultValue={defaultDayValue}
+            onChange={onDayChange}
           />
         </div>
         <div className="usa-form-group usa-form-group--year">
-          <label className="usa-label" htmlFor={yearId}>Year</label>
+          <label className="usa-label" htmlFor={`memorable-date-year-${id}`}>Year</label>
           <input
             className="usa-input"
-            id={yearId}
-            name={yearName}
+            id={`memorable-date-year-${id}`}
+            name={`memorable-date-year-${id}`}
             minLength={4}
             maxLength={4}
             pattern="[0-9]*"
             inputMode="numeric"
-            value={yearValue}
+            defaultValue={defaultYearValue}
+            onChange={onYearChange}
           />
         </div>
       </div>
