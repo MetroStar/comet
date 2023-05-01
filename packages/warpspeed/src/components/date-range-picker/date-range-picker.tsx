@@ -5,7 +5,7 @@ export interface DateRangePickerProps {
   /**
    * The unique identifier for the date range picker field
    */
-  id: string;
+  id?: string;
 }
 
 /**
