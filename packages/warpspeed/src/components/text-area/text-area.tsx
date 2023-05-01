@@ -1,7 +1,6 @@
 import classNames from 'classnames';
 import React, { ChangeEventHandler } from 'react';
 
-/* eslint-disable-next-line */
 export interface TextAreaProps {
   /**
    * The unique identifier for the textarea
@@ -10,7 +9,7 @@ export interface TextAreaProps {
   /**
    * The name of the textarea
    */
-  name: string;
+  name?: string;
   /**
    * The number of rows to render for the textarea
    */

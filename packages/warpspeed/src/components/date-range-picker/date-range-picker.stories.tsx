@@ -10,7 +10,7 @@ const meta: Meta<typeof DateRangePickerContainer> = {
 export default meta;
 
 const Template: StoryFn<typeof DateRangePickerContainer> = () => (
-  <DateRangePickerContainer>
+  <DateRangePickerContainer id="date-range-picker">
     <FormGroup>
       <Label id="event-date-start-label" htmlFor="event-date-start">
         Event start date

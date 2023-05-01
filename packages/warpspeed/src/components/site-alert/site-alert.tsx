@@ -1,7 +1,6 @@
 import React, { ReactNode } from 'react';
 import classnames from 'classnames';
 
-/* eslint-disable-next-line */
 export interface SiteAlertProps {
   /**
    * The unique identifier for this component

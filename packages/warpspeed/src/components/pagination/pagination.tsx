@@ -5,7 +5,6 @@ import sprite from '@uswds/uswds/img/sprite.svg';
 export type CreatePageUrlHandler = (page: number) => string | undefined;
 export type OnPageHandler = (event: SyntheticEvent<Element, Event>, page: number) => void;
 
-/* eslint-disable-next-line */
 export interface PaginationProps {
   /**
    * The unique identifier for the pagination

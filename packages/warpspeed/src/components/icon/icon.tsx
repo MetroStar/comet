@@ -2,7 +2,6 @@ import classNames from 'classnames';
 import React from 'react';
 import iconSprite from '@uswds/uswds/img/sprite.svg';
 
-/* eslint-disable-next-line */
 export interface IconProps {
   /**
    * The unique identifier for this component

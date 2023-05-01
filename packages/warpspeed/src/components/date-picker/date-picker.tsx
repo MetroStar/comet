@@ -9,7 +9,7 @@ export interface DatePickerProps {
   /**
    * The name of the input field
    */
-  name: string;
+  name?: string;
   /**
    * The date picker will not allow a date selection before this date. The date should be in the format YYYY-MM-DD. Typing in an earlier date will cause native form validation error. A default min date or 0000-01-01 is used as a default.
    */

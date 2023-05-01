@@ -5,7 +5,6 @@ import usFlagSmall from '@uswds/uswds/img/us_flag_small.png';
 import httpsIcon from '@uswds/uswds/img/icon-https.svg';
 import dotGovIcon from '@uswds/uswds/img/icon-dot-gov.svg';
 
-/* eslint-disable-next-line */
 export interface BannerProps {
   /**
    * The unique identifier for this component

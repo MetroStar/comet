@@ -1,7 +1,6 @@
 import React, { ReactNode } from 'react';
 import classNames from 'classnames';
 
-/* eslint-disable-next-line */
 export interface FormGroupProps {
   /**
    * The unique identifier for this component

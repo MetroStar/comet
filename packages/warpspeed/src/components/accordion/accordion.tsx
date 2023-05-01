@@ -3,21 +3,21 @@ import clasnames from 'classnames';
 import accordion from '@uswds/uswds/js/usa-accordion';
 import './accordion.style.css';
 
-interface Fold {
+interface AccordionItem {
   /**
-   * The unique identifier for the fold
+   * The unique identifier for the accordion item
    */
   id: string;
   /**
-   * The label value for the fold
+   * The label value for the accordion item
    */
   label: string;
   /**
-   * Whether or not the fold is expanded
+   * Whether or not the accordion item is expanded
    */
   expanded: boolean;
   /**
-   * The body of the fold
+   * The body of the accordion item
    */
   child: ReactNode;
 }
@@ -28,13 +28,13 @@ export interface AccordionProps {
    */
   id: string;
   /**
-   * Whether or not to allow multiple folds to be expanded at once
+   * Whether or not to allow multiple items to be expanded at once
    */
   allowMultiSelect?: boolean;
   /**
-   * An array of Fold objects, used to build the accordion
+   * An array of AccordionItem objects, used to build the accordion
    */
-  folds: Fold[];
+  items: AccordionItem[];
 }
 
 /**
@@ -43,7 +43,7 @@ export interface AccordionProps {
 export const Accordion = ({
   id,
   allowMultiSelect = false,
-  folds,
+  items,
 }: AccordionProps): React.ReactElement => {
   // Ensure accordion JS is loaded
   const accordionRef = useRef<HTMLDivElement>(null);
@@ -76,24 +76,24 @@ export const Accordion = ({
       })}
       data-allow-multiple={allowMultiSelect ? true : undefined}
     >
-      {folds.map((e, i) => (
+      {items.map((e, i) => (
         <div className="accordion-item" data-testid="accordion-item" key={`accordion-item-${i}`}>
           <h4 className="usa-accordion__heading">
             <button
               type="button"
               className="usa-accordion__button"
               data-testid="accordion-button"
-              aria-expanded={folds[i].expanded}
-              aria-controls={folds[i].id}
+              aria-expanded={items[i].expanded}
+              aria-controls={items[i].id}
             >
               {e.label}
             </button>
           </h4>
           <div
-            id={folds[i].id}
+            id={items[i].id}
             className="usa-accordion__content usa-prose text-left"
             data-testid="accordion-content"
-            hidden={!folds[i].expanded}
+            hidden={!items[i].expanded}
           >
             {e.child}
           </div>

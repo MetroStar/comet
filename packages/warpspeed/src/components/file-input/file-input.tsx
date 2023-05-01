@@ -9,7 +9,7 @@ export interface FileInputProps {
   /**
    * The name for the file input field
    */
-  name: string;
+  name?: string;
 }
 
 /**

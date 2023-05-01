@@ -7,7 +7,6 @@ const meta: Meta<typeof ComboBox> = {
   component: ComboBox,
   argTypes: {
     id: { required: true },
-    name: { required: true },
   },
 };
 export default meta;

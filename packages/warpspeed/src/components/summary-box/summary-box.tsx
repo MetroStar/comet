@@ -1,7 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
 
-/* eslint-disable-next-line */
 export interface SummaryBoxProps {
   /**
    * The unique identifier for this component

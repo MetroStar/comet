@@ -1,7 +1,6 @@
 import React, { ReactNode, useLayoutEffect, useRef } from 'react';
 import tooltip from '@uswds/uswds/js/usa-tooltip';
 
-/* eslint-disable-next-line */
 export interface TooltipProps {
   /**
    * The text value to display in the tooltip
