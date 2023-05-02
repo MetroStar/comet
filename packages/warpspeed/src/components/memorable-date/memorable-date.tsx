@@ -18,11 +18,17 @@ export interface MemorableDateProps {
    */
   defaultYearValue?: number;
   /**
-   * Event handler will be triggered when a value changes
+   * Event handler will be triggered when a month value changes
    */
   onMonthChange?: ChangeEventHandler<HTMLSelectElement>;
-  onDayChange?: ChangeEventHandler<HTMLSelectElement>;
-  onYearChange?: ChangeEventHandler<HTMLSelectElement>;
+  /**
+   * Event handler will be triggered when a day value changes
+   */
+  onDayChange?: ChangeEventHandler<HTMLInputElement>;
+  /**
+   * Event handler will be triggered when a year value changes
+   */
+  onYearChange?: ChangeEventHandler<HTMLInputElement>;
 }
 
 /**
