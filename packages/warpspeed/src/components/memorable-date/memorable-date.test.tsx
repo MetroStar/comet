@@ -1,6 +1,6 @@
 import React from 'react';
 import '@testing-library/jest-dom';
-import /* userEvent, */ { render, screen /* fireEvent */} from '@testing-library/react';
+import { /* userEvent, */ render, screen /* fireEvent */ } from '@testing-library/react';
 import { MemorableDate } from './memorable-date';
 
 describe('Memorable Date', () => {
