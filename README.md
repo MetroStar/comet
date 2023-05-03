@@ -1,8 +1,8 @@
-# WarpSpeed
+# Comet
 
-WarpSpeed is a React with TypeScript Component Library based on USWDS.
+Comet is a React with TypeScript Component Library based on USWDS.
 
-In the beginning, WarpSpeed was built with a primary focus of USWDS. Today however, it has become more of a framework for React Apps which require USWDS, as well as other functionality (charts, custom components, etc). In the end, we hope to provide a set of modular tools to accelerate developer productivity and simplify the use of Design Systems, particularly USWDS.
+In the beginning, Comet was built with a primary focus of USWDS. Today however, it has become more of a framework for React Apps which require USWDS, as well as other functionality (charts, custom components, etc). In the end, we hope to provide a set of modular tools to accelerate developer productivity and simplify the use of Design Systems, particularly USWDS.
 
 ## Table of Contents
 
@@ -12,11 +12,11 @@ In the beginning, WarpSpeed was built with a primary focus of USWDS. Today howev
 
 ## Overview
 
-`warpspeed` - The base USWDS component library implemented in React with TypeScript.
+`comet` - The base USWDS component library implemented in React with TypeScript.
 
-`warpspeed-data-viz` - A set of Victory Chart components provided as a WarpSpeed wrapper.
+`comet-data-viz` - A set of Victory Chart components provided as a Comet wrapper.
 
-`warpspeed-extras` - A set of custom components, intended to fill in the gaps where USWDS does not provide an implementation.
+`comet-extras` - A set of custom components, intended to fill in the gaps where USWDS does not provide an implementation.
 
 ## Getting Started
 
@@ -26,4 +26,4 @@ See each package directory for additional information on getting started.
 
 ## Want to help?
 
-Interested in contributing to any of the packages in this project? Review our contributing info here: [Contributing](https://github.com/MetroStar/warpspeed/blob/main/CONTRIBUTING.md).
+Interested in contributing to any of the packages in this project? Review our contributing info here: [Contributing](https://github.com/MetroStar/comet/blob/main/CONTRIBUTING.md).
