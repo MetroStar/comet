@@ -1,5 +1,4 @@
 {
-  "name": "warpspeed-react",
   "type": "module",
   "workspaces": [
     "packages/*"
@@ -11,9 +10,9 @@
     "lint": "eslint --ext .tsx --ext .ts packages/**/src/ --fix --config .eslintrc.json",
     "format": "npx prettier packages/**/src --write",
     "build:storybook": "storybook build",
-    "build:warpspeed": "cd packages/warpspeed && rollup -c",
-    "build:warpspeed-data-viz": "cd packages/warpspeed-data-viz && rollup -c",
-    "build:warpspeed-extras": "cd packages/warpspeed-extras && rollup -c"
+    "build:comet": "cd packages/comet && rollup -c",
+    "build:comet-data-viz": "cd packages/comet-data-viz && rollup -c",
+    "build:comet-extras": "cd packages/comet-extras && rollup -c"
   },
   "devDependencies": {
     "@babel/core": "^7.19.3",
