@@ -1,6 +1,6 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "baseUrl": "packages/warpspeed-data-viz"
+    "baseUrl": "packages/comet-extras"
   }
 }
