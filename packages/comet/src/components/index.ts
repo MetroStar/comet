@@ -29,7 +29,7 @@ export { default as Search } from './search';
 export { default as SiteAlert } from './site-alert';
 export { default as StepIndicator } from './step-indicator';
 export { default as SummaryBox } from './summary-box';
-export { default as Table } from './table';
+export { default as Table, TableColumn, TableCell } from './table';
 export { default as Tag } from './tag';
 export { default as TextArea } from './text-area';
 export { default as TimePicker } from './time-picker';

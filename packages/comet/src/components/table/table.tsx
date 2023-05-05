@@ -1,72 +1,141 @@
-import React from 'react';
-import './table.style.css';
+import table from '@uswds/uswds/js/usa-table';
+import classNames from 'classnames';
+import React, { useEffect, useRef } from 'react';
 
-export interface TableProps {
+export interface TableProps<T = any> {
   /**
    * The unique identifier for this component
    */
   id: string;
   /**
-   * An string array of table header items
+   * The table header details for the table
    */
-  headers?: string[];
+  columns: TableColumn[];
   /**
-   * An array of row objects
+   * The data to display in the table rows
    */
-  rows?: any[][];
+  data: T[];
   /**
-   * The index of the primary column
+   * An optional caption to display above the table
    */
-  primaryCol?: number;
+  caption?: string;
   /**
-   * Custom callback for when primary column is clicked
+   * A boolean indicating if the table is sortable or not
    */
-  primaryColAction?: Function;
+  sortable?: boolean;
+  /**
+   * The column index to set as the default sort
+   */
+  sortIndex?: number;
+  /**
+   * The default sort direction if sortIndex is provided
+   */
+  sortDir?: 'ascending' | 'descending';
+  /**
+   * A boolean indicating if the table is scrollabe or not
+   */
+  scrollable?: boolean;
+  /**
+   * Additional class names for the table
+   */
+  className?: string;
+  /**
+   * Used primarily to make table focusable
+   */
+  tabIndex?: number;
 }
 
-const handleNonPrimitives = (e: any): any => (typeof e === 'object' ? JSON.stringify(e) : e);
+export interface TableColumn {
+  id: string;
+  name: string;
+}
+
+export interface TableCell {
+  value: string;
+  sortValue?: string;
+}
 
 /**
  * A table shows information in columns and rows.
  */
 export const Table = ({
   id,
-  headers,
-  rows,
-  primaryCol,
-  primaryColAction = (e: any): void => {},
+  caption,
+  columns,
+  data,
+  sortable = false,
+  sortIndex = 0,
+  sortDir = 'ascending',
+  scrollable = false,
+  className,
+  tabIndex = -1,
 }: TableProps): React.ReactElement => {
+  // Ensure table JS is loaded
+  const tableRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const tableElement = tableRef.current;
+    table.on(tableElement);
+
+    // Ensure cleanup after the effect
+    return () => table.off(tableElement);
+  });
+
   return (
-    <div className="table" id={id}>
-      <table className="usa-table dynamic-table">
+    <div
+      id={id}
+      className={classNames(
+        { 'usa-table-container': !scrollable },
+        { 'usa-table-container--scrollable': scrollable },
+      )}
+      ref={tableRef}
+    >
+      <table className={classNames('usa-table', className)} tabIndex={tabIndex}>
+        <caption hidden={!!caption}>{caption}</caption>
         <thead>
-          <tr>{headers ? headers.map((e, i) => <th key={`table-head-${i}`}>{e}</th>) : <></>}</tr>
+          <tr>
+            {columns.map((column: TableColumn, index: number) => (
+              <th
+                id={column.id}
+                key={column.id}
+                data-sortable={sortable || null}
+                scope="col"
+                role="columnheader"
+                aria-sort={sortable && sortIndex === index ? sortDir : undefined}
+              >
+                {column.name}
+              </th>
+            ))}
+          </tr>
         </thead>
         <tbody>
-          {rows ? (
-            rows.map((cols, j) => (
-              <tr key={`table-row-${j}`}>
-                {cols.map((e, i) => (
-                  <td key={`table-cell-${j}-${i}`}>
-                    {primaryCol === i ? (
-                      <span
-                        className="col-primary text-primary"
-                        onClick={() => primaryColAction(e)}
-                      >
-                        {handleNonPrimitives(e)}
-                      </span>
-                    ) : (
-                      handleNonPrimitives(e)
-                    )}
+          {data.map((row, i: number) => {
+            const rowData: TableCell[] = [];
+            for (const key in row) {
+              if (sortable) {
+                rowData.push({
+                  value: row[key].value,
+                  sortValue: row[key].sortValue,
+                });
+              } else {
+                rowData.push({ value: row[key].value ? row[key].value : row[key] });
+              }
+            }
+
+            return (
+              <tr key={`tr-${i}`}>
+                {rowData.map((row, j) => (
+                  <td key={`td-${j}`} data-sort-value={sortable ? row.sortValue : row.value}>
+                    {row.value}
                   </td>
                 ))}
               </tr>
-            ))
-          ) : (
-            <></>
-          )}
+            );
+          })}
         </tbody>
       </table>
+      {sortable && (
+        <div className="usa-sr-only usa-table__announcement-region" aria-live="polite"></div>
+      )}
     </div>
   );
 };
