@@ -23,6 +23,7 @@ export { default as Label } from './label';
 export { default as Modal } from './modal';
 export { default as Pagination } from './pagination';
 export { default as ProcessList } from './process-list';
+export { default as Prose } from './prose';
 export { default as RadioButton } from './radio-button';
 export { default as RangeSlider } from './range-slider';
 export { default as Search } from './search';
