@@ -12,7 +12,10 @@
     "build:storybook": "storybook build",
     "build:comet-uswds": "cd packages/comet-uswds && rollup -c",
     "build:comet-data-viz": "cd packages/comet-data-viz && rollup -c",
-    "build:comet-extras": "cd packages/comet-extras && rollup -c"
+    "build:comet-extras": "cd packages/comet-extras && rollup -c",
+    "publish:comet-uswds": "cd packages/comet-uswds && npm publish --access public --provenance",
+    "publish:comet-data-viz": "cd packages/comet-data-viz && npm publish --access public --provenance",
+    "publish:comet-extras": "cd packages/comet-extras && npm publish --access public --provenance"
   },
   "devDependencies": {
     "@babel/core": "^7.19.3",
