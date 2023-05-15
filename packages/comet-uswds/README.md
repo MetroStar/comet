@@ -10,13 +10,13 @@ In order to utilize Comet within your app, you must first ensure USWDS is pre-co
 
 ```sh
 # npm
-npm i --save @metrostar/comet
+npm i --save @metrostar/comet-uswds
 # or yarn
-yarn add @metrostar/comet
+yarn add @metrostar/comet-uswds
 ```
 
 2. Add your first Comet component:
 
 ```tsx
-import { Alert } from '@metrostar/comet';
+import { Alert } from '@metrostar/comet-uswds';
 ```

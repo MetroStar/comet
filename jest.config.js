@@ -8,7 +8,7 @@ export default {
     '^.+.(svg|css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$': 'jest-transform-stub',
   },
   collectCoverageFrom: [
-    'packages/comet/src/components/**/*.{ts,tsx}',
+    'packages/comet-uswds/src/components/**/*.{ts,tsx}',
     'packages/comet-extras/src/components/**/*.{ts,tsx}',
     '!**/*.d.ts',
     '!**/*.stories.tsx',

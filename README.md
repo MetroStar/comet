@@ -12,7 +12,7 @@ In the beginning, Comet was built with a primary focus of USWDS. Today however, 
 
 ## Overview
 
-`comet` - The base USWDS component library implemented in React with TypeScript.
+`comet-uswds` - The base USWDS component library implemented in React with TypeScript.
 
 `comet-data-viz` - A set of Victory Chart components provided as a Comet wrapper.
 
