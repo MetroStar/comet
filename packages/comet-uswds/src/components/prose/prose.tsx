@@ -25,10 +25,7 @@ export const Prose = ({
   children,
   ...props
 }: ProseProps & JSX.IntrinsicElements['section']): React.ReactElement => {
-  const classes = classnames(
-    'usa-prose',
-    className
-  );
+  const classes = classnames('usa-prose', className);
 
   return (
     <section id={id} className={classes} {...props}>

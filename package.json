@@ -10,7 +10,7 @@
     "lint": "eslint --ext .tsx --ext .ts packages/**/src/ --fix --config .eslintrc.json",
     "format": "npx prettier packages/**/src --write",
     "build:storybook": "storybook build",
-    "build:comet": "cd packages/comet && rollup -c",
+    "build:comet-uswds": "cd packages/comet-uswds && rollup -c",
     "build:comet-data-viz": "cd packages/comet-data-viz && rollup -c",
     "build:comet-extras": "cd packages/comet-extras && rollup -c"
   },

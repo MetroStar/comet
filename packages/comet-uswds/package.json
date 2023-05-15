@@ -1,6 +1,6 @@
 {
-  "name": "@metrostar/comet",
-  "version": "1.0.1",
+  "name": "@metrostar/comet-uswds",
+  "version": "1.0.0",
   "description": "React with TypeScript Component Library based on USWDS 3.0.",
   "license": "Apache-2.0",
   "main": "./dist/cjs/index.js",
@@ -31,6 +31,6 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/MetroStar/comet.git",
-    "directory": "packages/comet"
+    "directory": "packages/comet-uswds"
   }
 }

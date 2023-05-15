@@ -1,7 +1,7 @@
 const path = require('path');
 module.exports = {
   stories: [
-    '../packages/comet/src/**/*.stories.@(tsx|mdx)',
+    '../packages/comet-uswds/src/**/*.stories.@(tsx|mdx)',
     '../packages/comet-data-viz/src/**/*.stories.@(tsx|mdx)',
     '../packages/comet-extras/src/**/*.stories.@(tsx|mdx)',
   ],
