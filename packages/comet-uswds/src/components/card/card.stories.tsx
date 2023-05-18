@@ -27,4 +27,5 @@ const Template: StoryFn<typeof Card> = (args: CardProps) => (
 export const Default = Template.bind({});
 Default.args = {
   id: 'card-1',
+  className: '',
 };

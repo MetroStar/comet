@@ -1,10 +1,15 @@
 import React, { PropsWithChildren, ReactNode } from 'react';
+import classnames from 'classnames';
 
 export interface CardProps {
   /**
    * The unique identifier for this component
    */
   id: string;
+  /**
+   * A custom class to apply to the component
+   */
+  className?: string;
   /**
    * The body of the card
    */
@@ -14,10 +19,12 @@ export interface CardProps {
 /**
  * Cards contain content and actions about a single subject.
  */
-export const Card = ({ id, children }: CardProps): React.ReactElement => {
+export const Card = ({ id, className, children }: CardProps): React.ReactElement => {
+  const classes = classnames('usa-card__container', className);
+
   return (
-    <div className="usa-card usa-card desktop:grid-col-12" id={id}>
-      <div className="usa-card__container">{children}</div>
+    <div className={classes} id={id}>
+      {children}
     </div>
   );
 };
