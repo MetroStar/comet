@@ -23,6 +23,7 @@ describe('Card', () => {
         Body
       </Card>,
     );
-    expect(container.querySelector('#card-2')).toHaveClass('some-class');
+    expect(container.querySelector('#card-2')).toHaveClass('usa-card');
+    expect(container.querySelector('#card-2 > div')).toHaveClass('some-class');
   });
 });

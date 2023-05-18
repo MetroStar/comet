@@ -23,8 +23,8 @@ export const Card = ({ id, className, children }: CardProps): React.ReactElement
   const classes = classnames('usa-card__container', className);
 
   return (
-    <div className={classes} id={id}>
-      {children}
+    <div className="usa-card" id={id}>
+      <div className={classes}>{children}</div>
     </div>
   );
 };
