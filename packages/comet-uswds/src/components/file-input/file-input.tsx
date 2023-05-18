@@ -23,7 +23,7 @@ export const FileInput = (
     const inputElement = inputRef.current;
     fileInput.on(inputElement);
     return () => fileInput.off(inputElement);
-  });
+  }, []);
   return <input className="usa-file-input" type="file" ref={inputRef} {...inputProps} />;
 };
 
