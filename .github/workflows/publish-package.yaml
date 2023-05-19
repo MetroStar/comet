@@ -26,4 +26,4 @@ jobs:
       - name: Publish Package
         run: npm run publish:comet-uswds
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
