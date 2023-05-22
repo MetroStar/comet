@@ -25,7 +25,6 @@ jobs:
         run: npm run build:comet-uswds
 
       - name: Publish Package
-        run: npm adduser
         run: npm run publish:comet-uswds
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
