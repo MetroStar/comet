@@ -15,7 +15,7 @@ jobs:
       - name: Set up Node environment
         uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 18
           registry-url: https://registry.npmjs.org
 
       - name: Install dependencies
@@ -25,6 +25,7 @@ jobs:
         run: npm run build:comet-uswds
 
       - name: Publish Package
+        run: npm adduser
         run: npm run publish:comet-uswds
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
