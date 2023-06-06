@@ -20,6 +20,7 @@ export { default as Header } from './header';
 export { default as Icon } from './icon';
 export { default as TextInput } from './text-input';
 export { default as Label } from './label';
+export { default as List } from './list';
 export { default as Modal } from './modal';
 export { default as Pagination } from './pagination';
 export { default as ProcessList } from './process-list';
