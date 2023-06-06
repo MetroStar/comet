@@ -1,4 +1,4 @@
-# Contributing to WarpSpeed
+# Contributing to Comet
 
 ## General Process
 

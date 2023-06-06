@@ -1,15 +1,19 @@
 {
-  "name": "@metrostar/warpspeed-extras",
+  "name": "@metrostar/comet-data-viz",
   "version": "1.0.0",
-  "description": "A collection of extra components to fill in the USWDS gaps.",
+  "description": "A set of Victory Chart components provided as a Comet wrapper",
   "license": "Apache-2.0",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
   "keywords": [
+    "victory",
     "react",
     "components",
     "library",
-    "open source"
+    "open source",
+    "charts",
+    "data visualization",
+    "data viz"
   ],
   "files": [
     "./dist",
@@ -18,14 +22,15 @@
   "types": "./dist/index.d.ts",
   "dependencies": {
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "victory": "^36.6.8"
   },
   "peerDependencies": {
     "react": "^18.2.0"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/MetroStar/warpspeed-react.git",
-    "directory": "packages/warpspeed-extras"
+    "url": "https://github.com/MetroStar/comet.git",
+    "directory": "packages/comet-data-viz"
   }
 }
