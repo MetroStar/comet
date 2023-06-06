@@ -1,4 +1,10 @@
-# Comet
+<p style="text-align: center;">
+  <picture>
+    <img alt="Comet Component Library" src="https://raw.githubusercontent.com/MetroStar/comet/main/images/comet-logo.png" width="100%">
+  </picture>
+</p>
+
+<br/>
 
 Comet is a React with TypeScript Component Library based on USWDS.
 

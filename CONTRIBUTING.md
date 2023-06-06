@@ -41,11 +41,6 @@ npm run lint
 npm run format
 ```
 
-## Publishing to NPM
+## Releasing packages
 
-To publish a package to NPM, run the following:
-
-```sh
-npm run build:[SOME PACKAGE]
-npm publish
-```
+See the following for creating a new release: [Releasing](https://github.com/MetroStar/comet/blob/main/RELEASING.md)
