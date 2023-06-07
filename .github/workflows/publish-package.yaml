@@ -25,6 +25,6 @@ jobs:
         run: npm run build:comet-uswds
 
       - name: Publish Package
-        run: npm run publish:comet-uswds
+        run: cd packages/comet-uswds && npm publish --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
