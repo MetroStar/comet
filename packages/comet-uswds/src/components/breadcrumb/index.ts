@@ -1,1 +1,1 @@
-export { default } from './breadcrumb';
+export { default, Crumb } from './breadcrumb';

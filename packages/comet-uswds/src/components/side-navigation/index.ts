@@ -1,1 +1,1 @@
-export { default } from './side-navigation';
+export { default, SideNavigationItem } from './side-navigation';

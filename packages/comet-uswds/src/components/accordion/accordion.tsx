@@ -3,7 +3,7 @@ import clasnames from 'classnames';
 import accordion from '@uswds/uswds/js/usa-accordion';
 import './accordion.style.css';
 
-interface AccordionItem {
+export interface AccordionItem {
   /**
    * The unique identifier for the accordion item
    */

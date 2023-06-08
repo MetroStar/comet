@@ -1,1 +1,1 @@
-export { default } from './combo-box';
+export { default, ComboBoxOption } from './combo-box';
