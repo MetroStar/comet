@@ -7,9 +7,9 @@ export interface ButtonGroupProps {
    */
   id?: string;
   /**
-   * Whether to justify left or right
+   * The type of button group to display
    */
-  alignment?: 'left' | 'right';
+  type?: 'default' | 'segmented';
   /**
    * A custom class to apply to the component
    */
@@ -25,16 +25,13 @@ export interface ButtonGroupProps {
  */
 export const ButtonGroup = ({
   id = undefined,
-  alignment = 'left',
+  type = 'default',
   className,
   children,
 }: ButtonGroupProps): React.ReactElement => {
   const classes = classnames(
     'usa-button-group',
-    {
-      'float-left': alignment === 'left',
-      'float-right': alignment === 'right',
-    },
+    { 'usa-button-group--segmented': type === 'segmented' },
     className,
   );
 

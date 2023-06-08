@@ -32,4 +32,15 @@ describe('ButtonGroup', () => {
     expect(buttonGroup).toBeTruthy();
     expect(buttonGroupitems).toHaveLength(2);
   });
+
+  it('should render a button group with segmented buttons successfully', async () => {
+    const { baseElement } = render(
+      <ButtonGroup type="segmented">
+        <Button id="button1">Button 1</Button>
+        <Button id="button2">Button 2</Button>
+      </ButtonGroup>,
+    );
+    const buttonGroup = baseElement.querySelector('.usa-button-group.usa-button-group--segmented');
+    expect(buttonGroup).toBeTruthy();
+  });
 });
