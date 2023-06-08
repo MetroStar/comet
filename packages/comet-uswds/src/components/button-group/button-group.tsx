@@ -7,6 +7,10 @@ export interface ButtonGroupProps {
    */
   id?: string;
   /**
+   * The type of button group to display
+   */
+  type?: 'default' | 'segmented';
+  /**
    * A custom class to apply to the component
    */
   className?: string;
@@ -21,10 +25,15 @@ export interface ButtonGroupProps {
  */
 export const ButtonGroup = ({
   id = undefined,
+  type = 'default',
   className,
   children,
 }: ButtonGroupProps): React.ReactElement => {
-  const classes = classnames('usa-button-group', className);
+  const classes = classnames(
+    'usa-button-group',
+    { 'usa-button-group--segmented': type === 'segmented' },
+    className,
+  );
 
   return (
     <ul id={id} className={classes}>
