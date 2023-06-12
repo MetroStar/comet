@@ -9,18 +9,21 @@ describe('ErrorMessage', () => {
     const { container } = render(<ErrorMessages errors={errors} />);
     expect(await axe(container)).toHaveNoViolations();
   });
-  it('should render successfully', () => {
+
+  test('should render successfully', () => {
     const errors: string[] = [''];
     const { baseElement } = render(<ErrorMessages errors={errors} />);
     expect(baseElement).toBeTruthy();
   });
-  it('should render an error message successfully', () => {
+
+  test('should render an error message successfully', () => {
     const errors: string[] = ['error1'];
     const { baseElement } = render(<ErrorMessages errors={errors} />);
     const errorMessages = baseElement.querySelectorAll('.usa-error-message');
     expect(errorMessages).toHaveLength(1);
   });
-  it('should render multiple error messages successfully', () => {
+
+  test('should render multiple error messages successfully', () => {
     const errors: string[] = ['error1', 'error2'];
     const { baseElement } = render(<ErrorMessages errors={errors} />);
     const errorMessages = baseElement.querySelectorAll('.usa-error-message');

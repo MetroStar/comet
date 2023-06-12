@@ -16,7 +16,7 @@ describe('Checkbox', () => {
     expect(await axe(container)).toHaveNoViolations();
   });
 
-  it('should render a standard checkbox successfully', () => {
+  test('should render a standard checkbox successfully', () => {
     const { baseElement } = render(
       <Checkbox id={defaultId} name={checkboxName} label="Lorem" value="lorem" />,
     );
@@ -25,7 +25,7 @@ describe('Checkbox', () => {
     expect(checkboxInput.checked).toBeFalsy();
   });
 
-  it('should render a standard checked checkbox successfully', () => {
+  test('should render a standard checked checkbox successfully', () => {
     const { baseElement } = render(
       <Checkbox id={defaultId} name={checkboxName} label="Lorem" value="lorem" checked={true} />,
     );
@@ -34,7 +34,7 @@ describe('Checkbox', () => {
     expect(checkboxInput.checked).toBeTruthy();
   });
 
-  it('should render a tile checkbox successfully', () => {
+  test('should render a tile checkbox successfully', () => {
     const { baseElement } = render(
       <Checkbox id={defaultId} name={checkboxName} label="Lorem" value="lorem" isTile={true} />,
     );
@@ -42,7 +42,7 @@ describe('Checkbox', () => {
     expect(baseElement.querySelector('.usa-checkbox__input--tile')).toBeTruthy();
   });
 
-  it('should trigger change event when checkbox checked', () => {
+  test('should trigger change event when checkbox checked', () => {
     const onCheck = jest.fn();
     const { baseElement } = render(
       <Checkbox
@@ -62,7 +62,7 @@ describe('Checkbox', () => {
     expect(onCheck).toBeCalledTimes(1);
   });
 
-  it('should trigger click event when checkbox checked', () => {
+  test('should trigger click event when checkbox checked', () => {
     const onClick = jest.fn();
     const { baseElement } = render(
       <Checkbox id={defaultId} name={checkboxName} label="Lorem" value="lorem" onClick={onClick} />,
@@ -76,7 +76,7 @@ describe('Checkbox', () => {
     expect(onClick).toBeCalledTimes(1);
   });
 
-  it('should render a standard checkbox group successfully', () => {
+  test('should render a standard checkbox group successfully', () => {
     const { baseElement } = render(
       <CheckboxGroup
         id={defaultGroupId}
@@ -99,7 +99,7 @@ describe('Checkbox', () => {
     });
   });
 
-  it('should render a tiled checkbox group successfully', () => {
+  test('should render a tiled checkbox group successfully', () => {
     const { baseElement } = render(
       <CheckboxGroup
         id={defaultGroupId}
@@ -120,7 +120,7 @@ describe('Checkbox', () => {
     );
   });
 
-  it('should trigger change event when checkbox in group checked', () => {
+  test('should trigger change event when checkbox in group checked', () => {
     const onCheck = jest.fn();
     const { baseElement } = render(
       <CheckboxGroup
@@ -153,7 +153,7 @@ describe('Checkbox', () => {
     expect(onCheck).toBeCalledTimes(2);
   });
 
-  it('should trigger click event when checkbox in group clicked', () => {
+  test('should trigger click event when checkbox in group clicked', () => {
     const onClick = jest.fn();
     const { baseElement } = render(
       <CheckboxGroup

@@ -11,7 +11,8 @@ describe('Pagination', () => {
     );
     expect(await axe(container)).toHaveNoViolations();
   });
-  it('should render successfully', () => {
+
+  test('should render successfully', () => {
     const { baseElement } = render(
       <Pagination id="pagination1" currentPage={9} amountOfPages={24} ariaLabel="Pagination" />,
     );
@@ -22,7 +23,7 @@ describe('Pagination', () => {
     expect(baseElement.querySelector('nav')?.getAttribute('aria-label')).toBe('Pagination');
   });
 
-  it('should render the correct page item as current', () => {
+  test('should render the correct page item as current', () => {
     const { baseElement } = render(
       <Pagination id="pagination1" currentPage={9} amountOfPages={24} ariaLabel="Pagination" />,
     );
@@ -31,7 +32,7 @@ describe('Pagination', () => {
     );
   });
 
-  it('should render previous, next, and extra slots', () => {
+  test('should render previous, next, and extra slots', () => {
     const { baseElement } = render(
       <Pagination id="pagination1" currentPage={9} amountOfPages={24} ariaLabel="Pagination" />,
     );
@@ -39,14 +40,14 @@ describe('Pagination', () => {
     expect(baseElement.querySelectorAll('.usa-pagination__arrow')).toHaveLength(2);
   });
 
-  it('should not render extra slots', () => {
+  test('should not render extra slots', () => {
     const { baseElement } = render(
       <Pagination id="pagination1" currentPage={3} amountOfPages={7} ariaLabel="Pagination" />,
     );
     expect(baseElement.querySelectorAll('.usa-pagination__overflow')).toHaveLength(0);
   });
 
-  it('should render previous, and extra slots, but not next', () => {
+  test('should render previous, and extra slots, but not next', () => {
     const { baseElement } = render(
       <Pagination id="pagination1" currentPage={23} amountOfPages={24} ariaLabel="Pagination" />,
     );
@@ -54,7 +55,7 @@ describe('Pagination', () => {
     expect(baseElement.querySelector('[aria-label="Previous page"]')).toBeTruthy();
   });
 
-  it('should render next, and extra slots, but not previous', () => {
+  test('should render next, and extra slots, but not previous', () => {
     const { baseElement } = render(
       <Pagination id="pagination1" currentPage={0} amountOfPages={24} ariaLabel="Pagination" />,
     );
@@ -62,7 +63,7 @@ describe('Pagination', () => {
     expect(baseElement.querySelector('[aria-label="Next page"]')).toBeTruthy();
   });
 
-  it('clicking the value should trigger onPage event handler', async () => {
+  test('clicking the value should trigger onPage event handler', async () => {
     const onPage = jest.fn();
     const { baseElement } = render(
       <Pagination
@@ -89,7 +90,7 @@ describe('Pagination', () => {
     expect(onPage).toBeCalledWith(expect.any(Object), 10);
   });
 
-  it('clicking the value when no onPage is configured should not crash', async () => {
+  test('clicking the value when no onPage is configured should not crash', async () => {
     const { baseElement } = render(
       <Pagination id="pagination1" currentPage={9} amountOfPages={24} ariaLabel="Pagination" />,
     );
@@ -100,7 +101,7 @@ describe('Pagination', () => {
     await userEvent.click(baseElement.querySelector('a[aria-label="page 11"]') as Element);
   });
 
-  it('should render pagination items with URL', () => {
+  test('should render pagination items with URL', () => {
     const { baseElement } = render(
       <Pagination
         id="pagination1"

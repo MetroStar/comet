@@ -38,7 +38,7 @@ describe('Memorable Date', () => {
     );
   });
 
-  it('changing option should trigger onChanged event handler', async () => {
+  test('changing option should trigger onChanged event handler', async () => {
     const onMonthChange = jest.fn();
     const onDayChange = jest.fn();
     const onYearChange = jest.fn();

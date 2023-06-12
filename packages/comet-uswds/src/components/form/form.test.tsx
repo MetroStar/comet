@@ -9,11 +9,13 @@ describe('Form', () => {
     const { container } = render(<Form id="form">Some form</Form>);
     expect(await axe(container)).toHaveNoViolations();
   });
-  it('should render successfully', () => {
+
+  test('should render successfully', () => {
     const { baseElement } = render(<Form id="form">Some form</Form>);
     expect(baseElement).toBeTruthy();
   });
-  it('should render a form and submit successfully', () => {
+
+  test('should render a form and submit successfully', () => {
     let isSubmitted = false;
     const handleSubmit = (e: FormEvent): void => {
       e.preventDefault();
@@ -31,7 +33,8 @@ describe('Form', () => {
     fireEvent.submit(form);
     expect(isSubmitted).toBe(true);
   });
-  it('should render a form and reset successfully', () => {
+
+  test('should render a form and reset successfully', () => {
     let isReset = false;
     const handleReset = (e: FormEvent): void => {
       e.preventDefault();

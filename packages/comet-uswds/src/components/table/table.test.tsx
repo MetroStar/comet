@@ -97,13 +97,13 @@ describe('Table', () => {
     expect(await axe(container)).toHaveNoViolations();
   });
 
-  it('should render a basic table successfully', () => {
+  test('should render a basic table successfully', () => {
     const { baseElement } = render(<Table id="table1" columns={columns} data={basicData} />);
     const tables = baseElement.querySelectorAll('#table1');
     expect(tables[0]).toBeTruthy();
   });
 
-  it('should render a basic table with caption successfully', () => {
+  test('should render a basic table with caption successfully', () => {
     const { baseElement } = render(
       <Table id="table1" columns={columns} data={basicData} caption="Table 1" />,
     );
@@ -111,7 +111,7 @@ describe('Table', () => {
     expect(caption).toBeTruthy();
   });
 
-  it('should render a default sortable table successfully', () => {
+  test('should render a default sortable table successfully', () => {
     const { baseElement } = render(
       <Table id="table1" columns={columns} data={sortableData} sortable={true} sortIndex={0} />,
     );
@@ -119,7 +119,7 @@ describe('Table', () => {
     expect(th[0].getAttribute('aria-sort')).not.toBeNull();
   });
 
-  it('should render a default sortable table successfully', () => {
+  test('should render a default sortable table successfully', () => {
     const { baseElement } = render(
       <Table id="table1" columns={columns} data={sortableData} sortable={false} />,
     );
@@ -127,7 +127,7 @@ describe('Table', () => {
     expect(th[0].getAttribute('aria-sort')).toBeNull();
   });
 
-  it('should render a descending sortable table successfully', () => {
+  test('should render a descending sortable table successfully', () => {
     const { baseElement } = render(
       <Table
         id="table1"
@@ -143,7 +143,7 @@ describe('Table', () => {
   });
 
   describe('sorted table', () => {
-    it('should match data before sorting', () => {
+    test('should match data before sorting', () => {
       const { baseElement } = render(
         <Table
           id="table1"

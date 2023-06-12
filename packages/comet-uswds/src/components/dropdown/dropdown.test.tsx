@@ -19,21 +19,21 @@ describe('Dropdown', () => {
     expect(await axe(container)).toHaveNoViolations();
   });
 
-  it('should render a default dropdown successfully', () => {
+  test('should render a default dropdown successfully', () => {
     const { baseElement } = render(
       <Dropdown id={defaultId} name={defaultName} options={options} />,
     );
     expect(baseElement).toBeTruthy();
   });
 
-  it('should render a default dropdown with 5 options', () => {
+  test('should render a default dropdown with 5 options', () => {
     const { baseElement } = render(
       <Dropdown id={defaultId} name={defaultName} options={options} />,
     );
     expect(baseElement.querySelectorAll('option')).toHaveLength(5);
   });
 
-  it('should render a dropdown without default option', () => {
+  test('should render a dropdown without default option', () => {
     const { baseElement } = render(
       <Dropdown id={defaultId} name={defaultName} options={options} defaultOption={null} />,
     );
@@ -41,7 +41,7 @@ describe('Dropdown', () => {
     expect(baseElement.querySelectorAll('option')).toHaveLength(4);
   });
 
-  it('should render a dropdown with the first real option selected', () => {
+  test('should render a dropdown with the first real option selected', () => {
     const { baseElement } = render(
       <Dropdown
         id={defaultId}
@@ -56,7 +56,7 @@ describe('Dropdown', () => {
     );
   });
 
-  it('should change selected option to first real option', async () => {
+  test('should change selected option to first real option', async () => {
     const { baseElement } = render(
       <Dropdown id={defaultId} name={defaultName} options={options} />,
     );
@@ -67,7 +67,7 @@ describe('Dropdown', () => {
     );
   });
 
-  it('changing option should trigger onChanged event handler', async () => {
+  test('changing option should trigger onChanged event handler', async () => {
     const onChange = jest.fn();
     const { baseElement } = render(
       <Dropdown id={defaultId} name={defaultName} options={options} onChange={onChange} />,

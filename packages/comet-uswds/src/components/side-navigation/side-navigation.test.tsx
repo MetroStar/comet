@@ -30,7 +30,7 @@ describe('SideNavigation', () => {
     expect(await axe(container)).toHaveNoViolations();
   });
 
-  it('should render a flat side navigation successfully', () => {
+  test('should render a flat side navigation successfully', () => {
     const flatNavigation: SideNavigationItem[] = [
       {
         anchor: createAnchor(true),
@@ -48,7 +48,7 @@ describe('SideNavigation', () => {
     expect(baseElement).toBeTruthy();
   });
 
-  it('should render a two level side navigation successfully', () => {
+  test('should render a two level side navigation successfully', () => {
     const twoLevelNavigation: SideNavigationItem[] = [
       {
         anchor: createAnchor(true),
@@ -81,7 +81,7 @@ describe('SideNavigation', () => {
     expect(baseElement).toBeTruthy();
   });
 
-  it('should render a three level side navigation successfully', () => {
+  test('should render a three level side navigation successfully', () => {
     const threeLevelNavigation: SideNavigationItem[] = [
       {
         anchor: createAnchor(true),

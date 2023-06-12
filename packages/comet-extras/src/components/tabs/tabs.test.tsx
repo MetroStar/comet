@@ -18,7 +18,7 @@ describe('Tabs', () => {
     expect(await axe(container)).toHaveNoViolations();
   });
 
-  it('should render a tabs component successfully', () => {
+  test('should render a tabs component successfully', () => {
     const { baseElement } = render(
       <Tabs id="UNIT TEST" defaultTabId="1">
         <TabPanel id="1" label="UNIT TEST 1">
@@ -33,7 +33,7 @@ describe('Tabs', () => {
     expect(baseElement).toBeTruthy();
   });
 
-  it('should have correct class for active tab', () => {
+  test('should have correct class for active tab', () => {
     const { baseElement } = render(
       <Tabs id="UNIT TEST" defaultTabId="1">
         <TabPanel id="1" label="UNIT TEST LABEL 1">
@@ -49,7 +49,7 @@ describe('Tabs', () => {
     expect(firstTabElement?.classList.length).toBe(2);
   });
 
-  it('should have correct class for inactive tab', () => {
+  test('should have correct class for inactive tab', () => {
     const { baseElement } = render(
       <Tabs id="UNIT TEST" defaultTabId="2">
         <TabPanel id="1" label="UNIT TEST 1">
@@ -65,7 +65,7 @@ describe('Tabs', () => {
     expect(firstTabElement?.classList.length).toBe(1);
   });
 
-  it('should contain correct class name when provided as a prop', () => {
+  test('should contain correct class name when provided as a prop', () => {
     const { baseElement } = render(
       <Tabs id="UNIT TEST" defaultTabId="1" className="UNIT-TEST-CLASS">
         <TabPanel id="1" label="UNIT TEST LABEL 1">
@@ -81,7 +81,7 @@ describe('Tabs', () => {
     expect(tabsElement).toBeTruthy();
   });
 
-  it('should apply correct class names when user clicks on a tab', () => {
+  test('should apply correct class names when user clicks on a tab', () => {
     render(
       <Tabs id="UNIT TEST" defaultTabId="2">
         <TabPanel id="1" label="UNIT TEST LABEL 1">

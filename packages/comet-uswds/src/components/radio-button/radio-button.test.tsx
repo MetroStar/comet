@@ -16,7 +16,7 @@ describe('RadioButton', () => {
     expect(await axe(container)).toHaveNoViolations();
   });
 
-  it('should render a standard radio button successfully', () => {
+  test('should render a standard radio button successfully', () => {
     const { baseElement } = render(
       <RadioButton id={defaultId} name={radioButtonName} label="Lorem" value="lorem" />,
     );
@@ -25,7 +25,7 @@ describe('RadioButton', () => {
     expect(radioButtonInput.checked).toBeFalsy();
   });
 
-  it('should render a standard checked radio button successfully', () => {
+  test('should render a standard checked radio button successfully', () => {
     const { baseElement } = render(
       <RadioButton
         id={defaultId}
@@ -40,7 +40,7 @@ describe('RadioButton', () => {
     expect(radioButtonInput.checked).toBeTruthy();
   });
 
-  it('should render a tile radio button successfully', () => {
+  test('should render a tile radio button successfully', () => {
     const { baseElement } = render(
       <RadioButton
         id={defaultId}
@@ -54,7 +54,7 @@ describe('RadioButton', () => {
     expect(baseElement.querySelector('.usa-radio__input--tile')).toBeTruthy();
   });
 
-  it('should trigger change event when radio button checked', () => {
+  test('should trigger change event when radio button checked', () => {
     const onCheck = jest.fn();
     const { baseElement } = render(
       <RadioButton
@@ -74,7 +74,7 @@ describe('RadioButton', () => {
     expect(onCheck).toBeCalledTimes(1);
   });
 
-  it('should trigger click event when radio button checked', () => {
+  test('should trigger click event when radio button checked', () => {
     const onClick = jest.fn();
     const { baseElement } = render(
       <RadioButton
@@ -94,7 +94,7 @@ describe('RadioButton', () => {
     expect(onClick).toBeCalledTimes(1);
   });
 
-  it('should render a standard radio button group successfully', () => {
+  test('should render a standard radio button group successfully', () => {
     const { baseElement } = render(
       <RadioButtonGroup
         id={defaultGroupId}
@@ -117,7 +117,7 @@ describe('RadioButton', () => {
     });
   });
 
-  it('should render a tiled radio button group successfully', () => {
+  test('should render a tiled radio button group successfully', () => {
     const { baseElement } = render(
       <RadioButtonGroup
         id={defaultGroupId}
@@ -136,7 +136,7 @@ describe('RadioButton', () => {
     expect(baseElement.querySelectorAll('.usa-radio__input--tile')).toHaveLength(loremWords.length);
   });
 
-  it('should trigger change event when radio button in group checked', () => {
+  test('should trigger change event when radio button in group checked', () => {
     const onCheck = jest.fn();
     const { baseElement } = render(
       <RadioButtonGroup
@@ -169,7 +169,7 @@ describe('RadioButton', () => {
     expect(onCheck).toBeCalledTimes(1);
   });
 
-  it('should trigger click event when radio button in group clicked', () => {
+  test('should trigger click event when radio button in group clicked', () => {
     const onClick = jest.fn();
     const { baseElement } = render(
       <RadioButtonGroup

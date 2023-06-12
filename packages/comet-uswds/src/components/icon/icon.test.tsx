@@ -8,13 +8,15 @@ describe('Icon', () => {
     const { container } = render(<Icon id="icon1" type="accessibility_new" />);
     expect(await axe(container)).toHaveNoViolations();
   });
-  it('should render a basic icon successfully', () => {
+
+  test('should render a basic icon successfully', () => {
     const { baseElement } = render(<Icon id="icon1" type="accessibility_new" />);
 
     const svgs = baseElement.querySelectorAll('svg');
     expect(svgs.length).toBe(1);
   });
-  it('should render icons of multiple sizes successfully', () => {
+
+  test('should render icons of multiple sizes successfully', () => {
     const { baseElement } = render(
       <>
         <Icon id="icon0" type="accessibility_new" />
@@ -31,25 +33,8 @@ describe('Icon', () => {
     const svgs = baseElement.querySelectorAll('svg');
     expect(svgs.length).toBe(8);
   });
-  // it('should render icons of different types successfully', () => {
-  //   const icons: string[] = [];
-  //   for (const icon in IconType) {
-  //     icons.push(icon);
-  //   }
-  //   const { baseElement } = render(
-  //     <>
-  //       {icons.map((icon: string, index: number) => (
-  //         <div key={`row${index}`} title={icon as IconType}>
-  //           <Icon id={`icon${index}`} type={icon as IconType} />
-  //         </div>
-  //       ))}
-  //     </>
-  //   );
 
-  //   const svgs = baseElement.querySelectorAll('svg');
-  //   expect(svgs.length).toBe(icons.length);
-  // });
-  it('should render icons of different color successfully', () => {
+  test('should render icons of different color successfully', () => {
     const { baseElement } = render(
       <>
         <Icon id="icon1" type="accessibility_new" />

@@ -10,12 +10,12 @@ describe('Search', () => {
     expect(await axe(container)).toHaveNoViolations();
   });
 
-  it('should render a default search successfully', () => {
+  test('should render a default search successfully', () => {
     const { baseElement } = render(<Search id={defaultId} />);
     expect(baseElement).toBeTruthy();
   });
 
-  it('should render a big search successfully', () => {
+  test('should render a big search successfully', () => {
     const { baseElement } = render(<Search id={defaultId} type="big" />);
     expect(baseElement).toBeTruthy();
     const search = baseElement.querySelector(`#${defaultId}`);
@@ -25,7 +25,7 @@ describe('Search', () => {
     expect(search?.classList).toContain('usa-search--big');
   });
 
-  it('should render a small search successfully', () => {
+  test('should render a small search successfully', () => {
     const { baseElement } = render(<Search id={defaultId} type="small" />);
     expect(baseElement).toBeTruthy();
     const search = baseElement.querySelector(`#${defaultId}`);
@@ -38,7 +38,7 @@ describe('Search', () => {
     expect(icon?.classList).toContain('usa-search__submit-icon');
   });
 
-  it('firing submit event should invoke onSearch callback', () => {
+  test('firing submit event should invoke onSearch callback', () => {
     const searchTerm = 'lorem';
     const onSearchCallback = jest.fn((e: FormEvent) => e.preventDefault());
     const { baseElement } = render(<Search id={defaultId} onSearch={onSearchCallback} />);
@@ -55,7 +55,7 @@ describe('Search', () => {
     expect(onSearchCallback).toBeCalledWith<[FormEvent, string]>(expect.any(Object), searchTerm);
   });
 
-  it('firing submit event should not invoke false onSearch callback', () => {
+  test('firing submit event should not invoke false onSearch callback', () => {
     const searchTerm = 'lorem';
     const { baseElement } = render(<Search id={defaultId} />);
     expect(baseElement).toBeTruthy();

@@ -44,7 +44,7 @@ describe('ButtonGroup', () => {
 
   describe('Segmented', () => {
     test('should render with no accessibility violations', async () => {
-      const { baseElement, container } = render(
+      const { container } = render(
         <ButtonGroup type="segmented">
           <Button id="button1">Button 1</Button>
           <Button id="button2">Button 2</Button>

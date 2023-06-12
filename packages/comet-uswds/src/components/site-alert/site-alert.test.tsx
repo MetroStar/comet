@@ -12,7 +12,8 @@ describe('SiteAlert', () => {
     );
     expect(await axe(container)).toHaveNoViolations();
   });
-  it('should render a default site alert', () => {
+
+  test('should render a default site alert', () => {
     const { baseElement } = render(
       <SiteAlert id="alert1" heading="test">
         test alert
@@ -21,7 +22,8 @@ describe('SiteAlert', () => {
     expect(baseElement).toBeTruthy();
     expect(baseElement.querySelector('.usa-site-alert')).toBeTruthy();
   });
-  it('should render an info site alert', () => {
+
+  test('should render an info site alert', () => {
     const { baseElement } = render(
       <SiteAlert id="alert2" heading="test" type="Info">
         test alert
@@ -30,7 +32,8 @@ describe('SiteAlert', () => {
     expect(baseElement).toBeTruthy();
     expect(baseElement.querySelector('.usa-site-alert--info')).toBeTruthy();
   });
-  it('should render an emergency site alert', () => {
+
+  test('should render an emergency site alert', () => {
     const { baseElement } = render(
       <SiteAlert id="alert3" heading="test" type="Emergency">
         test alert
@@ -39,7 +42,8 @@ describe('SiteAlert', () => {
     expect(baseElement).toBeTruthy();
     expect(baseElement.querySelector('.usa-site-alert--emergency')).toBeTruthy();
   });
-  it('should render a slim site alert', () => {
+
+  test('should render a slim site alert', () => {
     const { baseElement } = render(
       <SiteAlert id="alert4" slim={true}>
         test alert
@@ -48,7 +52,8 @@ describe('SiteAlert', () => {
     expect(baseElement).toBeTruthy();
     expect(baseElement.querySelector('.usa-site-alert--slim')).toBeTruthy();
   });
-  it('should render an site alert with no icon', () => {
+
+  test('should render an site alert with no icon', () => {
     const { baseElement } = render(
       <SiteAlert id="alert5" noIcon={true}>
         test alert

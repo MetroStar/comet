@@ -15,12 +15,12 @@ describe('TextArea', () => {
     expect(await axe(container)).toHaveNoViolations();
   });
 
-  it('should render successfully', () => {
+  test('should render successfully', () => {
     const { baseElement } = render(<TextArea id={defaultId} name={defaultName} />);
     expect(baseElement).toBeTruthy();
   });
 
-  it('should render a textarea with a default value', () => {
+  test('should render a textarea with a default value', () => {
     const defaultValue = 'value1';
     const { baseElement } = render(
       <TextArea id={defaultId} name={defaultName} defaultValue={defaultValue} />,
@@ -28,12 +28,12 @@ describe('TextArea', () => {
     expect(baseElement.querySelector('textarea')?.value).toEqual(defaultValue);
   });
 
-  it('should render a textarea with rows specified', () => {
+  test('should render a textarea with rows specified', () => {
     const { baseElement } = render(<TextArea id={defaultId} name={defaultName} rows={2} />);
     expect(baseElement.querySelector('textarea')?.getAttribute('rows')).toEqual('2');
   });
 
-  it('changing the value should trigger onChanged event handler', async () => {
+  test('changing the value should trigger onChanged event handler', async () => {
     const onChange = jest.fn();
     const { baseElement } = render(
       <TextArea id={defaultId} name={defaultName} onChange={onChange} />,

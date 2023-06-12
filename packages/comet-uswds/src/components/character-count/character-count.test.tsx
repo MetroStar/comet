@@ -35,12 +35,12 @@ describe('Character Count', () => {
     expect(await axe(container)).toHaveNoViolations();
   });
 
-  it('should render successfully', () => {
+  test('should render successfully', () => {
     const { baseElement } = renderCharacterCountInputSample();
     expect(baseElement).toBeTruthy();
   });
 
-  it('should update character count when typing into input', async () => {
+  test('should update character count when typing into input', async () => {
     const { baseElement } = renderCharacterCountInputSample();
     const characterCountElement = baseElement.querySelector(
       '.usa-character-count__message',

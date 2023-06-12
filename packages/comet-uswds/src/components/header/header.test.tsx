@@ -23,52 +23,54 @@ const simple = [
   },
 ];
 
-test('should render with no accessibility violations', async () => {
-  const { container } = render(<Header folding={folding} simple={simple} showSearch={true} />);
-  expect(await axe(container)).toHaveNoViolations();
-});
+describe('Header', () => {
+  test('should render with no accessibility violations', async () => {
+    const { container } = render(<Header folding={folding} simple={simple} showSearch={true} />);
+    expect(await axe(container)).toHaveNoViolations();
+  });
 
-test('Header renders with given props and invokes folded menu', () => {
-  render(<Header folding={folding} simple={simple} showSearch={true} />);
+  test('Header renders with given props and invokes folded menu', () => {
+    render(<Header folding={folding} simple={simple} showSearch={true} />);
 
-  expect(screen.getByText('Bat')).toBeVisible();
+    expect(screen.getByText('Bat')).toBeVisible();
 
-  const foldContent = screen.getByTestId('folding');
-  const foldControl = screen.getByTestId('fold-control');
-  expect(foldContent).toHaveClass('folded-hide');
-  fireEvent.click(foldControl);
-  expect(foldContent).toHaveClass('folded-show');
-});
+    const foldContent = screen.getByTestId('folding');
+    const foldControl = screen.getByTestId('fold-control');
+    expect(foldContent).toHaveClass('folded-hide');
+    fireEvent.click(foldControl);
+    expect(foldContent).toHaveClass('folded-show');
+  });
 
-test('Header renders with nothing', () => {
-  render(<Header />);
-});
+  test('Header renders with nothing', () => {
+    render(<Header />);
+  });
 
-test('Header invokes navigation callback', () => {
-  const navSpy = jest.fn();
-  render(<Header folding={folding} simple={simple} onNavigate={navSpy} />);
-  const foldControl = screen.getByTestId('fold-control');
-  fireEvent.click(foldControl);
-  fireEvent.click(screen.getByText('Orange'));
-  expect(navSpy).toHaveBeenCalledWith('/orange');
-});
+  test('Header invokes navigation callback', () => {
+    const navSpy = jest.fn();
+    render(<Header folding={folding} simple={simple} onNavigate={navSpy} />);
+    const foldControl = screen.getByTestId('fold-control');
+    fireEvent.click(foldControl);
+    fireEvent.click(screen.getByText('Orange'));
+    expect(navSpy).toHaveBeenCalledWith('/orange');
+  });
 
-test('Header invokes search callback', () => {
-  const searchSpy = jest.fn();
-  render(<Header folding={folding} simple={simple} showSearch={true} onSearch={searchSpy} />);
+  test('Header invokes search callback', () => {
+    const searchSpy = jest.fn();
+    render(<Header folding={folding} simple={simple} showSearch={true} onSearch={searchSpy} />);
 
-  fireEvent.change(screen.getByTestId('search'), { target: { value: 'foo' } });
-  fireEvent.click(screen.getByTestId('search-button'));
+    fireEvent.change(screen.getByTestId('search'), { target: { value: 'foo' } });
+    fireEvent.click(screen.getByTestId('search-button'));
 
-  expect(searchSpy).toHaveBeenLastCalledWith('foo');
-});
+    expect(searchSpy).toHaveBeenLastCalledWith('foo');
+  });
 
-test('Invoke default callbacks', () => {
-  render(<Header folding={folding} simple={simple} showSearch={true} />);
+  test('Invoke default callbacks', () => {
+    render(<Header folding={folding} simple={simple} showSearch={true} />);
 
-  // Default search callback
-  fireEvent.change(screen.getByTestId('search'), { target: { value: 'foo' } });
-  fireEvent.click(screen.getByTestId('search-button'));
-  // Default navigate callback
-  fireEvent.click(screen.getByText('Bat'));
+    // Default search callback
+    fireEvent.change(screen.getByTestId('search'), { target: { value: 'foo' } });
+    fireEvent.click(screen.getByTestId('search-button'));
+    // Default navigate callback
+    fireEvent.click(screen.getByText('Bat'));
+  });
 });

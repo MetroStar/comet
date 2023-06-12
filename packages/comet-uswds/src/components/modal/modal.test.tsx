@@ -23,7 +23,7 @@ describe('Modal', () => {
     expect(await axe(container)).toHaveNoViolations();
   });
 
-  it('should render a default modal with no footer successfully', () => {
+  test('should render a default modal with no footer successfully', () => {
     const { baseElement } = customRender(
       <Modal id="modal1" heading="Modal 1">
         Body
@@ -32,7 +32,7 @@ describe('Modal', () => {
     expect(baseElement).toBeTruthy();
   });
 
-  it('should render a small modal successfully', () => {
+  test('should render a small modal successfully', () => {
     const { baseElement } = customRender(
       <Modal id="modal1" size="small" heading="Modal 1" footer={footer}>
         Body
@@ -41,7 +41,7 @@ describe('Modal', () => {
     expect(baseElement).toBeTruthy();
   });
 
-  it('should render a large modal successfully', () => {
+  test('should render a large modal successfully', () => {
     const { baseElement } = customRender(
       <Modal id="modal1" size="large" heading="Modal 1" footer={footer}>
         Body
@@ -50,7 +50,7 @@ describe('Modal', () => {
     expect(baseElement).toBeTruthy();
   });
 
-  it('should render a default modal with no footer successfully', () => {
+  test('should render a default modal with no footer successfully', () => {
     const { baseElement } = customRender(
       <Modal id="modal1" heading="Modal 1">
         Body

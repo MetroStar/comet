@@ -8,11 +8,13 @@ describe('SummaryBox', () => {
     const { container } = render(<SummaryBox id="summary1" heading="heading" items={[]} />);
     expect(await axe(container)).toHaveNoViolations();
   });
-  it('should render successfully', () => {
+
+  test('should render successfully', () => {
     const { baseElement } = render(<SummaryBox id="summary1" heading="heading" items={[]} />);
     expect(baseElement).toBeTruthy();
   });
-  it('should render a summary box with items successfully', () => {
+
+  test('should render a summary box with items successfully', () => {
     const items = ['Item 1', 'Item 2', 'Item 3'];
     const { baseElement } = render(<SummaryBox id="summary1" heading="heading" items={items} />);
     expect(baseElement).toBeTruthy();

@@ -45,15 +45,18 @@ describe('Process list', () => {
       ),
     },
   ];
+
   test('should render with no accessibility violations', async () => {
     const { container } = render(<ProcessList id={defaultId} steps={steps} />);
     expect(await axe(container)).toHaveNoViolations();
   });
-  it('should render a standard process list successfully', () => {
+
+  test('should render a standard process list successfully', () => {
     const { baseElement } = render(<ProcessList id={defaultId} steps={steps} />);
     expect(baseElement).toBeTruthy();
   });
-  it('should render a process list with h4 heading elements', () => {
+
+  test('should render a process list with h4 heading elements', () => {
     const { baseElement } = render(<ProcessList id={defaultId} steps={steps} />);
     expect(baseElement).toBeTruthy();
     const processListNodes = baseElement.querySelectorAll('.usa-process-list__heading');
@@ -61,7 +64,8 @@ describe('Process list', () => {
       expect(processListNode?.tagName).toEqual('H4');
     });
   });
-  it('should render a process list with different heading elements', () => {
+
+  test('should render a process list with different heading elements', () => {
     const { baseElement } = render(
       <ProcessList
         id={defaultId}

@@ -16,7 +16,7 @@ describe('FileInput', () => {
     expect(await axe(container)).toHaveNoViolations();
   });
 
-  it('should render a standard file input successfully', () => {
+  test('should render a standard file input successfully', () => {
     const { baseElement } = customRender(<FileInput id={defaultId} name={fileInputName} />);
     expect(baseElement).toBeTruthy();
     const input = baseElement.querySelector('input') as HTMLInputElement;
@@ -25,14 +25,14 @@ describe('FileInput', () => {
     input.parentElement?.parentElement?.classList.contains('usa-file-input');
   });
 
-  it('should render a disabled file input successfully', () => {
+  test('should render a disabled file input successfully', () => {
     const { baseElement } = customRender(
       <FileInput id={defaultId} name={fileInputName} disabled />,
     );
     expect(baseElement).toBeTruthy();
   });
 
-  it('should render a disabled file input successfully', async () => {
+  test('should render a disabled file input successfully', async () => {
     const onChange = jest.fn();
     const { baseElement } = customRender(
       <FileInput id={defaultId} name={fileInputName} onChange={onChange} />,
