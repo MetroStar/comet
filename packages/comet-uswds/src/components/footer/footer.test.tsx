@@ -1,6 +1,7 @@
 import React from 'react';
 import '@testing-library/jest-dom';
 import { render, screen, fireEvent } from '@testing-library/react';
+import { axe } from 'jest-axe';
 import Footer from './footer';
 
 const props = {
@@ -23,35 +24,42 @@ const props = {
   },
 };
 
-test('Footer renders with given props and invokes folded menu', () => {
-  render(<Footer {...props} />);
-  expect(screen.getByText('React USWDS')).toBeVisible();
-});
+describe('Footer', () => {
+  test('should render with no accessibility violations', async () => {
+    const { container } = render(<Footer {...props} />);
+    expect(await axe(container)).toHaveNoViolations();
+  });
 
-test('Footer renders with no props', () => {
-  render(<Footer />);
-});
+  test('Footer renders with given props and invokes folded menu', () => {
+    render(<Footer {...props} />);
+    expect(screen.getByText('React USWDS')).toBeVisible();
+  });
 
-test('Footer activates navigate callback', () => {
-  const spy = jest.fn();
-  render(<Footer {...props} onNavigate={spy} />);
+  test('Footer renders with no props', () => {
+    render(<Footer />);
+  });
 
-  fireEvent.click(screen.getByTestId('footer-link'));
-  expect(spy).toHaveBeenCalledWith('/orange');
-});
+  test('Footer activates navigate callback', () => {
+    const spy = jest.fn();
+    render(<Footer {...props} onNavigate={spy} />);
 
-test('Footer calls default onNavigate', () => {
-  render(<Footer {...props} />);
+    fireEvent.click(screen.getByTestId('footer-link'));
+    expect(spy).toHaveBeenCalledWith('/orange');
+  });
 
-  fireEvent.click(screen.getByTestId('footer-link'));
-});
+  test('Footer calls default onNavigate', () => {
+    render(<Footer {...props} />);
 
-test('Scroll to top button works', () => {
-  const spy = jest.fn();
-  window.scrollTo = spy;
-  global.scrollTo = spy;
-  render(<Footer {...props} />);
+    fireEvent.click(screen.getByTestId('footer-link'));
+  });
 
-  fireEvent.click(screen.getByTestId('scroll-top'));
-  expect(spy).toHaveBeenCalledWith(0, 0);
+  test('Scroll to top button works', () => {
+    const spy = jest.fn();
+    window.scrollTo = spy;
+    global.scrollTo = spy;
+    render(<Footer {...props} />);
+
+    fireEvent.click(screen.getByTestId('scroll-top'));
+    expect(spy).toHaveBeenCalledWith(0, 0);
+  });
 });

@@ -121,7 +121,7 @@ export const Footer = ({
               <div className="usa-footer__social-links grid-row grid-gap-1">
                 {socials?.facebook ? (
                   <div className="grid-col-auto">
-                    <a className="usa-social-link" href={socials.facebook}>
+                    <a className="usa-social-link" href={socials.facebook} aria-label="Facebook">
                       <div className="usa-social-link__icon" style={{ padding: '10%' }}>
                         <BsFacebook style={{ width: '100%', height: '100%' }} title="Facebook" />
                       </div>
@@ -132,7 +132,7 @@ export const Footer = ({
                 )}
                 {socials?.twitter ? (
                   <div className="grid-col-auto">
-                    <a className="usa-social-link" href={socials.twitter}>
+                    <a className="usa-social-link" href={socials.twitter} aria-label="Twitter">
                       <div className="usa-social-link__icon" style={{ padding: '10%' }}>
                         <BsTwitter style={{ width: '100%', height: '100%' }} title="Twitter" />
                       </div>
@@ -144,7 +144,7 @@ export const Footer = ({
 
                 {socials?.youtube ? (
                   <div className="grid-col-auto">
-                    <a className="usa-social-link" href={socials.youtube}>
+                    <a className="usa-social-link" href={socials.youtube} aria-label="YouTube">
                       <div className="usa-social-link__icon" style={{ padding: '10%' }}>
                         <BsYoutube style={{ width: '100%', height: '100%' }} title="YouTube" />
                       </div>
@@ -156,7 +156,7 @@ export const Footer = ({
 
                 {socials?.instagram ? (
                   <div className="grid-col-auto">
-                    <a className="usa-social-link" href={socials.instagram}>
+                    <a className="usa-social-link" href={socials.instagram} aria-label="Instagram">
                       <div className="usa-social-link__icon" style={{ padding: '10%' }}>
                         <BsInstagram style={{ width: '100%', height: '100%' }} title="Instagram" />
                       </div>

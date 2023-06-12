@@ -1,9 +1,19 @@
 import React from 'react';
 import '@testing-library/jest-dom';
 import { render, screen, fireEvent } from '@testing-library/react';
+import { axe } from 'jest-axe';
 import Breadcrumb from './breadcrumb';
 
-describe('Breadcrum', () => {
+describe('Breadcrumb', () => {
+  test('should render with no accessibility violations', async () => {
+    const spy = jest.fn();
+    const crumbs = [{ path: '/test', name: 'test' }];
+    const { container } = render(
+      <Breadcrumb id="breadcrumb" crumbs={crumbs} current="foo" action={spy} />,
+    );
+    expect(await axe(container)).toHaveNoViolations();
+  });
+
   test('should render with given props and is callable', () => {
     const spy = jest.fn();
     const crumbs = [{ path: '/test', name: 'test' }];

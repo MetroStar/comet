@@ -1,25 +1,33 @@
 import React from 'react';
 import { render } from '@testing-library/react';
+import { axe } from 'jest-axe';
 import StepIndicator from './step-indicator';
 
 const steps: string[] = ['Lorem', 'Ipsum', 'Dolor', 'Sit', 'Amet'];
 
 describe('StepIndicator', () => {
-  it('should render successfully', () => {
+  test('should render with no accessibility violations', async () => {
+    const { container } = render(
+      <StepIndicator id="step-indicator1" steps={steps} currentStep={1} />,
+    );
+    expect(await axe(container)).toHaveNoViolations();
+  });
+
+  test('should render successfully', () => {
     const { baseElement } = render(
       <StepIndicator id="step-indicator1" steps={steps} currentStep={1} />,
     );
     expect(baseElement).toBeTruthy();
   });
 
-  it(`should render ${steps.length} steps`, () => {
+  test(`should render ${steps.length} steps`, () => {
     const { baseElement } = render(
       <StepIndicator id="step-indicator1" steps={steps} currentStep={1} />,
     );
     expect(baseElement.querySelectorAll('.usa-step-indicator__segment')).toHaveLength(steps.length);
   });
 
-  it('should render step 0 as complete', () => {
+  test('should render step 0 as complete', () => {
     const { baseElement } = render(
       <StepIndicator id="step-indicator1" steps={steps} currentStep={1} />,
     );
@@ -28,7 +36,7 @@ describe('StepIndicator', () => {
     );
   });
 
-  it('should render step 1 as current', () => {
+  test('should render step 1 as current', () => {
     const { baseElement } = render(
       <StepIndicator id="step-indicator1" steps={steps} currentStep={1} />,
     );
@@ -37,7 +45,7 @@ describe('StepIndicator', () => {
     expect(secondIndicator.getAttribute('aria-current')).toEqual('true');
   });
 
-  it('should render step 2 not as complete or current', () => {
+  test('should render step 2 not as complete or current', () => {
     const { baseElement } = render(
       <StepIndicator id="step-indicator1" steps={steps} currentStep={1} />,
     );
@@ -47,7 +55,7 @@ describe('StepIndicator', () => {
     expect(thirdIndicator.hasAttribute('aria-current')).toEqual(false);
   });
 
-  it('should render step indicator with hidden labels', () => {
+  test('should render step indicator with hidden labels', () => {
     const { baseElement } = render(
       <StepIndicator id="step-indicator1" steps={steps} currentStep={0} hideLabels={true} />,
     );
@@ -55,7 +63,7 @@ describe('StepIndicator', () => {
     expect(stepIndicator?.classList).toContain('usa-step-indicator--no-labels');
   });
 
-  it('should render step indicator with counters', () => {
+  test('should render step indicator with counters', () => {
     const { baseElement } = render(
       <StepIndicator id="step-indicator1" steps={steps} currentStep={0} showCounters={true} />,
     );
@@ -63,7 +71,7 @@ describe('StepIndicator', () => {
     expect(stepIndicator?.classList).toContain('usa-step-indicator--counters');
   });
 
-  it('should render step indicator with small counters', () => {
+  test('should render step indicator with small counters', () => {
     const { baseElement } = render(
       <StepIndicator id="step-indicator1" steps={steps} currentStep={0} showSmallCounters={true} />,
     );
@@ -71,7 +79,7 @@ describe('StepIndicator', () => {
     expect(stepIndicator?.classList).toContain('usa-step-indicator--counters-sm');
   });
 
-  it('should render step indicator with centered counters', () => {
+  test('should render step indicator with centered counters', () => {
     const { baseElement } = render(
       <StepIndicator id="step-indicator1" steps={steps} currentStep={0} centerCounters={true} />,
     );
@@ -79,7 +87,7 @@ describe('StepIndicator', () => {
     expect(stepIndicator?.classList).toContain('usa-step-indicator--center');
   });
 
-  it('should render step indicator with h1 header', () => {
+  test('should render step indicator with h1 header', () => {
     const { baseElement } = render(
       <StepIndicator
         id="step-indicator1"

@@ -1,10 +1,16 @@
 import React from 'react';
 import '@testing-library/jest-dom';
 import { render } from '@testing-library/react';
+import { axe } from 'jest-axe';
 import Alert from './alert';
 
 describe('Alert', () => {
-  test('should render a default alert', () => {
+  test('should render with no accessibility violations', async () => {
+    const { container } = render(<Alert id="alert" type="info" />);
+    expect(await axe(container)).toHaveNoViolations();
+  });
+
+  test('should render a default alert', async () => {
     const { container } = render(<Alert id="alert" type="info" />);
     expect(container.querySelector('#alert')).toHaveClass('usa-alert--info');
   });

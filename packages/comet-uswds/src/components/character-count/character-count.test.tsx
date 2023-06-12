@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, RenderResult } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { axe } from 'jest-axe';
 import { Form, FormGroup, Label, TextInput } from '../..';
 import { CharacterCount, CharacterCountContainer } from './character-count';
 
@@ -29,12 +30,17 @@ describe('Character Count', () => {
       </Form>,
     );
 
-  it('should render successfully', () => {
+  test('should render with no accessibility violations', async () => {
+    const { container } = renderCharacterCountInputSample();
+    expect(await axe(container)).toHaveNoViolations();
+  });
+
+  test('should render successfully', () => {
     const { baseElement } = renderCharacterCountInputSample();
     expect(baseElement).toBeTruthy();
   });
 
-  it('should update character count when typing into input', async () => {
+  test('should update character count when typing into input', async () => {
     const { baseElement } = renderCharacterCountInputSample();
     const characterCountElement = baseElement.querySelector(
       '.usa-character-count__message',

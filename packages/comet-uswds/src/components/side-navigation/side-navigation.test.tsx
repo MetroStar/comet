@@ -1,5 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
+import { axe } from 'jest-axe';
 import SideNavigation, { SideNavigationItem } from './side-navigation';
 
 describe('SideNavigation', () => {
@@ -11,7 +12,25 @@ describe('SideNavigation', () => {
     </a>
   );
 
-  it('should render a flat side navigation successfully', () => {
+  test('should render with no accessibility violations', async () => {
+    const flatNavigation: SideNavigationItem[] = [
+      {
+        anchor: createAnchor(true),
+      },
+      ...[...Array(4)].map(() => {
+        return {
+          anchor: createAnchor(),
+        };
+      }),
+    ];
+
+    const { container } = render(
+      <SideNavigation id={defaultId} ariaLabel={ariaLabel} items={flatNavigation} />,
+    );
+    expect(await axe(container)).toHaveNoViolations();
+  });
+
+  test('should render a flat side navigation successfully', () => {
     const flatNavigation: SideNavigationItem[] = [
       {
         anchor: createAnchor(true),
@@ -29,7 +48,7 @@ describe('SideNavigation', () => {
     expect(baseElement).toBeTruthy();
   });
 
-  it('should render a two level side navigation successfully', () => {
+  test('should render a two level side navigation successfully', () => {
     const twoLevelNavigation: SideNavigationItem[] = [
       {
         anchor: createAnchor(true),
@@ -62,7 +81,7 @@ describe('SideNavigation', () => {
     expect(baseElement).toBeTruthy();
   });
 
-  it('should render a three level side navigation successfully', () => {
+  test('should render a three level side navigation successfully', () => {
     const threeLevelNavigation: SideNavigationItem[] = [
       {
         anchor: createAnchor(true),

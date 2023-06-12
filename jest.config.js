@@ -22,4 +22,5 @@ export default {
       statements: 95,
     },
   },
+  setupFilesAfterEnv: ['<rootDir>/jest-setup.js'],
 };

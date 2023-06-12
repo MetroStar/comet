@@ -1,9 +1,15 @@
 import React from 'react';
 import '@testing-library/jest-dom';
 import { render, screen, fireEvent } from '@testing-library/react';
+import { axe } from 'jest-axe';
 import TextInput from './text-input';
 
 describe('Input', () => {
+  test('should render with no accessibility violations', async () => {
+    const { container } = render(<TextInput id="input" aria-label="input" />);
+    expect(await axe(container)).toHaveNoViolations();
+  });
+
   test('should render successfully', () => {
     render(<TextInput id="input" />);
     const input = screen.getByTestId('input');

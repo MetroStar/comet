@@ -1,11 +1,17 @@
 import React from 'react';
 import '@testing-library/jest-dom';
-import { /* userEvent, */ render, screen /* fireEvent */ } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
+import { axe } from 'jest-axe';
 import { MemorableDate } from './memorable-date';
 import userEvent from '@testing-library/user-event';
 
 describe('Memorable Date', () => {
   const memorableDate = <MemorableDate id="1" data-testid="memorable-date-1" />;
+
+  test('should render with no accessibility violations', async () => {
+    const { container } = render(memorableDate);
+    expect(await axe(container)).toHaveNoViolations();
+  });
 
   test('should render', () => {
     render(memorableDate);
@@ -32,7 +38,7 @@ describe('Memorable Date', () => {
     );
   });
 
-  it('changing option should trigger onChanged event handler', async () => {
+  test('changing option should trigger onChanged event handler', async () => {
     const onMonthChange = jest.fn();
     const onDayChange = jest.fn();
     const onYearChange = jest.fn();

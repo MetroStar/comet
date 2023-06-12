@@ -1,5 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
+import { axe } from 'jest-axe';
 import userEvent from '@testing-library/user-event';
 import Dropdown, { DropdownOption } from './dropdown';
 
@@ -11,21 +12,28 @@ describe('Dropdown', () => {
     return { value: word.toLowerCase(), label: word } as DropdownOption;
   });
 
-  it('should render a default dropdown successfully', () => {
+  test('should render with no accessibility violations', async () => {
+    const { container } = render(
+      <Dropdown id={defaultId} name={defaultName} options={options} aria-label="dropdown" />,
+    );
+    expect(await axe(container)).toHaveNoViolations();
+  });
+
+  test('should render a default dropdown successfully', () => {
     const { baseElement } = render(
       <Dropdown id={defaultId} name={defaultName} options={options} />,
     );
     expect(baseElement).toBeTruthy();
   });
 
-  it('should render a default dropdown with 5 options', () => {
+  test('should render a default dropdown with 5 options', () => {
     const { baseElement } = render(
       <Dropdown id={defaultId} name={defaultName} options={options} />,
     );
     expect(baseElement.querySelectorAll('option')).toHaveLength(5);
   });
 
-  it('should render a dropdown without default option', () => {
+  test('should render a dropdown without default option', () => {
     const { baseElement } = render(
       <Dropdown id={defaultId} name={defaultName} options={options} defaultOption={null} />,
     );
@@ -33,7 +41,7 @@ describe('Dropdown', () => {
     expect(baseElement.querySelectorAll('option')).toHaveLength(4);
   });
 
-  it('should render a dropdown with the first real option selected', () => {
+  test('should render a dropdown with the first real option selected', () => {
     const { baseElement } = render(
       <Dropdown
         id={defaultId}
@@ -48,7 +56,7 @@ describe('Dropdown', () => {
     );
   });
 
-  it('should change selected option to first real option', async () => {
+  test('should change selected option to first real option', async () => {
     const { baseElement } = render(
       <Dropdown id={defaultId} name={defaultName} options={options} />,
     );
@@ -59,7 +67,7 @@ describe('Dropdown', () => {
     );
   });
 
-  it('changing option should trigger onChanged event handler', async () => {
+  test('changing option should trigger onChanged event handler', async () => {
     const onChange = jest.fn();
     const { baseElement } = render(
       <Dropdown id={defaultId} name={defaultName} options={options} onChange={onChange} />,

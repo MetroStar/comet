@@ -1,4 +1,5 @@
 import { render, RenderOptions, RenderResult } from '@testing-library/react';
+import { axe } from 'jest-axe';
 import React, { ReactNode } from 'react';
 import Modal from './modal';
 
@@ -13,7 +14,16 @@ describe('Modal', () => {
     </button>
   );
 
-  it('should render a default modal with no footer successfully', () => {
+  test('should render with no accessibility violations', async () => {
+    const { container } = customRender(
+      <Modal id="modal1" heading="Modal 1">
+        Body
+      </Modal>,
+    );
+    expect(await axe(container)).toHaveNoViolations();
+  });
+
+  test('should render a default modal with no footer successfully', () => {
     const { baseElement } = customRender(
       <Modal id="modal1" heading="Modal 1">
         Body
@@ -22,7 +32,7 @@ describe('Modal', () => {
     expect(baseElement).toBeTruthy();
   });
 
-  it('should render a small modal successfully', () => {
+  test('should render a small modal successfully', () => {
     const { baseElement } = customRender(
       <Modal id="modal1" size="small" heading="Modal 1" footer={footer}>
         Body
@@ -31,7 +41,7 @@ describe('Modal', () => {
     expect(baseElement).toBeTruthy();
   });
 
-  it('should render a large modal successfully', () => {
+  test('should render a large modal successfully', () => {
     const { baseElement } = customRender(
       <Modal id="modal1" size="large" heading="Modal 1" footer={footer}>
         Body
@@ -40,7 +50,7 @@ describe('Modal', () => {
     expect(baseElement).toBeTruthy();
   });
 
-  it('should render a default modal with no footer successfully', () => {
+  test('should render a default modal with no footer successfully', () => {
     const { baseElement } = customRender(
       <Modal id="modal1" heading="Modal 1">
         Body

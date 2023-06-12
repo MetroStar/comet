@@ -1,5 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
+import { axe } from 'jest-axe';
 import userEvent from '@testing-library/user-event';
 import ComboBox, { ComboBoxOption } from './combo-box';
 
@@ -11,7 +12,17 @@ describe('ComboBox', () => {
     return { value: word.toLowerCase(), label: word } as ComboBoxOption;
   });
 
-  it('should render a default combo box successfully', () => {
+  test('should render with no accessibility violations', async () => {
+    const { container } = render(
+      <>
+        <label htmlFor={defaultId}>Pick option</label>
+        <ComboBox id={defaultId} name={defaultName} options={options} />
+      </>,
+    );
+    expect(await axe(container)).toHaveNoViolations();
+  });
+
+  test('should render a default combo box successfully', () => {
     const { baseElement } = render(
       <>
         <label htmlFor={defaultId}>Pick option</label>
@@ -22,7 +33,7 @@ describe('ComboBox', () => {
     expect(baseElement.querySelector('.usa-combo-box__input')).toBeTruthy();
   });
 
-  it('should render a default combo box with 4 options', async () => {
+  test('should render a default combo box with 4 options', async () => {
     const { baseElement } = render(
       <>
         <label htmlFor={defaultId}>Pick option</label>
@@ -33,7 +44,7 @@ describe('ComboBox', () => {
     expect(baseElement.querySelectorAll('.usa-combo-box__list li')).toHaveLength(4);
   });
 
-  it('should render a combo box with the first real option selected', () => {
+  test('should render a combo box with the first real option selected', () => {
     const { baseElement } = render(
       <>
         <label htmlFor={defaultId}>Pick option</label>
@@ -51,7 +62,7 @@ describe('ComboBox', () => {
     );
   });
 
-  it('should change selected option to first real option', async () => {
+  test('should change selected option to first real option', async () => {
     const { baseElement } = render(
       <>
         <label htmlFor={defaultId}>Pick option</label>
@@ -65,7 +76,7 @@ describe('ComboBox', () => {
     );
   });
 
-  it('should show a placeholder on the combo box', () => {
+  test('should show a placeholder on the combo box', () => {
     const { baseElement } = render(
       <>
         <label htmlFor={defaultId}>Pick option</label>
@@ -83,7 +94,7 @@ describe('ComboBox', () => {
     );
   });
 
-  it('changing option should trigger onChanged event handler', async () => {
+  test('changing option should trigger onChanged event handler', async () => {
     const onChange = jest.fn();
     const { baseElement } = render(
       <>

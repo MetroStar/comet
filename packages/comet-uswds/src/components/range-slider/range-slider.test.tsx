@@ -1,17 +1,25 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
+import { axe } from 'jest-axe';
 import RangeSlider from './range-slider';
 
 describe('Range slider', () => {
   const defaultId = 'range-slider';
 
-  it('should render a range slider successfully', () => {
+  test('should render with no accessibility violations', async () => {
+    const { container } = render(
+      <RangeSlider id={defaultId} name={defaultId} aria-label="slider" />,
+    );
+    expect(await axe(container)).toHaveNoViolations();
+  });
+
+  test('should render a range slider successfully', () => {
     const { baseElement } = render(<RangeSlider id={defaultId} name={defaultId} />);
     expect(baseElement).toBeTruthy();
     expect(baseElement.querySelector('.usa-range')).toBeTruthy();
   });
 
-  it('should render a range slider with min, max, and step successfully', () => {
+  test('should render a range slider with min, max, and step successfully', () => {
     const { baseElement } = render(
       <RangeSlider id={defaultId} name={defaultId} minValue="0" maxValue="100" step="10" />,
     );
@@ -20,7 +28,7 @@ describe('Range slider', () => {
     expect(baseElement.querySelector('#range-slider')?.getAttribute('max')).toEqual('100');
   });
 
-  it('should render a range slider with a default value', () => {
+  test('should render a range slider with a default value', () => {
     const { baseElement } = render(
       <RangeSlider id={defaultId} name={defaultId} defaultValue="20" />,
     );
@@ -28,7 +36,7 @@ describe('Range slider', () => {
     expect(baseElement.querySelector('#range-slider')?.getAttribute('value')).toEqual('20');
   });
 
-  it('should change the value of the slider', () => {
+  test('should change the value of the slider', () => {
     const spy = jest.fn();
     const { baseElement } = render(
       <RangeSlider id={defaultId} name={defaultId} defaultValue="20" onChange={spy} />,

@@ -1,5 +1,6 @@
 import React from 'react';
 import { fireEvent, render, RenderResult } from '@testing-library/react';
+import { axe } from 'jest-axe';
 import { Label, FormGroup, DatePicker } from '../..';
 import { DateRangePickerContainer } from './date-range-picker';
 
@@ -37,13 +38,18 @@ describe('DateRangePicker', () => {
       </DateRangePickerContainer>,
     );
 
-  it('should render successfully', () => {
+  test('should render with no accessibility violations', async () => {
+    const { container } = renderDateRangePicker();
+    expect(await axe(container)).toHaveNoViolations();
+  });
+
+  test('should render successfully', () => {
     const { baseElement } = renderDateRangePicker();
     expect(baseElement).toBeTruthy();
     expect(baseElement.querySelectorAll('.usa-date-picker__button')).toHaveLength(2);
   });
 
-  it('selecting start and end date should set min/max', () => {
+  test('selecting start and end date should set min/max', () => {
     const { baseElement } = renderDateRangePicker(); // open calendar
     const [startDatePicker, endDatePicker] = Array.from(
       baseElement.querySelectorAll('.usa-date-picker'),

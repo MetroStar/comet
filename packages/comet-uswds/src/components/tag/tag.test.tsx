@@ -1,12 +1,18 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-
+import { axe } from 'jest-axe';
 import Tag from './tag';
 
 describe('Tag', () => {
   const defaultId = 'tag1';
   const loremText = 'Lorem Ipsum';
-  it('should render a default tag successfully', () => {
+
+  test('should render with no accessibility violations', async () => {
+    const { container } = render(<Tag id={defaultId}>{loremText}</Tag>);
+    expect(await axe(container)).toHaveNoViolations();
+  });
+
+  test('should render a default tag successfully', () => {
     const { baseElement } = render(<Tag id={defaultId}>{loremText}</Tag>);
     expect(baseElement).toBeTruthy();
     const tag = baseElement.querySelector(`#${defaultId}`);
@@ -15,7 +21,8 @@ describe('Tag', () => {
     expect(tag).toHaveProperty('id', defaultId);
     expect(tag?.classList).toContain('usa-tag');
   });
-  it('should render a big tag successfully', () => {
+
+  test('should render a big tag successfully', () => {
     const { baseElement } = render(
       <Tag id={defaultId} size="Big">
         {loremText}
@@ -29,7 +36,8 @@ describe('Tag', () => {
     expect(tag?.classList).toContain('usa-tag');
     expect(tag?.classList).toContain('usa-tag--big');
   });
-  it('should render a tag with ligth background and indigo text color successfully', () => {
+
+  test('should render a tag with ligth background and indigo text color successfully', () => {
     const { baseElement } = render(
       <Tag id={defaultId} className="bg-base-darkest text-gold">
         {loremText}

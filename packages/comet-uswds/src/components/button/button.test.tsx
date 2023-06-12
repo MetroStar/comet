@@ -1,9 +1,15 @@
 import React from 'react';
 import '@testing-library/jest-dom';
 import { render, screen, fireEvent } from '@testing-library/react';
+import { axe } from 'jest-axe';
 import Button from './button';
 
 describe('Button', () => {
+  test('should render with no accessibility violations', async () => {
+    const { container } = render(<Button id="button-1">Text</Button>);
+    expect(await axe(container)).toHaveNoViolations();
+  });
+
   test('should render a default button', () => {
     render(<Button id="button"></Button>);
     expect(screen.getByTestId('button')).toBeTruthy();

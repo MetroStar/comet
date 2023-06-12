@@ -1,5 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
+import { axe } from 'jest-axe';
 import userEvent from '@testing-library/user-event';
 import TimePicker from './time-picker';
 
@@ -7,7 +8,17 @@ describe('TimePicker', () => {
   const defaultId = 'input1';
   const defaultName = 'input-name';
 
-  it('should render successfully', () => {
+  test('should render with no accessibility violations', async () => {
+    const { container } = render(
+      <>
+        <label htmlFor={defaultId}>Pick time</label>
+        <TimePicker id={defaultId} name={defaultName} />
+      </>,
+    );
+    expect(await axe(container)).toHaveNoViolations();
+  });
+
+  test('should render successfully', () => {
     const { baseElement } = render(
       <>
         <label htmlFor={defaultId}>Pick time</label>
@@ -17,7 +28,7 @@ describe('TimePicker', () => {
     expect(baseElement).toBeTruthy();
   });
 
-  it('changing the value should trigger onChanged event handler', async () => {
+  test('changing the value should trigger onChanged event handler', async () => {
     const onChange = jest.fn();
     const { baseElement } = render(
       <>
@@ -35,7 +46,7 @@ describe('TimePicker', () => {
     expect(input.value).toBe('12:00am');
   });
 
-  it('should render uswds attributes when passed in', () => {
+  test('should render uswds attributes when passed in', () => {
     const { baseElement } = render(
       <>
         <label htmlFor={defaultId}>Pick time</label>

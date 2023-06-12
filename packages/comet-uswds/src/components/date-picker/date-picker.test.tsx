@@ -1,5 +1,6 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
+import { axe } from 'jest-axe';
 import userEvent from '@testing-library/user-event';
 import DatePicker from './date-picker';
 
@@ -8,7 +9,14 @@ describe('Date picker', () => {
   const defaultName = 'date-picker-name';
   const today = new Date();
 
-  it('should render a default date picker successfully', () => {
+  test('should render with no accessibility violations', async () => {
+    const { container } = render(
+      <DatePicker id={defaultId} name={defaultName} aria-label="date" />,
+    );
+    expect(await axe(container)).toHaveNoViolations();
+  });
+
+  test('should render a default date picker successfully', () => {
     const { baseElement } = render(<DatePicker id={defaultId} name={defaultName} />);
     expect(baseElement).toBeTruthy();
 
@@ -16,7 +24,7 @@ describe('Date picker', () => {
     expect(baseElement.querySelector('.usa-date-picker__button')).toBeTruthy();
   });
 
-  it('should open calendar when clicking on picker button', () => {
+  test('should open calendar when clicking on picker button', () => {
     const { baseElement } = render(<DatePicker id={defaultId} name={defaultName} />);
     expect(baseElement.querySelector('.usa-date-picker__calendar')?.hasAttribute('hidden')).toEqual(
       true,
@@ -29,7 +37,7 @@ describe('Date picker', () => {
     );
   });
 
-  it('should set date to Jan 1 2020 using calendar', () => {
+  test('should set date to Jan 1 2020 using calendar', () => {
     const { baseElement } = render(<DatePicker id={defaultId} name={defaultName} />);
     // open calendar
     fireEvent.click(baseElement.querySelector('.usa-date-picker__button') as Element);
@@ -60,7 +68,7 @@ describe('Date picker', () => {
     ).toEqual('01/01/2020');
   });
 
-  it('should set date to Jan 1 2020 using keyboard', async () => {
+  test('should set date to Jan 1 2020 using keyboard', async () => {
     const { baseElement } = render(<DatePicker id={defaultId} name={defaultName} />);
 
     const input = baseElement.querySelector(`input[name="${defaultName}"]`) as HTMLInputElement;
@@ -77,7 +85,7 @@ describe('Date picker', () => {
     ).toEqual('2020-01-01');
   });
 
-  it('should render a date picker with defaultValue successfully', () => {
+  test('should render a date picker with defaultValue successfully', () => {
     const defaultValue = '2021-09-14';
     const { baseElement } = render(
       <DatePicker id={defaultId} name={defaultName} defaultValue={defaultValue} />,
@@ -86,7 +94,7 @@ describe('Date picker', () => {
     expect(baseElement.querySelector('input')?.value).toBe(defaultValue);
   });
 
-  it('should render a date picker with minDate successfully', () => {
+  test('should render a date picker with minDate successfully', () => {
     const minDate = '2021-09-01';
     const { baseElement } = render(
       <DatePicker id={defaultId} name={defaultName} minDate={minDate} />,
@@ -97,7 +105,7 @@ describe('Date picker', () => {
     );
   });
 
-  it('should render a date picker with maxDate successfully', () => {
+  test('should render a date picker with maxDate successfully', () => {
     const maxDate = '2021-09-01';
     const { baseElement } = render(
       <DatePicker id={defaultId} name={defaultName} maxDate={maxDate} />,
@@ -108,7 +116,7 @@ describe('Date picker', () => {
     );
   });
 
-  it('should render a date picker with date range successfully', () => {
+  test('should render a date picker with date range successfully', () => {
     const dateStr = '2021-09-01';
     const rangeDate = new Date(dateStr);
     const { baseElement } = render(
@@ -125,7 +133,7 @@ describe('Date picker', () => {
     );
   });
 
-  it('should be disabled when passing disabled', () => {
+  test('should be disabled when passing disabled', () => {
     const { baseElement } = render(<DatePicker id={defaultId} name={defaultName} disabled />);
 
     expect(
@@ -137,7 +145,7 @@ describe('Date picker', () => {
     );
   });
 
-  it('should trigger onChange event', async () => {
+  test('should trigger onChange event', async () => {
     const onChange = jest.fn();
     const { baseElement } = render(
       <DatePicker id={defaultId} name={defaultName} onChange={onChange} />,
