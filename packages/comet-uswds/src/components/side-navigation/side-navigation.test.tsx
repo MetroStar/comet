@@ -1,5 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
+import { axe } from 'jest-axe';
 import SideNavigation, { SideNavigationItem } from './side-navigation';
 
 describe('SideNavigation', () => {
@@ -10,6 +11,24 @@ describe('SideNavigation', () => {
       Navigation Link
     </a>
   );
+
+  test('should render with no accessibility violations', async () => {
+    const flatNavigation: SideNavigationItem[] = [
+      {
+        anchor: createAnchor(true),
+      },
+      ...[...Array(4)].map(() => {
+        return {
+          anchor: createAnchor(),
+        };
+      }),
+    ];
+
+    const { container } = render(
+      <SideNavigation id={defaultId} ariaLabel={ariaLabel} items={flatNavigation} />,
+    );
+    expect(await axe(container)).toHaveNoViolations();
+  });
 
   it('should render a flat side navigation successfully', () => {
     const flatNavigation: SideNavigationItem[] = [

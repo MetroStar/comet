@@ -1,9 +1,17 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-
+import { axe } from 'jest-axe';
 import SiteAlert from './site-alert';
 
 describe('SiteAlert', () => {
+  test('should render with no accessibility violations', async () => {
+    const { container } = render(
+      <SiteAlert id="alert1" heading="test">
+        test alert
+      </SiteAlert>,
+    );
+    expect(await axe(container)).toHaveNoViolations();
+  });
   it('should render a default site alert', () => {
     const { baseElement } = render(
       <SiteAlert id="alert1" heading="test">

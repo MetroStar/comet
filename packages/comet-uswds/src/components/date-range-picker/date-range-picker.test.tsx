@@ -1,5 +1,6 @@
 import React from 'react';
 import { fireEvent, render, RenderResult } from '@testing-library/react';
+import { axe } from 'jest-axe';
 import { Label, FormGroup, DatePicker } from '../..';
 import { DateRangePickerContainer } from './date-range-picker';
 
@@ -36,6 +37,11 @@ describe('DateRangePicker', () => {
         </FormGroup>
       </DateRangePickerContainer>,
     );
+
+  test('should render with no accessibility violations', async () => {
+    const { container } = renderDateRangePicker();
+    expect(await axe(container)).toHaveNoViolations();
+  });
 
   it('should render successfully', () => {
     const { baseElement } = renderDateRangePicker();

@@ -1,6 +1,7 @@
 import React from 'react';
 import '@testing-library/jest-dom';
 import { render, screen, fireEvent } from '@testing-library/react';
+import { axe } from 'jest-axe';
 import Footer from './footer';
 
 const props = {
@@ -22,6 +23,11 @@ const props = {
     instagram: 'https://instagram.com',
   },
 };
+
+test('should render with no accessibility violations', async () => {
+  const { container } = render(<Footer {...props} />);
+  expect(await axe(container)).toHaveNoViolations();
+});
 
 test('Footer renders with given props and invokes folded menu', () => {
   render(<Footer {...props} />);

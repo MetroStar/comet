@@ -1,8 +1,13 @@
 import React from 'react';
 import { render } from '@testing-library/react';
+import { axe } from 'jest-axe';
 import Label from './label';
 
 describe('Label', () => {
+  test('should render with no accessibility violations', async () => {
+    const { container } = render(<Label>Some label</Label>);
+    expect(await axe(container)).toHaveNoViolations();
+  });
   it('should render successfully', () => {
     const { baseElement } = render(<Label>Some label</Label>);
     expect(baseElement).toBeTruthy();

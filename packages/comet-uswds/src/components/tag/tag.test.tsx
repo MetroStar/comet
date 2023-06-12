@@ -1,11 +1,16 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-
+import { axe } from 'jest-axe';
 import Tag from './tag';
 
 describe('Tag', () => {
   const defaultId = 'tag1';
   const loremText = 'Lorem Ipsum';
+
+  test('should render with no accessibility violations', async () => {
+    const { container } = render(<Tag id={defaultId}>{loremText}</Tag>);
+    expect(await axe(container)).toHaveNoViolations();
+  });
   it('should render a default tag successfully', () => {
     const { baseElement } = render(<Tag id={defaultId}>{loremText}</Tag>);
     expect(baseElement).toBeTruthy();

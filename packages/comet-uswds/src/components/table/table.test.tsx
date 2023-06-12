@@ -1,6 +1,6 @@
 import React from 'react';
 import { fireEvent, render } from '@testing-library/react';
-
+import { axe } from 'jest-axe';
 import Table, { TableColumn } from './table';
 
 interface StateData {
@@ -91,6 +91,11 @@ describe('Table', () => {
       estimatedPopulation: { value: '204,354', sortValue: '204354' },
     },
   ];
+
+  test('should render with no accessibility violations', async () => {
+    const { container } = render(<Table id="table1" columns={columns} data={basicData} />);
+    expect(await axe(container)).toHaveNoViolations();
+  });
 
   it('should render a basic table successfully', () => {
     const { baseElement } = render(<Table id="table1" columns={columns} data={basicData} />);

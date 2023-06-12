@@ -1,9 +1,14 @@
 import { fireEvent, render } from '@testing-library/react';
+import { axe } from 'jest-axe';
 import React, { FormEvent } from 'react';
 
 import Form from './form';
 
 describe('Form', () => {
+  test('should render with no accessibility violations', async () => {
+    const { container } = render(<Form id="form">Some form</Form>);
+    expect(await axe(container)).toHaveNoViolations();
+  });
   it('should render successfully', () => {
     const { baseElement } = render(<Form id="form">Some form</Form>);
     expect(baseElement).toBeTruthy();

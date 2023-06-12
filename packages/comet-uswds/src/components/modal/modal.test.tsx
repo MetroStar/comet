@@ -1,4 +1,5 @@
 import { render, RenderOptions, RenderResult } from '@testing-library/react';
+import { axe } from 'jest-axe';
 import React, { ReactNode } from 'react';
 import Modal from './modal';
 
@@ -12,6 +13,15 @@ describe('Modal', () => {
       Close
     </button>
   );
+
+  test('should render with no accessibility violations', async () => {
+    const { container } = customRender(
+      <Modal id="modal1" heading="Modal 1">
+        Body
+      </Modal>,
+    );
+    expect(await axe(container)).toHaveNoViolations();
+  });
 
   it('should render a default modal with no footer successfully', () => {
     const { baseElement } = customRender(

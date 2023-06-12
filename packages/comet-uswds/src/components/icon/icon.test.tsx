@@ -1,9 +1,13 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-
+import { axe } from 'jest-axe';
 import Icon from './icon';
 
 describe('Icon', () => {
+  test('should render with no accessibility violations', async () => {
+    const { container } = render(<Icon id="icon1" type="accessibility_new" />);
+    expect(await axe(container)).toHaveNoViolations();
+  });
   it('should render a basic icon successfully', () => {
     const { baseElement } = render(<Icon id="icon1" type="accessibility_new" />);
 

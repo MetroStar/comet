@@ -1,5 +1,6 @@
 import { render, RenderOptions, RenderResult } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { axe } from 'jest-axe';
 import React, { ReactNode } from 'react';
 import FileInput from './file-input';
 const customRender = (ui: React.ReactElement, options?: RenderOptions): RenderResult =>
@@ -9,6 +10,12 @@ const Wrapper = ({ children }: { children?: ReactNode }): JSX.Element => <div>{c
 describe('FileInput', () => {
   const defaultId = 'file-input1';
   const fileInputName = 'file-input-name';
+
+  test('should render with no accessibility violations', async () => {
+    const { container } = render(<FileInput id={defaultId} name={fileInputName} />);
+    expect(await axe(container)).toHaveNoViolations();
+  });
+
   it('should render a standard file input successfully', () => {
     const { baseElement } = customRender(<FileInput id={defaultId} name={fileInputName} />);
     expect(baseElement).toBeTruthy();

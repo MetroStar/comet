@@ -1,9 +1,13 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-
+import { axe } from 'jest-axe';
 import SummaryBox from './summary-box';
 
 describe('SummaryBox', () => {
+  test('should render with no accessibility violations', async () => {
+    const { container } = render(<SummaryBox id="summary1" heading="heading" items={[]} />);
+    expect(await axe(container)).toHaveNoViolations();
+  });
   it('should render successfully', () => {
     const { baseElement } = render(<SummaryBox id="summary1" heading="heading" items={[]} />);
     expect(baseElement).toBeTruthy();

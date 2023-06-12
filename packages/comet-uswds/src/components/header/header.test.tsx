@@ -1,6 +1,7 @@
 import React from 'react';
 import '@testing-library/jest-dom';
 import { render, screen, fireEvent } from '@testing-library/react';
+import { axe } from 'jest-axe';
 import Header from './header';
 
 const folding = [
@@ -21,6 +22,11 @@ const simple = [
     path: '/bat',
   },
 ];
+
+test('should render with no accessibility violations', async () => {
+  const { container } = render(<Header folding={folding} simple={simple} showSearch={true} />);
+  expect(await axe(container)).toHaveNoViolations();
+});
 
 test('Header renders with given props and invokes folded menu', () => {
   render(<Header folding={folding} simple={simple} showSearch={true} />);

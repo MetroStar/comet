@@ -1,9 +1,16 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { axe } from 'jest-axe';
 import Pagination from './pagination';
 
 describe('Pagination', () => {
+  test('should render with no accessibility violations', async () => {
+    const { container } = render(
+      <Pagination id="pagination1" currentPage={9} amountOfPages={24} ariaLabel="Pagination" />,
+    );
+    expect(await axe(container)).toHaveNoViolations();
+  });
   it('should render successfully', () => {
     const { baseElement } = render(
       <Pagination id="pagination1" currentPage={9} amountOfPages={24} ariaLabel="Pagination" />,

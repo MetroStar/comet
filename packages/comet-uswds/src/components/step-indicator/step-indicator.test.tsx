@@ -1,10 +1,17 @@
 import React from 'react';
 import { render } from '@testing-library/react';
+import { axe } from 'jest-axe';
 import StepIndicator from './step-indicator';
 
 const steps: string[] = ['Lorem', 'Ipsum', 'Dolor', 'Sit', 'Amet'];
 
 describe('StepIndicator', () => {
+  test('should render with no accessibility violations', async () => {
+    const { container } = render(
+      <StepIndicator id="step-indicator1" steps={steps} currentStep={1} />,
+    );
+    expect(await axe(container)).toHaveNoViolations();
+  });
   it('should render successfully', () => {
     const { baseElement } = render(
       <StepIndicator id="step-indicator1" steps={steps} currentStep={1} />,

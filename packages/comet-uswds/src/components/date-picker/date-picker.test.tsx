@@ -1,12 +1,22 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
+import { axe } from 'jest-axe';
 import userEvent from '@testing-library/user-event';
 import DatePicker from './date-picker';
+import FormGroup from '../form-group';
+import Label from '../label';
 
 describe('Date picker', () => {
   const defaultId = 'date-picker1';
   const defaultName = 'date-picker-name';
   const today = new Date();
+
+  test('should render with no accessibility violations', async () => {
+    const { container } = render(
+      <DatePicker id={defaultId} name={defaultName} aria-label="date" />,
+    );
+    expect(await axe(container)).toHaveNoViolations();
+  });
 
   it('should render a default date picker successfully', () => {
     const { baseElement } = render(<DatePicker id={defaultId} name={defaultName} />);

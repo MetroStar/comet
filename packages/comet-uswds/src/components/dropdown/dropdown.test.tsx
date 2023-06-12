@@ -1,5 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
+import { axe } from 'jest-axe';
 import userEvent from '@testing-library/user-event';
 import Dropdown, { DropdownOption } from './dropdown';
 
@@ -9,6 +10,13 @@ describe('Dropdown', () => {
   const loremWords = ['Lorem', 'Ipsum', 'Dolor', 'Sit'];
   const options = loremWords.map((word) => {
     return { value: word.toLowerCase(), label: word } as DropdownOption;
+  });
+
+  test('should render with no accessibility violations', async () => {
+    const { container } = render(
+      <Dropdown id={defaultId} name={defaultName} options={options} aria-label="dropdown" />,
+    );
+    expect(await axe(container)).toHaveNoViolations();
   });
 
   it('should render a default dropdown successfully', () => {
