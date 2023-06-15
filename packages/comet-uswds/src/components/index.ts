@@ -29,6 +29,7 @@ export { default as Prose } from './prose';
 export { default as RadioButton, RadioButtonGroup, RadioButtonData } from './radio-button';
 export { default as RangeSlider } from './range-slider';
 export { default as Search } from './search';
+export { default as Select, SelectOption } from './select';
 export { default as SideNavigation, SideNavigationItem } from './side-navigation';
 export { default as SiteAlert } from './site-alert';
 export { default as StepIndicator } from './step-indicator';
