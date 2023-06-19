@@ -14,7 +14,7 @@ export interface BarGraphProps {
   /**
    * A string value indicating how to justify chart data
    */
-  alignment?: VictoryBarAlignmentType;
+  alignment?: 'start' | 'middle' | 'end';
   /**
    * A number value indicating the width ratio of the bar to display
    */
