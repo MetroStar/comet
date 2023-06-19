@@ -27,7 +27,7 @@ export interface ScatterGraphProps {
 }
 
 /**
- * Renders a dataset as a single line path.
+ * Renders a dataset as a series of points.
  */
 const ScatterGraph: React.FC<ScatterGraphProps> = (props: ScatterGraphProps) => {
   return (
