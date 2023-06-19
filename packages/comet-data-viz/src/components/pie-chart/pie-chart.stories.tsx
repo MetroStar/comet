@@ -45,6 +45,27 @@ Default.args = {
     },
   ],
   colors: 'warm',
+  innerRadius: 0,
+};
+
+export const DonutChart = Template.bind({});
+DonutChart.args = {
+  data: [
+    {
+      x: 'dogs',
+      y: 8,
+    },
+    {
+      x: 'cats',
+      y: 5,
+    },
+    {
+      x: 'fish',
+      y: 1,
+    },
+  ],
+  colors: 'warm',
+  innerRadius: 100,
 };
 
 export const CustomColors = Template.bind({});
@@ -64,4 +85,5 @@ CustomColors.args = {
     },
   ],
   colors: ['#0d7ea2', '#cd425b', '#00a871'],
+  innerRadius: 0,
 };

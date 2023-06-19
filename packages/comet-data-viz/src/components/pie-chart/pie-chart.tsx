@@ -16,6 +16,10 @@ export interface PieChartProps {
     | 'blue'
     | string[];
   /**
+   * A number of pixels between the center of the chart and the inner edge of a donut chart
+   */
+  innerRadius?: number;
+  /**
    * An array of data values
    */
   data: Array<{
@@ -32,6 +36,7 @@ const PieChart: React.FC<PieChartProps> = (props: PieChartProps) => {
     <VictoryPie
       colorScale={props.colors}
       data={props.data}
+      innerRadius={props.innerRadius}
       animate={{
         duration: 2000,
         onLoad: { duration: 1000 },
