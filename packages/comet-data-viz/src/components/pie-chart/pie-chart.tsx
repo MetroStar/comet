@@ -2,11 +2,22 @@ import React from 'react';
 import { VictoryPie } from 'victory';
 
 export interface PieChartProps {
-  colors?: string[];
-  angle?: {
-    start: number;
-    end: number;
-  };
+  /**
+   * An string color scale or array of hex values used to colorize chart sections
+   */
+  colors?:
+    | 'grayscale'
+    | 'qualitative'
+    | 'heatmap'
+    | 'warm'
+    | 'cool'
+    | 'red'
+    | 'green'
+    | 'blue'
+    | string[];
+  /**
+   * An array of data values
+   */
   data: Array<{
     x: string;
     y: number;
@@ -25,8 +36,6 @@ const PieChart: React.FC<PieChartProps> = (props: PieChartProps) => {
         duration: 2000,
         onLoad: { duration: 1000 },
       }}
-      startAngle={props.angle?.start}
-      endAngle={props.angle?.end}
     />
   );
 };

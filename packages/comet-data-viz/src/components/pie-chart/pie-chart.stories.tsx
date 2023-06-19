@@ -35,29 +35,16 @@ Default.args = {
       x: 'fish',
       y: 1,
     },
-  ],
-};
-
-export const CustomAngle = Template.bind({});
-CustomAngle.args = {
-  data: [
     {
-      x: 'dogs',
-      y: 8,
+      x: 'snake',
+      y: 3,
     },
     {
-      x: 'cats',
-      y: 5,
-    },
-    {
-      x: 'fish',
-      y: 1,
+      x: 'rabbit',
+      y: 4,
     },
   ],
-  angle: {
-    start: 90,
-    end: -90,
-  },
+  colors: 'warm',
 };
 
 export const CustomColors = Template.bind({});
