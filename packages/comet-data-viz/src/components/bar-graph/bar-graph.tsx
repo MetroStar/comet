@@ -1,5 +1,5 @@
 import React from 'react';
-import { VictoryChart, VictoryBar, VictoryBarAlignmentType } from 'victory';
+import { VictoryChart, VictoryBar } from 'victory';
 import ChartProps from '../chart/chart';
 
 export interface BarGraphProps {
@@ -14,15 +14,18 @@ export interface BarGraphProps {
   /**
    * A string value indicating how to justify chart data
    */
-  alignment?: VictoryBarAlignmentType;
+  alignment?: 'start' | 'middle' | 'end';
   /**
    * A number value indicating the width ratio of the bar to display
    */
   barRatio?: number;
   /**
-   * An array of data values
+   * An array of data points
    */
-  data: number[];
+  data: Array<{
+    x: string;
+    y: number;
+  }>;
 }
 
 /**

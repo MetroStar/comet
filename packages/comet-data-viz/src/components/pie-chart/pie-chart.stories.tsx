@@ -22,6 +22,7 @@ const Template: StoryFn<typeof PieChart> = (args: PieChartProps) => (
 
 export const Default = Template.bind({});
 Default.args = {
+  title: 'Pie Chart',
   data: [
     {
       x: 'dogs',
@@ -35,11 +36,22 @@ Default.args = {
       x: 'fish',
       y: 1,
     },
+    {
+      x: 'snake',
+      y: 3,
+    },
+    {
+      x: 'rabbit',
+      y: 4,
+    },
   ],
+  colors: 'warm',
+  innerRadius: 0,
 };
 
-export const CustomAngle = Template.bind({});
-CustomAngle.args = {
+export const DonutChart = Template.bind({});
+DonutChart.args = {
+  title: 'Pie Chart as Donut',
   data: [
     {
       x: 'dogs',
@@ -54,14 +66,13 @@ CustomAngle.args = {
       y: 1,
     },
   ],
-  angle: {
-    start: 90,
-    end: -90,
-  },
+  colors: 'warm',
+  innerRadius: 100,
 };
 
 export const CustomColors = Template.bind({});
 CustomColors.args = {
+  title: 'Pie Chart with Custom Colors',
   data: [
     {
       x: 'dogs',
@@ -77,4 +88,5 @@ CustomColors.args = {
     },
   ],
   colors: ['#0d7ea2', '#cd425b', '#00a871'],
+  innerRadius: 0,
 };

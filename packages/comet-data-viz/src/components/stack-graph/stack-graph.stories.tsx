@@ -1,32 +1,32 @@
 import React from 'react';
 import { StoryFn, Meta } from '@storybook/react';
-import { AreaGraph } from '../../index';
-import { AreaGraphProps } from './area-graph';
+import { StackGraph } from '../../index';
+import { StackGraphProps } from './stack-graph';
 
-const meta: Meta<typeof AreaGraph> = {
-  title: 'Data Viz/Area Graph',
-  component: AreaGraph,
+const meta: Meta<typeof StackGraph> = {
+  title: 'Data Viz/Stack Graph',
+  component: StackGraph,
   argTypes: {
     smooth: { control: 'boolean' },
   },
 };
 export default meta;
 
-const Template: StoryFn<typeof AreaGraph> = (args: AreaGraphProps) => (
+const Template: StoryFn<typeof StackGraph> = (args: StackGraphProps) => (
   <div
     style={{
       width: '600px',
       height: '400px',
     }}
   >
-    <AreaGraph {...args} />
+    <StackGraph {...args} />
   </div>
 );
 
 export const Default = Template.bind({});
 Default.args = {
   chart: {
-    title: 'Area graph',
+    title: 'Stack graph',
     width: 600,
     height: 400,
   },
