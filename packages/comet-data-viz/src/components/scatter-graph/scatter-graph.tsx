@@ -37,7 +37,6 @@ const ScatterGraph: React.FC<ScatterGraphProps> = (props: ScatterGraphProps) => 
           key={`scatter-${i}`}
           data={d}
           size={props.size}
-          //   style={{ data: { fill: props.color } }}
           style={{
             data: {
               fill: props.colors
