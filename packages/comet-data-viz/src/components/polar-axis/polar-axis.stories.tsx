@@ -23,6 +23,7 @@ const Template: StoryFn<typeof PolarAxis> = (args: PolarAxisProps) => (
 export const Default = Template.bind({});
 Default.args = {
   chart: {
+    title: 'Polar Axis',
     width: 400,
     height: 400,
   },

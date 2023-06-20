@@ -26,6 +26,7 @@ const Template: StoryFn<typeof StackGraph> = (args: StackGraphProps) => (
 export const Default = Template.bind({});
 Default.args = {
   chart: {
+    title: 'Stack graph',
     width: 600,
     height: 400,
   },

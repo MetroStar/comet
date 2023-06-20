@@ -31,6 +31,7 @@ const data = [
 export const Default = Template.bind({});
 Default.args = {
   chart: {
+    title: 'Bar graph',
     width: 400,
     height: 300,
   },
@@ -43,6 +44,7 @@ Default.args = {
 export const Horizontal = Template.bind({});
 Horizontal.args = {
   chart: {
+    title: 'Bar graph',
     width: 400,
     height: 300,
     horizontal: true,

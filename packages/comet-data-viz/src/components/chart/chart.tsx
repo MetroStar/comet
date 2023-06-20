@@ -4,6 +4,7 @@ import { ForAxes, DomainTuple } from 'victory';
 type EventHandler = () => void;
 
 interface ChartProps {
+  title: string;
   height?: number;
   width?: number;
   domain?: ForAxes<DomainTuple>;

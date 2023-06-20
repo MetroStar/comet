@@ -26,6 +26,7 @@ const Template: StoryFn<typeof ScatterGraph> = (args: ScatterGraphProps) => (
 export const Default = Template.bind({});
 Default.args = {
   chart: {
+    title: 'Scatter graph',
     width: 400,
     height: 400,
   },

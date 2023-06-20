@@ -26,6 +26,7 @@ const Template: StoryFn<typeof LineGraph> = (args: LineGraphProps) => (
 export const Default = Template.bind({});
 Default.args = {
   chart: {
+    title: 'Line graph',
     width: 400,
     height: 400,
   },

@@ -22,6 +22,7 @@ const Template: StoryFn<typeof PieChart> = (args: PieChartProps) => (
 
 export const Default = Template.bind({});
 Default.args = {
+  title: 'Pie Chart',
   data: [
     {
       x: 'dogs',
@@ -50,6 +51,7 @@ Default.args = {
 
 export const DonutChart = Template.bind({});
 DonutChart.args = {
+  title: 'Pie Chart as Donut',
   data: [
     {
       x: 'dogs',
@@ -70,6 +72,7 @@ DonutChart.args = {
 
 export const CustomColors = Template.bind({});
 CustomColors.args = {
+  title: 'Pie Chart with Custom Colors',
   data: [
     {
       x: 'dogs',

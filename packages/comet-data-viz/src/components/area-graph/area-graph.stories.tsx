@@ -26,6 +26,7 @@ const Template: StoryFn<typeof AreaGraph> = (args: AreaGraphProps) => (
 export const Default = Template.bind({});
 Default.args = {
   chart: {
+    title: 'Area graph',
     width: 600,
     height: 400,
   },
