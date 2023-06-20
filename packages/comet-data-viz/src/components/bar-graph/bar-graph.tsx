@@ -20,9 +20,12 @@ export interface BarGraphProps {
    */
   barRatio?: number;
   /**
-   * An array of data values
+   * An array of data points
    */
-  data: number[];
+  data: Array<{
+    x: string;
+    y: number;
+  }>;
 }
 
 /**
