@@ -7,6 +7,14 @@ export interface PieChartProps {
    */
   title: string;
   /**
+   * A height value to apply to the chart
+   */
+  height?: number;
+  /**
+   * A width value to apply to the chart
+   */
+  width?: number;
+  /**
    * An string color scale or array of hex values used to colorize chart sections
    */
   colors?:
@@ -49,6 +57,8 @@ const PieChart: React.FC<PieChartProps> = (props: PieChartProps) => {
         colorScale={props.colors}
         data={props.data}
         innerRadius={props.innerRadius}
+        height={props.height}
+        width={props.width}
         animate={{
           duration: 2000,
           onLoad: { duration: 1000 },
