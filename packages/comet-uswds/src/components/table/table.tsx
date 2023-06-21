@@ -74,11 +74,23 @@ export const Table = ({
   const tableRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const tableElement = tableRef.current;
-    table.on(tableElement);
+    // If sortable, call table.on to enable functionality
+    if (sortable) {
+      // Verify sort buttons are not already present, if not enable sorting
+      const sortButtons = tableElement?.querySelectorAll('.usa-table__header__button');
+      /* istanbul ignore else */
+      if (sortButtons?.length === 0) {
+        table.on(tableElement);
+      }
+    }
 
     // Ensure cleanup after the effect
-    return () => table.off(tableElement);
-  });
+    return () => {
+      if (sortable) {
+        table.off(tableElement);
+      }
+    };
+  }, [data]);
 
   return (
     <div
