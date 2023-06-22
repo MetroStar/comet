@@ -38,7 +38,7 @@ Default.args = {
   alignment: 'start',
   color: '#0d7ea2',
   barRatio: 1,
-  data: data,
+  data,
 };
 
 export const Horizontal = Template.bind({});
@@ -52,5 +52,5 @@ Horizontal.args = {
   alignment: 'start',
   color: '#0d7ea2',
   barRatio: 1,
-  data: data,
+  data,
 };
