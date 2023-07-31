@@ -26,7 +26,7 @@ const Template: StoryFn<typeof Modal> = (args: ModalProps) => {
   const footer = (
     <ul className="usa-button-group">
       <li className="usa-button-group__item">
-        <button type="button" className="usa-button" id="continueBtn">
+        <button type="button" className="usa-button" id="continueBtn" data-close-modal>
           Continue
         </button>
       </li>
@@ -34,6 +34,7 @@ const Template: StoryFn<typeof Modal> = (args: ModalProps) => {
         <button
           type="button"
           className="usa-button usa-button--unstyled padding-105 text-center"
+          id="goBackBtn"
           data-close-modal
         >
           Go back
@@ -43,10 +44,8 @@ const Template: StoryFn<typeof Modal> = (args: ModalProps) => {
   );
 
   const handleContinue = (): void => {
+    console.log('Continue clicked...');
     // Do something
-
-    /* eslint-disable-next-line */
-    modal.toggleModal.call(modal, false); // Manually toggle modal after work complete
   };
 
   // Have to add event listeners after components load due to the way the modal works
@@ -80,8 +79,65 @@ Standard.args = {
 
 export const LargeModal = Template.bind({});
 LargeModal.args = {
-  id: 'modal-1',
+  id: 'modal-2',
   size: 'large',
+  children: body,
+  heading,
+};
+
+const CustomCloseTemplate: StoryFn<typeof Modal> = (args: ModalProps) => {
+  const footer = (
+    <ul className="usa-button-group">
+      <li className="usa-button-group__item">
+        <button type="button" className="usa-button" id="continueBtn">
+          Continue
+        </button>
+      </li>
+      <li className="usa-button-group__item">
+        <button
+          type="button"
+          className="usa-button usa-button--unstyled padding-105 text-center"
+          id="goBackBtn"
+          data-close-modal
+        >
+          Go back
+        </button>
+      </li>
+    </ul>
+  );
+
+  const handleContinue = (): void => {
+    console.log('Continue clicked...');
+    // Do something
+
+    /* eslint-disable-next-line */
+    modal.toggleModal.call(modal, false); // Manually toggle modal after work complete
+  };
+
+  // Have to add event listeners after components load due to the way the modal works
+  useEffect(() => {
+    const button = document.querySelector('#continueBtn') as HTMLButtonElement;
+    if (button) {
+      button.onclick = handleContinue;
+    }
+  }, []);
+
+  return (
+    <>
+      <a href={`#${args.id}`} className="usa-button" aria-controls={args.id} data-open-modal>
+        Open Modal
+      </a>
+      <Modal id={args.id} size={args.size} heading={args.heading} footer={footer}>
+        {args.children}
+      </Modal>
+    </>
+  );
+};
+
+export const CustomClose = CustomCloseTemplate.bind({});
+CustomClose.args = {
+  id: 'modal-3',
+  size: 'small',
   children: body,
   heading,
 };
