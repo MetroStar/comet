@@ -60,9 +60,7 @@ export const Modal = ({
           <h2 className="usa-modal__heading" id={`${id}-heading`}>
             {heading}
           </h2>
-          <div className="usa-prose">
-            <p id={`${id}-description`}>{children}</p>
-          </div>
+          {children}
           <div className="usa-modal__footer">{footer}</div>
         </div>
         <button
