@@ -32,9 +32,17 @@ export interface TableProps<T = any> {
    */
   sortDir?: 'ascending' | 'descending';
   /**
-   * A boolean indicating if the table is scrollabe or not
+   * A boolean indicating if the table is scrollable or not
    */
   scrollable?: boolean;
+  /**
+   * A boolean indicating if the table is borderless or not
+   */
+  borderless?: boolean;
+  /**
+   * A boolean indicating if the table is striped or not
+   */
+  striped?: boolean;
   /**
    * Additional class names for the table
    */
@@ -67,6 +75,8 @@ export const Table = ({
   sortIndex = 0,
   sortDir = 'ascending',
   scrollable = false,
+  borderless = false,
+  striped = false,
   className,
   tabIndex = -1,
 }: TableProps): React.ReactElement => {
@@ -76,21 +86,18 @@ export const Table = ({
     const tableElement = tableRef.current;
     // If sortable, call table.on to enable functionality
     if (sortable) {
-      // Verify sort buttons are not already present, if not enable sorting
-      const sortButtons = tableElement?.querySelectorAll('.usa-table__header__button');
-      /* istanbul ignore else */
-      if (sortButtons?.length === 0) {
-        table.on(tableElement);
-      }
+      table.on(tableElement);
     }
 
     // Ensure cleanup after the effect
     return () => {
       if (sortable) {
         table.off(tableElement);
+        // Buttons added by table.on are not cleaned when calling off function, need to manually clean them up
+        tableElement?.querySelectorAll('.usa-table__header__button').forEach((e) => e.remove());
       }
     };
-  }, [data]);
+  });
 
   return (
     <div
@@ -98,6 +105,8 @@ export const Table = ({
       className={classNames(
         { 'usa-table-container': !scrollable },
         { 'usa-table-container--scrollable': scrollable },
+        { 'usa-table--borderless': borderless },
+        { 'usa-table--striped': striped },
       )}
       ref={tableRef}
     >
