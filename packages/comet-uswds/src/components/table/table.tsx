@@ -99,8 +99,6 @@ export const Table = ({
     };
   });
 
-  console.log(sortDir);
-
   return (
     <div
       id={id}
