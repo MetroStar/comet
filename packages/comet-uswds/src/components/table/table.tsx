@@ -76,21 +76,18 @@ export const Table = ({
     const tableElement = tableRef.current;
     // If sortable, call table.on to enable functionality
     if (sortable) {
-      // Verify sort buttons are not already present, if not enable sorting
-      const sortButtons = tableElement?.querySelectorAll('.usa-table__header__button');
-      /* istanbul ignore else */
-      if (sortButtons?.length === 0) {
-        table.on(tableElement);
-      }
+      table.on(tableElement);
     }
 
     // Ensure cleanup after the effect
     return () => {
       if (sortable) {
         table.off(tableElement);
+        // Buttons added by table.on are not cleaned when calling off function, need to manually clean them up
+        tableElement?.querySelectorAll('.usa-table__header__button').forEach((e) => e.remove());
       }
     };
-  }, [data]);
+  });
 
   return (
     <div
