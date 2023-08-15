@@ -111,6 +111,22 @@ describe('Table', () => {
     expect(caption).toBeTruthy();
   });
 
+  test('should render a default borderless table successfully', () => {
+    const { baseElement } = render(
+      <Table id="table1" columns={columns} data={sortableData} borderless={true} />,
+    );
+    const tables = baseElement.querySelectorAll('#table1.usa-table--borderless');
+    expect(tables[0]).toBeTruthy();
+  });
+
+  test('should render a default striped table successfully', () => {
+    const { baseElement } = render(
+      <Table id="table1" columns={columns} data={sortableData} striped={true} />,
+    );
+    const tables = baseElement.querySelectorAll('#table1.usa-table--striped');
+    expect(tables[0]).toBeTruthy();
+  });
+
   test('should render a default sortable table successfully', () => {
     const { baseElement } = render(
       <Table id="table1" columns={columns} data={sortableData} sortable={true} sortIndex={0} />,

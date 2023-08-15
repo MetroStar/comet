@@ -32,9 +32,17 @@ export interface TableProps<T = any> {
    */
   sortDir?: 'ascending' | 'descending';
   /**
-   * A boolean indicating if the table is scrollabe or not
+   * A boolean indicating if the table is scrollable or not
    */
   scrollable?: boolean;
+  /**
+   * A boolean indicating if the table is borderless or not
+   */
+  borderless?: boolean;
+  /**
+   * A boolean indicating if the table is striped or not
+   */
+  striped?: boolean;
   /**
    * Additional class names for the table
    */
@@ -67,6 +75,8 @@ export const Table = ({
   sortIndex = 0,
   sortDir = 'ascending',
   scrollable = false,
+  borderless = false,
+  striped = false,
   className,
   tabIndex = -1,
 }: TableProps): React.ReactElement => {
@@ -89,12 +99,16 @@ export const Table = ({
     };
   });
 
+  console.log(sortDir);
+
   return (
     <div
       id={id}
       className={classNames(
         { 'usa-table-container': !scrollable },
         { 'usa-table-container--scrollable': scrollable },
+        { 'usa-table--borderless': borderless },
+        { 'usa-table--striped': striped },
       )}
       ref={tableRef}
     >

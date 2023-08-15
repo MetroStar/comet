@@ -74,13 +74,16 @@ const Template: StoryFn<typeof Table> = (args: TableProps) => {
   return (
     <Table
       id={args.id}
+      tabIndex={args.tabIndex}
       columns={columns}
       data={data}
       caption={args.caption}
-      sortable={args.sortable}
-      sortIndex={args.sortIndex}
-      sortDir={args.sortDir}
+      borderless={args.borderless}
+      striped={args.striped}
       scrollable={args.scrollable}
+      sortable={args.sortable}
+      sortDir={args.sortDir}
+      sortIndex={args.sortIndex}
     />
   );
 };
@@ -88,10 +91,12 @@ const Template: StoryFn<typeof Table> = (args: TableProps) => {
 export const Default = Template.bind({});
 Default.args = {
   id: 'table-1',
-  caption: 'Voter Data',
-  sortable: true,
-  sortIndex: 0,
-  sortDir: 'ascending',
-  scrollable: false,
   tabIndex: 1,
+  caption: 'Voter Data',
+  borderless: false,
+  striped: false,
+  scrollable: false,
+  sortable: true,
+  sortDir: 'ascending',
+  sortIndex: 0,
 };
