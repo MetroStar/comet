@@ -10,7 +10,6 @@ export { default as Checkbox, CheckboxGroup, CheckboxData } from './checkbox';
 export { default as ComboBox, ComboBoxOption } from './combo-box';
 export { default as DatePicker } from './date-picker';
 export { default as DateRangePicker } from './date-range-picker';
-export { default as Dropdown, DropdownOption } from './dropdown';
 export { default as ErrorMessages } from './error-messages';
 export { default as FileInput } from './file-input';
 export { default as Footer } from './footer';
