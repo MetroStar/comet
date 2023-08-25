@@ -1,8 +1,8 @@
-import Dropdown, { DropdownOption, DropdownProps } from '../dropdown/dropdown';
+import Select, { SelectOption, SelectProps } from '../select/select';
 import comboBox from '@uswds/uswds/js/usa-combo-box';
 import React, { RefObject, useLayoutEffect, useRef } from 'react';
 
-export type ComboBoxOption = DropdownOption;
+export type ComboBoxOption = SelectOption;
 export type ComboBoxProps = {
   /**
    * The unique identifier for this component
@@ -16,7 +16,7 @@ export type ComboBoxProps = {
    * The placeholder value to display in the control
    */
   placeholder?: string;
-} & DropdownProps &
+} & SelectProps &
   JSX.IntrinsicElements['select'];
 
 /**
@@ -47,7 +47,7 @@ export const ComboBox = ({ placeholder, ...comboBoxProps }: ComboBoxProps): Reac
 
   return (
     <div {...comboBoxAttributes}>
-      <Dropdown {...comboBoxProps} />
+      <Select {...comboBoxProps} />
     </div>
   );
 };
