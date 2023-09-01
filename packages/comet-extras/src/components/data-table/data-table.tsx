@@ -1,5 +1,6 @@
 import React from 'react';
 import { flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table';
+import classNames from 'classnames';
 import './data-table.style.css';
 
 export interface DataTableProps<T = any> {
@@ -15,11 +16,22 @@ export interface DataTableProps<T = any> {
    * The data to display in the table rows
    */
   data: T[];
+  striped: boolean;
+  /**
+   * Additional class names for the table
+   */
+  className?: string;
 }
 /**
  * A Data Table shows information in columns and rows, with advanced functionality.
  */
-export const DataTable = ({ id, columns, data }: DataTableProps): React.ReactElement => {
+export const DataTable = ({
+  id,
+  columns,
+  data,
+  striped,
+  className,
+}: DataTableProps): React.ReactElement => {
   const table = useReactTable({
     data,
     columns,
@@ -27,7 +39,7 @@ export const DataTable = ({ id, columns, data }: DataTableProps): React.ReactEle
   });
 
   return (
-    <table id={id}>
+    <table id={id} className={classNames('data-table', { striped }, className)}>
       <thead>
         {table.getHeaderGroups().map((headerGroup) => (
           <tr key={headerGroup.id}>

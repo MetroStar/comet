@@ -13,24 +13,42 @@ const Template: StoryFn<typeof DataTable> = (args: DataTableProps) => (
   <DataTable {...args}></DataTable>
 );
 
-// eslint-disable-next-line @typescript-eslint/consistent-type-definitions
-type Person = {
+interface Person {
   firstName: string;
   lastName: string;
-};
+  middleName?: string;
+  age: number;
+  gender: 'M' | 'F' | 'NA';
+}
 
 const data: Person[] = [
   {
-    firstName: 'tanner',
-    lastName: 'linsley',
+    firstName: 'John',
+    lastName: 'Doe',
+    middleName: 'L',
+    age: 30,
+    gender: 'M',
   },
   {
-    firstName: 'tandy',
-    lastName: 'miller',
+    firstName: 'Jane',
+    lastName: 'Doe',
+    middleName: 'M',
+    age: 29,
+    gender: 'F',
   },
   {
-    firstName: 'joe',
-    lastName: 'dirte',
+    firstName: 'Bob',
+    lastName: 'Ross',
+    middleName: '',
+    age: 100,
+    gender: 'M',
+  },
+  {
+    firstName: 'Elon',
+    lastName: 'Musk',
+    middleName: 'R',
+    age: 2032,
+    gender: 'M',
   },
 ];
 
@@ -39,11 +57,23 @@ const columnHelper = createColumnHelper<Person>();
 const cols = [
   columnHelper.accessor('firstName', {
     cell: (info) => info.getValue(),
+    header: () => 'First Name',
   }),
-  columnHelper.accessor((row) => row.lastName, {
-    id: 'lastName',
-    cell: (info) => <i>{info.getValue()}</i>,
-    header: () => <span>Last Name</span>,
+  columnHelper.accessor('lastName', {
+    cell: (info) => info.getValue(),
+    header: () => 'Last Name',
+  }),
+  columnHelper.accessor('middleName', {
+    cell: (info) => info.getValue(),
+    header: () => 'Middle Name',
+  }),
+  columnHelper.accessor('age', {
+    cell: (info) => info.getValue(),
+    header: () => 'Age',
+  }),
+  columnHelper.accessor('gender', {
+    cell: (info) => info.getValue(),
+    header: () => 'Gender',
   }),
 ];
 
@@ -52,4 +82,6 @@ Default.args = {
   id: 'table-1',
   columns: cols,
   data,
+  striped: false,
+  className: 'width-full',
 };
