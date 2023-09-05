@@ -6,6 +6,9 @@ import { createColumnHelper } from '@tanstack/react-table';
 const meta: Meta<typeof DataTable> = {
   title: 'Extras/Data Table',
   component: DataTable,
+  argTypes: {
+    sortDir: { control: 'select' },
+  },
 };
 export default meta;
 
@@ -83,5 +86,8 @@ Default.args = {
   columns: cols,
   data,
   striped: false,
+  sortable: true,
+  sortDir: 'asc',
+  sortCol: 'lastName',
   className: 'width-full',
 };
