@@ -67,6 +67,10 @@ table.data-table th.sort-desc::before {
   border-radius: 6px;
 }
 
+.table-paging .table-paging-btn:not(:disabled) {
+  cursor: pointer;
+}
+
 .table-paging .table-paging-btn-active {
   border: 1px solid #ededed;
 }

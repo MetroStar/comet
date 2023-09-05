@@ -141,6 +141,7 @@ export const DataTable = ({
       {pageable ? (
         <div className="table-paging">
           <button
+            id="table-paging-prev-btn"
             className="table-paging-btn table-paging-prev"
             onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}
@@ -150,7 +151,8 @@ export const DataTable = ({
           {Array.from({ length: table.getPageCount() }).map((row, index) => {
             return (
               <button
-                key={index}
+                id="table-paging-btn"
+                key={`paging-btn-${row}-${index}`}
                 className={`table-paging-btn table-paging-btn ${
                   index === paging.pageIndex ? 'table-paging-btn-active' : ''
                 }`}
@@ -161,6 +163,7 @@ export const DataTable = ({
             );
           })}
           <button
+            id="table-paging-next-btn"
             className="table-paging-btn table-paging-next"
             onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}
