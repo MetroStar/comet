@@ -53,6 +53,41 @@ const data: Person[] = [
     age: 2032,
     gender: 'M',
   },
+  {
+    firstName: 'Bill',
+    lastName: 'Gates',
+    middleName: '',
+    age: 75,
+    gender: 'M',
+  },
+  {
+    firstName: 'Ada',
+    lastName: 'Lovelace',
+    middleName: '',
+    age: 36,
+    gender: 'F',
+  },
+  {
+    firstName: 'Alan',
+    lastName: 'Turing',
+    middleName: '',
+    age: 41,
+    gender: 'M',
+  },
+  {
+    firstName: 'Dwayne',
+    lastName: 'Johnson',
+    middleName: '',
+    age: 51,
+    gender: 'M',
+  },
+  {
+    firstName: 'Kirk',
+    lastName: 'Hammett',
+    middleName: '',
+    age: 60,
+    gender: 'M',
+  },
 ];
 
 const columnHelper = createColumnHelper<Person>();
@@ -89,5 +124,8 @@ Default.args = {
   sortable: true,
   sortDir: 'asc',
   sortCol: 'lastName',
+  pageable: true,
+  pageIndex: 0,
+  pageSize: 3,
   className: 'width-full',
 };

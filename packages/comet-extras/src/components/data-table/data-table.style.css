@@ -52,3 +52,21 @@ table.data-table th.sort-asc::before {
 table.data-table th.sort-desc::before {
   border-top: 5px solid #22543d;
 }
+
+.table-paging {
+  padding-top: 16px;
+}
+
+.table-paging .table-paging-btn,
+.table-paging .table-paging-prev,
+.table-paging .table-paging-next {
+  border: transparent;
+  background-color: unset;
+  margin: 2px;
+  padding: 8px 14px;
+  border-radius: 6px;
+}
+
+.table-paging .table-paging-btn-active {
+  border: 1px solid #ededed;
+}
