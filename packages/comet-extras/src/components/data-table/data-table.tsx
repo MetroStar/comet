@@ -92,6 +92,24 @@ export const DataTable = ({
     getPaginationRowModel: getPaginationRowModel(),
   });
 
+  const getPageButtonArray = (): number[] => {
+    const totalPages = table.getPageCount();
+    const array = Array.from({ length: totalPages }, (_, index) => index++);
+    // Display up to 5 paging buttons at a time
+    if (totalPages <= 5) {
+      return array.slice(0, totalPages);
+    } else {
+      const currentPage = paging.pageIndex;
+      if (currentPage < 4) {
+        return array.slice(0, 5);
+      } else {
+        const firstPage = currentPage - 3;
+        const lastPage = firstPage + 5;
+        return array.slice(firstPage, lastPage);
+      }
+    }
+  };
+
   return (
     <>
       <table id={id} className={classNames('data-table', { striped }, className)}>
@@ -141,11 +159,11 @@ export const DataTable = ({
           >
             {'<'}
           </button>
-          {Array.from({ length: table.getPageCount() }).map((row, index) => {
+          {getPageButtonArray().map((index) => {
             return (
               <button
                 id="table-paging-btn"
-                key={`paging-btn-${row}-${index}`}
+                key={`paging-btn-${index}`}
                 className={`table-paging-btn table-paging-btn ${
                   index === paging.pageIndex ? 'table-paging-btn-active' : ''
                 }`}

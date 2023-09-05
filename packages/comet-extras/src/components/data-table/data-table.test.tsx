@@ -138,6 +138,37 @@ describe('DataTable', () => {
     expect(pagingSection).toBeTruthy();
   });
 
+  test('should render a non-default pageable table with large number of pages successfully', () => {
+    const { baseElement } = render(
+      <DataTable id="table-1" columns={cols} data={basicData} pageable pageSize={1}></DataTable>,
+    );
+    const table = baseElement.querySelector('#table-1');
+    expect(table).toBeTruthy();
+    const pagingSection = baseElement.querySelector('.table-paging');
+    expect(pagingSection).toBeTruthy();
+    const pagingBtns = pagingSection?.querySelectorAll('.table-paging-btn');
+    expect(pagingBtns).toHaveLength(7);
+  });
+
+  test('should render a non-default pageable table with large number of pages and current page successfully', () => {
+    const { baseElement } = render(
+      <DataTable
+        id="table-1"
+        columns={cols}
+        data={basicData}
+        pageable
+        pageIndex={5}
+        pageSize={1}
+      ></DataTable>,
+    );
+    const table = baseElement.querySelector('#table-1');
+    expect(table).toBeTruthy();
+    const pagingSection = baseElement.querySelector('.table-paging');
+    expect(pagingSection).toBeTruthy();
+    const pagingBtns = pagingSection?.querySelectorAll('.table-paging-btn');
+    expect(pagingBtns).toHaveLength(7);
+  });
+
   test('should page through table ', async () => {
     const { baseElement } = render(
       <DataTable
