@@ -101,10 +101,8 @@ export const DataTable = ({
               {headerGroup.headers.map((header) => (
                 <th key={header.id}>
                   <div
-                    {...{
-                      className: header.column.getCanSort() ? 'cursor-pointer select-none' : '',
-                      onClick: header.column.getToggleSortingHandler(),
-                    }}
+                    className={header.column.getCanSort() ? 'cursor-pointer select-none' : ''}
+                    onClick={header.column.getToggleSortingHandler()}
                   >
                     {flexRender(header.column.columnDef.header, header.getContext())}
                     {{
