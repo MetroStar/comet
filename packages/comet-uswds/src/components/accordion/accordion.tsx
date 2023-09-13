@@ -1,9 +1,9 @@
-import React, { ReactNode, useEffect, useRef } from 'react';
-import clasnames from 'classnames';
+import React, { ReactElement, ReactNode, useEffect, useRef } from 'react';
+import classnames from 'classnames';
 import accordion from '@uswds/uswds/js/usa-accordion';
 import './accordion.style.css';
 
-export interface AccordionItem {
+export interface AccordionItemProps {
   /**
    * The unique identifier for the accordion item
    */
@@ -19,7 +19,7 @@ export interface AccordionItem {
   /**
    * The body of the accordion item
    */
-  child: ReactNode;
+  children: ReactNode;
 }
 
 export interface AccordionProps {
@@ -34,7 +34,11 @@ export interface AccordionProps {
   /**
    * An array of AccordionItem objects, used to build the accordion
    */
-  items: AccordionItem[];
+  items?: AccordionItemProps[];
+  /**
+   * The body of the accordion
+   */
+  children?: Array<ReactElement<AccordionItemProps>>;
 }
 
 /**
@@ -44,7 +48,13 @@ export const Accordion = ({
   id,
   allowMultiSelect = false,
   items,
+  children,
 }: AccordionProps): React.ReactElement => {
+  // If no children and items provided, render partial
+  if (!children && !items) {
+    return <></>;
+  }
+
   // Ensure accordion JS is loaded
   const accordionRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -71,34 +81,53 @@ export const Accordion = ({
     <div
       id={id}
       ref={accordionRef}
-      className={clasnames('usa-accordion', {
+      className={classnames('usa-accordion', {
         'usa-accordion--multiselectable': allowMultiSelect,
       })}
       data-allow-multiple={allowMultiSelect ? true : undefined}
     >
-      {items.map((e, i) => (
-        <div className="accordion-item" data-testid="accordion-item" key={`accordion-item-${i}`}>
-          <h4 className="usa-accordion__heading">
-            <button
-              type="button"
-              className="usa-accordion__button"
-              data-testid="accordion-button"
-              aria-expanded={items[i].expanded}
-              aria-controls={items[i].id}
-            >
-              {e.label}
-            </button>
-          </h4>
-          <div
-            id={items[i].id}
-            className="usa-accordion__content usa-prose text-left"
-            data-testid="accordion-content"
-            hidden={!items[i].expanded}
+      {children ??
+        items?.map((e, i) => (
+          <AccordionItem
+            id={e.id}
+            key={`accordion-item-${i}`}
+            label={e.label}
+            expanded={e.expanded}
           >
-            {e.child}
-          </div>
-        </div>
-      ))}
+            {e.children}
+          </AccordionItem>
+        ))}
+    </div>
+  );
+};
+
+export const AccordionItem = ({
+  id,
+  label,
+  expanded,
+  children,
+}: AccordionItemProps): React.ReactElement => {
+  return (
+    <div className="accordion-item" data-testid="accordion-item">
+      <h4 className="usa-accordion__heading">
+        <button
+          type="button"
+          className="usa-accordion__button"
+          data-testid="accordion-button"
+          aria-expanded={expanded}
+          aria-controls={id}
+        >
+          {label}
+        </button>
+      </h4>
+      <div
+        id={id}
+        className="usa-accordion__content usa-prose text-left"
+        data-testid="accordion-content"
+        hidden={!expanded}
+      >
+        {children}
+      </div>
     </div>
   );
 };

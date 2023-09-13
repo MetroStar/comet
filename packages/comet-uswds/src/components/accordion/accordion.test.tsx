@@ -11,7 +11,7 @@ describe('Accordion', () => {
         id: 'item-1',
         label: 'foo',
         expanded: false,
-        child: <span>bar</span>,
+        children: <span>bar</span>,
       },
     ];
     const { container } = render(<Accordion id="accordion" items={items} />);
@@ -24,7 +24,7 @@ describe('Accordion', () => {
         id: 'item-1',
         label: 'foo',
         expanded: false,
-        child: <span>bar</span>,
+        children: <span>bar</span>,
       },
     ];
     render(<Accordion id="accordion" items={items} />);
@@ -43,7 +43,7 @@ describe('Accordion', () => {
         id: 'item-1',
         label: 'foo',
         expanded: true,
-        child: <span>bar</span>,
+        children: <span>bar</span>,
       },
     ];
     render(<Accordion id="accordion" items={items} />);
@@ -62,7 +62,7 @@ describe('Accordion', () => {
         id: 'item-1',
         label: 'foo',
         expanded: false,
-        child: <span>bar</span>,
+        children: <span>bar</span>,
       },
     ];
     render(<Accordion id="accordion" items={items} allowMultiSelect={true} />);
@@ -73,5 +73,10 @@ describe('Accordion', () => {
     fireEvent.click(screen.getByTestId('accordion-button'));
 
     expect(screen.getByText('bar')).toBeVisible();
+  });
+
+  test('should not render when no items or children are provided', () => {
+    const { container } = render(<Accordion id="accordion" />);
+    expect(container.querySelector('#accordion')).toBeFalsy();
   });
 });
