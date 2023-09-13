@@ -38,7 +38,7 @@ export interface AccordionProps {
   /**
    * The body of the accordion
    */
-  children?: Array<ReactElement<AccordionItemProps>>;
+  children?: ReactElement<AccordionItemProps> | Array<ReactElement<AccordionItemProps>>;
 }
 
 /**
@@ -49,7 +49,7 @@ export const Accordion = ({
   allowMultiSelect = false,
   items,
   children,
-}: AccordionProps): React.ReactElement => {
+}: AccordionProps): ReactElement => {
   // If no children and items provided, render partial
   if (!children && !items) {
     return <></>;
@@ -106,7 +106,7 @@ export const AccordionItem = ({
   label,
   expanded,
   children,
-}: AccordionItemProps): React.ReactElement => {
+}: AccordionItemProps): ReactElement => {
   return (
     <div className="accordion-item" data-testid="accordion-item">
       <h4 className="usa-accordion__heading">

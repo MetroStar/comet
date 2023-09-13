@@ -1,7 +1,7 @@
 import React from 'react';
 import { StoryFn, Meta } from '@storybook/react';
-import { Accordion } from '../../index';
-import { AccordionItem, AccordionProps } from './accordion';
+import { Accordion, AccordionItem } from '../../index';
+import { AccordionProps } from './accordion';
 
 const meta: Meta<typeof Accordion> = {
   title: 'USWDS/Accordion',
