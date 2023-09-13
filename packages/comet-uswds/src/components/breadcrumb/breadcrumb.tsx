@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 
-export interface Crumb {
+export interface BreadcrumbItemProps {
   /**
    * The intended url path for the item
    */
@@ -9,6 +9,10 @@ export interface Crumb {
    * The display value for this bread crumb item
    */
   name: string;
+  /**
+   * Custom callback for when breadcrumb item is clicked
+   */
+  action?: Function;
 }
 
 export interface BreadcrumbProps {
@@ -17,10 +21,6 @@ export interface BreadcrumbProps {
    */
   id: string;
   /**
-   * An array of bread crumb objects to display
-   */
-  crumbs: Crumb[];
-  /**
    * Custom callback for when breadcrumb item is clicked
    */
   action: Function;
@@ -28,6 +28,14 @@ export interface BreadcrumbProps {
    * Custom value to display as the current location
    */
   current?: string;
+  /**
+   * An array of bread crumb items to display
+   */
+  items?: BreadcrumbItemProps[];
+  /**
+   * The body of the breadcrumb
+   */
+  children?: ReactElement<BreadcrumbItemProps> | Array<ReactElement<BreadcrumbItemProps>>;
 }
 
 /**
@@ -35,24 +43,23 @@ export interface BreadcrumbProps {
  */
 export const Breadcrumb = ({
   id,
-  crumbs,
   current,
   action,
-}: BreadcrumbProps): React.ReactElement => {
+  items,
+  children,
+}: BreadcrumbProps): ReactElement => {
+  // If no children and items provided, render partial
+  if (!children && !items) {
+    return <></>;
+  }
+
   return (
     <nav className="usa-breadcrumb breadcrumb" aria-label="Breadcrumbs,," id={id}>
       <ol className="usa-breadcrumb__list">
-        {crumbs.map((e, i) => (
-          <li className="usa-breadcrumb__list-item" key={`breadcrumb-${i}`}>
-            <span
-              className="usa-breadcrumb__link span-link"
-              data-testid="breadcrumb-link"
-              onClick={() => action(e.path)}
-            >
-              <span>{e.name}</span>
-            </span>
-          </li>
-        ))}
+        {children ??
+          items?.map((e, i) => (
+            <BreadcrumbItem path={e.path} name={e.name} action={action} key={`breadcrumb-${i}`} />
+          ))}
         {current ? (
           <li className="usa-breadcrumb__list-item usa-current" aria-current="true">
             <span>{current}</span>
@@ -62,6 +69,27 @@ export const Breadcrumb = ({
         )}
       </ol>
     </nav>
+  );
+};
+
+export const BreadcrumbItem = ({ path, name, action }: BreadcrumbItemProps): ReactElement => {
+  return (
+    <li className="usa-breadcrumb__list-item">
+      <span
+        className="usa-breadcrumb__link span-link"
+        data-testid="breadcrumb-link"
+        onClick={() => {
+          /* istanbul ignore else */
+          if (action) {
+            action(path);
+          } else {
+            return false;
+          }
+        }}
+      >
+        <span>{name}</span>
+      </span>
+    </li>
   );
 };
 

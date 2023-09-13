@@ -1,7 +1,7 @@
 export { default as Accordion, AccordionItem } from './accordion';
 export { default as Alert } from './alert';
 export { default as Banner } from './banner';
-export { default as Breadcrumb, Crumb } from './breadcrumb';
+export { default as Breadcrumb, BreadcrumbItem } from './breadcrumb';
 export { default as Button } from './button';
 export { default as ButtonGroup } from './button-group';
 export { default as Card, CardFooter, CardBody, CardHeader } from './card';
