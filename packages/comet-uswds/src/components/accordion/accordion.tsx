@@ -36,7 +36,7 @@ export interface AccordionProps {
    */
   items?: AccordionItemProps[];
   /**
-   * The body of the accordion
+   * The body of the component
    */
   children?: ReactElement<AccordionItemProps> | Array<ReactElement<AccordionItemProps>>;
 }
