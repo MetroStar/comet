@@ -1,6 +1,10 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
-import SideNavigation, { SideNavigationItem, SideNavigationProps } from './side-navigation';
+import SideNavigation, {
+  SideNavigationItem,
+  SideNavigationItemProps,
+  SideNavigationProps,
+} from './side-navigation';
 
 const meta: Meta<typeof SideNavigation> = {
   title: 'USWDS/Side Navigation',
@@ -21,7 +25,7 @@ const createAnchor = (isCurrent = false): JSX.Element => (
     Navigation Link
   </a>
 );
-const flatNavigation: SideNavigationItem[] = [
+const flatNavigation: SideNavigationItemProps[] = [
   {
     anchor: createAnchor(true),
   },
@@ -39,7 +43,7 @@ FlatSideNavigation.args = {
   ariaLabel,
 };
 
-const twoLevelNavigation: SideNavigationItem[] = [
+const twoLevelNavigation: SideNavigationItemProps[] = [
   {
     anchor: createAnchor(true),
     items: [
@@ -72,7 +76,7 @@ TwoLevelSideNavigation.args = {
   ariaLabel,
 };
 
-const threeLevelNavigation: SideNavigationItem[] = [
+const threeLevelNavigation: SideNavigationItemProps[] = [
   {
     anchor: createAnchor(true),
     items: [
@@ -123,4 +127,17 @@ ThreeLevelSideNavigation.args = {
   id: 'side-navigation-3',
   items: threeLevelNavigation,
   ariaLabel,
+};
+
+const ChildrenTemplate: StoryFn<typeof SideNavigation> = (args: SideNavigationProps) => (
+  <SideNavigation {...args}>
+    <SideNavigationItem anchor={createAnchor(true)} />
+    <SideNavigationItem anchor={createAnchor(false)} />
+    <SideNavigationItem anchor={createAnchor(false)} />
+  </SideNavigation>
+);
+
+export const WithChildren = ChildrenTemplate.bind({});
+WithChildren.args = {
+  id: 'side-navigation-4',
 };
