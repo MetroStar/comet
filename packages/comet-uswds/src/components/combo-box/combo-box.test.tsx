@@ -2,14 +2,14 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import { axe } from 'jest-axe';
 import userEvent from '@testing-library/user-event';
-import ComboBox, { ComboBoxOption } from './combo-box';
+import ComboBox, { ComboBoxOptionProps } from './combo-box';
 
 describe('ComboBox', () => {
   const defaultId = 'combo-box1';
   const defaultName = 'combo-box-name';
   const loremWords = ['Lorem', 'Ipsum', 'Dolor', 'Sit'];
   const options = loremWords.map((word) => {
-    return { value: word.toLowerCase(), label: word } as ComboBoxOption;
+    return { value: word.toLowerCase(), label: word } as ComboBoxOptionProps;
   });
 
   test('should render with no accessibility violations', async () => {

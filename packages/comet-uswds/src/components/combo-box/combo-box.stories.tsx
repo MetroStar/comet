@@ -1,6 +1,6 @@
 import { Meta, StoryFn } from '@storybook/react';
 import React, { ChangeEvent, useState } from 'react';
-import { ComboBox, ComboBoxOption, ComboBoxProps } from './combo-box';
+import { ComboBox, ComboBoxOptionProps, ComboBoxProps } from './combo-box';
 
 const meta: Meta<typeof ComboBox> = {
   title: 'USWDS/Forms/Combo Box',
@@ -15,7 +15,7 @@ const loremText =
   'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Necessitatibus explicabo magnam, harum eos repellat pariatur, quia itaque dolorum qui ipsa dolore sapiente tempore ipsum ut quibusdam esse natus, iusto mollitia.';
 const loremWords = [...loremText.replace('.', '').replace(',', '').split(' ')];
 const options = loremWords.map((word) => {
-  return { value: word.toLowerCase(), label: word } as ComboBoxOption;
+  return { value: word.toLowerCase(), label: word } as ComboBoxOptionProps;
 });
 
 const ComboBoxWrapper: React.FC<ComboBoxProps> = (props: ComboBoxProps) => {

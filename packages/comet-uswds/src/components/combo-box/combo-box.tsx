@@ -2,7 +2,7 @@ import Select, { SelectOptionProps, SelectProps } from '../select/select';
 import comboBox from '@uswds/uswds/js/usa-combo-box';
 import React, { RefObject, useLayoutEffect, useRef } from 'react';
 
-export type ComboBoxOption = SelectOptionProps;
+export type ComboBoxOptionProps = SelectOptionProps;
 export type ComboBoxProps = {
   /**
    * The unique identifier for this component
