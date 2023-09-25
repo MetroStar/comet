@@ -15,7 +15,7 @@ export interface ProcessListStepProp {
    */
   headingClassName?: string;
   /**
-   * The body of the accordion item
+   * The body of the step
    */
   children: ReactNode;
 }
