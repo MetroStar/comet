@@ -7,7 +7,7 @@ export { default as ButtonGroup } from './button-group';
 export { default as Card, CardFooter, CardBody, CardHeader } from './card';
 export { default as CharacterCount, CharacterCountContainer } from './character-count';
 export { default as Checkbox, CheckboxGroup, CheckboxData } from './checkbox';
-export { default as ComboBox, ComboBoxOption } from './combo-box';
+export { default as ComboBox, ComboBoxOptionProps } from './combo-box';
 export { default as DatePicker } from './date-picker';
 export { default as DateRangePicker } from './date-range-picker';
 export { default as ErrorMessages } from './error-messages';

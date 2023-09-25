@@ -1,7 +1,7 @@
 import React, { ReactElement, ReactNode } from 'react';
 import classnames from 'classnames';
 
-export interface ProcessListStepProp {
+export interface ProcessListStepProps {
   /**
    * The heading for the step
    */
@@ -28,11 +28,11 @@ export interface ProcessListProps {
   /**
    * The level of the headings
    */
-  steps?: ProcessListStepProp[];
+  steps?: ProcessListStepProps[];
   /**
    * ProcessListStep components to display as children
    */
-  children?: ReactElement<ProcessListStepProp> | Array<ReactElement<ProcessListStepProp>>;
+  children?: ReactElement<ProcessListStepProps> | Array<ReactElement<ProcessListStepProps>>;
 }
 
 /**
@@ -60,7 +60,7 @@ export const ProcessListStep = ({
   headingClassName,
   headingElementName = 'h4',
   children,
-}: ProcessListStepProp): ReactElement => {
+}: ProcessListStepProps): ReactElement => {
   const headingClasses = classnames('usa-process-list__heading', headingClassName);
   return (
     <li className="usa-process-list__item">

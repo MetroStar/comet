@@ -4,7 +4,7 @@ import {
   ProcessList,
   ProcessListProps,
   ProcessListStep,
-  ProcessListStepProp,
+  ProcessListStepProps,
 } from './process-list';
 
 const meta: Meta<typeof ProcessList> = {
@@ -18,7 +18,7 @@ export default meta;
 
 const Template: StoryFn<typeof ProcessList> = (args: ProcessListProps) => <ProcessList {...args} />;
 
-const steps: ProcessListStepProp[] = [
+const steps: ProcessListStepProps[] = [
   {
     heading: 'Start a process',
     children: (

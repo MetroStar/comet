@@ -1,11 +1,11 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import { axe } from 'jest-axe';
-import ProcessList, { ProcessListStep } from './process-list';
+import ProcessList, { ProcessListStep, ProcessListStepProps } from './process-list';
 
 describe('Process list', () => {
   const defaultId = 'process-list1';
-  const steps: ProcessListStep[] = [
+  const steps: ProcessListStepProps[] = [
     {
       heading: 'Start a process',
       children: (
