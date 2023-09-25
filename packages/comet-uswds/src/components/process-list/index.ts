@@ -1,1 +1,1 @@
-export { default, ProcessListStep } from './process-list';
+export { default, ProcessListStep, ProcessListStepProps } from './process-list';
