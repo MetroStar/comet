@@ -23,6 +23,7 @@ export const ErrorMessages = ({
   errors,
   children,
 }: ErrorMessagesProps): React.ReactElement => {
+  // If no children and items provided, render partial
   if (!children && !errors) {
     return <></>;
   }

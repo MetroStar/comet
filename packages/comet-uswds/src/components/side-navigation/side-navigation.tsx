@@ -39,6 +39,7 @@ export const SideNavigation = ({
   items,
   children,
 }: SideNavigationProps): ReactElement => {
+  // If no children and items provided, render partial
   if (!children && !items) {
     return <></>;
   }

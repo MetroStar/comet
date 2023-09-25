@@ -39,6 +39,7 @@ export interface ProcessListProps {
  * A process list displays the steps or stages of important instructions or processes.
  */
 export const ProcessList = ({ id, steps, children }: ProcessListProps): ReactElement => {
+  // If no children and items provided, render partial
   if (!children && !steps) {
     return <></>;
   }

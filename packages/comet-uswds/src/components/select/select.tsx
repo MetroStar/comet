@@ -50,6 +50,7 @@ export const Select = ({
   children,
   ...selectProps
 }: SelectProps & JSX.IntrinsicElements['select']): ReactElement => {
+  // If no children and items provided, render partial
   if (!children && !options) {
     return <></>;
   }
