@@ -25,7 +25,7 @@ export interface SideNavigationProps {
    */
   items?: SideNavigationItemProps[];
   /**
-   * The body of the component
+   * SideNavigationItem components to display as children
    */
   children?: ReactElement<SideNavigationItemProps> | Array<ReactElement<SideNavigationItemProps>>;
 }

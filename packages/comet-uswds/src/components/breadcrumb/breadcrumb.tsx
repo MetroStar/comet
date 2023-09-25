@@ -33,7 +33,7 @@ export interface BreadcrumbProps {
    */
   items?: BreadcrumbItemProps[];
   /**
-   * The body of the component
+   * BreadcrumbItem components to display as children
    */
   children?: ReactElement<BreadcrumbItemProps> | Array<ReactElement<BreadcrumbItemProps>>;
 }

@@ -30,7 +30,7 @@ export interface ProcessListProps {
    */
   steps?: ProcessListStepProp[];
   /**
-   * The body of the component
+   * ProcessListStep components to display as children
    */
   children?: ReactElement<ProcessListStepProp> | Array<ReactElement<ProcessListStepProp>>;
 }

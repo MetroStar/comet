@@ -10,7 +10,7 @@ export interface ErrorMessagesProps {
    */
   errors?: string[];
   /**
-   * The body of the component
+   * ReactNode components to display as children
    */
   children?: ReactNode;
 }

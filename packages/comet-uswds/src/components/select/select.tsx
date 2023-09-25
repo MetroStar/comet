@@ -30,7 +30,7 @@ export interface SelectProps {
    */
   options?: SelectOptionProps[];
   /**
-   * The body of the component
+   * SelectOption components to display as children
    */
   children?: ReactElement<SelectOptionProps> | Array<ReactElement<SelectOptionProps>>;
   /**
