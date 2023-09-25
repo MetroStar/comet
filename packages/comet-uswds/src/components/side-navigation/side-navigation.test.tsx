@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import { axe } from 'jest-axe';
-import SideNavigation, { SideNavigationItem, SideNavigationItemProps } from './side-navigation';
+import SideNavigation, { SideNavigationItemProps } from './side-navigation';
 
 describe('SideNavigation', () => {
   const defaultId = 'side-navigation1';
