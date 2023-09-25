@@ -1,7 +1,7 @@
 import classNames from 'classnames';
-import React, { ChangeEventHandler } from 'react';
+import React, { ChangeEventHandler, ReactElement } from 'react';
 
-export interface SelectOption {
+export interface SelectOptionProps {
   /**
    * The value for the option
    */
@@ -24,11 +24,15 @@ export interface SelectProps {
   /**
    * The default option of the select
    */
-  defaultOption?: SelectOption | null;
+  defaultOption?: SelectOptionProps | null;
   /**
    * The options of the select
    */
-  options?: SelectOption[];
+  options?: SelectOptionProps[];
+  /**
+   * The body of the component
+   */
+  children?: ReactElement<SelectOptionProps> | Array<ReactElement<SelectOptionProps>>;
   /**
    * Event handler for when value of the select is changed
    */
@@ -43,18 +47,27 @@ export const Select = ({
   options,
   onChange,
   className,
+  children,
   ...selectProps
-}: SelectProps & JSX.IntrinsicElements['select']): React.ReactElement => {
+}: SelectProps & JSX.IntrinsicElements['select']): ReactElement => {
+  if (!children && !options) {
+    return <></>;
+  }
+
   return (
     <select className={classNames('usa-select', className)} onChange={onChange} {...selectProps}>
       {createOption(defaultOption, -1)}
-      {options?.map(createOption)}
+      {children ?? options?.map(createOption)}
     </select>
   );
 };
 
+export const SelectOption = ({ value, label }: SelectOptionProps): ReactElement => {
+  return <option value={value}>{label}</option>;
+};
+
 const createOption = (
-  option: SelectOption | null,
+  option: SelectOptionProps | null,
   optionIndex: number,
 ): React.ReactElement | null =>
   option && (

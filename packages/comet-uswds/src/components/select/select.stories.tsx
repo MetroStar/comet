@@ -1,7 +1,7 @@
 import { Meta, StoryFn } from '@storybook/react';
 import React, { ChangeEvent, useState } from 'react';
 import Label from '../label/label';
-import { Select, SelectOption, SelectProps } from './select';
+import { Select, SelectOption, SelectOptionProps, SelectProps } from './select';
 
 const meta: Meta<typeof Select> = {
   title: 'USWDS/Forms/Select',
@@ -15,7 +15,7 @@ export default meta;
 
 const loremWords = ['Lorem', 'Ipsum', 'Dolor', 'Sit'];
 const options = loremWords.map((word) => {
-  return { value: word.toLowerCase(), label: word } as SelectOption;
+  return { value: word.toLowerCase(), label: word } as SelectOptionProps;
 });
 
 const SelectWrapper: React.FC<SelectProps> = (props: SelectProps) => {
@@ -37,4 +37,18 @@ Standard.args = {
   id: 'select-1',
   name: 'select-1',
   options,
+};
+
+const ChildrenTemplate: StoryFn<typeof Select> = (args: SelectProps) => (
+  <Select {...args}>
+    <SelectOption value="1" label="Item 1" />
+    <SelectOption value="2" label="Item 2" />
+    <SelectOption value="3" label="Item 3" />
+  </Select>
+);
+
+export const WithChildren = ChildrenTemplate.bind({});
+WithChildren.args = {
+  id: 'select-2',
+  name: 'select-2',
 };
