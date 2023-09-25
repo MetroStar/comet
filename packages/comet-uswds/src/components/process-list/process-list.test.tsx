@@ -8,7 +8,7 @@ describe('Process list', () => {
   const steps: ProcessListStep[] = [
     {
       heading: 'Start a process',
-      content: (
+      children: (
         <p>
           Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi commodo, ipsum sed
           pharetra gravida, orci magna rhoncus neque.
@@ -17,7 +17,7 @@ describe('Process list', () => {
     },
     {
       heading: 'Start a process',
-      content: (
+      children: (
         <p>
           Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi commodo, ipsum sed
           pharetra gravida, orci magna rhoncus neque.
@@ -26,7 +26,7 @@ describe('Process list', () => {
     },
     {
       heading: 'Proceed to the second step',
-      content: (
+      children: (
         <p>
           Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi commodo, ipsum sed
           pharetra gravida, orci magna rhoncus neque, id pulvinar odio lorem non turpis. Nullam sit
@@ -37,7 +37,7 @@ describe('Process list', () => {
     },
     {
       heading: 'Complete the step-by-step process',
-      content: (
+      children: (
         <p>
           Nullam sit amet enim. Suspendisse id velit vitae ligula volutpat condimentum. Aliquam erat
           volutpat. Sed quis velit. Nulla facilisi. Nulla libero. Vivamus pharetra posuere sapien.
@@ -67,12 +67,15 @@ describe('Process list', () => {
 
   test('should render a process list with different heading elements', () => {
     const { baseElement } = render(
-      <ProcessList
-        id={defaultId}
-        steps={steps}
-        headingElementName="p"
-        headingClassName="font-sans-xl line-height-sans-1"
-      />,
+      <ProcessList id={defaultId}>
+        <ProcessListStep
+          heading="Step 1"
+          headingElementName="p"
+          headingClassName="font-sans-xl line-height-sans-1"
+        >
+          Step 1 Content
+        </ProcessListStep>
+      </ProcessList>,
     );
     expect(baseElement).toBeTruthy();
     const processListNodes = baseElement.querySelectorAll('.usa-process-list__heading');
@@ -81,5 +84,10 @@ describe('Process list', () => {
       expect(processListNode?.classList).toContain('font-sans-xl');
       expect(processListNode?.classList).toContain('line-height-sans-1');
     });
+  });
+
+  test('should not render when no items or children are provided', () => {
+    const { container } = render(<ProcessList id="process-list" />);
+    expect(container.querySelector('#process-list')).toBeFalsy();
   });
 });
