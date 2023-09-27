@@ -2,14 +2,14 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import { axe } from 'jest-axe';
 import userEvent from '@testing-library/user-event';
-import Select, { SelectOption } from './select';
+import Select, { SelectOption, SelectOptionProps } from './select';
 
 describe('Select', () => {
   const defaultId = 'select-1';
   const defaultName = 'select-name';
   const loremWords = ['Lorem', 'Ipsum', 'Dolor', 'Sit'];
   const options = loremWords.map((word) => {
-    return { value: word.toLowerCase(), label: word } as SelectOption;
+    return { value: word.toLowerCase(), label: word } as SelectOptionProps;
   });
 
   test('should render with no accessibility violations', async () => {
@@ -70,5 +70,21 @@ describe('Select', () => {
     expect(onChange).toHaveBeenCalledTimes(0);
     await userEvent.selectOptions(selectElement, options[0].value as string);
     expect(onChange).toHaveBeenCalledTimes(1);
+  });
+
+  test('should render a select with children successfully', () => {
+    const { baseElement } = render(
+      <Select id={defaultId} name={defaultName}>
+        <SelectOption value="1" label="Item 1" />
+        <SelectOption value="2" label="Item 2" />
+        <SelectOption value="3" label="Item 3" />
+      </Select>,
+    );
+    expect(baseElement).toBeTruthy();
+  });
+
+  test('should not render when no items or children are provided', () => {
+    const { container } = render(<Select id="select" />);
+    expect(container.querySelector('#select')).toBeFalsy();
   });
 });

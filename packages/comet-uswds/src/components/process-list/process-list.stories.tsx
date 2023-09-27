@@ -1,6 +1,11 @@
-import React, { ReactHTMLElement } from 'react';
+import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
-import { ProcessList, ProcessListProps, ProcessListStep } from './process-list';
+import {
+  ProcessList,
+  ProcessListProps,
+  ProcessListStep,
+  ProcessListStepProps,
+} from './process-list';
 
 const meta: Meta<typeof ProcessList> = {
   title: 'USWDS/Process List',
@@ -13,10 +18,10 @@ export default meta;
 
 const Template: StoryFn<typeof ProcessList> = (args: ProcessListProps) => <ProcessList {...args} />;
 
-const steps: ProcessListStep[] = [
+const steps: ProcessListStepProps[] = [
   {
     heading: 'Start a process',
-    content: (
+    children: (
       <p>
         Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi commodo, ipsum sed pharetra
         gravida, orci magna rhoncus neque.
@@ -25,7 +30,7 @@ const steps: ProcessListStep[] = [
   },
   {
     heading: 'Start a process',
-    content: (
+    children: (
       <p>
         Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi commodo, ipsum sed pharetra
         gravida, orci magna rhoncus neque.
@@ -34,7 +39,7 @@ const steps: ProcessListStep[] = [
   },
   {
     heading: 'Proceed to the second step',
-    content: (
+    children: (
       <p>
         Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi commodo, ipsum sed pharetra
         gravida, orci magna rhoncus neque, id pulvinar odio lorem non turpis. Nullam sit amet enim.
@@ -45,7 +50,7 @@ const steps: ProcessListStep[] = [
   },
   {
     heading: 'Complete the step-by-step process',
-    content: (
+    children: (
       <p>
         Nullam sit amet enim. Suspendisse id velit vitae ligula volutpat condimentum. Aliquam erat
         volutpat. Sed quis velit. Nulla facilisi. Nulla libero. Vivamus pharetra posuere sapien.
@@ -61,7 +66,7 @@ Default.args = {
 };
 
 const noContentSteps = steps.map((step) => {
-  return { heading: step.heading, content: null };
+  return { heading: step.heading, children: null };
 });
 
 export const NoStepContent = Template.bind({});
@@ -70,19 +75,50 @@ NoStepContent.args = {
   steps: noContentSteps,
 };
 
-const customSizingSteps = steps.map((step) => {
-  return {
-    heading: step.heading,
-    content: React.cloneElement(step.content as ReactHTMLElement<HTMLElement>, {
-      className: 'font-sans-lg margin-top-1 text-light',
-    }),
-  };
-});
+const ChildrenTemplate: StoryFn<typeof ProcessList> = (args: ProcessListProps) => (
+  <ProcessList {...args}>
+    <ProcessListStep heading="Step 1">
+      Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi commodo, ipsum sed pharetra
+      gravida, orci magna rhoncus neque.
+    </ProcessListStep>
+    <ProcessListStep heading="Step 2">
+      Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi commodo, ipsum sed pharetra
+      gravida, orci magna rhoncus neque.
+    </ProcessListStep>
+    <ProcessListStep heading="Step 3">
+      Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi commodo, ipsum sed pharetra
+      gravida, orci magna rhoncus neque.
+    </ProcessListStep>
+  </ProcessList>
+);
 
-export const CustomSizing = Template.bind({});
-CustomSizing.args = {
+export const WithChildren = ChildrenTemplate.bind({});
+WithChildren.args = {
   id: 'process-list-3',
-  steps: customSizingSteps,
-  headingElementName: 'p',
-  headingClassName: 'font-sans-xl line-height-sans-1',
+};
+
+const CustomSizingTemplate: StoryFn<typeof ProcessList> = (args: ProcessListProps) => (
+  <ProcessList {...args}>
+    <ProcessListStep
+      heading="Step 1"
+      headingElementName="h5"
+      headingClassName="font-sans-lg margin-top-1 text-light"
+    >
+      Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi commodo, ipsum sed pharetra
+      gravida, orci magna rhoncus neque.
+    </ProcessListStep>
+    <ProcessListStep
+      heading="Step 2"
+      headingElementName="h5"
+      headingClassName="font-sans-lg margin-top-1 text-light"
+    >
+      Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi commodo, ipsum sed pharetra
+      gravida, orci magna rhoncus neque.
+    </ProcessListStep>
+  </ProcessList>
+);
+
+export const CustomSizing = CustomSizingTemplate.bind({});
+CustomSizing.args = {
+  id: 'process-list-4',
 };

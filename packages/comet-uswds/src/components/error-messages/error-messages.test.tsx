@@ -29,4 +29,9 @@ describe('ErrorMessage', () => {
     const errorMessages = baseElement.querySelectorAll('.usa-error-message');
     expect(errorMessages).toHaveLength(2);
   });
+
+  test('should not render when no items or children are provided', () => {
+    const { container } = render(<ErrorMessages id="errors" />);
+    expect(container.querySelector('#errors')).toBeFalsy();
+  });
 });

@@ -1,6 +1,6 @@
-import React, { ReactNode } from 'react';
+import React, { ReactElement, ReactNode } from 'react';
 
-export interface SideNavigationItem {
+export interface SideNavigationItemProps {
   /**
    * Anchor to render for current SideNavigationItem
    */
@@ -8,7 +8,7 @@ export interface SideNavigationItem {
   /**
    * Items of the navigation
    */
-  items?: SideNavigationItem[];
+  items?: SideNavigationItemProps[];
 }
 
 export interface SideNavigationProps {
@@ -23,7 +23,11 @@ export interface SideNavigationProps {
   /**
    * Items of the navigation
    */
-  items: SideNavigationItem[];
+  items?: SideNavigationItemProps[];
+  /**
+   * SideNavigationItem components to display as children
+   */
+  children?: ReactElement<SideNavigationItemProps> | Array<ReactElement<SideNavigationItemProps>>;
 }
 
 /**
@@ -33,23 +37,46 @@ export const SideNavigation = ({
   id,
   ariaLabel,
   items,
-}: SideNavigationProps): React.ReactElement => {
+  children,
+}: SideNavigationProps): ReactElement => {
+  // If no children and items provided, render partial
+  if (!children && !items) {
+    return <></>;
+  }
+
   return (
     <nav id={id} aria-label={ariaLabel}>
-      <ul className="usa-sidenav">{items.map(createSideNavigationItem)}</ul>
+      <ul className="usa-sidenav">
+        {children ??
+          items?.map((item, index) => (
+            <SideNavigationItem
+              items={item.items}
+              anchor={item.anchor}
+              key={`side-nav-item-${index}`}
+            ></SideNavigationItem>
+          ))}
+      </ul>
     </nav>
   );
 };
 
-function createSideNavigationItem(item: SideNavigationItem, itemIndex: number): JSX.Element {
+export const SideNavigationItem = ({ items, anchor }: SideNavigationItemProps): JSX.Element => {
   return (
-    <li className="usa-sidenav__item" key={itemIndex}>
-      {item.anchor}
-      {item.items && item.items.length > 0 && (
-        <ul className="usa-sidenav__sublist">{item.items.map(createSideNavigationItem)}</ul>
+    <li className="usa-sidenav__item">
+      {anchor}
+      {items && items.length > 0 && (
+        <ul className="usa-sidenav__sublist">
+          {items.map((item, index) => (
+            <SideNavigationItem
+              items={item.items}
+              anchor={item.anchor}
+              key={`side-nav-item-sublist-${index}`}
+            ></SideNavigationItem>
+          ))}
+        </ul>
       )}
     </li>
   );
-}
+};
 
 export default SideNavigation;

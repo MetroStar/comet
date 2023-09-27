@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import { axe } from 'jest-axe';
-import SideNavigation, { SideNavigationItem } from './side-navigation';
+import SideNavigation, { SideNavigationItemProps } from './side-navigation';
 
 describe('SideNavigation', () => {
   const defaultId = 'side-navigation1';
@@ -13,7 +13,7 @@ describe('SideNavigation', () => {
   );
 
   test('should render with no accessibility violations', async () => {
-    const flatNavigation: SideNavigationItem[] = [
+    const flatNavigation: SideNavigationItemProps[] = [
       {
         anchor: createAnchor(true),
       },
@@ -31,7 +31,7 @@ describe('SideNavigation', () => {
   });
 
   test('should render a flat side navigation successfully', () => {
-    const flatNavigation: SideNavigationItem[] = [
+    const flatNavigation: SideNavigationItemProps[] = [
       {
         anchor: createAnchor(true),
       },
@@ -49,7 +49,7 @@ describe('SideNavigation', () => {
   });
 
   test('should render a two level side navigation successfully', () => {
-    const twoLevelNavigation: SideNavigationItem[] = [
+    const twoLevelNavigation: SideNavigationItemProps[] = [
       {
         anchor: createAnchor(true),
         items: [
@@ -82,7 +82,7 @@ describe('SideNavigation', () => {
   });
 
   test('should render a three level side navigation successfully', () => {
-    const threeLevelNavigation: SideNavigationItem[] = [
+    const threeLevelNavigation: SideNavigationItemProps[] = [
       {
         anchor: createAnchor(true),
         items: [
@@ -132,5 +132,10 @@ describe('SideNavigation', () => {
       <SideNavigation id={defaultId} ariaLabel={ariaLabel} items={threeLevelNavigation} />,
     );
     expect(baseElement).toBeTruthy();
+  });
+
+  test('should not render when no items or children are provided', () => {
+    const { container } = render(<SideNavigation id="side-navigation" ariaLabel={ariaLabel} />);
+    expect(container.querySelector('#side-navigation')).toBeFalsy();
   });
 });

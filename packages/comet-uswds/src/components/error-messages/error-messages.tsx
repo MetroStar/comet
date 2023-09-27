@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 
 export interface ErrorMessagesProps {
   /**
@@ -8,7 +8,11 @@ export interface ErrorMessagesProps {
   /**
    * An array of error strings to display
    */
-  errors: string[];
+  errors?: string[];
+  /**
+   * ReactNode components to display as children
+   */
+  children?: ReactNode;
 }
 
 /**
@@ -17,16 +21,23 @@ export interface ErrorMessagesProps {
 export const ErrorMessages = ({
   id = undefined,
   errors,
+  children,
 }: ErrorMessagesProps): React.ReactElement => {
+  // If no children and items provided, render partial
+  if (!children && !errors) {
+    return <></>;
+  }
+
   return (
     <>
-      {errors.map((error, index) => {
-        return (
-          <span id={`${id}-${index}`} key={index} className="usa-error-message">
-            {error}
-          </span>
-        );
-      })}
+      {children ??
+        errors?.map((error, index) => {
+          return (
+            <span id={`${id}-${index}`} key={index} className="usa-error-message">
+              {error}
+            </span>
+          );
+        })}
     </>
   );
 };

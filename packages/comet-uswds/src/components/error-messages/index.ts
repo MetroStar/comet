@@ -1,1 +1,1 @@
-export { default } from './error-messages';
+export { default, ErrorMessagesProps } from './error-messages';

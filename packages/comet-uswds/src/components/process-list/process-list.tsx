@@ -1,11 +1,11 @@
-import React, { ReactNode } from 'react';
+import React, { ReactElement, ReactNode } from 'react';
 import classnames from 'classnames';
 
-export interface ProcessListProps {
+export interface ProcessListStepProps {
   /**
-   * The unique identifier for this component
+   * The heading for the step
    */
-  id: string;
+  heading: string;
   /**
    * The level of the headings
    */
@@ -15,50 +15,65 @@ export interface ProcessListProps {
    */
   headingClassName?: string;
   /**
-   * The level of the headings
+   * The body of the step
    */
-  steps: ProcessListStep[];
+  children: ReactNode;
 }
 
-export interface ProcessListStep {
+export interface ProcessListProps {
   /**
-   * The heading for the step
+   * The unique identifier for this component
    */
-  heading: string;
+  id: string;
   /**
-   * The content of the step
+   * The level of the headings
    */
-  content: ReactNode;
+  steps?: ProcessListStepProps[];
+  /**
+   * ProcessListStep components to display as children
+   */
+  children?: ReactElement<ProcessListStepProps> | Array<ReactElement<ProcessListStepProps>>;
 }
 
 /**
  * A process list displays the steps or stages of important instructions or processes.
  */
-export const ProcessList = ({
-  id,
-  headingElementName = 'h4',
-  headingClassName,
-  steps,
-}: ProcessListProps): React.ReactElement => {
+export const ProcessList = ({ id, steps, children }: ProcessListProps): ReactElement => {
+  // If no children and items provided, render partial
+  if (!children && !steps) {
+    return <></>;
+  }
+
   return (
     <ol id={id} className="usa-process-list">
-      {steps.map((step, stepIndex) => {
-        const headingClasses = classnames('usa-process-list__heading', headingClassName);
-
-        return (
-          <li key={stepIndex} className="usa-process-list__item">
-            {React.createElement(
-              headingElementName,
-              {
-                className: headingClasses,
-              },
-              step.heading,
-            )}
-            {step.content}
-          </li>
-        );
-      })}
+      {children ??
+        steps?.map((step, stepIndex) => (
+          <ProcessListStep heading={step.heading} key={stepIndex}>
+            {step.children}
+          </ProcessListStep>
+        ))}
     </ol>
+  );
+};
+
+export const ProcessListStep = ({
+  heading,
+  headingClassName,
+  headingElementName = 'h4',
+  children,
+}: ProcessListStepProps): ReactElement => {
+  const headingClasses = classnames('usa-process-list__heading', headingClassName);
+  return (
+    <li className="usa-process-list__item">
+      {React.createElement(
+        headingElementName,
+        {
+          className: headingClasses,
+        },
+        heading,
+      )}
+      {children}
+    </li>
   );
 };
 
