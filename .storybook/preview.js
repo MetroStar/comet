@@ -8,4 +8,9 @@ export const parameters = {
       date: /Date$/,
     },
   },
+  options: {
+    storySort: {
+      order: ['Welcome', 'Style Guide', 'USWDS', 'Extras', 'Data Viz'],
+    },
+  },
 };
