@@ -8,4 +8,16 @@ export const parameters = {
       date: /Date$/,
     },
   },
+  options: {
+    storySort: {
+      order: [
+        'Welcome',
+        'Style Guide',
+        ['Colors', 'Typography', 'Icons'],
+        'USWDS',
+        'Extras',
+        'Data Viz',
+      ],
+    },
+  },
 };

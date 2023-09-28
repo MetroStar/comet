@@ -5,6 +5,7 @@ module.exports = {
     '../packages/comet-uswds/src/**/*.stories.@(tsx|mdx)',
     '../packages/comet-data-viz/src/**/*.stories.@(tsx|mdx)',
     '../packages/comet-extras/src/**/*.stories.@(tsx|mdx)',
+    '../packages/comet-uswds/src/**/*.mdx',
   ],
   addons: [
     getAbsolutePath('@storybook/addon-links'),
