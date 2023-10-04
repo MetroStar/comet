@@ -62,7 +62,7 @@
     "jest-environment-jsdom": "^29.6.4",
     "jest-transform-stub": "^2.0.0",
     "node-sass": "^8.0.0",
-    "postcss": "^8.4.16",
+    "postcss": "^8.4.31",
     "prettier": "^2.7.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
