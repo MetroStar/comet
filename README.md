@@ -24,6 +24,8 @@ In the beginning, Comet was built with a primary focus of USWDS. Today however, 
 
 `comet-extras` - A set of custom components, intended to fill in the gaps where USWDS does not provide an implementation.
 
+`comet-cli` - A CLI for creating Comet Apps.
+
 ## Getting Started
 
 In order to simplify the process of getting started, we have provided a starter app which includes our components. This app also provides some additional opinionated tools to further accelerate the process of getting started. These additions are not required. The starter app repo can be found here: [Comet Starter App](https://github.com/MetroStar/comet-starter).
