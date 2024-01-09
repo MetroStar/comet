@@ -31,7 +31,7 @@ program
     const command = `git clone ${UI_REPO_URL} ${projectName}`;
     exec(command, (err: any) => {
       if (err) {
-        error(`Error: ${err}`);
+        error(`Error: ${err.message}`);
       } else {
         log('Project initialized successfully!');
       }
@@ -57,7 +57,7 @@ program
     const command = `git clone ${API_REPO_URL} ${projectName}`;
     exec(command, (err) => {
       if (err) {
-        error(`Error: ${err}`);
+        error(`Error: ${err.message}`);
       } else {
         log('Project initialized successfully!');
       }
