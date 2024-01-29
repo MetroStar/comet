@@ -68,7 +68,7 @@ updates:
           - '>=18.2.0'
       - dependency-name: react-dom
         versions:
-          - '>=18.2.0'  
+          - '>=18.2.0'
   - package-ecosystem: 'npm'
     directory: '/packages/comet-uswds'
     schedule:
@@ -82,5 +82,5 @@ updates:
           - '>=18.2.0'
       - dependency-name: react-dom
         versions:
-          - '>=18.2.0'  
-      - dependency-name: @uswds/uswds
+          - '>=18.2.0'
+      - dependency-name: '@uswds/uswds'
