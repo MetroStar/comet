@@ -1,0 +1,86 @@
+# To get started with Dependabot version updates, you'll need to specify which
+# package ecosystems to update and where the package manifests are located.
+# Please see the documentation for all configuration options:
+# https://docs.github.com/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
+
+version: 2
+updates:
+  - package-ecosystem: 'npm'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+    open-pull-requests-limit: 10
+    labels:
+      - 'dependencies'
+    ignore:
+      - dependency-name: react
+        versions:
+          - '>=18.2.0'
+      - dependency-name: react-dom
+        versions:
+          - '>=18.2.0'
+      - dependency-name: '@types/react'
+        versions:
+          - '>=18.2.0'
+      - dependency-name: '@types/react-dom'
+        versions:
+          - '>=18.2.0'
+      - dependency-name: '@storybook/addon-a11y'
+      - dependency-name: '@storybook/addon-actions'
+      - dependency-name: '@storybook/addon-essentials'
+      - dependency-name: '@storybook/addon-interactions'
+      - dependency-name: '@storybook/addon-links'
+      - dependency-name: '@storybook/addon-mdx-gfm'
+      - dependency-name: '@storybook/react'
+      - dependency-name: '@storybook/react-webpack5'
+      - dependency-name: 'storybook'
+  - package-ecosystem: 'npm'
+    directory: '/packages/comet-cli'
+    schedule:
+      interval: 'weekly'
+    open-pull-requests-limit: 10
+    labels:
+      - 'dependencies'
+  - package-ecosystem: 'npm'
+    directory: '/packages/comet-data-viz'
+    schedule:
+      interval: 'weekly'
+    open-pull-requests-limit: 10
+    labels:
+      - 'dependencies'
+    ignore:
+      - dependency-name: react
+        versions:
+          - '>=18.2.0'
+      - dependency-name: react-dom
+        versions:
+          - '>=18.2.0'
+  - package-ecosystem: 'npm'
+    directory: '/packages/comet-extras'
+    schedule:
+      interval: 'weekly'
+    open-pull-requests-limit: 10
+    labels:
+      - 'dependencies'
+    ignore:
+      - dependency-name: react
+        versions:
+          - '>=18.2.0'
+      - dependency-name: react-dom
+        versions:
+          - '>=18.2.0'  
+  - package-ecosystem: 'npm'
+    directory: '/packages/comet-uswds'
+    schedule:
+      interval: 'weekly'
+    open-pull-requests-limit: 10
+    labels:
+      - 'dependencies'
+    ignore:
+      - dependency-name: react
+        versions:
+          - '>=18.2.0'
+      - dependency-name: react-dom
+        versions:
+          - '>=18.2.0'  
+      - dependency-name: @uswds/uswds
