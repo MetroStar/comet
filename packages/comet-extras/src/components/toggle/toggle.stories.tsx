@@ -1,5 +1,5 @@
 import React from 'react';
-import { Story, Meta, StoryFn } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import Toggle, { ToggleProps } from './toggle';
 
 export default {

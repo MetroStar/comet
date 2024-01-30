@@ -1,5 +1,4 @@
 import React from 'react';
-import classnames from 'classnames';
 import './toggle.style.css';
 
 import { ChangeEvent, ChangeEventHandler, useEffect, useState } from 'react';
@@ -33,7 +32,7 @@ export interface ToggleProps {
 
 export const Toggle = ({ id, name, checked = false, label, ariaLabel, onChange }: ToggleProps) => {
   const [isChecked, setIsChecked] = useState(false);
-  const toggleHandler = (event: ChangeEvent<HTMLInputElement>) => {
+  const toggleHandler = (event: ChangeEvent<HTMLInputElement>): void => {
     setIsChecked(!isChecked);
     if (onChange) {
       onChange(event);
