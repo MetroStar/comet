@@ -1,0 +1,79 @@
+.absolute {
+  position: absolute;
+}
+.cursor-pointer {
+  cursor: pointer;
+}
+.flex {
+  display: flex;
+}
+.h-6 {
+  height: 1.5rem;
+}
+.inset-y-0 {
+  top: 0px;
+  bottom: 0px;
+}
+.items-center {
+  align-items: center;
+}
+.left-0 {
+  left: 0px;
+}
+.ml-0 {
+  margin-left: 0;
+}
+.ml-3 {
+  margin-left: 0.75rem;
+}
+
+.ml-6 {
+  margin-left: 1.5rem;
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+.relative {
+  position: relative;
+}
+
+.rounded-full {
+  border-radius: 9999px;
+}
+
+.shadow {
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+}
+.shadow-inner {
+  box-shadow: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
+}
+.toggle {
+  margin-top: 0.5rem;
+}
+.toggle-body {
+  background-color: #e6e6e6;
+}
+.toggle-body-on {
+  background-color: #005ea2;
+}
+.toggle-dot {
+  background-color: #ffffff;
+  border: 1px solid #e6e6e6;
+}
+.toggle-label {
+  color: inherit;
+}
+.w-6 {
+  width: 1.5rem;
+}
+.w-12 {
+  width: 3rem;
+}
