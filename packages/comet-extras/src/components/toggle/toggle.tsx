@@ -1,6 +1,5 @@
 import React from 'react';
 import './toggle.style.css';
-
 import { ChangeEvent, ChangeEventHandler, useEffect, useState } from 'react';
 
 export interface ToggleProps {
@@ -44,33 +43,20 @@ export const Toggle = ({ id, name, checked = false, label, ariaLabel, onChange }
   }, [checked]);
 
   return (
-    <div className="toggle flex items-center">
-      <label
-        htmlFor={id}
-        className="flex items-center cursor-pointer"
-        tabIndex={0}
-        aria-label={ariaLabel}
-      >
+    <div className="toggle">
+      <label htmlFor={id} className="toggle-label" tabIndex={0} aria-label={ariaLabel}>
         <div className="relative">
           <input
             type="checkbox"
             id={id}
             name={name}
-            className="sr-only"
+            className="toggle-sr-only"
             checked={isChecked}
             onChange={toggleHandler}
             tabIndex={-1}
           />
-          <div
-            className={`toggle-body w-12 h-6 rounded-full shadow-inner ${
-              isChecked ? 'toggle-body-on' : ''
-            }`}
-          ></div>
-          <div
-            className={`toggle-dot absolute w-6 h-6 rounded-full shadow inset-y-0 left-0 ${
-              isChecked ? 'ml-6' : 'ml-0'
-            }`}
-          ></div>
+          <div className={`toggle-body ${isChecked ? 'toggle-body-on' : ''}`}></div>
+          <div className={`toggle-dot ${isChecked ? 'ml-6' : 'ml-0'}`}></div>
         </div>
         {label && <span className="toggle-label ml-3">{label}</span>}
       </label>
