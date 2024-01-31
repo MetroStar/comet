@@ -23,7 +23,7 @@
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "victory": "^36.6.8"
+    "victory": "^36.8.5"
   },
   "peerDependencies": {
     "react": "^18.2.0"
