@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, fireEvent, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import { Toggle, ToggleProps } from './toggle'; // Assuming the Toggle component is in the same directory
+import { Toggle } from './toggle'; // Assuming the Toggle component is in the same directory
 
 describe('Toggle Component Tests', () => {
   // Test to check if the Toggle renders correctly
