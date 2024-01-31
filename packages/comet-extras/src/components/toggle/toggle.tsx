@@ -28,6 +28,9 @@ export interface ToggleProps {
   onChange?: ChangeEventHandler<HTMLInputElement>;
 }
 
+/**
+ * Used to toggle the state of a single setting on or off.
+ */
 export const Toggle = ({
   id,
   name,
