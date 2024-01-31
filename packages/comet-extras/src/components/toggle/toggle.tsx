@@ -1,6 +1,5 @@
-import React from 'react';
 import './toggle.style.css';
-import { ChangeEvent, ChangeEventHandler, useEffect, useState } from 'react';
+import React, { ChangeEvent, ChangeEventHandler, useEffect, useState } from 'react';
 
 export interface ToggleProps {
   /**
@@ -29,13 +28,18 @@ export interface ToggleProps {
   onChange?: ChangeEventHandler<HTMLInputElement>;
 }
 
-export const Toggle = ({ id, name, checked = false, label, ariaLabel, onChange }: ToggleProps) => {
+export const Toggle = ({
+  id,
+  name,
+  checked = false,
+  label,
+  ariaLabel,
+  onChange,
+}: ToggleProps): React.ReactElement => {
   const [isChecked, setIsChecked] = useState(false);
   const toggleHandler = (event: ChangeEvent<HTMLInputElement>): void => {
     setIsChecked(!isChecked);
-    if (onChange) {
-      onChange(event);
-    }
+    onChange?.(event);
   };
 
   useEffect(() => {
@@ -45,7 +49,7 @@ export const Toggle = ({ id, name, checked = false, label, ariaLabel, onChange }
   return (
     <div className="toggle">
       <label htmlFor={id} className="toggle-label" tabIndex={0} aria-label={ariaLabel}>
-        <div className="relative">
+        <div className="pos-rel">
           <input
             type="checkbox"
             id={id}

@@ -15,7 +15,9 @@
 .toggle-body.toggle-body-on {
   background-color: #005ea2;
 }
-
+.toggle .pos-rel {
+  position: relative;
+}
 .toggle-dot {
   background-color: #ffffff;
   border: 1px solid #e6e6e6;
@@ -23,8 +25,8 @@
   box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
   position: absolute;
   height: 1.5rem;
-  left: 10px;
-  top: 10px;
+  left: 0;
+  top: 0;
   width: 1.5rem;
 
   &.ml-6 {
