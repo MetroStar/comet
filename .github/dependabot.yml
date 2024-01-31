@@ -19,6 +19,9 @@ updates:
       - dependency-name: react-dom
         versions:
           - '>=18.2.0'
+      - dependency-name: '@types/node'
+        versions:
+          - '>=18.16.1'
       - dependency-name: '@types/react'
         versions:
           - '>=18.2.0'
@@ -34,6 +37,15 @@ updates:
       - dependency-name: '@storybook/react'
       - dependency-name: '@storybook/react-webpack5'
       - dependency-name: 'storybook'
+      - dependency-name: 'typescript'
+      - dependency-name: '@typescript-eslint/eslint-plugin'
+      - dependency-name: '@typescript-eslint/parser'
+      - dependency-name: 'eslint-config-standard-with-typescript'
+      - dependency-name: 'eslint-plugin-import'
+      - dependency-name: 'eslint-plugin-n'
+      - dependency-name: 'eslint-plugin-promise'
+      - dependency-name: 'rollup'
+      - dependency-name: 'rollup-plugin-dts'
   - package-ecosystem: 'npm'
     directory: '/packages/comet-cli'
     schedule:
@@ -55,6 +67,7 @@ updates:
       - dependency-name: react-dom
         versions:
           - '>=18.2.0'
+      - dependency-name: 'victory'
   - package-ecosystem: 'npm'
     directory: '/packages/comet-extras'
     schedule:
@@ -69,6 +82,7 @@ updates:
       - dependency-name: react-dom
         versions:
           - '>=18.2.0'
+      - dependency-name: '@tanstack/react-table'
   - package-ecosystem: 'npm'
     directory: '/packages/comet-uswds'
     schedule:
