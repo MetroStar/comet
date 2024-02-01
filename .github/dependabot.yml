@@ -28,6 +28,7 @@ updates:
       - dependency-name: '@types/react-dom'
         versions:
           - '>=18.2.0'
+      - dependency-name: '@rollup/plugin-typescript'
       - dependency-name: '@storybook/addon-a11y'
       - dependency-name: '@storybook/addon-actions'
       - dependency-name: '@storybook/addon-essentials'
