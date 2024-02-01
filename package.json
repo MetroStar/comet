@@ -27,7 +27,7 @@
     "@rollup/plugin-commonjs": "^25.0.7",
     "@rollup/plugin-image": "^3.0.3",
     "@rollup/plugin-node-resolve": "^15.2.3",
-    "@rollup/plugin-typescript": "^11.1.6",
+    "@rollup/plugin-typescript": "^8.5.0",
     "@storybook/addon-a11y": "^7.6.1",
     "@storybook/addon-actions": "^7.6.1",
     "@storybook/addon-essentials": "^7.6.1",
