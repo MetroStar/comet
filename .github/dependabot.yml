@@ -45,6 +45,7 @@ updates:
       - dependency-name: 'eslint-plugin-import'
       - dependency-name: 'eslint-plugin-n'
       - dependency-name: 'eslint-plugin-promise'
+      - dependency-name: 'eslint-plugin-storybook'
       - dependency-name: 'rollup'
       - dependency-name: 'rollup-plugin-dts'
   - package-ecosystem: 'npm'
