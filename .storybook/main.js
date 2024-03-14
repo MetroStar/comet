@@ -2,9 +2,9 @@ import { dirname, join } from 'path';
 const path = require('path');
 module.exports = {
   stories: [
-    '../packages/comet-uswds/src/**/*.stories.@(tsx|mdx)',
-    '../packages/comet-data-viz/src/**/*.stories.@(tsx|mdx)',
-    '../packages/comet-extras/src/**/*.stories.@(tsx|mdx)',
+    '../packages/comet-uswds/src/**/*.@(mdx|stories.@(tsx))',
+    '../packages/comet-data-viz/src/**/*.@(mdx|stories.@(tsx))',
+    '../packages/comet-extras/src/**/*.@(mdx|stories.@(tsx))',
     '../packages/comet-uswds/src/**/*.mdx',
   ],
   addons: [
@@ -12,7 +12,7 @@ module.exports = {
     getAbsolutePath('@storybook/addon-essentials'),
     getAbsolutePath('@storybook/addon-interactions'),
     getAbsolutePath('@storybook/addon-a11y'),
-    getAbsolutePath("@storybook/addon-mdx-gfm")
+    getAbsolutePath('@storybook/addon-webpack5-compiler-swc'),
   ],
   framework: {
     name: getAbsolutePath('@storybook/react-webpack5'),
