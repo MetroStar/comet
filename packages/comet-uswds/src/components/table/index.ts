@@ -1,1 +1,2 @@
-export { default, TableColumn, TableCell } from './table';
+export { default } from './table';
+export type { TableColumn, TableCell } from './table';
