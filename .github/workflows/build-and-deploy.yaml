@@ -20,14 +20,12 @@ jobs:
         run: npm ci
 
       - name: Build
-        run: |
-          rm -rf storybook-static | true
-          mkdir -p storybook-static
-          cd storybook-static
-          touch .nojekyll
-          npm run build:storybook
+        run: npm run build:storybook
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
+          clean: true
+          clean-exclude: |
+            CNAME
           folder: storybook-static
