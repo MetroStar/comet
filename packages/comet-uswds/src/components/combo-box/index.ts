@@ -1,1 +1,2 @@
-export { default, ComboBoxOptionProps } from './combo-box';
+export { default } from './combo-box';
+export type { ComboBoxOptionProps } from './combo-box';

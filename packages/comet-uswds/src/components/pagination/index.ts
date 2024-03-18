@@ -1,1 +1,2 @@
-export { default, CreatePageUrlHandler, OnPageHandler } from './pagination';
+export { default } from './pagination';
+export type { CreatePageUrlHandler, OnPageHandler } from './pagination';
