@@ -20,7 +20,9 @@ jobs:
         run: npm ci
 
       - name: Build
-        run: npm run build:storybook
+        run: |
+          npm run build:storybook
+          touch ./storybook-static/.nojekyll
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
