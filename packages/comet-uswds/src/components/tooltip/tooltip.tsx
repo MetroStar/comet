@@ -27,7 +27,7 @@ export const Tooltip = ({
   const tooltipRef = useRef<HTMLSpanElement>(null);
   useLayoutEffect(() => {
     const tooltipElement = tooltipRef.current?.firstChild as HTMLElement;
-    /* istanbul ignore else */
+    /* v8 ignore else */
     if (tooltipElement) {
       tooltipElement.classList.add('usa-tooltip');
       tooltipElement.title = label;

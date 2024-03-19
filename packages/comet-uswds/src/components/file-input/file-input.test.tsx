@@ -1,6 +1,6 @@
 import { render, RenderOptions, RenderResult } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { axe } from 'jest-axe';
+import { axe } from 'vitest-axe';
 import React, { ReactNode } from 'react';
 import FileInput from './file-input';
 const customRender = (ui: React.ReactElement, options?: RenderOptions): RenderResult =>
@@ -33,7 +33,7 @@ describe('FileInput', () => {
   });
 
   test('should render a disabled file input successfully', async () => {
-    const onChange = jest.fn();
+    const onChange = vi.fn();
     const { baseElement } = customRender(
       <FileInput id={defaultId} name={fileInputName} onChange={onChange} />,
     );

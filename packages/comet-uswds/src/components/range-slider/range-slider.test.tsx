@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import { axe } from 'jest-axe';
+import { axe } from 'vitest-axe';
 import RangeSlider from './range-slider';
 
 describe('Range slider', () => {
@@ -37,7 +37,7 @@ describe('Range slider', () => {
   });
 
   test('should change the value of the slider', () => {
-    const spy = jest.fn();
+    const spy = vi.fn();
     const { baseElement } = render(
       <RangeSlider id={defaultId} name={defaultId} defaultValue="20" onChange={spy} />,
     );

@@ -79,7 +79,7 @@ export const BreadcrumbItem = ({ path, name, action }: BreadcrumbItemProps): Rea
         className="usa-breadcrumb__link span-link"
         data-testid="breadcrumb-link"
         onClick={() => {
-          /* istanbul ignore else */
+          /* v8 ignore if */
           if (action) {
             action(path);
           } else {

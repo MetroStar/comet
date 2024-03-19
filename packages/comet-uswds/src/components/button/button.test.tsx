@@ -1,7 +1,7 @@
 import React from 'react';
 import '@testing-library/jest-dom';
 import { render, screen, fireEvent } from '@testing-library/react';
-import { axe } from 'jest-axe';
+import { axe } from 'vitest-axe';
 import Button from './button';
 
 describe('Button', () => {
@@ -61,7 +61,7 @@ describe('Button', () => {
   });
 
   test('should render with click', () => {
-    const spy = jest.fn();
+    const spy = vi.fn();
     render(
       <Button id="button" onClick={spy}>
         foo

@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { axe } from 'jest-axe';
+import { axe } from 'vitest-axe';
 import userEvent from '@testing-library/user-event';
 import ComboBox, { ComboBoxOptionProps } from './combo-box';
 
@@ -95,7 +95,7 @@ describe('ComboBox', () => {
   });
 
   test('changing option should trigger onChanged event handler', async () => {
-    const onChange = jest.fn();
+    const onChange = vi.fn();
     const { baseElement } = render(
       <>
         <label htmlFor={defaultId}>Pick option</label>

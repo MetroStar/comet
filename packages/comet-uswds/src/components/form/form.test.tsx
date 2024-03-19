@@ -1,5 +1,5 @@
 import { fireEvent, render } from '@testing-library/react';
-import { axe } from 'jest-axe';
+import { axe } from 'vitest-axe';
 import React, { FormEvent } from 'react';
 
 import Form from './form';

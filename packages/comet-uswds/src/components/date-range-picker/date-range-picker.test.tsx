@@ -1,6 +1,6 @@
 import React from 'react';
 import { fireEvent, render, RenderResult } from '@testing-library/react';
-import { axe } from 'jest-axe';
+import { axe } from 'vitest-axe';
 import { Label, FormGroup, DatePicker } from '../..';
 import { DateRangePickerContainer } from './date-range-picker';
 

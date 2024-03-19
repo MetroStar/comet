@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import { axe } from 'jest-axe';
+import { axe } from 'vitest-axe';
 import userEvent from '@testing-library/user-event';
 import DatePicker from './date-picker';
 
@@ -146,7 +146,7 @@ describe('Date picker', () => {
   });
 
   test('should trigger onChange event', async () => {
-    const onChange = jest.fn();
+    const onChange = vi.fn();
     const { baseElement } = render(
       <DatePicker id={defaultId} name={defaultName} onChange={onChange} />,
     );

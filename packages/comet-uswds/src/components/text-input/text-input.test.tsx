@@ -1,7 +1,7 @@
 import React from 'react';
 import '@testing-library/jest-dom';
 import { render, screen, fireEvent } from '@testing-library/react';
-import { axe } from 'jest-axe';
+import { axe } from 'vitest-axe';
 import TextInput from './text-input';
 
 describe('Input', () => {
@@ -80,7 +80,7 @@ describe('Input', () => {
   });
 
   test('Input renders with given props and callback works', () => {
-    const spy = jest.fn();
+    const spy = vi.fn();
     render(<TextInput id="input" placeholder="foo" onChange={spy} />);
     const input = screen.getByTestId('input');
 

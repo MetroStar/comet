@@ -1,6 +1,6 @@
 import React, { FormEvent } from 'react';
 import { fireEvent, render } from '@testing-library/react';
-import { axe } from 'jest-axe';
+import { axe } from 'vitest-axe';
 import Search from './search';
 
 describe('Search', () => {
@@ -40,7 +40,7 @@ describe('Search', () => {
 
   test('firing submit event should invoke onSearch callback', () => {
     const searchTerm = 'lorem';
-    const onSearchCallback = jest.fn((e: FormEvent) => e.preventDefault());
+    const onSearchCallback = vi.fn((e: FormEvent) => e.preventDefault());
     const { baseElement } = render(<Search id={defaultId} onSearch={onSearchCallback} />);
     expect(baseElement).toBeTruthy();
     const searchForm = baseElement.querySelector<HTMLFormElement>(`form.usa-search`);

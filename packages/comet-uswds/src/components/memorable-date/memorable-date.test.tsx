@@ -1,7 +1,7 @@
 import React from 'react';
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
-import { axe } from 'jest-axe';
+import { axe } from 'vitest-axe';
 import { MemorableDate } from './memorable-date';
 import userEvent from '@testing-library/user-event';
 
@@ -39,9 +39,9 @@ describe('Memorable Date', () => {
   });
 
   test('changing option should trigger onChanged event handler', async () => {
-    const onMonthChange = jest.fn();
-    const onDayChange = jest.fn();
-    const onYearChange = jest.fn();
+    const onMonthChange = vi.fn();
+    const onDayChange = vi.fn();
+    const onYearChange = vi.fn();
     const { baseElement } = render(
       <MemorableDate
         id="1"

@@ -12,8 +12,9 @@
     "declarationDir": "types",
     "sourceMap": true,
     "outDir": "dist",
-    "moduleResolution": "Bundler",
+    "moduleResolution": "Node",
     "allowSyntheticDefaultImports": true,
-    "emitDeclarationOnly": true
+    "emitDeclarationOnly": true,
+    "types": ["vitest/globals"]
   }
 }
