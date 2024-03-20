@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react';
-import { axe } from 'vitest-axe';
+import { axe } from 'jest-axe';
 import Alert from './alert';
 
 describe('Alert', () => {

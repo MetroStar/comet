@@ -1,7 +1,7 @@
 import React from 'react';
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
-import { axe } from 'vitest-axe';
+import { axe } from 'jest-axe';
 import { MemorableDate } from './memorable-date';
 import userEvent from '@testing-library/user-event';
 

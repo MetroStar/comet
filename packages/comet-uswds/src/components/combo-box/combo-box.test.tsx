@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { axe } from 'vitest-axe';
+import { axe } from 'jest-axe';
 import userEvent from '@testing-library/user-event';
 import ComboBox, { ComboBoxOptionProps } from './combo-box';
 

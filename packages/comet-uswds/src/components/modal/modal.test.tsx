@@ -1,5 +1,5 @@
 import { render, RenderOptions, RenderResult } from '@testing-library/react';
-import { axe } from 'vitest-axe';
+import { axe } from 'jest-axe';
 import React, { ReactNode } from 'react';
 import Modal from './modal';
 

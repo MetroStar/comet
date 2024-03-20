@@ -1,7 +1,7 @@
 import React from 'react';
 import '@testing-library/jest-dom';
 import { render, screen, fireEvent } from '@testing-library/react';
-import { axe } from 'vitest-axe';
+import { axe } from 'jest-axe';
 import Breadcrumb, { BreadcrumbItem } from './breadcrumb';
 
 describe('Breadcrumb', () => {

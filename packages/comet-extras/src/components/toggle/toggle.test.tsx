@@ -1,5 +1,5 @@
 import { render, fireEvent, screen } from '@testing-library/react';
-import { axe } from 'vitest-axe';
+import { axe } from 'jest-axe';
 import { Toggle } from './toggle'; // Assuming the Toggle component is in the same directory
 
 describe('Toggle Component Tests', () => {

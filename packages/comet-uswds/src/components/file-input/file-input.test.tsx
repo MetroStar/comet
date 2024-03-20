@@ -1,6 +1,6 @@
 import { render, RenderOptions, RenderResult } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { axe } from 'vitest-axe';
+import { axe } from 'jest-axe';
 import React, { ReactNode } from 'react';
 import FileInput from './file-input';
 const customRender = (ui: React.ReactElement, options?: RenderOptions): RenderResult =>

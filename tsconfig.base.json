@@ -15,6 +15,7 @@
     "moduleResolution": "Node",
     "allowSyntheticDefaultImports": true,
     "emitDeclarationOnly": true,
-    "types": ["vitest/globals"]
-  }
+    "types": ["vite/client", "vitest/globals"]
+  },
+  "include": ["packages/**/src", "./test.setup.ts"]
 }

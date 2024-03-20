@@ -1,6 +1,6 @@
 import React from 'react';
 import { fireEvent, render } from '@testing-library/react';
-import { axe } from 'vitest-axe';
+import { axe } from 'jest-axe';
 import RadioButton, { RadioButtonData, RadioButtonGroup } from './radio-button';
 
 describe('RadioButton', () => {

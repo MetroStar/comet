@@ -1,6 +1,6 @@
 import React, { FormEvent } from 'react';
 import { fireEvent, render } from '@testing-library/react';
-import { axe } from 'vitest-axe';
+import { axe } from 'jest-axe';
 import Search from './search';
 
 describe('Search', () => {
