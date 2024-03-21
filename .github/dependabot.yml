@@ -12,6 +12,12 @@ updates:
     open-pull-requests-limit: 10
     labels:
       - 'dependencies'
+    groups:
+      typescript-eslint:
+        patterns:
+          - '@vitest/coverage-v8'
+          - '@vitest/ui'
+          - 'vitest'
     ignore:
       - dependency-name: react
         versions:
