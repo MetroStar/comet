@@ -95,7 +95,7 @@ describe('ComboBox', () => {
   });
 
   test('changing option should trigger onChanged event handler', async () => {
-    const onChange = jest.fn();
+    const onChange = vi.fn();
     const { baseElement } = render(
       <>
         <label htmlFor={defaultId}>Pick option</label>

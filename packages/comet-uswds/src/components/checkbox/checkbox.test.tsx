@@ -43,7 +43,7 @@ describe('Checkbox', () => {
   });
 
   test('should trigger change event when checkbox checked', () => {
-    const onCheck = jest.fn();
+    const onCheck = vi.fn();
     const { baseElement } = render(
       <Checkbox
         id={defaultId}
@@ -63,7 +63,7 @@ describe('Checkbox', () => {
   });
 
   test('should trigger click event when checkbox checked', () => {
-    const onClick = jest.fn();
+    const onClick = vi.fn();
     const { baseElement } = render(
       <Checkbox id={defaultId} name={checkboxName} label="Lorem" value="lorem" onClick={onClick} />,
     );
@@ -121,7 +121,7 @@ describe('Checkbox', () => {
   });
 
   test('should trigger change event when checkbox in group checked', () => {
-    const onCheck = jest.fn();
+    const onCheck = vi.fn();
     const { baseElement } = render(
       <CheckboxGroup
         id={defaultGroupId}
@@ -154,7 +154,7 @@ describe('Checkbox', () => {
   });
 
   test('should trigger click event when checkbox in group clicked', () => {
-    const onClick = jest.fn();
+    const onClick = vi.fn();
     const { baseElement } = render(
       <CheckboxGroup
         id={defaultGroupId}

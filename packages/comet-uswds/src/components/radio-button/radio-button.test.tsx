@@ -55,7 +55,7 @@ describe('RadioButton', () => {
   });
 
   test('should trigger change event when radio button checked', () => {
-    const onCheck = jest.fn();
+    const onCheck = vi.fn();
     const { baseElement } = render(
       <RadioButton
         id={defaultId}
@@ -75,7 +75,7 @@ describe('RadioButton', () => {
   });
 
   test('should trigger click event when radio button checked', () => {
-    const onClick = jest.fn();
+    const onClick = vi.fn();
     const { baseElement } = render(
       <RadioButton
         id={defaultId}
@@ -137,7 +137,7 @@ describe('RadioButton', () => {
   });
 
   test('should trigger change event when radio button in group checked', () => {
-    const onCheck = jest.fn();
+    const onCheck = vi.fn();
     const { baseElement } = render(
       <RadioButtonGroup
         id={defaultGroupId}
@@ -170,7 +170,7 @@ describe('RadioButton', () => {
   });
 
   test('should trigger click event when radio button in group clicked', () => {
-    const onClick = jest.fn();
+    const onClick = vi.fn();
     const { baseElement } = render(
       <RadioButtonGroup
         id={defaultGroupId}

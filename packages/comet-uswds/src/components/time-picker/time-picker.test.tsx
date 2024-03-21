@@ -29,7 +29,7 @@ describe('TimePicker', () => {
   });
 
   test('changing the value should trigger onChanged event handler', async () => {
-    const onChange = jest.fn();
+    const onChange = vi.fn();
     const { baseElement } = render(
       <>
         <label htmlFor={defaultId}>Pick time</label>

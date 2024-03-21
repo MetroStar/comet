@@ -61,7 +61,7 @@ describe('Button', () => {
   });
 
   test('should render with click', () => {
-    const spy = jest.fn();
+    const spy = vi.fn();
     render(
       <Button id="button" onClick={spy}>
         foo

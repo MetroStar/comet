@@ -146,7 +146,7 @@ describe('Date picker', () => {
   });
 
   test('should trigger onChange event', async () => {
-    const onChange = jest.fn();
+    const onChange = vi.fn();
     const { baseElement } = render(
       <DatePicker id={defaultId} name={defaultName} onChange={onChange} />,
     );

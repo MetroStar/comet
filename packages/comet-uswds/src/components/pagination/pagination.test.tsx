@@ -64,7 +64,7 @@ describe('Pagination', () => {
   });
 
   test('clicking the value should trigger onPage event handler', async () => {
-    const onPage = jest.fn();
+    const onPage = vi.fn();
     const { baseElement } = render(
       <Pagination
         id="pagination1"

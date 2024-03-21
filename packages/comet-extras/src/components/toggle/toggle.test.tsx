@@ -1,13 +1,11 @@
-import React from 'react';
 import { render, fireEvent, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
 import { axe } from 'jest-axe';
 import { Toggle } from './toggle'; // Assuming the Toggle component is in the same directory
 
 describe('Toggle Component Tests', () => {
   test('should render with no accessibility violations', async () => {
     const { container } = render(
-      <Toggle id="test-toggle" label="Test toggle" onChange={jest.fn()} />,
+      <Toggle id="test-toggle" label="Test toggle" onChange={vi.fn()} />,
     );
     expect(await axe(container)).toHaveNoViolations();
   });
@@ -20,7 +18,7 @@ describe('Toggle Component Tests', () => {
 
   // Test to check if onChange is called and state changes on click
   test('calls onChange and changes state when clicked', () => {
-    const handleChange = jest.fn();
+    const handleChange = vi.fn();
     render(<Toggle id="test-toggle" onChange={handleChange} />);
     const toggle = screen.getByRole('checkbox');
     fireEvent.click(toggle);

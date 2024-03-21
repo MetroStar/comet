@@ -59,7 +59,7 @@ export const Accordion = ({
   const accordionRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const accordionElement = accordionRef.current;
-    /* istanbul ignore else */
+    /* v8 ignore else */
     if (accordionElement) {
       accordionElement.querySelectorAll('button').forEach((elem) => {
         accordion.on(elem);
@@ -68,7 +68,7 @@ export const Accordion = ({
 
     // Ensure cleanup after the effect
     return () => {
-      /* istanbul ignore else */
+      /* v8 ignore else */
       if (accordionElement) {
         accordionElement.querySelectorAll('button').forEach((elem) => {
           accordion.off(elem);

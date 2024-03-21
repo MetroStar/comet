@@ -37,7 +37,7 @@ describe('Range slider', () => {
   });
 
   test('should change the value of the slider', () => {
-    const spy = jest.fn();
+    const spy = vi.fn();
     const { baseElement } = render(
       <RangeSlider id={defaultId} name={defaultId} defaultValue="20" onChange={spy} />,
     );

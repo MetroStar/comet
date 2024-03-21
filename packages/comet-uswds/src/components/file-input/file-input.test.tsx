@@ -33,7 +33,7 @@ describe('FileInput', () => {
   });
 
   test('should render a disabled file input successfully', async () => {
-    const onChange = jest.fn();
+    const onChange = vi.fn();
     const { baseElement } = customRender(
       <FileInput id={defaultId} name={fileInputName} onChange={onChange} />,
     );

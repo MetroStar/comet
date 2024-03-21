@@ -34,7 +34,7 @@ describe('TextArea', () => {
   });
 
   test('changing the value should trigger onChanged event handler', async () => {
-    const onChange = jest.fn();
+    const onChange = vi.fn();
     const { baseElement } = render(
       <TextArea id={defaultId} name={defaultName} onChange={onChange} />,
     );

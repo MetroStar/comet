@@ -62,7 +62,7 @@ describe('Select', () => {
   });
 
   test('changing option should trigger onChanged event handler', async () => {
-    const onChange = jest.fn();
+    const onChange = vi.fn();
     const { baseElement } = render(
       <Select id={defaultId} name={defaultName} options={options} onChange={onChange} />,
     );
