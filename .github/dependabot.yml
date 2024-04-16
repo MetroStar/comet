@@ -13,7 +13,7 @@ updates:
     labels:
       - 'dependencies'
     groups:
-      typescript-eslint:
+      vitest:
         patterns:
           - '@vitest/coverage-v8'
           - '@vitest/ui'
