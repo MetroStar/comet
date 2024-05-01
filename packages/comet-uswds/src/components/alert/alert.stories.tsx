@@ -14,9 +14,7 @@ const meta: Meta<typeof Alert> = {
 export default meta;
 
 const Template: StoryFn<typeof Alert> = (args: AlertProps) => (
-  <div className="width-desktop">
-    <Alert {...args}>This is the alert body</Alert>
-  </div>
+  <Alert {...args}>This is the alert body</Alert>
 );
 
 export const Default = Template.bind({});
