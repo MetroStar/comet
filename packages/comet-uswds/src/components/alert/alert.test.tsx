@@ -43,6 +43,13 @@ describe('Alert', () => {
     expect(container.querySelector('.usa-alert__heading')).toBeTruthy();
   });
 
+  test('should render an alert with body', () => {
+    const { container } = render(
+      <Alert id="alert" type="info" heading="some heading" body="Some body" />,
+    );
+    expect(container.querySelector('.usa-alert__body')).toBeTruthy();
+  });
+
   test('should not render an alert', () => {
     const { container } = render(<Alert id="alert" type="info" show={false} />);
     expect(container.querySelector('#alert')).toBeFalsy();
