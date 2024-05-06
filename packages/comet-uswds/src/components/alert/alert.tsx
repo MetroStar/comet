@@ -27,6 +27,10 @@ export interface AlertProps {
    */
   heading?: string;
   /**
+   * The body of the alert as an optional prop
+   */
+  body?: React.ReactNode;
+  /**
    * The body of the alert
    */
   children?: React.ReactNode;
@@ -42,6 +46,7 @@ export const Alert = ({
   slim,
   noIcon,
   heading,
+  body,
   children,
 }: AlertProps): React.ReactElement => {
   const classes = classnames('usa-alert', {
@@ -59,7 +64,7 @@ export const Alert = ({
     <div id={id} className={classes}>
       <div className="usa-alert__body">
         {heading && <h4 className="usa-alert__heading">{heading}</h4>}
-        <p className="usa-alert__text">{children}</p>
+        {body ?? <p className="usa-alert__text">{children}</p>}
       </div>
     </div>
   );

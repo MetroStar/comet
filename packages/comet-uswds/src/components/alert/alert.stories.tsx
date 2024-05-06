@@ -26,3 +26,18 @@ Default.args = {
   noIcon: false,
   heading: '',
 };
+
+const BodyTemplate: StoryFn<typeof Alert> = (args: AlertProps) => (
+  <Alert {...args}>This is the alert body</Alert>
+);
+
+export const WithBody = BodyTemplate.bind({});
+WithBody.args = {
+  id: 'alert-2',
+  type: 'info',
+  slim: false,
+  show: true,
+  noIcon: false,
+  heading: '',
+  body: <span>This is the alert body as a prop</span>,
+};
