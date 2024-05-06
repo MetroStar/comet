@@ -33,7 +33,7 @@ const BodyTemplate: StoryFn<typeof Alert> = (args: AlertProps) => (
 
 export const WithBody = BodyTemplate.bind({});
 WithBody.args = {
-  id: 'alert-1',
+  id: 'alert-2',
   type: 'info',
   slim: false,
   show: true,
