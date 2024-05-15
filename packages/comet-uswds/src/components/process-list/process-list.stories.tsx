@@ -65,6 +65,13 @@ Default.args = {
   steps,
 };
 
+export const CurrentStep = Template.bind({});
+CurrentStep.args = {
+  id: 'process-list-1b',
+  steps,
+  currentStep: 2,
+};
+
 const noContentSteps = steps.map((step) => {
   return { heading: step.heading, children: null };
 });

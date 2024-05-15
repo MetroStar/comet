@@ -1,0 +1,27 @@
+.current.usa-process-list__item::before {
+  border: 0.25rem solid #005ea2;
+  background-color: #005ea2;
+  color: #fff;
+}
+
+.current.usa-process-list__item {
+  border-left: 0.5rem solid #005ea2;
+}
+
+.current.usa-process-list__heading {
+  color: #005ea2;
+}
+
+.completed.usa-process-list__item::before {
+  border: 0.25rem solid #162e51;
+  background-color: #162e51;
+  color: #fff;
+}
+
+.completed.usa-process-list__item:not(.last) {
+  border-left: 0.5rem solid #162e51;
+}
+
+.completed.usa-process-list__heading {
+  color: #162e51;
+}

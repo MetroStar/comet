@@ -56,6 +56,11 @@ describe('Process list', () => {
     expect(baseElement).toBeTruthy();
   });
 
+  test('should render a with current step', () => {
+    const { baseElement } = render(<ProcessList id={defaultId} steps={steps} currentStep={1} />);
+    expect(baseElement).toBeTruthy();
+  });
+
   test('should render a process list with h4 heading elements', () => {
     const { baseElement } = render(<ProcessList id={defaultId} steps={steps} />);
     expect(baseElement).toBeTruthy();
