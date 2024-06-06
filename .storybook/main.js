@@ -1,3 +1,4 @@
+import { dirname, join } from "path";
 /** @type { import('@storybook/react-vite').StorybookConfig } */
 const config = {
   stories: [
@@ -6,18 +7,27 @@ const config = {
     '../packages/comet-extras/src/**/*.@(mdx|stories.@(tsx))',
     '../packages/comet-uswds/src/**/*.mdx',
   ],
+
   addons: [
-    '@storybook/addon-links',
-    '@storybook/addon-essentials',
-    '@storybook/addon-interactions',
-    '@storybook/addon-a11y',
+    getAbsolutePath("@storybook/addon-links"),
+    getAbsolutePath("@storybook/addon-essentials"),
+    getAbsolutePath("@storybook/addon-interactions"),
+    getAbsolutePath("@storybook/addon-a11y"),
   ],
+
   framework: {
-    name: '@storybook/react-vite',
+    name: getAbsolutePath("@storybook/react-vite"),
     options: {},
   },
-  docs: {
-    autodocs: true,
-  },
+
+  docs: {},
+
+  typescript: {
+    reactDocgen: "react-docgen-typescript"
+  }
 };
 export default config;
+
+function getAbsolutePath(value) {
+  return dirname(require.resolve(join(value, "package.json")));
+}
