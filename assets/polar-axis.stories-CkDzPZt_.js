@@ -1,0 +1,6 @@
+import{j as r}from"./jsx-runtime--26OcTxz.js";import{V as l,a as e}from"./victory-chart-Cna-n2Jh.js";import{V as d}from"./victory-bar-DTosWKT2.js";import"./index-BLgStI3F.js";import"./data-6j7KOtXK.js";import"./_baseAssignValue-C-YtspGc.js";import"./_commonjsHelpers-BosuxZz1.js";import"./isPlainObject-BpwBpDME.js";import"./pickBy-DN9OZ1gh.js";import"./arc-HBYzQ_7A.js";const n=t=>r.jsxs(l,{...t.chart,polar:!0,children:[r.jsx(e,{dependentAxis:!0,style:{axis:{stroke:"none"},tickLabels:{fill:"none"},grid:{stroke:"grey",strokeDasharray:"4, 8"}}}),r.jsx(e,{tickValues:t.ticks}),r.jsx(d,{style:{data:{fill:t.color}},data:t.data,animate:{duration:2e3,onLoad:{duration:1e3}}})]}),P={title:"Data Viz/Polar Axis",component:n},c=t=>r.jsx("div",{style:{width:"400px",height:"400px"},children:r.jsx(n,{...t})}),a=c.bind({});a.args={chart:{title:"Polar Axis",width:400,height:400},color:"#0d7ea2",data:[1,3,5,1,2,1,5]};var o,s,i;a.parameters={...a.parameters,docs:{...(o=a.parameters)==null?void 0:o.docs,source:{originalSource:`(args: PolarAxisProps) => <div style={{
+  width: '400px',
+  height: '400px'
+}}>
+    <PolarAxis {...args} />
+  </div>`,...(i=(s=a.parameters)==null?void 0:s.docs)==null?void 0:i.source}}};const V=["Default"];export{a as Default,V as __namedExportsOrder,P as default};
