@@ -54,7 +54,11 @@ export const DatePicker = ({
 
   useLayoutEffect(() => {
     const datePickerElement = datePickerRef.current as HTMLInputElement;
-    datePicker.on(datePickerElement);
+    const datePickerWrapper = datePickerElement.querySelector(
+      '.usa-date-picker__wrapper',
+    ) as HTMLInputElement;
+    if (!datePickerWrapper) datePicker.on(datePickerElement);
+
     const externalInput = datePicker.getDatePickerContext(datePickerElement).externalInputEl;
     if (onChange) {
       externalInput.addEventListener('change', onChange);
@@ -63,9 +67,10 @@ export const DatePicker = ({
       if (onChange) {
         externalInput.removeEventListener('change', onChange);
       }
-      datePicker.off(datePickerElement);
+      /* v8 ignore next */
+      if (datePickerWrapper) datePicker.off(datePickerElement);
     };
-  });
+  }, []);
 
   const datePickerAttributes: DatePickerAttributes = {};
   if (minDate) datePickerAttributes['data-min-date'] = getDateString(minDate);
