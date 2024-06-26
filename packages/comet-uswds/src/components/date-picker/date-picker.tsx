@@ -53,10 +53,10 @@ export const DatePicker = ({
   const datePickerRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
-    const datePickerElement = datePickerRef.current as HTMLInputElement;
+    const datePickerElement = datePickerRef.current as HTMLDivElement;
     const datePickerWrapper = datePickerElement.querySelector(
       '.usa-date-picker__wrapper',
-    ) as HTMLInputElement;
+    ) as HTMLDivElement;
     if (!datePickerWrapper) datePicker.on(datePickerElement);
 
     const externalInput = datePicker.getDatePickerContext(datePickerElement).externalInputEl;
