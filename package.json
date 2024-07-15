@@ -55,7 +55,7 @@
     "eslint-plugin-storybook": "^0.8.0",
     "jest-axe": "^9.0.0",
     "postcss": "^8.4.39",
-    "prettier": "3.3.2",
+    "prettier": "3.3.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "rollup": "^2.79.1",
