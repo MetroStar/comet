@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   SortingState,
   flexRender,
@@ -109,6 +109,10 @@ export const DataTable = ({
       }
     }
   };
+
+  useEffect(() => {
+    setPaging({ pageIndex, pageSize });
+  }, [pageIndex, pageSize]);
 
   return (
     <>
