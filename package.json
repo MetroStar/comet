@@ -18,7 +18,9 @@
     "publish:comet-uswds": "cd packages/comet-uswds && npm publish --access public",
     "publish:comet-data-viz": "cd packages/comet-data-viz && npm publish --access public",
     "publish:comet-extras": "cd packages/comet-extras && npm publish --access public",
-    "publish:comet-cli": "cd packages/comet-cli && npm publish --access public"
+    "publish:comet-cli": "cd packages/comet-cli && npm publish --access public",
+    "publish:ui-kit": "npx figma connect publish",
+    "unpublish:ui-kit": "npx figma connect unpublish"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^26.0.1",
@@ -67,5 +69,8 @@
     "typescript": "*",
     "vite": "^5.3.3",
     "vitest": "^2.0.1"
+  },
+  "dependencies": {
+    "@figma/code-connect": "^1.0.2"
   }
 }
