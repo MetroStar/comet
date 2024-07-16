@@ -23,6 +23,7 @@
     "unpublish:ui-kit": "npx figma connect unpublish"
   },
   "devDependencies": {
+    "@figma/code-connect": "^1.0.2",
     "@rollup/plugin-commonjs": "^26.0.1",
     "@rollup/plugin-image": "^3.0.3",
     "@rollup/plugin-node-resolve": "^15.2.3",
@@ -69,8 +70,5 @@
     "typescript": "*",
     "vite": "^5.3.3",
     "vitest": "^2.0.1"
-  },
-  "dependencies": {
-    "@figma/code-connect": "^1.0.2"
   }
 }
