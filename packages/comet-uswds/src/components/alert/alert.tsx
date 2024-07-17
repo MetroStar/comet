@@ -9,7 +9,7 @@ export interface AlertProps {
   /**
    * The type of alert to display
    */
-  type: 'info' | 'warning' | 'error' | 'success';
+  type: 'info' | 'warning' | 'error' | 'success' | 'emergency';
   /**
    * Whether or not to display the alert
    */
@@ -53,6 +53,7 @@ export const Alert = ({
     'usa-alert--success': type === 'success',
     'usa-alert--warning': type === 'warning',
     'usa-alert--error': type === 'error',
+    'usa-alert--emergency': type === 'emergency',
     'usa-alert--info': type === 'info',
     'usa-alert--slim': slim,
     'usa-alert--no-icon': noIcon,

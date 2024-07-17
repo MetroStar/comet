@@ -28,6 +28,11 @@ describe('Alert', () => {
     expect(container.querySelector('#alert')).toHaveClass('usa-alert--success');
   });
 
+  test('should render an emergency alert', () => {
+    const { container } = render(<Alert id="alert" type="emergency" />);
+    expect(container.querySelector('#alert')).toHaveClass('usa-alert--emergency');
+  });
+
   test('should render a slim alert', () => {
     const { container } = render(<Alert id="alert" type="info" slim={true} />);
     expect(container.querySelector('#alert')).toHaveClass('usa-alert--slim');
