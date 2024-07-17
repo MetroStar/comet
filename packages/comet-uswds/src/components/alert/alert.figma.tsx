@@ -7,7 +7,8 @@ figma.connect(
   'https://www.figma.com/design/U58Pbb84dLaZfvFvdtGVdT/Comet-UI-Kit?node-id=24-2717&t=YGEQPiJRGoTsakBD-4',
   {
     props: {
-      type: figma.enum('State', {
+      heading: figma.string('Heading'),
+      type: figma.enum('Type', {
         Info: 'info',
         Warning: 'warning',
         Error: 'error',
@@ -21,8 +22,8 @@ figma.connect(
         'No icon': true,
       }),
     },
-    example: ({ type, slim, noIcon }) => (
-      <Alert id="alert" type={type} slim={slim} noIcon={noIcon}>
+    example: ({ heading, type, slim, noIcon }) => (
+      <Alert id="alert" heading={heading} type={type} slim={slim} noIcon={noIcon}>
         This is the body of the alert
       </Alert>
     ),
