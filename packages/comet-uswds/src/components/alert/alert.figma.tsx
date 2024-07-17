@@ -12,6 +12,7 @@ figma.connect(
         Warning: 'warning',
         Error: 'error',
         Success: 'success',
+        Emergency: 'emergency',
       }),
       slim: figma.enum('Variant', {
         Slim: true,
