@@ -67,5 +67,9 @@
     "typescript": "*",
     "vite": "^5.3.4",
     "vitest": "^2.0.1"
+  },
+  "overrides": {
+    "braces": "3.0.3",
+    "ws": "8.18.0"
   }
 }
