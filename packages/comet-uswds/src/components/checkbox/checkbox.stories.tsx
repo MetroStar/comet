@@ -20,7 +20,7 @@ const Template: StoryFn<typeof Checkbox> = (args: CheckboxProps) => (
         name={checkboxName}
         label={word}
         value={word.toLowerCase()}
-        checked={wordIndex === 0}
+        defaultChecked={wordIndex === 0}
         key={wordIndex}
         isTile={args.isTile}
       />
@@ -36,4 +36,26 @@ Standard.args = {
   id: 'checkbox-1',
   name: 'checkbox-1',
   isTile: false,
+};
+
+const SingleTemplate: StoryFn<typeof Checkbox> = (args: CheckboxProps) => (
+  <Checkbox
+    id={`checkbox$`}
+    name={checkboxName}
+    label={args.label}
+    value={args.value}
+    checked={args.checked}
+    defaultChecked={args.defaultChecked}
+    isTile={args.isTile}
+  />
+);
+
+export const Single = SingleTemplate.bind({});
+Single.args = {
+  id: 'checkbox-1',
+  name: 'checkbox-1',
+  label: 'Lorem',
+  value: 'lorem',
+  isTile: false,
+  defaultChecked: true,
 };
