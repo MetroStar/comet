@@ -131,6 +131,7 @@ export const CheckboxGroup = ({
             label={checkboxData.label}
             value={checkboxData.value}
             checked={checkboxData.checked}
+            defaultChecked={checkboxData.defaultChecked}
             isTile={areTiles}
             onChange={onChange}
             onClick={onClick}

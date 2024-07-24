@@ -130,7 +130,7 @@ describe('Checkbox', () => {
           return {
             label: word,
             value: word.toLowerCase(),
-            checked: wordIndex === 0,
+            defaultChecked: wordIndex === 0,
           } as CheckboxData;
         })}
         onChange={onCheck}
@@ -163,7 +163,7 @@ describe('Checkbox', () => {
           return {
             label: word,
             value: word.toLowerCase(),
-            checked: wordIndex === 0,
+            defaultChecked: wordIndex === 0,
           } as CheckboxData;
         })}
         onClick={onClick}
