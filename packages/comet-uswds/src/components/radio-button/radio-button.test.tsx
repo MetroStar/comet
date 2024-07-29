@@ -146,7 +146,7 @@ describe('RadioButton', () => {
           return {
             label: word,
             value: word.toLowerCase(),
-            checked: wordIndex === 0,
+            defaultChecked: wordIndex === 0,
           } as RadioButtonData;
         })}
         onChange={onCheck}
@@ -179,7 +179,7 @@ describe('RadioButton', () => {
           return {
             label: word,
             value: word.toLowerCase(),
-            checked: wordIndex === 0,
+            defaultChecked: wordIndex === 0,
           } as RadioButtonData;
         })}
         onClick={onClick}

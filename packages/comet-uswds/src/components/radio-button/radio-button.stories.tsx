@@ -38,3 +38,25 @@ Standard.args = {
   name: 'radio-button-1',
   isTile: false,
 };
+
+const SingleTemplate: StoryFn<typeof RadioButton> = (args: RadioButtonProps) => (
+  <RadioButton
+    id={radioButtonName}
+    name={radioButtonName}
+    label={args.label}
+    value={args.value}
+    checked={args.checked}
+    defaultChecked={args.defaultChecked}
+    isTile={args.isTile}
+  />
+);
+
+export const Single = SingleTemplate.bind({});
+Single.args = {
+  id: 'radio-button-1',
+  name: 'radio-button-1',
+  label: 'Lorem',
+  value: 'lorem',
+  isTile: false,
+  defaultChecked: true,
+};
