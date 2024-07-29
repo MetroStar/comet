@@ -32,7 +32,7 @@ describe('RadioButton', () => {
         name={radioButtonName}
         label="Lorem"
         value="lorem"
-        checked={true}
+        defaultChecked={true}
       />,
     );
     expect(baseElement).toBeTruthy();
@@ -103,7 +103,7 @@ describe('RadioButton', () => {
           return {
             label: word,
             value: word.toLowerCase(),
-            checked: wordIndex === 0,
+            defaultChecked: wordIndex === 0,
           } as RadioButtonData;
         })}
       />,
@@ -126,7 +126,7 @@ describe('RadioButton', () => {
           return {
             label: word,
             value: word.toLowerCase(),
-            checked: wordIndex === 0,
+            defaultChecked: wordIndex === 0,
           } as RadioButtonData;
         })}
         areTiles={true}
@@ -146,7 +146,7 @@ describe('RadioButton', () => {
           return {
             label: word,
             value: word.toLowerCase(),
-            checked: wordIndex === 0,
+            defaultChecked: wordIndex === 0,
           } as RadioButtonData;
         })}
         onChange={onCheck}
@@ -179,7 +179,7 @@ describe('RadioButton', () => {
           return {
             label: word,
             value: word.toLowerCase(),
-            checked: wordIndex === 0,
+            defaultChecked: wordIndex === 0,
           } as RadioButtonData;
         })}
         onClick={onClick}

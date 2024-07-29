@@ -14,6 +14,10 @@ export interface RadioButtonData {
    * Whether the radioButton is checked by default
    */
   checked?: boolean;
+  /**
+   * Whether the checkbox is checked by default
+   */
+  defaultChecked?: boolean;
 }
 
 export interface RadioButtonProps extends RadioButtonData {
@@ -48,6 +52,7 @@ export const RadioButton = ({
   label,
   value,
   checked,
+  defaultChecked,
   isTile,
   onChange,
   onClick,
@@ -65,8 +70,8 @@ export const RadioButton = ({
         id={inputId}
         type="radio"
         name={name}
-        defaultValue={value}
-        defaultChecked={checked}
+        checked={checked}
+        defaultChecked={defaultChecked}
         onChange={onChange}
         onClick={onClick}
         {...inputProps}
@@ -126,6 +131,7 @@ export const RadioButtonGroup = ({
             label={radioButtonData.label}
             value={radioButtonData.value}
             checked={radioButtonData.checked}
+            defaultChecked={radioButtonData.defaultChecked}
             isTile={areTiles}
             onChange={onChange}
             onClick={onClick}
