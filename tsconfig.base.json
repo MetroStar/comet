@@ -17,5 +17,5 @@
     "emitDeclarationOnly": true,
     "types": ["vite/client", "vitest/globals"]
   },
-  "include": ["packages/**/src", "./test.setup.ts"]
+  "include": ["packages/**/src", "./vitest.setup.ts"]
 }

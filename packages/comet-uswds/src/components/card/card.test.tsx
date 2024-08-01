@@ -1,5 +1,3 @@
-import React from 'react';
-import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import { axe } from 'jest-axe';
 import Card, { CardBody, CardHeader, CardFooter } from './card';
