@@ -71,7 +71,7 @@ export const TextInput = ({
     />
   );
 
-  return prefix ?? suffix ? (
+  return (prefix ?? suffix) ? (
     <div className="usa-input-group">
       {prefix ? (
         <div className="usa-input-prefix" aria-hidden="true">

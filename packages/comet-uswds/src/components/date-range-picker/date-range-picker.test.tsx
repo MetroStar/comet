@@ -1,4 +1,3 @@
-import React from 'react';
 import { fireEvent, render, RenderResult } from '@testing-library/react';
 import { axe } from 'jest-axe';
 import { Label, FormGroup, DatePicker } from '../..';
