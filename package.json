@@ -9,7 +9,7 @@
     "test": "vitest --run",
     "test:coverage": "vitest --run --coverage",
     "test:ui": "vitest --ui",
-    "lint": "eslint --ext .tsx --ext .ts packages/**/src/ --fix --config .eslintrc.json",
+    "lint": "npx eslint packages/**/src/ --fix --config eslint.config.js",
     "format": "npx prettier packages/**/src --write",
     "build:storybook": "storybook build",
     "build:comet-uswds": "cd packages/comet-uswds && rollup -c",
@@ -44,6 +44,8 @@
     "@types/react": "18.2.17",
     "@vitejs/plugin-react": "^4.3.1",
     "@vitest/coverage-v8": "^2.0.4",
+    "eslint": "^9.8.0",
+    "eslint-plugin-react": "^7.35.0",
     "jest-axe": "^9.0.0",
     "postcss": "^8.4.40",
     "prettier": "3.3.3",
@@ -56,6 +58,7 @@
     "rollup-plugin-terser": "^7.0.2",
     "storybook": "^8.2.1",
     "typescript": "*",
+    "typescript-eslint": "^8.0.0",
     "vite": "^5.3.5",
     "vitest": "^2.0.1"
   }

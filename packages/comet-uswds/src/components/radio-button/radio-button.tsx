@@ -50,7 +50,6 @@ export const RadioButton = ({
   id,
   name,
   label,
-  value,
   checked,
   defaultChecked,
   isTile,
