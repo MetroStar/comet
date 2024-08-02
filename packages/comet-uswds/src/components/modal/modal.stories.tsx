@@ -110,7 +110,6 @@ const CustomCloseTemplate: StoryFn<typeof Modal> = (args: ModalProps) => {
     console.log('Continue clicked...');
     // Do something
 
-    /* eslint-disable-next-line */
     modal.toggleModal.call(modal, false); // Manually toggle modal after work complete
   };
 
