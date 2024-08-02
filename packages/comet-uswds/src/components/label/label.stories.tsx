@@ -11,14 +11,18 @@ const meta: Meta<typeof Label> = {
 };
 export default meta;
 
-const Template: StoryFn<typeof Label> = (args: LabelProps) => <Label>Label</Label>;
+const Template: StoryFn<typeof Label> = (args: LabelProps) => (
+  <Label required={args.required}>Label</Label>
+);
 
 export const Standard = Template.bind({});
 Standard.args = {
   required: false,
 };
 
-const RequiredTemplate: StoryFn<typeof Label> = (args: LabelProps) => <Label required>Label</Label>;
+const RequiredTemplate: StoryFn<typeof Label> = (args: LabelProps) => (
+  <Label required={args.required}>Label</Label>
+);
 
 export const LabelWithRequired = RequiredTemplate.bind({});
 LabelWithRequired.args = {

@@ -8,7 +8,7 @@
     "storybook": "storybook dev -p 6006",
     "test": "vitest --run",
     "test:coverage": "vitest --run --coverage",
-    "lint": "eslint --ext .tsx --ext .ts packages/**/src/ --fix --config .eslintrc.json",
+    "lint": "npx eslint packages/**/src/ --fix --config eslint.config.js",
     "format": "npx prettier packages/**/src --write",
     "build:storybook": "storybook build",
     "build:comet-uswds": "cd packages/comet-uswds && rollup -c",
@@ -21,6 +21,7 @@
     "publish:comet-cli": "cd packages/comet-cli && npm publish --access public"
   },
   "devDependencies": {
+    "@eslint/js": "^9.8.0",
     "@rollup/plugin-commonjs": "^26.0.1",
     "@rollup/plugin-image": "^3.0.3",
     "@rollup/plugin-node-resolve": "^15.2.3",
@@ -40,19 +41,10 @@
     "@types/jest-axe": "^3.5.9",
     "@types/node": "18.16.1",
     "@types/react": "18.2.17",
-    "@typescript-eslint/eslint-plugin": "^5.0.0",
-    "@typescript-eslint/parser": "^5.38.1",
     "@vitejs/plugin-react": "^4.3.1",
     "@vitest/coverage-v8": "^2.0.4",
-    "eslint": "8.57.0",
-    "eslint-config-prettier": "9.1.0",
-    "eslint-config-standard-with-typescript": "^23.0.0",
-    "eslint-plugin-import": "^2.25.2",
-    "eslint-plugin-n": "^15.0.0",
-    "eslint-plugin-prettier": "5.2.1",
-    "eslint-plugin-promise": "^6.0.0",
+    "eslint": "^9.8.0",
     "eslint-plugin-react": "^7.35.0",
-    "eslint-plugin-storybook": "^0.8.0",
     "jest-axe": "^9.0.0",
     "postcss": "^8.4.40",
     "prettier": "3.3.3",
@@ -65,8 +57,12 @@
     "rollup-plugin-terser": "^7.0.2",
     "storybook": "^8.2.1",
     "typescript": "*",
+    "typescript-eslint": "^8.0.0",
     "vite": "^5.3.5",
     "vitest": "^2.0.1"
+  },
+  "optionalDependencies": {
+    "@rollup/rollup-linux-x64-gnu": "4.19.1"
   },
   "overrides": {
     "braces": "3.0.3",

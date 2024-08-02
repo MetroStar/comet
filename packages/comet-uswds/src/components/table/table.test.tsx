@@ -201,7 +201,7 @@ describe('Table', () => {
         ]),
       [],
     );
-    it.each(testMatrix)('should sort by $name $sortDir', ({ id, name, columnIndex, sortDir }) => {
+    it.each(testMatrix)('should sort by $name $sortDir', ({ id, columnIndex, sortDir }) => {
       const { baseElement } = render(
         <Table
           id="table1"
