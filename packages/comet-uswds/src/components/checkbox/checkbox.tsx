@@ -14,6 +14,10 @@ export interface CheckboxData {
    * Whether the checkbox is checked by default
    */
   checked?: boolean;
+  /**
+   * Whether the checkbox is checked by default
+   */
+  defaultChecked?: boolean;
 }
 
 export interface CheckboxProps extends CheckboxData {
@@ -48,6 +52,7 @@ export const Checkbox = ({
   label,
   value,
   checked,
+  defaultChecked,
   isTile,
   onChange,
   onClick,
@@ -65,8 +70,8 @@ export const Checkbox = ({
         id={inputId}
         type="checkbox"
         name={name}
-        defaultValue={value}
-        defaultChecked={checked}
+        checked={checked}
+        defaultChecked={defaultChecked}
         onChange={onChange}
         onClick={onClick}
         {...inputProps}
@@ -126,6 +131,7 @@ export const CheckboxGroup = ({
             label={checkboxData.label}
             value={checkboxData.value}
             checked={checkboxData.checked}
+            defaultChecked={checkboxData.defaultChecked}
             isTile={areTiles}
             onChange={onChange}
             onClick={onClick}

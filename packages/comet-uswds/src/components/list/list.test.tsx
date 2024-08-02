@@ -1,5 +1,3 @@
-import React from 'react';
-import '@testing-library/jest-dom';
 import { render } from '@testing-library/react';
 import { axe } from 'jest-axe';
 import List, { ListItem } from './list';

@@ -1,5 +1,3 @@
-import React from 'react';
-
 export interface RangeSliderProps {
   /**
    * The unique identifier for the input field

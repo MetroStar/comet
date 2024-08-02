@@ -1,4 +1,3 @@
-import React from 'react';
 import { fireEvent, render } from '@testing-library/react';
 import { axe } from 'jest-axe';
 import Checkbox, { CheckboxData, CheckboxGroup } from './checkbox';
@@ -27,7 +26,13 @@ describe('Checkbox', () => {
 
   test('should render a standard checked checkbox successfully', () => {
     const { baseElement } = render(
-      <Checkbox id={defaultId} name={checkboxName} label="Lorem" value="lorem" checked={true} />,
+      <Checkbox
+        id={defaultId}
+        name={checkboxName}
+        label="Lorem"
+        value="lorem"
+        defaultChecked={true}
+      />,
     );
     expect(baseElement).toBeTruthy();
     const checkboxInput = baseElement.querySelector('.usa-checkbox__input') as HTMLInputElement;
@@ -85,7 +90,7 @@ describe('Checkbox', () => {
           return {
             label: word,
             value: word.toLowerCase(),
-            checked: wordIndex === 0,
+            defaultChecked: wordIndex === 0,
           } as CheckboxData;
         })}
       />,
@@ -108,7 +113,7 @@ describe('Checkbox', () => {
           return {
             label: word,
             value: word.toLowerCase(),
-            checked: wordIndex === 0,
+            defaultChecked: wordIndex === 0,
           } as CheckboxData;
         })}
         areTiles={true}
@@ -130,7 +135,7 @@ describe('Checkbox', () => {
           return {
             label: word,
             value: word.toLowerCase(),
-            checked: wordIndex === 0,
+            defaultChecked: wordIndex === 0,
           } as CheckboxData;
         })}
         onChange={onCheck}
@@ -163,7 +168,7 @@ describe('Checkbox', () => {
           return {
             label: word,
             value: word.toLowerCase(),
-            checked: wordIndex === 0,
+            defaultChecked: wordIndex === 0,
           } as CheckboxData;
         })}
         onClick={onClick}
