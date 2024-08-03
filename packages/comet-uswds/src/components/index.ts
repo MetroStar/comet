@@ -24,7 +24,7 @@ export { default as Label } from './label';
 export { default as List } from './list';
 export type { ListItem } from './list';
 export { default as MemorableDate } from './memorable-date';
-export { default as Modal } from './modal';
+export { default as Modal, useModal } from './modal';
 export { default as Pagination } from './pagination';
 export type { CreatePageUrlHandler, OnPageHandler } from './pagination';
 export { default as ProcessList, ProcessListStep } from './process-list';
