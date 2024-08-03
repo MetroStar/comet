@@ -1,4 +1,4 @@
-import { fireEvent, render } from '@testing-library/react';
+import { act, fireEvent, render } from '@testing-library/react';
 import { axe } from 'jest-axe';
 import Table, { TableColumn } from './table';
 
@@ -168,6 +168,21 @@ describe('Table', () => {
     );
     const th = baseElement.querySelectorAll('th');
     expect(th[0].getAttribute('aria-sort')).not.toBeNull();
+  });
+
+  test('should call onSort function when sorting', async () => {
+    const onSort = vi.fn();
+    const { baseElement } = render(
+      <Table id="table1" columns={columns} data={sortableData} sortable={true} onSort={onSort} />,
+    );
+    expect(onSort).not.toHaveBeenCalled();
+
+    const th = baseElement.querySelectorAll('th')[0];
+    const thButton = th?.querySelector('button') as Element;
+    await act(async () => {
+      fireEvent.click(thButton);
+    });
+    expect(onSort).toHaveBeenCalled();
   });
 
   describe('sorted table', () => {

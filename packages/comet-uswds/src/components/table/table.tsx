@@ -32,6 +32,10 @@ export interface TableProps<T = any> {
    */
   sortDir?: 'ascending' | 'descending';
   /**
+   * A function to call when the table is sorted
+   */
+  onSort?: () => void;
+  /**
    * A boolean indicating if the table is scrollable or not
    */
   scrollable?: boolean;
@@ -75,6 +79,7 @@ export const Table = ({
   sortable = false,
   sortIndex = 0,
   sortDir = 'ascending',
+  onSort,
   scrollable = false,
   borderless = false,
   striped = false,
@@ -99,6 +104,26 @@ export const Table = ({
       }
     };
   });
+
+  // If onSort, add a MutationObserver to listen for changes in aria-sort
+  useEffect(() => {
+    const callback = (mutationsList: MutationRecord[]) => {
+      for (const mutation of mutationsList) {
+        if (onSort && mutation.attributeName === 'aria-sort') {
+          const currentSortValue = (mutation.target as HTMLElement).getAttribute('aria-sort');
+          if (currentSortValue) {
+            onSort();
+          }
+        }
+      }
+    };
+
+    const observer = new MutationObserver(callback);
+    if (tableRef.current && onSort) {
+      const tableHeaders = tableRef.current.querySelectorAll('th');
+      tableHeaders.forEach((th) => observer.observe(th, { attributes: true }));
+    }
+  }, [columns]);
 
   return (
     <div

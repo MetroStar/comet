@@ -85,6 +85,7 @@ const Template: StoryFn<typeof Table> = (args: TableProps) => {
       sortable={args.sortable}
       sortDir={args.sortDir}
       sortIndex={args.sortIndex}
+      onSort={args.onSort}
     />
   );
 };
@@ -100,4 +101,20 @@ Default.args = {
   sortable: true,
   sortDir: 'ascending',
   sortIndex: 0,
+};
+
+export const OnSort = Template.bind({});
+OnSort.args = {
+  id: 'table-1',
+  tabIndex: 1,
+  caption: 'Voter Data',
+  borderless: false,
+  striped: false,
+  scrollable: false,
+  sortable: true,
+  sortDir: 'ascending',
+  sortIndex: 0,
+  onSort: () => {
+    console.log('Sorting...');
+  },
 };
