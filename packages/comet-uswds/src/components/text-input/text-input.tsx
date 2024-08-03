@@ -16,6 +16,14 @@ export interface TextInputProps {
    */
   type?: 'text' | 'email' | 'number' | 'password' | 'search' | 'tel' | 'url';
   /**
+   * State based styling to apply to the input
+   */
+  variant?: 'default' | 'error' | 'success';
+  /**
+   * Helper text to display above the input
+   */
+  hint?: string;
+  /**
    * The type of mask to apply to the input
    */
   mask?: 'ssn' | 'phone_number' | 'zip_5_digit' | 'zip_9_digit';
@@ -41,6 +49,8 @@ export const TextInput = ({
   name,
   className,
   type,
+  variant = 'default',
+  hint,
   mask,
   prefix,
   suffix,
@@ -51,24 +61,33 @@ export const TextInput = ({
   const classes = classnames(
     'usa-input',
     {
+      'usa-input--error': variant === 'error' && !props.disabled,
+      'usa-input--success': variant === 'success' && !props.disabled,
       'usa-masked': mask,
     },
     className,
   );
 
   const getInputElement = (
-    <input
-      id={id}
-      name={name}
-      className={classes}
-      data-testid="input"
-      type={getType(mask, type)}
-      onChange={onChange}
-      pattern={getPattern(mask, props.pattern)}
-      placeholder={getPlaceholder(mask, props.placeholder)}
-      inputMode={getInputMode(mask, props.inputMode)}
-      {...props}
-    />
+    <>
+      {hint ? (
+        <div className="usa-hint" id={`${id}-hint`}>
+          {hint}
+        </div>
+      ) : undefined}
+      <input
+        id={id}
+        name={name}
+        className={classes}
+        data-testid="input"
+        type={getType(mask, type)}
+        onChange={onChange}
+        pattern={getPattern(mask, props.pattern)}
+        placeholder={getPlaceholder(mask, props.placeholder)}
+        inputMode={getInputMode(mask, props.inputMode)}
+        {...props}
+      />
+    </>
   );
 
   return (prefix ?? suffix) ? (

@@ -11,6 +11,14 @@ export interface TextAreaProps {
    */
   name?: string;
   /**
+   * State based styling to apply to the textarea
+   */
+  variant?: 'default' | 'error' | 'success';
+  /**
+   * Helper text to display above the input
+   */
+  hint?: string;
+  /**
    * The number of rows to render for the textarea
    */
   rows?: number;
@@ -26,21 +34,38 @@ export interface TextAreaProps {
 export const TextArea = ({
   id,
   name,
+  variant = 'default',
+  hint,
   rows,
   className,
   onChange,
   ...textAreaProps
 }: TextAreaProps & JSX.IntrinsicElements['textarea']): React.ReactElement => {
+  const classes = classNames(
+    'usa-textarea',
+    {
+      'usa-input--error': variant === 'error' && !textAreaProps.disabled,
+      'usa-input--success': variant === 'success' && !textAreaProps.disabled,
+    },
+    className,
+  );
   return (
-    <textarea
-      className={classNames('usa-textarea', className)}
-      style={rows === undefined ? undefined : { height: 'unset' }}
-      id={id}
-      name={name}
-      rows={rows}
-      onChange={onChange}
-      {...textAreaProps}
-    />
+    <>
+      {hint ? (
+        <div className="usa-hint" id={`${id}-hint`}>
+          {hint}
+        </div>
+      ) : undefined}
+      <textarea
+        className={classes}
+        style={rows === undefined ? undefined : { height: 'unset' }}
+        id={id}
+        name={name}
+        rows={rows}
+        onChange={onChange}
+        {...textAreaProps}
+      />
+    </>
   );
 };
 

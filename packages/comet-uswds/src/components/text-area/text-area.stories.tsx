@@ -9,6 +9,7 @@ const meta: Meta<typeof TextArea> = {
   argTypes: {
     id: { required: true },
     name: { required: true },
+    variant: { control: 'select' },
   },
 };
 export default meta;
@@ -24,18 +25,26 @@ export const Standard = Template.bind({});
 Standard.args = {
   id: 'text-area-1',
   name: 'text-area-1',
+  disabled: false,
 };
 
-export const TextAreaWithDefaultValue = Template.bind({});
-TextAreaWithDefaultValue.args = {
+export const WithDefaultValue = Template.bind({});
+WithDefaultValue.args = {
   id: 'text-area-2',
   name: 'text-area-2',
   defaultValue: 'A long time ago in a galaxy far, far away....',
 };
 
-export const TextAreaWithRows = Template.bind({});
-TextAreaWithRows.args = {
+export const WithRows = Template.bind({});
+WithRows.args = {
   id: 'text-area-3',
   name: 'text-area-3',
   rows: 2,
+};
+
+export const WithHint = Template.bind({});
+WithHint.args = {
+  id: 'text-area-3',
+  name: 'text-area-3',
+  hint: 'This is a hint',
 };

@@ -21,6 +21,31 @@ describe('Input', () => {
     expect(input).toHaveAttribute('type', 'number');
   });
 
+  test('should render default variant', () => {
+    render(<TextInput id="input" variant="default" />);
+    const input = screen.getByTestId('input');
+    expect(input).toHaveClass('usa-input');
+  });
+
+  test('should render error variant', () => {
+    render(<TextInput id="input" variant="error" />);
+    const input = screen.getByTestId('input');
+    expect(input).toHaveClass('usa-input');
+    expect(input).toHaveClass('usa-input--error');
+  });
+
+  test('should render success variant', () => {
+    render(<TextInput id="input" variant="success" />);
+    const input = screen.getByTestId('input');
+    expect(input).toHaveClass('usa-input');
+    expect(input).toHaveClass('usa-input--success');
+  });
+
+  test('should render with hint', () => {
+    const { baseElement } = render(<TextInput id="input" hint="This is a hint" />);
+    expect(baseElement.querySelector('.usa-hint')).toBeTruthy();
+  });
+
   test('should render with ssn mask', () => {
     render(<TextInput id="input" mask="ssn" />);
     const input = screen.getByTestId('input');

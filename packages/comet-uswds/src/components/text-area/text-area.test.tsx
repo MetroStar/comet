@@ -32,6 +32,30 @@ describe('TextArea', () => {
     expect(baseElement.querySelector('textarea')?.getAttribute('rows')).toEqual('2');
   });
 
+  test('should render default variant', () => {
+    const { baseElement } = render(<TextArea id="textarea" variant="default" />);
+    expect(baseElement.querySelector('.usa-textarea')).toBeTruthy();
+  });
+
+  test('should render error variant', () => {
+    const { baseElement } = render(<TextArea id="textarea" variant="error" />);
+    expect(baseElement.querySelector('.usa-textarea')).toBeTruthy();
+    expect(baseElement.querySelector('.usa-input--error')).toBeTruthy();
+  });
+
+  test('should render success variant', () => {
+    const { baseElement } = render(<TextArea id="textarea" variant="success" />);
+    expect(baseElement.querySelector('.usa-textarea')).toBeTruthy();
+    expect(baseElement.querySelector('.usa-input--success')).toBeTruthy();
+  });
+
+  test('should render a textarea with hint', () => {
+    const { baseElement } = render(
+      <TextArea id={defaultId} name={defaultName} hint="This is a hint" />,
+    );
+    expect(baseElement.querySelector('.usa-hint')).toBeTruthy();
+  });
+
   test('changing the value should trigger onChanged event handler', async () => {
     const onChange = vi.fn();
     const { baseElement } = render(
