@@ -76,7 +76,7 @@ export const StepIndicator = ({
           }
 
           return (
-            <li {...attributes} key={`usa-step-label-${id}`}>
+            <li {...attributes} key={`usa-step-label-${stepIndex}`}>
               <span className="usa-step-indicator__segment-label">
                 {step}
                 {segmentSrLabel !== '' && <span className="usa-sr-only">{segmentSrLabel}</span>}
