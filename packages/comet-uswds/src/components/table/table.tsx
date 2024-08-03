@@ -56,6 +56,7 @@ export interface TableProps<T = any> {
 export interface TableColumn {
   id: string;
   name: string;
+  sortable?: boolean;
 }
 
 export interface TableCell {
@@ -114,18 +115,25 @@ export const Table = ({
         <caption hidden={!!caption}>{caption}</caption>
         <thead>
           <tr>
-            {columns.map((column: TableColumn, index: number) => (
-              <th
-                id={column.id}
-                key={column.id}
-                data-sortable={sortable || null}
-                scope="col"
-                role="columnheader"
-                aria-sort={sortable && sortIndex === index ? sortDir : undefined}
-              >
-                {column.name}
-              </th>
-            ))}
+            {columns
+              .map((obj) => ({
+                ...obj,
+                sortable: obj.sortable !== undefined ? obj.sortable : true,
+              }))
+              .map((column: TableColumn, index: number) => (
+                <th
+                  id={column.id}
+                  key={column.id}
+                  data-sortable={(sortable && column.sortable) || null}
+                  scope="col"
+                  role="columnheader"
+                  aria-sort={
+                    sortable && column.sortable && sortIndex === index ? sortDir : undefined
+                  }
+                >
+                  {column.name}
+                </th>
+              ))}
           </tr>
         </thead>
         <tbody>

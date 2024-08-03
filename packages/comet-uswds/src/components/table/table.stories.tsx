@@ -24,6 +24,7 @@ const Template: StoryFn<typeof Table> = (args: TableProps) => {
     {
       id: 'estimatedPopulation',
       name: 'Estimated population at time of admission',
+      sortable: false,
     },
   ];
 

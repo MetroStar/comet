@@ -142,6 +142,19 @@ describe('Table', () => {
     expect(th[0].getAttribute('aria-sort')).toBeNull();
   });
 
+  test('should render a custom sortable table successfully', () => {
+    const customColumns = columns.map((column, index) => ({
+      ...column,
+      sortable: index === 0 ? false : true,
+    }));
+
+    const { baseElement } = render(
+      <Table id="table1" columns={customColumns} data={sortableData} sortable={false} />,
+    );
+    const th = baseElement.querySelectorAll('th');
+    expect(th[0].getAttribute('aria-sort')).toBeNull();
+  });
+
   test('should render a descending sortable table successfully', () => {
     const { baseElement } = render(
       <Table
