@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { StoryFn, Meta } from '@storybook/react';
 import { Modal, ModalProps } from './modal';
-import modal from '@uswds/uswds/js/usa-modal';
+import useModal from '../../hooks/use-modal';
 
 const meta: Meta<typeof Modal> = {
   title: 'USWDS/Modal',
@@ -86,6 +86,7 @@ LargeModal.args = {
 };
 
 const CustomCloseTemplate: StoryFn<typeof Modal> = (args: ModalProps) => {
+  const { toggleModal } = useModal();
   const footer = (
     <ul className="usa-button-group">
       <li className="usa-button-group__item">
@@ -110,7 +111,7 @@ const CustomCloseTemplate: StoryFn<typeof Modal> = (args: ModalProps) => {
     console.log('Continue clicked...');
     // Do something
 
-    modal.toggleModal.call(modal, false); // Manually toggle modal after work complete
+    toggleModal(false);
   };
 
   // Have to add event listeners after components load due to the way the modal works
