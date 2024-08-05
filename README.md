@@ -18,13 +18,12 @@ In the beginning, Comet was built with a primary focus of USWDS. Today however, 
 
 ## Overview
 
-[comet-uswds](https://github.com/MetroStar/comet/tree/main/packages/comet-uswds) - The base USWDS component library implemented in React with TypeScript.
+Comet consists of multiple packages, each providing specific functionality. These packages can be used independently or all together, depending on your use case. See below for more details on each package:
 
-[comet-data-viz](https://github.com/MetroStar/comet/tree/main/packages/comet-data-viz) - A set of Victory Chart components provided as a Comet wrapper.
-
-[comet-extras](https://github.com/MetroStar/comet/tree/main/packages/comet-extras) - A set of custom components, intended to fill in the gaps where USWDS does not provide an implementation.
-
-[comet-cli](https://github.com/MetroStar/comet/tree/main/packages/comet-cli) - A CLI for creating Comet Apps.
+- [comet-uswds](https://github.com/MetroStar/comet/tree/main/packages/comet-uswds) - The base USWDS component library implemented in React with TypeScript.
+- [comet-data-viz](https://github.com/MetroStar/comet/tree/main/packages/comet-data-viz) - A set of Victory Chart components provided as a Comet wrapper.
+- [comet-extras](https://github.com/MetroStar/comet/tree/main/packages/comet-extras) - A set of custom components, intended to fill in the gaps where USWDS does not provide an implementation.
+- [comet-cli](https://github.com/MetroStar/comet/tree/main/packages/comet-cli) - A CLI for creating Comet Apps.
 
 ## Getting Started
 
