@@ -6,6 +6,7 @@ declare module '@uswds/uswds/js/usa-combo-box';
 declare module '@uswds/uswds/js/usa-date-picker';
 declare module '@uswds/uswds/js/usa-date-range-picker';
 declare module '@uswds/uswds/js/usa-file-input';
+declare module '@uswds/uswds/js/usa-header';
 declare module '@uswds/uswds/js/usa-modal';
 declare module '@uswds/uswds/js/usa-nav';
 declare module '@uswds/uswds/js/usa-table';
