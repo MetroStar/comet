@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { StoryFn, Meta } from '@storybook/react';
 import { Modal, ModalProps } from './modal';
-import useModal from './use-modal';
+import useModal from '../../hooks/use-modal';
 
 const meta: Meta<typeof Modal> = {
   title: 'USWDS/Modal',
