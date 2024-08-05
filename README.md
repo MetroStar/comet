@@ -1,6 +1,6 @@
 <p style="text-align: center;">
   <picture>
-    <img alt="Comet Component Library" src="https://raw.githubusercontent.com/MetroStar/comet/main/images/comet-logo.png" width="80%">
+    <img alt="Comet Component Library" src="https://raw.githubusercontent.com/MetroStar/comet/main/images/comet-logo.png" width="400px">
   </picture>
 </p>
 
