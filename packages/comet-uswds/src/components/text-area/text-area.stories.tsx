@@ -9,7 +9,7 @@ const meta: Meta<typeof TextArea> = {
   argTypes: {
     id: { required: true },
     name: { required: true },
-    variant: { control: 'select' },
+    validationStatus: { control: 'select', options: ['error', 'success'] },
   },
 };
 export default meta;

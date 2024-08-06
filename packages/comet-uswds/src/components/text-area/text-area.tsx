@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 import React, { ChangeEventHandler } from 'react';
+import { ValidationStatus } from 'src/utils/types';
 
 export interface TextAreaProps {
   /**
@@ -13,7 +14,7 @@ export interface TextAreaProps {
   /**
    * State based styling to apply to the textarea
    */
-  variant?: 'default' | 'error' | 'success';
+  validationStatus?: ValidationStatus;
   /**
    * Helper text to display above the input
    */
@@ -34,7 +35,7 @@ export interface TextAreaProps {
 export const TextArea = ({
   id,
   name,
-  variant = 'default',
+  validationStatus,
   hint,
   rows,
   className,
@@ -44,8 +45,8 @@ export const TextArea = ({
   const classes = classNames(
     'usa-textarea',
     {
-      'usa-input--error': variant === 'error' && !textAreaProps.disabled,
-      'usa-input--success': variant === 'success' && !textAreaProps.disabled,
+      'usa-input--error': validationStatus === 'error' && !textAreaProps.disabled,
+      'usa-input--success': validationStatus === 'success' && !textAreaProps.disabled,
     },
     className,
   );

@@ -7,7 +7,7 @@ const meta: Meta<typeof TextInput> = {
   title: 'USWDS/Forms/Text Input',
   component: TextInput,
   argTypes: {
-    variant: { control: 'select' },
+    validationStatus: { control: 'select', options: ['error', 'success'] },
     mask: { control: 'select' },
   },
 };

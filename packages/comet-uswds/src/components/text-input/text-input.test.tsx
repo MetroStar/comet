@@ -21,21 +21,15 @@ describe('Input', () => {
     expect(input).toHaveAttribute('type', 'number');
   });
 
-  test('should render default variant', () => {
-    render(<TextInput id="input" variant="default" />);
-    const input = screen.getByTestId('input');
-    expect(input).toHaveClass('usa-input');
-  });
-
   test('should render error variant', () => {
-    render(<TextInput id="input" variant="error" />);
+    render(<TextInput id="input" validationStatus="error" />);
     const input = screen.getByTestId('input');
     expect(input).toHaveClass('usa-input');
     expect(input).toHaveClass('usa-input--error');
   });
 
   test('should render success variant', () => {
-    render(<TextInput id="input" variant="success" />);
+    render(<TextInput id="input" validationStatus="success" />);
     const input = screen.getByTestId('input');
     expect(input).toHaveClass('usa-input');
     expect(input).toHaveClass('usa-input--success');

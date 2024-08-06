@@ -1,6 +1,7 @@
 import React, { ChangeEventHandler, ReactNode } from 'react';
 import classnames from 'classnames';
 import { getInputMode, getPattern, getPlaceholder, getType } from './input-utils';
+import { ValidationStatus } from 'src/utils/types';
 
 export interface TextInputProps {
   /**
@@ -18,7 +19,7 @@ export interface TextInputProps {
   /**
    * State based styling to apply to the input
    */
-  variant?: 'default' | 'error' | 'success';
+  validationStatus?: ValidationStatus;
   /**
    * Helper text to display above the input
    */
@@ -49,7 +50,7 @@ export const TextInput = ({
   name,
   className,
   type,
-  variant = 'default',
+  validationStatus,
   hint,
   mask,
   prefix,
@@ -61,8 +62,8 @@ export const TextInput = ({
   const classes = classnames(
     'usa-input',
     {
-      'usa-input--error': variant === 'error' && !props.disabled,
-      'usa-input--success': variant === 'success' && !props.disabled,
+      'usa-input--error': validationStatus === 'error' && !props.disabled,
+      'usa-input--success': validationStatus === 'success' && !props.disabled,
       'usa-masked': mask,
     },
     className,
