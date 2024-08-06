@@ -115,6 +115,7 @@ OnSort.args = {
   sortDir: 'ascending',
   sortIndex: 0,
   onSort: () => {
+    // eslint-disable-next-line no-console
     console.log('Sorting...');
   },
 };
