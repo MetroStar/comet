@@ -15,7 +15,7 @@ const FormWrapper: React.FC<FormProps> = (props: FormProps) => {
   const handleSubmit = (event: FormEvent): void => {
     event.preventDefault();
     if (name === '') {
-      setFormSubmittedLabel(`Form submitted with no value`);
+      setFormSubmittedLabel('Form submitted with no value');
     } else {
       setFormSubmittedLabel(`Form submitted with: ${name}`);
     }

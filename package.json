@@ -34,6 +34,7 @@
     "@storybook/react": "^8.2.1",
     "@storybook/react-vite": "^8.2.1",
     "@storybook/test": "^8.2.1",
+    "@stylistic/eslint-plugin-ts": "^2.6.1",
     "@testing-library/dom": "10.4.0",
     "@testing-library/jest-dom": "^6.4.8",
     "@testing-library/react": "16.0.0",
@@ -42,7 +43,7 @@
     "@types/node": "18.16.1",
     "@types/react": "18.2.17",
     "@vitejs/plugin-react": "^4.3.1",
-    "@vitest/coverage-v8": "^2.0.4",
+    "@vitest/coverage-v8": "^2.0.5",
     "eslint": "^9.8.0",
     "eslint-plugin-react": "^7.35.0",
     "jest-axe": "^9.0.0",
@@ -57,12 +58,12 @@
     "rollup-plugin-terser": "^7.0.2",
     "storybook": "^8.2.1",
     "typescript": "*",
-    "typescript-eslint": "^8.0.0",
+    "typescript-eslint": "^8.0.1",
     "vite": "^5.3.5",
     "vitest": "^2.0.1"
   },
   "optionalDependencies": {
-    "@rollup/rollup-linux-x64-gnu": "4.19.1"
+    "@rollup/rollup-linux-x64-gnu": "4.20.0"
   },
   "overrides": {
     "braces": "3.0.3",

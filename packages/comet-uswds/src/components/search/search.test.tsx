@@ -43,8 +43,8 @@ describe('Search', () => {
     const onSearchCallback = vi.fn((e: FormEvent) => e.preventDefault());
     const { baseElement } = render(<Search id={defaultId} onSearch={onSearchCallback} />);
     expect(baseElement).toBeTruthy();
-    const searchForm = baseElement.querySelector<HTMLFormElement>(`form.usa-search`);
-    const searchInput = baseElement.querySelector<HTMLInputElement>(`.usa-search input`);
+    const searchForm = baseElement.querySelector<HTMLFormElement>('form.usa-search');
+    const searchInput = baseElement.querySelector<HTMLInputElement>('.usa-search input');
     expect(searchForm).toBeTruthy();
     expect(searchInput).toBeTruthy();
     if (!searchForm) return; // to help TypeScript, already asserted above for Jest
@@ -59,8 +59,8 @@ describe('Search', () => {
     const searchTerm = 'lorem';
     const { baseElement } = render(<Search id={defaultId} />);
     expect(baseElement).toBeTruthy();
-    const searchForm = baseElement.querySelector<HTMLFormElement>(`form.usa-search`);
-    const searchInput = baseElement.querySelector<HTMLInputElement>(`.usa-search input`);
+    const searchForm = baseElement.querySelector<HTMLFormElement>('form.usa-search');
+    const searchInput = baseElement.querySelector<HTMLInputElement>('.usa-search input');
     expect(searchForm).toBeTruthy();
     expect(searchInput).toBeTruthy();
     if (!searchForm) return; // to help TypeScript, already asserted above for Jest

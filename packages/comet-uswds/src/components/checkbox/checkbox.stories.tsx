@@ -40,7 +40,7 @@ Standard.args = {
 
 const SingleTemplate: StoryFn<typeof Checkbox> = (args: CheckboxProps) => (
   <Checkbox
-    id={`checkbox$`}
+    id={'checkbox$'}
     name={checkboxName}
     label={args.label}
     value={args.value}
