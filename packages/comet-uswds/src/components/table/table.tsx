@@ -32,6 +32,10 @@ export interface TableProps<T = any> {
    */
   sortDir?: 'ascending' | 'descending';
   /**
+   * A function to call when the table is sorted
+   */
+  onSort?: () => void;
+  /**
    * A boolean indicating if the table is scrollable or not
    */
   scrollable?: boolean;
@@ -56,6 +60,7 @@ export interface TableProps<T = any> {
 export interface TableColumn {
   id: string;
   name: string;
+  sortable?: boolean;
 }
 
 export interface TableCell {
@@ -74,6 +79,7 @@ export const Table = ({
   sortable = false,
   sortIndex = 0,
   sortDir = 'ascending',
+  onSort,
   scrollable = false,
   borderless = false,
   striped = false,
@@ -99,6 +105,26 @@ export const Table = ({
     };
   });
 
+  // If onSort, add a MutationObserver to listen for changes in aria-sort
+  useEffect(() => {
+    const callback = (mutationsList: MutationRecord[]) => {
+      for (const mutation of mutationsList) {
+        if (onSort && mutation.attributeName === 'aria-sort') {
+          const currentSortValue = (mutation.target as HTMLElement).getAttribute('aria-sort');
+          if (currentSortValue) {
+            onSort();
+          }
+        }
+      }
+    };
+
+    const observer = new MutationObserver(callback);
+    if (tableRef.current && onSort) {
+      const tableHeaders = tableRef.current.querySelectorAll('th');
+      tableHeaders.forEach((th) => observer.observe(th, { attributes: true }));
+    }
+  }, [columns]);
+
   return (
     <div
       id={id}
@@ -114,18 +140,25 @@ export const Table = ({
         <caption hidden={!!caption}>{caption}</caption>
         <thead>
           <tr>
-            {columns.map((column: TableColumn, index: number) => (
-              <th
-                id={column.id}
-                key={column.id}
-                data-sortable={sortable || null}
-                scope="col"
-                role="columnheader"
-                aria-sort={sortable && sortIndex === index ? sortDir : undefined}
-              >
-                {column.name}
-              </th>
-            ))}
+            {columns
+              .map((obj) => ({
+                ...obj,
+                sortable: obj.sortable !== undefined ? obj.sortable : true,
+              }))
+              .map((column: TableColumn, index: number) => (
+                <th
+                  id={column.id}
+                  key={column.id}
+                  data-sortable={(sortable && column.sortable) || null}
+                  scope="col"
+                  role="columnheader"
+                  aria-sort={
+                    sortable && column.sortable && sortIndex === index ? sortDir : undefined
+                  }
+                >
+                  {column.name}
+                </th>
+              ))}
           </tr>
         </thead>
         <tbody>
