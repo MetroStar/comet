@@ -44,6 +44,7 @@ const Template: StoryFn<typeof Modal> = (args: ModalProps) => {
   );
 
   const handleContinue = (): void => {
+    // eslint-disable-next-line no-console
     console.log('Continue clicked...');
     // Do something
   };
@@ -108,6 +109,7 @@ const CustomCloseTemplate: StoryFn<typeof Modal> = (args: ModalProps) => {
   );
 
   const handleContinue = (): void => {
+    // eslint-disable-next-line no-console
     console.log('Continue clicked...');
     // Do something
 
