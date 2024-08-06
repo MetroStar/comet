@@ -41,10 +41,3 @@ WithRows.args = {
   name: 'text-area-3',
   rows: 2,
 };
-
-export const WithHint = Template.bind({});
-WithHint.args = {
-  id: 'text-area-3',
-  name: 'text-area-3',
-  hint: 'This is a hint',
-};

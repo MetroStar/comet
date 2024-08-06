@@ -21,9 +21,21 @@ export interface TextInputProps {
    */
   validationStatus?: ValidationStatus;
   /**
-   * Helper text to display above the input
+   * A boolean indicating whether or not the field is required
+   */
+  required?: boolean;
+  /**
+   * Label text to display with the input
+   */
+  label?: string;
+  /**
+   * Helper text to display with the input
    */
   hint?: string;
+  /**
+   * Error text to display with the input
+   */
+  errorMessage?: string;
   /**
    * The type of mask to apply to the input
    */
@@ -51,7 +63,10 @@ export const TextInput = ({
   className,
   type,
   validationStatus,
+  required,
+  label,
   hint,
+  errorMessage,
   mask,
   prefix,
   suffix,
@@ -71,9 +86,20 @@ export const TextInput = ({
 
   const getInputElement = (
     <>
+      {label ? (
+        <label className="usa-label" id={`${id}-label`} htmlFor={id}>
+          {label}
+          {required && <span className="text-red"> *</span>}
+        </label>
+      ) : undefined}
       {hint ? (
         <div className="usa-hint" id={`${id}-hint`}>
           {hint}
+        </div>
+      ) : undefined}
+      {errorMessage ? (
+        <div className="usa-error-message" id={`${id}-error`}>
+          {errorMessage}
         </div>
       ) : undefined}
       <input

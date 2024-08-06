@@ -19,27 +19,23 @@ export const Standard = Template.bind({});
 Standard.args = {
   id: 'input-1',
   type: 'text',
-  placeholder: 'Input',
+  label: 'Text Input',
+  hint: '',
+  errorMessage: '',
+  required: false,
   disabled: false,
-};
-
-export const WithHint = Template.bind({});
-WithHint.args = {
-  id: 'input-2',
-  type: 'text',
-  hint: 'This is a hint',
 };
 
 export const WithMask = Template.bind({});
 WithMask.args = {
-  id: 'input-3',
+  id: 'input-2',
   type: 'text',
   mask: 'ssn',
 };
 
 export const WithPrefix = Template.bind({});
 WithPrefix.args = {
-  id: 'input-4',
+  id: 'input-3',
   type: 'text',
   prefix: <Icon id="credit-card-icon" type="credit_card" />,
   'aria-label': 'Input credit card',
@@ -47,7 +43,7 @@ WithPrefix.args = {
 
 export const WithSuffix = Template.bind({});
 WithSuffix.args = {
-  id: 'input-5',
+  id: 'input-4',
   type: 'number',
   suffix: 'lbs',
   'aria-label': 'Input pounds',
@@ -55,7 +51,7 @@ WithSuffix.args = {
 
 export const WithChangeEvent = Template.bind({});
 WithChangeEvent.args = {
-  id: 'input-6',
+  id: 'input-5',
   type: 'text',
   placeholder: 'Will alert on change...',
   onChange: (e: any) => alert(e.target.value),
