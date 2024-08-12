@@ -88,6 +88,16 @@ export const Table = ({
 }: TableProps): React.ReactElement => {
   // Ensure table JS is loaded
   const tableRef = useRef<HTMLDivElement>(null);
+
+  // Swap sort direction due underlying USWDS on function rewriting the aria-sort attribute
+  const getSortDirection = () => {
+    if (sortDir === 'descending') {
+      return 'ascending';
+    } else {
+      return 'descending';
+    }
+  };
+
   useEffect(() => {
     const tableElement = tableRef.current;
     // If sortable, call table.on to enable functionality
@@ -153,7 +163,9 @@ export const Table = ({
                   scope="col"
                   role="columnheader"
                   aria-sort={
-                    sortable && column.sortable && sortIndex === index ? sortDir : undefined
+                    sortable && column.sortable && sortIndex === index
+                      ? getSortDirection()
+                      : undefined
                   }
                 >
                   {column.name}
