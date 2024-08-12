@@ -18,6 +18,7 @@ export { default as ErrorMessages } from './error-messages';
 export { default as FileInput } from './file-input';
 export { default as Form } from './form';
 export { default as FormGroup } from './form-group';
+export { default as HelperText } from './helper-text';
 export { default as Icon } from './icon';
 export { default as TextInput } from './text-input';
 export { default as Label } from './label';
