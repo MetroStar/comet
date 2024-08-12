@@ -8,6 +8,7 @@ const meta: Meta<typeof TextInput> = {
   component: TextInput,
   argTypes: {
     mask: { control: 'select' },
+    validationStatus: { control: 'select', options: ['error', 'success'] },
   },
 };
 export default meta;
@@ -18,7 +19,9 @@ export const Standard = Template.bind({});
 Standard.args = {
   id: 'input-1',
   type: 'text',
-  placeholder: 'Input',
+  label: 'Input',
+  helperText: 'Enter your input',
+  errors: '',
 };
 
 export const WithMask = Template.bind({});

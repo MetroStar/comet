@@ -1,6 +1,8 @@
 import React, { ChangeEventHandler, ReactNode } from 'react';
 import classnames from 'classnames';
 import { getInputMode, getPattern, getPlaceholder, getType } from './input-utils';
+import FormGroup from '../form-group';
+import { ValidationStatus } from 'src/utils/types';
 
 export interface TextInputProps {
   /**
@@ -11,6 +13,22 @@ export interface TextInputProps {
    * The name of the text input
    */
   name?: string;
+  /**
+   * Label text to display with the input
+   */
+  label?: string;
+  /**
+   * Helper text to display with the input
+   */
+  helperText?: string;
+  /**
+   * An array of string error messages
+   */
+  errors?: string | string[];
+  /**
+   * State based styling to apply to the form group
+   */
+  validationStatus?: ValidationStatus;
   /**
    * The type of input to display
    */
@@ -39,6 +57,10 @@ export interface TextInputProps {
 export const TextInput = ({
   id,
   name,
+  label,
+  helperText,
+  errors,
+  validationStatus,
   className,
   type,
   mask,
@@ -51,6 +73,8 @@ export const TextInput = ({
   const classes = classnames(
     'usa-input',
     {
+      'usa-input--error': validationStatus === 'error',
+      'usa-input--success': validationStatus === 'success',
       'usa-masked': mask,
     },
     className,
@@ -86,7 +110,14 @@ export const TextInput = ({
       ) : undefined}
     </div>
   ) : (
-    getInputElement
+    <FormGroup
+      id={`form-group-${id}`}
+      label={label}
+      helperText={helperText}
+      errors={errors}
+      fieldControl={getInputElement}
+      {...props}
+    />
   );
 };
 

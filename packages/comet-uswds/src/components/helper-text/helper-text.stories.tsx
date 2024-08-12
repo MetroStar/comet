@@ -9,10 +9,11 @@ const meta: Meta<typeof HelperText> = {
 export default meta;
 
 const Template: StoryFn<typeof HelperText> = (args: HelperTextProps) => (
-  <HelperText>{args.children}</HelperText>
+  <HelperText id={args.id}>{args.children}</HelperText>
 );
 
 export const Standard = Template.bind({});
 Standard.args = {
+  id: 'helper-text-1',
   children: 'Helper Text',
 };
