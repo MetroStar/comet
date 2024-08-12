@@ -21,7 +21,7 @@
     "publish:comet-cli": "cd packages/comet-cli && npm publish --access public"
   },
   "devDependencies": {
-    "@eslint/js": "^9.8.0",
+    "@eslint/js": "^9.9.0",
     "@rollup/plugin-commonjs": "^26.0.1",
     "@rollup/plugin-image": "^3.0.3",
     "@rollup/plugin-node-resolve": "^15.2.3",
@@ -44,7 +44,7 @@
     "@types/react": "18.2.17",
     "@vitejs/plugin-react": "^4.3.1",
     "@vitest/coverage-v8": "^2.0.5",
-    "eslint": "^9.8.0",
+    "eslint": "^9.9.0",
     "eslint-plugin-react": "^7.35.0",
     "jest-axe": "^9.0.0",
     "postcss": "^8.4.40",
