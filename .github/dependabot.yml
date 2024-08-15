@@ -13,14 +13,12 @@ updates:
     labels:
       - 'dependencies'
     groups:
-      eslint:
+      minor-and-patch:
         patterns:
-          - '@eslint/js'
-          - 'eslint'
-      vitest:
-        patterns:
-          - '@vitest/coverage-v8'
-          - 'vitest'
+          - '*'
+        update-types:
+          - 'minor'
+          - 'patch'
     ignore:
       - dependency-name: react
         versions:
