@@ -14,6 +14,14 @@ export interface TextInputProps {
    */
   name?: string;
   /**
+   * The type of input to display
+   */
+  type?: 'text' | 'email' | 'number' | 'password' | 'search' | 'tel' | 'url';
+  /**
+   * A boolean indicating whether or not the field is required
+   */
+  required?: boolean;
+  /**
    * Label text to display with the input
    */
   label?: string;
@@ -29,10 +37,6 @@ export interface TextInputProps {
    * State based styling to apply to the form group
    */
   validationStatus?: ValidationStatus;
-  /**
-   * The type of input to display
-   */
-  type?: 'text' | 'email' | 'number' | 'password' | 'search' | 'tel' | 'url';
   /**
    * The type of mask to apply to the input
    */
@@ -95,7 +99,7 @@ export const TextInput = ({
     />
   );
 
-  return (prefix ?? suffix) ? (
+  const getInputGroup = (
     <div className="usa-input-group">
       {prefix ? (
         <div className="usa-input-prefix" aria-hidden="true">
@@ -109,13 +113,16 @@ export const TextInput = ({
         </div>
       ) : undefined}
     </div>
-  ) : (
+  );
+
+  return (
     <FormGroup
       id={`form-group-${id}`}
       label={label}
       helperText={helperText}
       errors={errors}
-      fieldControl={getInputElement}
+      validationStatus={validationStatus}
+      fieldControl={(prefix ?? suffix) ? getInputGroup : getInputElement}
       {...props}
     />
   );

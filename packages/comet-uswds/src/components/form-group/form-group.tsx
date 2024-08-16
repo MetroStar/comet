@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import Label from '../label';
 import HelperText from '../helper-text';
 import ErrorMessages from '../error-messages';
+import { ValidationStatus } from 'src/utils/types';
 
 export interface FormGroupProps {
   /**
@@ -26,6 +27,10 @@ export interface FormGroupProps {
    */
   errors?: string | string[];
   /**
+   * State based styling to apply to the form group
+   */
+  validationStatus?: ValidationStatus;
+  /**
    * Additional class name for the form group
    */
   className?: string;
@@ -48,6 +53,7 @@ export const FormGroup = ({
   label,
   helperText,
   errors,
+  validationStatus,
   className,
   fieldControl,
   children,
@@ -55,7 +61,7 @@ export const FormGroup = ({
   const classes = classNames(
     'usa-form-group',
     {
-      'usa-form-group--error': !!(errors && errors.length > 0),
+      'usa-form-group--error': !!(errors && errors.length > 0) || validationStatus === 'error',
     },
     className,
   );
