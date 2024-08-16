@@ -10,6 +10,7 @@ const meta: Meta<typeof TextInput> = {
     mask: { control: 'select' },
     validationStatus: { control: 'select', options: ['error', 'success'] },
     required: { control: 'boolean' },
+    disabled: { control: 'boolean' },
   },
 };
 export default meta;
@@ -23,6 +24,7 @@ Standard.args = {
   required: false,
   label: 'Input',
   helperText: 'Enter your input',
+  disabled: false,
 };
 
 const ErrorTemplate: StoryFn<typeof TextInput> = (args: TextInputProps) => (

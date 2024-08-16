@@ -61,6 +61,7 @@ export interface TextInputProps {
 export const TextInput = ({
   id,
   name,
+  required,
   label,
   helperText,
   errors,
@@ -118,12 +119,12 @@ export const TextInput = ({
   return (
     <FormGroup
       id={`form-group-${id}`}
+      required={required}
       label={label}
       helperText={helperText}
       errors={errors}
       validationStatus={validationStatus}
       fieldControl={(prefix ?? suffix) ? getInputGroup : getInputElement}
-      {...props}
     />
   );
 };
