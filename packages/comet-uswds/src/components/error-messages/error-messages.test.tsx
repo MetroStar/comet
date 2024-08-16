@@ -15,6 +15,12 @@ describe('ErrorMessage', () => {
     expect(baseElement).toBeTruthy();
   });
 
+  test('should render an error message as a string successfully', () => {
+    const { baseElement } = render(<ErrorMessages errors="error" />);
+    const errorMessages = baseElement.querySelectorAll('.usa-error-message');
+    expect(errorMessages).toHaveLength(1);
+  });
+
   test('should render an error message successfully', () => {
     const errors: string[] = ['error1'];
     const { baseElement } = render(<ErrorMessages errors={errors} />);

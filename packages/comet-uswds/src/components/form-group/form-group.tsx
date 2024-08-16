@@ -86,7 +86,7 @@ export const FormGroup = ({
     ? React.cloneElement(fieldControl, {
         'aria-describedby': `${id}-helper-text`,
       } as React.Attributes)
-    : fieldControl;
+    : undefined;
 
   return (
     <div id={id} className={classes}>
@@ -99,7 +99,7 @@ export const FormGroup = ({
       )}
       {helperText ? <HelperText id={`${id}-helper-text`}>{helperText}</HelperText> : <></>}
       {errors ? <ErrorMessages id={`${id}-errors`} errors={errors} /> : <></>}
-      {fieldControlWithProps ? fieldControlWithProps : <></>}
+      {fieldControlWithProps}
     </div>
   );
 };
