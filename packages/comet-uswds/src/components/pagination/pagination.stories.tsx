@@ -14,10 +14,10 @@ export default meta;
 
 const onPage =
   (setPage: Dispatch<SetStateAction<number>>) =>
-    (event: SyntheticEvent<Element, Event>, page: number) => {
-      event.preventDefault();
-      setPage(page);
-    };
+  (event: SyntheticEvent<Element, Event>, page: number) => {
+    event.preventDefault();
+    setPage(page);
+  };
 
 const PaginationWrapper: React.FC<PaginationProps> = (props: PaginationProps) => {
   const [currentPage1, setCurrentPage1] = useState(props.currentPage);
