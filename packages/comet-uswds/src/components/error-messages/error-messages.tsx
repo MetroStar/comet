@@ -8,7 +8,7 @@ export interface ErrorMessagesProps {
   /**
    * An array of error strings to display
    */
-  errors?: string[];
+  errors?: string | string[];
   /**
    * ReactNode components to display as children
    */
@@ -26,6 +26,10 @@ export const ErrorMessages = ({
   // If no children and items provided, render partial
   if (!children && !errors) {
     return <></>;
+  }
+
+  if (typeof errors === 'string') {
+    errors = [errors];
   }
 
   return (

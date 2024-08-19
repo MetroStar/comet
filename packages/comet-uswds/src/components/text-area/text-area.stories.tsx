@@ -1,6 +1,5 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
-import Label from '../label/label';
 import { TextArea, TextAreaProps } from './text-area';
 
 const meta: Meta<typeof TextArea> = {
@@ -9,33 +8,47 @@ const meta: Meta<typeof TextArea> = {
   argTypes: {
     id: { required: true },
     name: { required: true },
+    rows: { control: 'number' },
+    required: { control: 'boolean' },
+    validationStatus: { control: 'select', options: ['error', 'success'] },
+    disabled: { control: 'boolean' },
   },
 };
 export default meta;
 
-const Template: StoryFn<typeof TextArea> = (args: TextAreaProps) => (
-  <>
-    <Label htmlFor={args.id}>Text Area label</Label>
-    <TextArea {...args} />
-  </>
-);
+const Template: StoryFn<typeof TextArea> = (args: TextAreaProps) => <TextArea {...args} />;
 
 export const Standard = Template.bind({});
 Standard.args = {
   id: 'text-area-1',
   name: 'text-area-1',
+  rows: 5,
+  required: false,
+  label: 'Text Area',
+  helperText: 'Enter your text',
+  disabled: false,
 };
 
-export const TextAreaWithDefaultValue = Template.bind({});
-TextAreaWithDefaultValue.args = {
+export const WithDefaultValue = Template.bind({});
+WithDefaultValue.args = {
   id: 'text-area-2',
   name: 'text-area-2',
   defaultValue: 'A long time ago in a galaxy far, far away....',
 };
 
-export const TextAreaWithRows = Template.bind({});
-TextAreaWithRows.args = {
+const ErrorTemplate: StoryFn<typeof TextArea> = (args: TextAreaProps) => (
+  <div className="padding-left-1">
+    <TextArea {...args} />
+  </div>
+);
+
+export const WithErrors = ErrorTemplate.bind({});
+WithErrors.args = {
   id: 'text-area-3',
   name: 'text-area-3',
-  rows: 2,
+  required: true,
+  label: 'Text Area',
+  helperText: 'Enter your text',
+  errors: 'This field is required',
+  validationStatus: 'error',
 };

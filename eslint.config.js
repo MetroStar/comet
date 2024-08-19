@@ -1,7 +1,7 @@
 import globals from 'globals';
 import pluginJs from '@eslint/js';
-import stylisticTs from '@stylistic/eslint-plugin-ts';
 import tseslint from 'typescript-eslint';
+import prettierRecommended from 'eslint-plugin-prettier/recommended';
 import reactPlugin from 'eslint-plugin-react';
 
 export default [
@@ -20,23 +20,28 @@ export default [
         },
       },
     },
-    plugins: {
-      '@stylistic/ts': stylisticTs,
-    },
   },
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
   reactPlugin.configs.flat.recommended,
+  prettierRecommended,
   {
     rules: {
       // Base Warnings
       'no-console': 'warn',
 
-      // Stylistic Issues
-      '@stylistic/ts/quotes': ['error', 'single'],
-      '@stylistic/ts/indent': ['error', 2],
-      '@stylistic/ts/semi': ['error', 'always'],
-      '@stylistic/ts/comma-dangle': ['error', 'always-multiline'],
+      // Formatting
+      'prettier/prettier': [
+        'error',
+        {
+          semi: true,
+          tabWidth: 2,
+          singleQuote: true,
+          trailingComma: 'all',
+          bracketSpacing: true,
+          useTabs: false,
+        },
+      ],
 
       // TypeScript
       '@typescript-eslint/no-unused-vars': 'error',
