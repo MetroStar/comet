@@ -1,7 +1,7 @@
 import { Meta, StoryFn } from '@storybook/react';
 import React, { FormEvent, useState } from 'react';
 import { Form, FormProps } from './form';
-import { Button, TextInput } from '../..';
+import { Alert, Button, TextInput } from '../..';
 
 const meta: Meta<typeof Form> = {
   title: 'USWDS/Forms/Form',
@@ -31,32 +31,36 @@ const FormWrapper: React.FC = () => {
   const [phone, setPhone] = useState('');
   const [nameError, setNameError] = useState('');
   const [emailError, setEmailError] = useState('');
-  const [formSubmittedLabel, setFormSubmittedLabel] = useState('');
+  const [isValid, setIsValid] = useState(false);
 
-  const validateName = (): void => {
+  const validateName = (): boolean => {
     if (name === '') {
       setNameError('This field is required');
+      return false;
     } else {
       setNameError('');
+      return true;
     }
   };
 
-  const validateEmail = (): void => {
+  const validateEmail = (): boolean => {
     if (email === '') {
       setEmailError('This field is required');
+      return false;
     } else {
       setEmailError('');
+      return true;
     }
   };
 
   const handleSubmit = (event: FormEvent): void => {
     event.preventDefault();
-    validateName();
-    validateEmail();
-    if (name === '' || email === '') {
-      setFormSubmittedLabel('Form submission failed!');
+    const isNameValid = validateName();
+    const isEmailValid = validateEmail();
+    if (!isNameValid || !isEmailValid) {
+      setIsValid(false);
     } else {
-      setFormSubmittedLabel(`Form submitted successfully with Name: ${name}`);
+      setIsValid(true);
     }
   };
 
@@ -102,7 +106,18 @@ const FormWrapper: React.FC = () => {
       <Button id="submit" type="submit">
         Submit
       </Button>
-      <span className="text-error padding-left-2 padding-top-1">{formSubmittedLabel}</span>
+      {isValid ? (
+        <div className="margin-top-4">
+          <Alert id="form-submission-data" type="info">
+            <strong>Form Submitted Successfully!</strong>
+            <div>Name: {name}</div>
+            <div>Email: {email}</div>
+            <div>Phone: {phone}</div>
+          </Alert>
+        </div>
+      ) : (
+        <></>
+      )}
     </Form>
   );
 };
