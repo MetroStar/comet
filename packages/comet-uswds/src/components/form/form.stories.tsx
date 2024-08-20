@@ -66,7 +66,7 @@ const FormWrapper: React.FC = () => {
   };
 
   return (
-    <Form id="contact-form" onSubmit={handleSubmit} className="width-tablet padding-left-1">
+    <Form id="contact-form" onSubmit={handleSubmit} className="width-tablet">
       <TextInput
         id="name"
         name="name"

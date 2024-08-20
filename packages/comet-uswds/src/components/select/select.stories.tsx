@@ -31,12 +31,7 @@ Standard.args = {
   disabled: false,
 };
 
-const ErrorTemplate: StoryFn<typeof Select> = (args: SelectProps) => (
-  <div className="padding-left-1">
-    <Select {...args} />
-  </div>
-);
-export const WithErrors = ErrorTemplate.bind({});
+export const WithErrors = Template.bind({});
 WithErrors.args = {
   id: 'select-1',
   name: 'select-1',

@@ -27,13 +27,7 @@ Standard.args = {
   disabled: false,
 };
 
-const ErrorTemplate: StoryFn<typeof TextInput> = (args: TextInputProps) => (
-  <div className="padding-left-1">
-    <TextInput {...args} />
-  </div>
-);
-
-export const WithErrors = ErrorTemplate.bind({});
+export const WithErrors = Template.bind({});
 WithErrors.args = {
   id: 'input-errors',
   type: 'text',
