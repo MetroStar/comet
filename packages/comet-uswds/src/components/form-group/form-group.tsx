@@ -80,13 +80,25 @@ export const FormGroup = ({
     );
   }
 
-  // If fieldControl is provided, augment as needed
-  const fieldControlId = isValidElement(fieldControl) ? fieldControl.props.id : undefined;
-  const fieldControlWithProps = isValidElement(fieldControl)
-    ? React.cloneElement(fieldControl, {
-        'aria-describedby': `${id}-helper-text`,
-      } as React.Attributes)
+  // Get the id of the fieldControl element associated with the label
+  let fieldControlId = isValidElement(fieldControl) ? fieldControl.props.id : undefined;
+  const fieldControlElement = isValidElement(fieldControl)
+    ? (fieldControl as React.ReactElement)
     : undefined;
+
+  let fieldControlWithProps = fieldControlElement;
+  // If the fieldControl is a ComboBox, we need to evaluate children elements
+  if (fieldControlWithProps?.props.className === 'usa-combo-box') {
+    const children = fieldControlElement?.props.children;
+    fieldControlId = children?.props.id;
+  } else {
+    // Otherwise, we need to add aria-describedby to the fieldControl
+    if (fieldControlElement) {
+      fieldControlWithProps = React.cloneElement(fieldControlElement, {
+        'aria-describedby': `${id}-helper-text`,
+      } as React.Attributes);
+    }
+  }
 
   return (
     <div id={id} className={classes}>

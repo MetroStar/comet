@@ -1,20 +1,47 @@
-import Select, { SelectOptionProps, SelectProps } from '../select/select';
+import { createOption, SelectOptionProps, SelectProps } from '../select/select';
 import comboBox from '@uswds/uswds/js/usa-combo-box';
-import React, { RefObject, useLayoutEffect, useRef } from 'react';
+import React, { ChangeEventHandler, ReactElement, RefObject, useLayoutEffect, useRef } from 'react';
+import FormGroup from '../form-group';
+import classNames from 'classnames';
 
 export type ComboBoxOptionProps = SelectOptionProps;
 export type ComboBoxProps = {
   /**
-   * The unique identifier for this component
+   * The unique identifier for the select
    */
   id: string;
   /**
-   * The name for the combo box input field
+   * The name of the select
    */
   name?: string;
   /**
-   * The placeholder value to display in the control
+   * The options of the select
    */
+  options?: SelectOptionProps[];
+  /**
+   * A boolean indicating whether or not the field is required
+   */
+  required?: boolean;
+  /**
+   * Label text to display with the input
+   */
+  label?: string;
+  /**
+   * Helper text to display with the input
+   */
+  helperText?: string;
+  /**
+   * An array of string error messages
+   */
+  errors?: string | string[];
+  /**
+   * SelectOption components to display as children
+   */
+  children?: ReactElement<SelectOptionProps> | Array<ReactElement<SelectOptionProps>>;
+  /**
+   * Event handler for when value of the select is changed
+   */
+  onChange?: ChangeEventHandler<HTMLSelectElement>;
   placeholder?: string;
 } & SelectProps &
   JSX.IntrinsicElements['select'];
@@ -22,13 +49,34 @@ export type ComboBoxProps = {
 /**
  * A combo box helps users select an item from a large list of options.
  */
-export const ComboBox = ({ placeholder, ...comboBoxProps }: ComboBoxProps): React.ReactElement => {
+export const ComboBox = ({
+  id,
+  options,
+  required,
+  label,
+  helperText,
+  errors,
+  onChange,
+  className,
+  children,
+  defaultValue,
+  placeholder,
+  ...selectProps
+}: ComboBoxProps): React.ReactElement => {
   const comboBoxRef = useRef<HTMLDivElement>(null);
   useLayoutEffect(() => {
     const comboBoxElement = comboBoxRef.current;
-    comboBox.on(comboBoxElement);
+    const comboBoxLabel = comboBoxElement?.parentNode?.querySelector(`label[for="${id}"]`);
+    // Only intialize the combo box if the label is present, USWDS will error otherwise
+    if (comboBoxLabel) {
+      comboBox.on(comboBoxElement);
+    }
     // Ensure cleanup after the effect
-    return () => comboBox.off(comboBoxElement);
+    return () => {
+      if (comboBoxElement) {
+        comboBox.off(comboBoxElement);
+      }
+    };
   });
 
   const comboBoxAttributes: {
@@ -42,13 +90,29 @@ export const ComboBox = ({ placeholder, ...comboBoxProps }: ComboBoxProps): Reac
   };
 
   if (placeholder) comboBoxAttributes['data-placeholder'] = placeholder;
-  if (comboBoxProps.defaultValue)
-    comboBoxAttributes['data-default-value'] = comboBoxProps.defaultValue;
+  if (defaultValue) comboBoxAttributes['data-default-value'] = defaultValue;
 
   return (
-    <div {...comboBoxAttributes}>
-      <Select {...comboBoxProps} />
-    </div>
+    <FormGroup
+      id={`form-group-${id}`}
+      required={required}
+      label={label}
+      helperText={helperText}
+      errors={errors}
+      fieldControl={
+        <div {...comboBoxAttributes}>
+          <select
+            id={id}
+            className={classNames('usa-select', className)}
+            defaultValue={defaultValue}
+            onChange={onChange}
+            {...selectProps}
+          >
+            {children ?? options?.map(createOption)}
+          </select>
+        </div>
+      }
+    />
   );
 };
 
