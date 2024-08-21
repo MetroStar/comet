@@ -7,7 +7,7 @@ import classNames from 'classnames';
 export type ComboBoxOptionProps = SelectOptionProps;
 export type ComboBoxProps = {
   /**
-   * The unique identifier for the select
+   * The unique identifier for this component
    */
   id: string;
   /**
@@ -35,6 +35,10 @@ export type ComboBoxProps = {
    */
   errors?: string | string[];
   /**
+   *  The placeholder value to display in the control
+   */
+  placeholder?: string;
+  /**
    * SelectOption components to display as children
    */
   children?: ReactElement<SelectOptionProps> | Array<ReactElement<SelectOptionProps>>;
@@ -42,7 +46,6 @@ export type ComboBoxProps = {
    * Event handler for when value of the select is changed
    */
   onChange?: ChangeEventHandler<HTMLSelectElement>;
-  placeholder?: string;
 } & SelectProps &
   JSX.IntrinsicElements['select'];
 

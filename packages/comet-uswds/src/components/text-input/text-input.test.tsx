@@ -4,7 +4,7 @@ import TextInput from './text-input';
 
 describe('Input', () => {
   test('should render with no accessibility violations', async () => {
-    const { container } = render(<TextInput id="input" aria-label="input" />);
+    const { container } = render(<TextInput id="input" label="input" />);
     expect(await axe(container)).toHaveNoViolations();
   });
 

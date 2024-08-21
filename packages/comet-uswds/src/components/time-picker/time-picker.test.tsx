@@ -9,20 +9,14 @@ describe('TimePicker', () => {
 
   test('should render with no accessibility violations', async () => {
     const { container } = render(
-      <>
-        <label htmlFor={defaultId}>Pick time</label>
-        <TimePicker id={defaultId} name={defaultName} />
-      </>,
+      <TimePicker id={defaultId} name={defaultName} label="Pick time" />,
     );
     expect(await axe(container)).toHaveNoViolations();
   });
 
   test('should render successfully', () => {
     const { baseElement } = render(
-      <>
-        <label htmlFor={defaultId}>Pick time</label>
-        <TimePicker id={defaultId} name={defaultName} />
-      </>,
+      <TimePicker id={defaultId} name={defaultName} label="Pick time" />,
     );
     expect(baseElement).toBeTruthy();
   });
@@ -44,17 +38,15 @@ describe('TimePicker', () => {
 
   test('should render uswds attributes when passed in', () => {
     const { baseElement } = render(
-      <>
-        <label htmlFor={defaultId}>Pick time</label>
-        <TimePicker
-          id={defaultId}
-          name={defaultName}
-          filter=".*{{query}}.*"
-          minTime="9:00am"
-          maxTime="5:00pm"
-          step={60}
-        />
-      </>,
+      <TimePicker
+        id={defaultId}
+        name={defaultName}
+        label="Pick time"
+        filter=".*{{query}}.*"
+        minTime="9:00am"
+        maxTime="5:00pm"
+        step={60}
+      />,
     );
 
     const timePickerElement = baseElement.querySelector('.usa-time-picker') as HTMLElement;

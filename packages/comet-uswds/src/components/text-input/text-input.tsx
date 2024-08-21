@@ -10,7 +10,7 @@ export interface TextInputProps {
    */
   id: string;
   /**
-   * The name of the text input
+   * The name for the combo box input field
    */
   name?: string;
   /**

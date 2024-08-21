@@ -6,9 +6,7 @@ describe('Range slider', () => {
   const defaultId = 'range-slider';
 
   test('should render with no accessibility violations', async () => {
-    const { container } = render(
-      <RangeSlider id={defaultId} name={defaultId} aria-label="slider" />,
-    );
+    const { container } = render(<RangeSlider id={defaultId} name={defaultId} label="slider" />);
     expect(await axe(container)).toHaveNoViolations();
   });
 
