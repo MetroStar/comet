@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
-import { Label, FormGroup, DatePicker } from '../..';
+import { DatePicker } from '../..';
 import { DateRangePickerContainer } from './date-range-picker';
 
 const meta: Meta<typeof DateRangePickerContainer> = {

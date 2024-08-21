@@ -153,6 +153,7 @@ const FormWrapper: React.FC = () => {
         id="contact-frequency"
         name="contact-frequency"
         label="Contact Frequency"
+        helperText="Select how often you would like to be contacted"
         data={[
           { label: 'Weekly', value: 'weekly', defaultChecked: true },
           { label: 'Monthly', value: 'monthly', defaultChecked: false },

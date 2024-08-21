@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
-import { Form, FormGroup, Label, TextInput, TextArea } from '../..';
+import { Form, TextInput, TextArea } from '../..';
 import { CharacterCount, CharacterCountContainer, CharacterCountProps } from './character-count';
 
 const meta: Meta<typeof CharacterCount> = {
