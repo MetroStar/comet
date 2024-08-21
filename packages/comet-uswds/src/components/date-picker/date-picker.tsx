@@ -1,5 +1,8 @@
 import datePicker from '@uswds/uswds/js/usa-date-picker';
 import React, { useLayoutEffect, useRef } from 'react';
+import FormGroup from '../form-group';
+import { ValidationStatus } from 'src/utils/types';
+import classNames from 'classnames';
 
 export interface DatePickerProps {
   /**
@@ -27,6 +30,26 @@ export interface DatePickerProps {
    */
   defaultValue?: string;
   /**
+   * A boolean indicating whether or not the field is required
+   */
+  required?: boolean;
+  /**
+   * Label text to display with the input
+   */
+  label?: string;
+  /**
+   * Helper text to display with the input
+   */
+  helperText?: string;
+  /**
+   * An array of string error messages
+   */
+  errors?: string | string[];
+  /**
+   * State based styling to apply to the form group
+   */
+  validationStatus?: ValidationStatus;
+  /**
    * Event handler will be triggered when the date-picker value changes
    */
   onChange?: (this: HTMLInputElement, event: Event) => void;
@@ -43,10 +66,16 @@ interface DatePickerAttributes {
  * A date picker helps users select a single date.
  */
 export const DatePicker = ({
+  id,
   minDate,
   maxDate,
   dateRange,
   defaultValue,
+  required,
+  label,
+  helperText,
+  errors,
+  validationStatus,
   onChange,
   ...inputProps
 }: DatePickerProps & JSX.IntrinsicElements['input']): React.ReactElement => {
@@ -78,10 +107,24 @@ export const DatePicker = ({
   if (dateRange) datePickerAttributes['data-range-date'] = getDateString(dateRange);
   if (defaultValue) datePickerAttributes['data-default-value'] = getDateString(defaultValue);
 
+  const inputClasses = classNames('usa-input', {
+    'usa-input--error': validationStatus === 'error',
+    'usa-input--success': validationStatus === 'success',
+  });
+
   return (
-    <div ref={datePickerRef} className="usa-date-picker" {...datePickerAttributes}>
-      <input className="usa-input" type="text" {...inputProps} />
-    </div>
+    <FormGroup
+      id={`form-group-${id}`}
+      required={required}
+      label={label}
+      helperText={helperText}
+      errors={errors}
+      fieldControl={
+        <div ref={datePickerRef} className="usa-date-picker" {...datePickerAttributes}>
+          <input id={id} className={inputClasses} type="text" {...inputProps} />
+        </div>
+      }
+    />
   );
 };
 

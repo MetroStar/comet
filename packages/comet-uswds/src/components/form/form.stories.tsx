@@ -1,7 +1,15 @@
 import { Meta, StoryFn } from '@storybook/react';
 import React, { FormEvent, useState } from 'react';
 import { Form, FormProps } from './form';
-import { Alert, Button, CheckboxGroup, RadioButtonGroup, Select, TextInput } from '../..';
+import {
+  Alert,
+  Button,
+  CheckboxGroup,
+  DatePicker,
+  RadioButtonGroup,
+  Select,
+  TextInput,
+} from '../..';
 
 const meta: Meta<typeof Form> = {
   title: 'USWDS/Forms/Form',
@@ -30,6 +38,7 @@ const FormWrapper: React.FC = () => {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [gender, setGender] = useState('');
+  const [dob, setDob] = useState('');
   const [contactPreferences, setContactPreferences] = useState(['email']);
   const [contactFrequency, setContactFrequency] = useState('weekly');
   const [nameError, setNameError] = useState('');
@@ -115,6 +124,13 @@ const FormWrapper: React.FC = () => {
         helperText="Select from the list below"
         onChange={(e) => setGender(e.target.value)}
       />
+      <DatePicker
+        id="dob"
+        name="dob"
+        label="Date of Birth"
+        helperText="mm/dd/yyyy"
+        onChange={(e) => setDob((e.target as HTMLInputElement).value)}
+      />
       <CheckboxGroup
         id="contact-preferences"
         name="contact-preferences"
@@ -154,6 +170,7 @@ const FormWrapper: React.FC = () => {
             <div>Email: {email}</div>
             <div>Phone: {phone}</div>
             <div>Gender: {gender}</div>
+            <div>Date of Birth: {dob}</div>
             <div>Contact Preferences: {contactPreferences.join(', ')}</div>
             <div>Contact Frequency: {contactFrequency}</div>
           </Alert>
