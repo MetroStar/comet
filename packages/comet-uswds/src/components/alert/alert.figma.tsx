@@ -1,10 +1,9 @@
-import React from 'react';
 import { Alert } from './alert';
 import figma from '@figma/code-connect';
 
 figma.connect(
   Alert,
-  'https://www.figma.com/design/U58Pbb84dLaZfvFvdtGVdT/Comet-UI-Kit?node-id=24-2717&t=YGEQPiJRGoTsakBD-4',
+  'https://www.figma.com/design/U58Pbb84dLaZfvFvdtGVdT/Comet-UI-Kit?node-id=24-2717',
   {
     props: {
       heading: figma.string('Heading'),

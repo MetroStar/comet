@@ -1,11 +1,10 @@
-import React from 'react';
 import { Card, CardBody, CardFooter, CardHeader } from './card';
 import figma from '@figma/code-connect';
 import Button from '../button';
 
 figma.connect(
   Card,
-  'https://www.figma.com/design/U58Pbb84dLaZfvFvdtGVdT/Comet-UI-Kit?node-id=43-2604&t=gbmwd0bpvth9DyiO-4',
+  'https://www.figma.com/design/U58Pbb84dLaZfvFvdtGVdT/Comet-UI-Kit?node-id=43-2604',
   {
     props: {
       cardimage430: figma.boolean('Card image?'),
