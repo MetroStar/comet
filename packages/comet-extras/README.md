@@ -17,4 +17,10 @@ yarn add @metrostar/comet-extras
 
 ```tsx
 import Tabs, { TabPanel } from '@metrostar/comet-extras';
+
+<Tabs id="tabs">
+  <TabPanel id="tab-panel-1" label="Tab 1">
+    <p>Content of Tab 1</p>
+  </TabPanel>
+</Tabs>;
 ```

@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 import React, { ChangeEventHandler, ReactElement } from 'react';
+import FormGroup from '../form-group';
 
 export interface SelectOptionProps {
   /**
@@ -30,6 +31,22 @@ export interface SelectProps {
    */
   options?: SelectOptionProps[];
   /**
+   * A boolean indicating whether or not the field is required
+   */
+  required?: boolean;
+  /**
+   * Label text to display with the input
+   */
+  label?: string;
+  /**
+   * Helper text to display with the input
+   */
+  helperText?: string;
+  /**
+   * An array of string error messages
+   */
+  errors?: string | string[];
+  /**
    * SelectOption components to display as children
    */
   children?: ReactElement<SelectOptionProps> | Array<ReactElement<SelectOptionProps>>;
@@ -43,8 +60,13 @@ export interface SelectProps {
  * A select component allows users to choose one option from a temporary modal menu.
  */
 export const Select = ({
+  id,
   defaultOption = { value: '', label: '- Select -' },
   options,
+  required,
+  label,
+  helperText,
+  errors,
   onChange,
   className,
   children,
@@ -56,10 +78,25 @@ export const Select = ({
   }
 
   return (
-    <select className={classNames('usa-select', className)} onChange={onChange} {...selectProps}>
-      {createOption(defaultOption, -1)}
-      {children ?? options?.map(createOption)}
-    </select>
+    <FormGroup
+      id={`form-group-${id}`}
+      required={required}
+      label={label}
+      helperText={helperText}
+      errors={errors}
+      fieldControl={
+        <select
+          id={id}
+          className={classNames('usa-select', className)}
+          defaultValue={defaultOption?.value}
+          onChange={onChange}
+          {...selectProps}
+        >
+          {createOption(defaultOption, -1)}
+          {children ?? options?.map(createOption)}
+        </select>
+      }
+    />
   );
 };
 
@@ -67,7 +104,7 @@ export const SelectOption = ({ value, label }: SelectOptionProps): ReactElement 
   return <option value={value}>{label}</option>;
 };
 
-const createOption = (
+export const createOption = (
   option: SelectOptionProps | null,
   optionIndex: number,
 ): React.ReactElement | null =>

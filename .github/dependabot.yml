@@ -13,11 +13,12 @@ updates:
     labels:
       - 'dependencies'
     groups:
-      vitest:
+      minor-and-patch:
         patterns:
-          - '@vitest/coverage-v8'
-          - '@vitest/ui'
-          - 'vitest'
+          - '*'
+        update-types:
+          - 'minor'
+          - 'patch'
     ignore:
       - dependency-name: react
         versions:
@@ -46,13 +47,6 @@ updates:
       - dependency-name: '@storybook/test'
       - dependency-name: 'storybook'
       - dependency-name: 'typescript'
-      - dependency-name: '@typescript-eslint/eslint-plugin'
-      - dependency-name: '@typescript-eslint/parser'
-      - dependency-name: 'eslint-config-standard-with-typescript'
-      - dependency-name: 'eslint-plugin-import'
-      - dependency-name: 'eslint-plugin-n'
-      - dependency-name: 'eslint-plugin-promise'
-      - dependency-name: 'eslint-plugin-storybook'
       - dependency-name: 'rollup'
       - dependency-name: 'rollup-plugin-dts'
   - package-ecosystem: 'npm'

@@ -1,4 +1,3 @@
-import React from 'react';
 import { render } from '@testing-library/react';
 import { axe } from 'jest-axe';
 import ErrorMessages from './error-messages';
@@ -14,6 +13,12 @@ describe('ErrorMessage', () => {
     const errors: string[] = [''];
     const { baseElement } = render(<ErrorMessages errors={errors} />);
     expect(baseElement).toBeTruthy();
+  });
+
+  test('should render an error message as a string successfully', () => {
+    const { baseElement } = render(<ErrorMessages errors="error" />);
+    const errorMessages = baseElement.querySelectorAll('.usa-error-message');
+    expect(errorMessages).toHaveLength(1);
   });
 
   test('should render an error message successfully', () => {

@@ -1,4 +1,3 @@
-import React from 'react';
 import { render } from '@testing-library/react';
 import { axe } from 'jest-axe';
 import userEvent from '@testing-library/user-event';
@@ -14,7 +13,7 @@ describe('Select', () => {
 
   test('should render with no accessibility violations', async () => {
     const { container } = render(
-      <Select id={defaultId} name={defaultName} options={options} aria-label="dropdown" />,
+      <Select id={defaultId} name={defaultName} options={options} label="dropdown" />,
     );
     expect(await axe(container)).toHaveNoViolations();
   });

@@ -1,4 +1,3 @@
-import React from 'react';
 import { fireEvent, render } from '@testing-library/react';
 import { axe } from 'jest-axe';
 import RadioButton, { RadioButtonData, RadioButtonGroup } from './radio-button';
@@ -32,7 +31,7 @@ describe('RadioButton', () => {
         name={radioButtonName}
         label="Lorem"
         value="lorem"
-        checked={true}
+        defaultChecked={true}
       />,
     );
     expect(baseElement).toBeTruthy();
@@ -103,7 +102,7 @@ describe('RadioButton', () => {
           return {
             label: word,
             value: word.toLowerCase(),
-            checked: wordIndex === 0,
+            defaultChecked: wordIndex === 0,
           } as RadioButtonData;
         })}
       />,
@@ -126,7 +125,7 @@ describe('RadioButton', () => {
           return {
             label: word,
             value: word.toLowerCase(),
-            checked: wordIndex === 0,
+            defaultChecked: wordIndex === 0,
           } as RadioButtonData;
         })}
         areTiles={true}
@@ -146,7 +145,7 @@ describe('RadioButton', () => {
           return {
             label: word,
             value: word.toLowerCase(),
-            checked: wordIndex === 0,
+            defaultChecked: wordIndex === 0,
           } as RadioButtonData;
         })}
         onChange={onCheck}
@@ -179,7 +178,7 @@ describe('RadioButton', () => {
           return {
             label: word,
             value: word.toLowerCase(),
-            checked: wordIndex === 0,
+            defaultChecked: wordIndex === 0,
           } as RadioButtonData;
         })}
         onClick={onClick}

@@ -8,7 +8,7 @@ export const getPattern = (
       newPattern = '^(?!(000|666|9))d{3} (?!00)d{2} (?!0000)d{4}$';
       break;
     case 'phone_number':
-      newPattern = 'd{3}-d{3}-d{4}';
+      newPattern = '\\d{3}-\\d{3}-\\d{4}';
       break;
     case 'zip_5_digit':
       newPattern = '\\d{5}';

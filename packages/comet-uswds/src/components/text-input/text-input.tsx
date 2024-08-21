@@ -1,6 +1,9 @@
-import React, { ChangeEventHandler, ReactNode } from 'react';
+import React, { ChangeEventHandler, ReactNode, useEffect, useRef } from 'react';
 import classnames from 'classnames';
 import { getInputMode, getPattern, getPlaceholder, getType } from './input-utils';
+import FormGroup from '../form-group';
+import { ValidationStatus } from '../utils/types';
+import inputMask from '@uswds/uswds/js/usa-input-mask';
 
 export interface TextInputProps {
   /**
@@ -8,13 +11,33 @@ export interface TextInputProps {
    */
   id: string;
   /**
-   * The name of the text input
+   * The name for the combo box input field
    */
   name?: string;
   /**
    * The type of input to display
    */
   type?: 'text' | 'email' | 'number' | 'password' | 'search' | 'tel' | 'url';
+  /**
+   * A boolean indicating whether or not the field is required
+   */
+  required?: boolean;
+  /**
+   * Label text to display with the input
+   */
+  label?: string;
+  /**
+   * Helper text to display with the input
+   */
+  helperText?: string;
+  /**
+   * An array of string error messages
+   */
+  errors?: string | string[];
+  /**
+   * State based styling to apply to the form group
+   */
+  validationStatus?: ValidationStatus;
   /**
    * The type of mask to apply to the input
    */
@@ -39,6 +62,11 @@ export interface TextInputProps {
 export const TextInput = ({
   id,
   name,
+  required,
+  label,
+  helperText,
+  errors,
+  validationStatus,
   className,
   type,
   mask,
@@ -48,9 +76,27 @@ export const TextInput = ({
   ...props
 }: TextInputProps &
   Omit<JSX.IntrinsicElements['input'], 'prefix' | 'suffix'>): React.ReactElement => {
+  const inputRef = useRef<HTMLInputElement>(null);
+  // Ensure input mask JS is loaded
+  useEffect(() => {
+    const inputElement = inputRef.current;
+    if (inputElement && mask) {
+      inputMask.on(inputElement);
+    }
+
+    // Ensure cleanup after the effect
+    return () => {
+      if (inputElement && mask) {
+        inputMask.off(inputElement);
+      }
+    };
+  });
+
   const classes = classnames(
     'usa-input',
     {
+      'usa-input--error': validationStatus === 'error',
+      'usa-input--success': validationStatus === 'success',
       'usa-masked': mask,
     },
     className,
@@ -58,6 +104,7 @@ export const TextInput = ({
 
   const getInputElement = (
     <input
+      ref={inputRef}
       id={id}
       name={name}
       className={classes}
@@ -71,7 +118,7 @@ export const TextInput = ({
     />
   );
 
-  return prefix ?? suffix ? (
+  const getInputGroup = (
     <div className="usa-input-group">
       {prefix ? (
         <div className="usa-input-prefix" aria-hidden="true">
@@ -85,8 +132,18 @@ export const TextInput = ({
         </div>
       ) : undefined}
     </div>
-  ) : (
-    getInputElement
+  );
+
+  return (
+    <FormGroup
+      id={`form-group-${id}`}
+      required={required}
+      label={label}
+      helperText={helperText}
+      errors={errors}
+      validationStatus={validationStatus}
+      fieldControl={(prefix ?? suffix) ? getInputGroup : getInputElement}
+    />
   );
 };
 

@@ -1,12 +1,10 @@
-import React from 'react';
-import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import { axe } from 'jest-axe';
 import { MemorableDate } from './memorable-date';
 import userEvent from '@testing-library/user-event';
 
 describe('Memorable Date', () => {
-  const memorableDate = <MemorableDate id="1" data-testid="memorable-date-1" />;
+  const memorableDate = <MemorableDate id="1" data-testid="memorable-date-1" label="Pick date" />;
 
   test('should render with no accessibility violations', async () => {
     const { container } = render(memorableDate);
@@ -22,6 +20,7 @@ describe('Memorable Date', () => {
     const { baseElement } = render(
       <MemorableDate
         id="1"
+        label="Pick date"
         data-testid="memorable-date-1"
         defaultMonthValue={12}
         defaultDayValue={31}
@@ -45,6 +44,7 @@ describe('Memorable Date', () => {
     const { baseElement } = render(
       <MemorableDate
         id="1"
+        label="Pick date"
         data-testid="memorable-date-1"
         onMonthChange={onMonthChange}
         onDayChange={onDayChange}

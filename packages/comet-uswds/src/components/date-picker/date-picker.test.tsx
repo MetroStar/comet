@@ -1,4 +1,3 @@
-import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import { axe } from 'jest-axe';
 import userEvent from '@testing-library/user-event';
@@ -10,9 +9,7 @@ describe('Date picker', () => {
   const today = new Date();
 
   test('should render with no accessibility violations', async () => {
-    const { container } = render(
-      <DatePicker id={defaultId} name={defaultName} aria-label="date" />,
-    );
+    const { container } = render(<DatePicker id={defaultId} name={defaultName} label="date" />);
     expect(await axe(container)).toHaveNoViolations();
   });
 

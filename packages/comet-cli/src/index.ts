@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { Command } from 'commander';
 import figlet from 'figlet';
 import fs from 'fs';

@@ -1,4 +1,4 @@
-import React from 'react';
+import FormGroup from '../form-group';
 
 export interface RangeSliderProps {
   /**
@@ -9,6 +9,22 @@ export interface RangeSliderProps {
    * The name of the input field
    */
   name: string;
+  /**
+   * A boolean indicating whether or not the field is required
+   */
+  required?: boolean;
+  /**
+   * Label text to display with the input
+   */
+  label?: string;
+  /**
+   * Helper text to display with the input
+   */
+  helperText?: string;
+  /**
+   * An array of string error messages
+   */
+  errors?: string | string[];
   /**
    * A minimum value allowed for the slider
    */
@@ -36,6 +52,10 @@ export interface RangeSliderProps {
  */
 export const RangeSlider = ({
   id,
+  required,
+  label,
+  helperText,
+  errors,
   minValue,
   maxValue,
   step = '10',
@@ -44,17 +64,26 @@ export const RangeSlider = ({
   ...inputProps
 }: RangeSliderProps & Omit<JSX.IntrinsicElements['input'], 'min' | 'max'>): React.ReactElement => {
   return (
-    <input
-      id={id}
-      className="usa-range"
-      type="range"
-      min={minValue}
-      max={maxValue}
-      step={step}
-      defaultValue={defaultValue}
-      onChange={onChange}
-      role="slider"
-      {...inputProps}
+    <FormGroup
+      id={`form-group-${id}`}
+      required={required}
+      label={label}
+      helperText={helperText}
+      errors={errors}
+      fieldControl={
+        <input
+          id={id}
+          className="usa-range"
+          type="range"
+          min={minValue}
+          max={maxValue}
+          step={step}
+          defaultValue={defaultValue}
+          onChange={onChange}
+          role="slider"
+          {...inputProps}
+        />
+      }
     />
   );
 };

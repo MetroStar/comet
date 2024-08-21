@@ -1,5 +1,4 @@
-import React from 'react';
-import { fireEvent, render } from '@testing-library/react';
+import { act, fireEvent, render } from '@testing-library/react';
 import { axe } from 'jest-axe';
 import Table, { TableColumn } from './table';
 
@@ -143,6 +142,19 @@ describe('Table', () => {
     expect(th[0].getAttribute('aria-sort')).toBeNull();
   });
 
+  test('should render a custom sortable table successfully', () => {
+    const customColumns = columns.map((column, index) => ({
+      ...column,
+      sortable: index === 0 ? false : true,
+    }));
+
+    const { baseElement } = render(
+      <Table id="table1" columns={customColumns} data={sortableData} sortable={false} />,
+    );
+    const th = baseElement.querySelectorAll('th');
+    expect(th[0].getAttribute('aria-sort')).toBeNull();
+  });
+
   test('should render a descending sortable table successfully', () => {
     const { baseElement } = render(
       <Table
@@ -156,6 +168,21 @@ describe('Table', () => {
     );
     const th = baseElement.querySelectorAll('th');
     expect(th[0].getAttribute('aria-sort')).not.toBeNull();
+  });
+
+  test('should call onSort function when sorting', async () => {
+    const onSort = vi.fn();
+    const { baseElement } = render(
+      <Table id="table1" columns={columns} data={sortableData} sortable={true} onSort={onSort} />,
+    );
+    expect(onSort).not.toHaveBeenCalled();
+
+    const th = baseElement.querySelectorAll('th')[0];
+    const thButton = th?.querySelector('button') as Element;
+    await act(async () => {
+      fireEvent.click(thButton);
+    });
+    expect(onSort).toHaveBeenCalled();
   });
 
   describe('sorted table', () => {
@@ -202,7 +229,7 @@ describe('Table', () => {
         ]),
       [],
     );
-    it.each(testMatrix)('should sort by $name $sortDir', ({ id, name, columnIndex, sortDir }) => {
+    it.each(testMatrix)('should sort by $name $sortDir', ({ id, columnIndex, sortDir }) => {
       const { baseElement } = render(
         <Table
           id="table1"
