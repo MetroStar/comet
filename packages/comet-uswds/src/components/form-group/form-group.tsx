@@ -87,8 +87,9 @@ export const FormGroup = ({
     : undefined;
 
   let fieldControlWithProps = fieldControlElement;
+  const fieldControlClass = fieldControlWithProps?.props.className;
   // If the fieldControl is a ComboBox, we need to evaluate children elements
-  if (fieldControlWithProps?.props.className === 'usa-combo-box') {
+  if (fieldControlClass === 'usa-combo-box' || fieldControlClass === 'usa-time-picker') {
     const children = fieldControlElement?.props.children;
     fieldControlId = children?.props.id;
   } else {

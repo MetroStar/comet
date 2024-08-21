@@ -2,6 +2,7 @@ import classNames from 'classnames';
 import React, { useLayoutEffect, useRef } from 'react';
 import comboBox from '@uswds/uswds/js/usa-combo-box';
 import timePicker from '@uswds/uswds/js/usa-time-picker';
+import FormGroup from '../form-group';
 
 export interface TimePickerProps {
   /**
@@ -12,6 +13,22 @@ export interface TimePickerProps {
    * The name of the input
    */
   name?: string;
+  /**
+   * A boolean indicating whether or not the field is required
+   */
+  required?: boolean;
+  /**
+   * Label text to display with the input
+   */
+  label?: string;
+  /**
+   * Helper text to display with the input
+   */
+  helperText?: string;
+  /**
+   * An array of string error messages
+   */
+  errors?: string | string[];
   /**
    * The time picker will use this regular expression to filter the time picker options.
    */
@@ -38,6 +55,11 @@ export interface TimePickerProps {
  * A time picker helps users select a specific time.
  */
 export const TimePicker = ({
+  id,
+  required,
+  label,
+  helperText,
+  errors,
   filter,
   minTime,
   maxTime,
@@ -48,22 +70,33 @@ export const TimePicker = ({
   const timePickerRef = useRef<HTMLDivElement>(null);
   useLayoutEffect(() => {
     const timePickerElement = timePickerRef.current as HTMLDivElement;
-    timePicker.on(timePickerElement);
-    comboBox.on(timePickerElement);
-    const inputElement = timePickerElement.querySelector(
-      '.usa-combo-box__input',
-    ) as HTMLInputElement;
+    const comboBoxLabel = timePickerElement?.parentNode?.querySelector(`label[for="${id}"]`);
 
-    if (onChange) {
-      inputElement.addEventListener('change', onChange);
+    // Only intialize the combo box if the label is present, USWDS will error otherwise
+    if (comboBoxLabel) {
+      timePicker.on(timePickerElement);
+      comboBox.on(timePickerElement);
+
+      const inputElement = timePickerElement.querySelector(
+        '.usa-combo-box__input',
+      ) as HTMLInputElement;
+      if (onChange) {
+        inputElement.addEventListener('change', onChange);
+      }
     }
 
     return () => {
-      if (onChange) {
-        inputElement.removeEventListener('change', onChange);
+      if (comboBoxLabel) {
+        comboBox.off(timePickerElement);
+        timePicker.off(timePickerElement);
+
+        const inputElement = timePickerElement.querySelector(
+          '.usa-combo-box__input',
+        ) as HTMLInputElement;
+        if (onChange) {
+          inputElement.removeEventListener('change', onChange);
+        }
       }
-      comboBox.off(timePickerElement);
-      timePicker.off(timePickerElement);
     };
   });
 
@@ -79,13 +112,22 @@ export const TimePicker = ({
   if (step) datePickerAttributes['data-step'] = step;
 
   return (
-    <div
-      ref={timePickerRef}
-      className={classNames('usa-time-picker', inputProps.className)}
-      {...datePickerAttributes}
-    >
-      <input className="usa-input" type="text" {...inputProps} />
-    </div>
+    <FormGroup
+      id={`form-group-${id}`}
+      required={required}
+      label={label}
+      helperText={helperText}
+      errors={errors}
+      fieldControl={
+        <div
+          ref={timePickerRef}
+          className={classNames('usa-time-picker', inputProps.className)}
+          {...datePickerAttributes}
+        >
+          <input className="usa-input" type="text" id={id} {...inputProps} />
+        </div>
+      }
+    />
   );
 };
 

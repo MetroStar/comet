@@ -30,10 +30,7 @@ describe('TimePicker', () => {
   test('changing the value should trigger onChanged event handler', async () => {
     const onChange = vi.fn();
     const { baseElement } = render(
-      <>
-        <label htmlFor={defaultId}>Pick time</label>
-        <TimePicker id={defaultId} name={defaultName} onChange={onChange} />
-      </>,
+      <TimePicker id={defaultId} name={defaultName} label="Pick time" onChange={onChange} />,
     );
     const input = baseElement.querySelector('.usa-combo-box__input') as HTMLInputElement;
 
