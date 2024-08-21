@@ -8,30 +8,32 @@ const meta: Meta<typeof RangeSlider> = {
   argTypes: {
     id: { required: true },
     name: { required: true },
+    required: { control: 'boolean' },
   },
 };
 export default meta;
 
 const Template: StoryFn<typeof RangeSlider> = (args: RangeSliderProps) => (
-  <div className="usa-form-group">
-    <label className="usa-label" htmlFor={args.id}>
-      Range Slider
-    </label>
-    <RangeSlider
-      id={args.id}
-      name={args.name}
-      defaultValue={args.defaultValue}
-      minValue={args.minValue}
-      maxValue={args.maxValue}
-      step={args.step}
-    />
-  </div>
+  <RangeSlider
+    id={args.id}
+    name={args.name}
+    required={args.required}
+    label={args.label}
+    helperText={args.helperText}
+    defaultValue={args.defaultValue}
+    minValue={args.minValue}
+    maxValue={args.maxValue}
+    step={args.step}
+  />
 );
 
 export const Standard = Template.bind({});
 Standard.args = {
   id: 'range-slider-1',
   name: 'range-slider-1',
+  required: false,
+  label: 'Range Slider',
+  helperText: 'Select a value using the slider',
   minValue: '0',
   maxValue: '100',
   step: '10',
@@ -41,6 +43,9 @@ export const DefaultValue = Template.bind({});
 DefaultValue.args = {
   id: 'range-slider-2',
   name: 'range-slider-2',
+  required: false,
+  label: 'Range Slider',
+  helperText: 'Select a value using the slider',
   minValue: '0',
   maxValue: '100',
   step: '5',
