@@ -36,13 +36,7 @@ WithDefaultValue.args = {
   defaultValue: 'A long time ago in a galaxy far, far away....',
 };
 
-const ErrorTemplate: StoryFn<typeof TextArea> = (args: TextAreaProps) => (
-  <div className="padding-left-1">
-    <TextArea {...args} />
-  </div>
-);
-
-export const WithErrors = ErrorTemplate.bind({});
+export const WithErrors = Template.bind({});
 WithErrors.args = {
   id: 'text-area-3',
   name: 'text-area-3',

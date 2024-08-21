@@ -10,14 +10,12 @@ const meta: Meta<typeof FormGroup> = {
 export default meta;
 
 const Template: StoryFn<typeof FormGroup> = (args: FormGroupProps) => (
-  <div className="padding-left-1">
-    <FormGroup id={args.id} errors={args.errors}>
-      <Label htmlFor="input1">Name</Label>
-      <HelperText>Enter your full name</HelperText>
-      <ErrorMessages errors={args.errors} />
-      <TextInput id="input1" name="input1" />
-    </FormGroup>
-  </div>
+  <FormGroup id={args.id} errors={args.errors}>
+    <Label htmlFor="input1">Name</Label>
+    <HelperText>Enter your full name</HelperText>
+    <ErrorMessages errors={args.errors} />
+    <TextInput id="input1" name="input1" />
+  </FormGroup>
 );
 
 export const Standard = Template.bind({});

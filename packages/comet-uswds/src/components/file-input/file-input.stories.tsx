@@ -9,38 +9,32 @@ const meta: Meta<typeof FileInput> = {
     id: { required: true },
     name: { required: true },
     multiple: { type: 'boolean' },
+    required: { control: 'boolean' },
+    disabled: { control: 'boolean' },
   },
 };
 export default meta;
 
-const Template: StoryFn<typeof FileInput> = (args: FileInputProps) => (
-  <div className="usa-form-group">
-    <label className="usa-label" htmlFor={args.id}>
-      Input accepts a single file
-    </label>
-    <FileInput id={args.id} name={args.name} />
-  </div>
-);
+const Template: StoryFn<typeof FileInput> = (args: FileInputProps) => <FileInput {...args} />;
 
 export const Standard = Template.bind({});
 Standard.args = {
   id: 'file-input-1',
   name: 'file-input-1',
   multiple: false,
+  required: false,
+  label: 'Select a file',
+  helperText: 'Input accepts a single file',
+  disabled: false,
 };
 
-const MultipleTemplate: StoryFn<typeof FileInput> = (args: FileInputProps) => (
-  <div className="usa-form-group">
-    <label className="usa-label" htmlFor={args.id}>
-      Input accepts a multiple files
-    </label>
-    <FileInput id={args.id} name={args.name} multiple />
-  </div>
-);
-
-export const Multiple = MultipleTemplate.bind({});
+export const Multiple = Template.bind({});
 Multiple.args = {
   id: 'file-input-2',
   name: 'file-input-2',
   multiple: true,
+  required: false,
+  label: 'Select files',
+  helperText: 'Input accepts multiple files',
+  disabled: false,
 };

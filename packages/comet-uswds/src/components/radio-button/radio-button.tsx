@@ -1,5 +1,6 @@
 import React, { ChangeEventHandler, MouseEventHandler } from 'react';
 import classnames from 'classnames';
+import FormGroup from '../form-group';
 
 export interface RadioButtonData {
   /**
@@ -102,6 +103,22 @@ export interface RadioButtonGroupProps {
    */
   areTiles?: boolean;
   /**
+   * A boolean indicating whether or not the field is required
+   */
+  required?: boolean;
+  /**
+   * Label text to display with the input
+   */
+  label?: string;
+  /**
+   * Helper text to display with the input
+   */
+  helperText?: string;
+  /**
+   * An array of string error messages
+   */
+  errors?: string | string[];
+  /**
    * Event handler will be triggered when the radioButton value changes
    */
   onChange?: ChangeEventHandler<HTMLInputElement>;
@@ -116,28 +133,41 @@ export const RadioButtonGroup = ({
   name,
   data,
   areTiles,
+  required,
+  label,
+  helperText,
+  errors,
   onChange,
   onClick,
 }: RadioButtonGroupProps): React.ReactElement => {
   return (
-    <>
-      {data.map((radioButtonData, radioButtonIndex) => {
-        const radioButtonId = `${id}__radio${radioButtonIndex}`;
-        return (
-          <RadioButton
-            id={radioButtonId}
-            name={name}
-            label={radioButtonData.label}
-            value={radioButtonData.value}
-            checked={radioButtonData.checked}
-            defaultChecked={radioButtonData.defaultChecked}
-            isTile={areTiles}
-            onChange={onChange}
-            onClick={onClick}
-            key={radioButtonId}
-          />
-        );
-      })}
-    </>
+    <FormGroup
+      id={`form-group-${id}`}
+      required={required}
+      label={label}
+      helperText={helperText}
+      errors={errors}
+      fieldControl={
+        <>
+          {data.map((radioButtonData, radioButtonIndex) => {
+            const radioButtonId = `${id}__radio${radioButtonIndex}`;
+            return (
+              <RadioButton
+                id={radioButtonId}
+                name={name}
+                label={radioButtonData.label}
+                value={radioButtonData.value}
+                checked={radioButtonData.checked}
+                defaultChecked={radioButtonData.defaultChecked}
+                isTile={areTiles}
+                onChange={onChange}
+                onClick={onClick}
+                key={radioButtonId}
+              />
+            );
+          })}
+        </>
+      }
+    />
   );
 };

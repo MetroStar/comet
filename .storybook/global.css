@@ -1,0 +1,4 @@
+/* Add global padding to ensure form group validations always display */
+#storybook-root {
+  padding-left: 0.5rem;
+}

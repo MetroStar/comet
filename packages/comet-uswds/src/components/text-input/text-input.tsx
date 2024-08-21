@@ -1,8 +1,9 @@
-import React, { ChangeEventHandler, ReactNode } from 'react';
+import React, { ChangeEventHandler, ReactNode, useEffect, useRef } from 'react';
 import classnames from 'classnames';
 import { getInputMode, getPattern, getPlaceholder, getType } from './input-utils';
 import FormGroup from '../form-group';
-import { ValidationStatus } from 'src/utils/types';
+import { ValidationStatus } from '../utils/types';
+import inputMask from '@uswds/uswds/js/usa-input-mask';
 
 export interface TextInputProps {
   /**
@@ -10,7 +11,7 @@ export interface TextInputProps {
    */
   id: string;
   /**
-   * The name of the text input
+   * The name for the combo box input field
    */
   name?: string;
   /**
@@ -75,6 +76,22 @@ export const TextInput = ({
   ...props
 }: TextInputProps &
   Omit<JSX.IntrinsicElements['input'], 'prefix' | 'suffix'>): React.ReactElement => {
+  const inputRef = useRef<HTMLInputElement>(null);
+  // Ensure input mask JS is loaded
+  useEffect(() => {
+    const inputElement = inputRef.current;
+    if (inputElement && mask) {
+      inputMask.on(inputElement);
+    }
+
+    // Ensure cleanup after the effect
+    return () => {
+      if (inputElement && mask) {
+        inputMask.off(inputElement);
+      }
+    };
+  });
+
   const classes = classnames(
     'usa-input',
     {
@@ -87,6 +104,7 @@ export const TextInput = ({
 
   const getInputElement = (
     <input
+      ref={inputRef}
       id={id}
       name={name}
       className={classes}

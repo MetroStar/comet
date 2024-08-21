@@ -1,7 +1,15 @@
 import { Meta, StoryFn } from '@storybook/react';
 import React, { FormEvent, useState } from 'react';
 import { Form, FormProps } from './form';
-import { Alert, Button, TextInput } from '../..';
+import {
+  Alert,
+  Button,
+  CheckboxGroup,
+  DatePicker,
+  RadioButtonGroup,
+  Select,
+  TextInput,
+} from '../..';
 
 const meta: Meta<typeof Form> = {
   title: 'USWDS/Forms/Form',
@@ -29,12 +37,16 @@ const FormWrapper: React.FC = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
+  const [gender, setGender] = useState('');
+  const [dob, setDob] = useState('');
+  const [contactPreferences, setContactPreferences] = useState(['email']);
+  const [contactFrequency, setContactFrequency] = useState('weekly');
   const [nameError, setNameError] = useState('');
   const [emailError, setEmailError] = useState('');
   const [isValid, setIsValid] = useState(false);
 
-  const validateName = (): boolean => {
-    if (name === '') {
+  const validateName = (value: string): boolean => {
+    if (value === '') {
       setNameError('This field is required');
       return false;
     } else {
@@ -43,8 +55,8 @@ const FormWrapper: React.FC = () => {
     }
   };
 
-  const validateEmail = (): boolean => {
-    if (email === '') {
+  const validateEmail = (value: string): boolean => {
+    if (value === '') {
       setEmailError('This field is required');
       return false;
     } else {
@@ -55,8 +67,8 @@ const FormWrapper: React.FC = () => {
 
   const handleSubmit = (event: FormEvent): void => {
     event.preventDefault();
-    const isNameValid = validateName();
-    const isEmailValid = validateEmail();
+    const isNameValid = validateName(name);
+    const isEmailValid = validateEmail(email);
     if (!isNameValid || !isEmailValid) {
       setIsValid(false);
     } else {
@@ -65,7 +77,7 @@ const FormWrapper: React.FC = () => {
   };
 
   return (
-    <Form id="contact-form" onSubmit={handleSubmit} className="width-tablet padding-left-1">
+    <Form id="contact-form" onSubmit={handleSubmit} className="width-tablet">
       <TextInput
         id="name"
         name="name"
@@ -74,10 +86,9 @@ const FormWrapper: React.FC = () => {
         helperText="Enter your full name (first and last)"
         errors={nameError}
         validationStatus={nameError ? 'error' : undefined}
-        value={name}
         onChange={(e) => {
           setName(e.target.value);
-          validateName();
+          validateName(e.target.value);
         }}
       />
       <TextInput
@@ -88,10 +99,9 @@ const FormWrapper: React.FC = () => {
         helperText="Enter your email address"
         errors={emailError}
         validationStatus={emailError ? 'error' : undefined}
-        value={email}
         onChange={(e) => {
           setEmail(e.target.value);
-          validateEmail();
+          validateEmail(e.target.value);
         }}
       />
       <TextInput
@@ -100,8 +110,55 @@ const FormWrapper: React.FC = () => {
         label="Phone Number"
         helperText="Enter your phone number"
         mask="phone_number"
-        value={phone}
         onChange={(e) => setPhone(e.target.value)}
+      />
+      <Select
+        id="gender"
+        name="gender"
+        options={[
+          { value: 'male', label: 'Male' },
+          { value: 'female', label: 'Female' },
+          { value: 'undeclared', label: 'Undeclared' },
+        ]}
+        label="Gender"
+        helperText="Select from the list below"
+        onChange={(e) => setGender(e.target.value)}
+      />
+      <DatePicker
+        id="dob"
+        name="dob"
+        label="Date of Birth"
+        helperText="mm/dd/yyyy"
+        onChange={(e) => setDob((e.target as HTMLInputElement).value)}
+      />
+      <CheckboxGroup
+        id="contact-preferences"
+        name="contact-preferences"
+        label="Contact Preferences"
+        helperText="Select how you would like to be contacted"
+        data={[
+          { label: 'Email', value: 'email', defaultChecked: true },
+          { label: 'Phone', value: 'phone', defaultChecked: false },
+        ]}
+        onChange={(e) => {
+          const value = e.target.value;
+          if (contactPreferences.includes(value)) {
+            setContactPreferences(contactPreferences.filter((pref) => pref !== value));
+          } else {
+            setContactPreferences([...contactPreferences, value]);
+          }
+        }}
+      />
+      <RadioButtonGroup
+        id="contact-frequency"
+        name="contact-frequency"
+        label="Contact Frequency"
+        helperText="Select how often you would like to be contacted"
+        data={[
+          { label: 'Weekly', value: 'weekly', defaultChecked: true },
+          { label: 'Monthly', value: 'monthly', defaultChecked: false },
+        ]}
+        onChange={(e) => setContactFrequency(e.target.value)}
       />
       <Button id="submit" type="submit">
         Submit
@@ -113,6 +170,10 @@ const FormWrapper: React.FC = () => {
             <div>Name: {name}</div>
             <div>Email: {email}</div>
             <div>Phone: {phone}</div>
+            <div>Gender: {gender}</div>
+            <div>Date of Birth: {dob}</div>
+            <div>Contact Preferences: {contactPreferences.join(', ')}</div>
+            <div>Contact Frequency: {contactFrequency}</div>
           </Alert>
         </div>
       ) : (

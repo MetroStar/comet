@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
-import { Checkbox, CheckboxProps } from './checkbox';
+import { Checkbox, CheckboxGroup, CheckboxGroupProps, CheckboxProps } from './checkbox';
 
 const meta: Meta<typeof Checkbox> = {
   title: 'USWDS/Forms/Checkbox',
@@ -13,49 +13,43 @@ const meta: Meta<typeof Checkbox> = {
 export default meta;
 
 const Template: StoryFn<typeof Checkbox> = (args: CheckboxProps) => (
-  <>
-    {loremWords.map((word, wordIndex) => (
-      <Checkbox
-        id={`checkbox${wordIndex}`}
-        name={checkboxName}
-        label={word}
-        value={word.toLowerCase()}
-        defaultChecked={wordIndex === 0}
-        key={wordIndex}
-        isTile={args.isTile}
-      />
-    ))}
-  </>
-);
-
-const checkboxName = 'lorem-checkbox';
-const loremWords = ['Lorem', 'Ipsum', 'Dolor', 'Sit'];
-
-export const Standard = Template.bind({});
-Standard.args = {
-  id: 'checkbox-1',
-  name: 'checkbox-1',
-  isTile: false,
-};
-
-const SingleTemplate: StoryFn<typeof Checkbox> = (args: CheckboxProps) => (
   <Checkbox
-    id={'checkbox$'}
-    name={checkboxName}
+    id={args.id}
+    name={args.name}
     label={args.label}
     value={args.value}
-    checked={args.checked}
     defaultChecked={args.defaultChecked}
     isTile={args.isTile}
   />
 );
 
-export const Single = SingleTemplate.bind({});
+export const Single = Template.bind({});
 Single.args = {
-  id: 'checkbox-1',
-  name: 'checkbox-1',
+  id: 'lorem-checkbox',
+  name: 'lorem-checkbox',
   label: 'Lorem',
   value: 'lorem',
   isTile: false,
   defaultChecked: true,
+};
+
+const loremWords = ['Lorem', 'Ipsum', 'Dolor', 'Sit'];
+
+const GroupTemplate: StoryFn<typeof CheckboxGroup> = (args: CheckboxGroupProps) => (
+  <CheckboxGroup {...args} />
+);
+
+export const Group = GroupTemplate.bind({});
+Group.args = {
+  id: 'checkbox-group',
+  name: 'checkbox-group',
+  data: loremWords.map((word, wordIndex) => ({
+    label: word,
+    value: word.toLowerCase(),
+    defaultChecked: wordIndex === 0,
+  })),
+  areTiles: false,
+  required: false,
+  label: 'Options',
+  helperText: 'Select from the list below',
 };

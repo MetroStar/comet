@@ -1,6 +1,11 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
-import { RadioButton, RadioButtonProps } from './radio-button';
+import {
+  RadioButton,
+  RadioButtonGroup,
+  RadioButtonGroupProps,
+  RadioButtonProps,
+} from './radio-button';
 
 const meta: Meta<typeof RadioButton> = {
   title: 'USWDS/Forms/Radio Button',
@@ -8,55 +13,48 @@ const meta: Meta<typeof RadioButton> = {
   argTypes: {
     id: { required: true },
     name: { required: true },
-    isTile: { type: 'boolean' },
   },
 };
 export default meta;
 
-const radioButtonName = 'lorem-radio-button';
-const loremWords = ['Lorem', 'Ipsum', 'Dolor', 'Sit'];
-
 const Template: StoryFn<typeof RadioButton> = (args: RadioButtonProps) => (
-  <>
-    {loremWords.map((word, wordIndex) => (
-      <RadioButton
-        id={`radio-button${wordIndex}`}
-        name={radioButtonName}
-        label={word}
-        value={word.toLowerCase()}
-        checked={wordIndex === 0}
-        key={wordIndex}
-        isTile={args.isTile}
-      />
-    ))}
-  </>
-);
-
-export const Standard = Template.bind({});
-Standard.args = {
-  id: 'radio-button-1',
-  name: 'radio-button-1',
-  isTile: false,
-};
-
-const SingleTemplate: StoryFn<typeof RadioButton> = (args: RadioButtonProps) => (
   <RadioButton
-    id={radioButtonName}
-    name={radioButtonName}
+    id={args.id}
+    name={args.name}
     label={args.label}
     value={args.value}
-    checked={args.checked}
     defaultChecked={args.defaultChecked}
     isTile={args.isTile}
   />
 );
 
-export const Single = SingleTemplate.bind({});
+export const Single = Template.bind({});
 Single.args = {
-  id: 'radio-button-1',
-  name: 'radio-button-1',
+  id: 'lorem-radio-button',
+  name: 'lorem-radio-button',
   label: 'Lorem',
   value: 'lorem',
   isTile: false,
   defaultChecked: true,
+};
+
+const loremWords = ['Lorem', 'Ipsum', 'Dolor', 'Sit'];
+
+const GroupTemplate: StoryFn<typeof RadioButtonGroup> = (args: RadioButtonGroupProps) => (
+  <RadioButtonGroup {...args} />
+);
+
+export const Group = GroupTemplate.bind({});
+Group.args = {
+  id: 'radio-group',
+  name: 'radio-group',
+  data: loremWords.map((word, wordIndex) => ({
+    label: word,
+    value: word.toLowerCase(),
+    defaultChecked: wordIndex === 0,
+  })),
+  areTiles: false,
+  required: false,
+  label: 'Options',
+  helperText: 'Select from the list below',
 };

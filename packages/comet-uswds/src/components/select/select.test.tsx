@@ -13,7 +13,7 @@ describe('Select', () => {
 
   test('should render with no accessibility violations', async () => {
     const { container } = render(
-      <Select id={defaultId} name={defaultName} options={options} aria-label="dropdown" />,
+      <Select id={defaultId} name={defaultName} options={options} label="dropdown" />,
     );
     expect(await axe(container)).toHaveNoViolations();
   });

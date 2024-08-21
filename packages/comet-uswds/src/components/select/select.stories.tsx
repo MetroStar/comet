@@ -1,6 +1,5 @@
 import { Meta, StoryFn } from '@storybook/react';
-import React, { ChangeEvent, useState } from 'react';
-import Label from '../label/label';
+import React from 'react';
 import { Select, SelectOption, SelectOptionProps, SelectProps } from './select';
 
 const meta: Meta<typeof Select> = {
@@ -9,6 +8,8 @@ const meta: Meta<typeof Select> = {
   argTypes: {
     id: { required: true },
     name: { required: true },
+    required: { control: 'boolean' },
+    disabled: { control: 'boolean' },
   },
 };
 export default meta;
@@ -18,25 +19,27 @@ const options = loremWords.map((word) => {
   return { value: word.toLowerCase(), label: word } as SelectOptionProps;
 });
 
-const SelectWrapper: React.FC<SelectProps> = (props: SelectProps) => {
-  const [selectedValue, setSelectedValue] = useState('');
-  const onChange = (event: ChangeEvent<HTMLSelectElement>): void =>
-    setSelectedValue(event.target.value);
-  return (
-    <>
-      <Label htmlFor={props.id}>Select label</Label>
-      <Select id={props.id} name={props.name} options={props.options} onChange={onChange} />
-      <p>Selected value: {selectedValue}</p>
-    </>
-  );
-};
-
-const Template: StoryFn<typeof Select> = (args: SelectProps) => <SelectWrapper {...args} />;
+const Template: StoryFn<typeof Select> = (args: SelectProps) => <Select {...args} />;
 export const Standard = Template.bind({});
 Standard.args = {
   id: 'select-1',
   name: 'select-1',
   options,
+  required: false,
+  label: 'Options',
+  helperText: 'Select from the list below',
+  disabled: false,
+};
+
+export const WithErrors = Template.bind({});
+WithErrors.args = {
+  id: 'select-1',
+  name: 'select-1',
+  options,
+  required: false,
+  label: 'Options',
+  helperText: 'Select from the list below',
+  errors: 'This field is required',
 };
 
 const ChildrenTemplate: StoryFn<typeof Select> = (args: SelectProps) => (
@@ -51,4 +54,6 @@ export const WithChildren = ChildrenTemplate.bind({});
 WithChildren.args = {
   id: 'select-2',
   name: 'select-2',
+  label: 'Options',
+  helperText: 'Select from the list below',
 };

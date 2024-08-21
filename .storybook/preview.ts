@@ -1,4 +1,5 @@
 import '../node_modules/@uswds/uswds/dist/css/uswds.min.css';
+import './global.css';
 
 /** @type { import('@storybook/react').Preview } */
 const preview = {
@@ -24,6 +25,6 @@ const preview = {
     },
   },
 
-  tags: ['autodocs']
+  tags: ['autodocs'],
 };
 export default preview;

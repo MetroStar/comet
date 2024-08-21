@@ -8,6 +8,9 @@ const meta: Meta<typeof DatePicker> = {
   argTypes: {
     id: { required: true },
     name: { required: true },
+    validationStatus: { control: { type: 'select', options: ['error', 'success'] } },
+    required: { control: 'boolean' },
+    disabled: { control: 'boolean' },
   },
 };
 export default meta;
@@ -21,29 +24,29 @@ const twoWeeksFromNow = new Date(today);
 twoWeeksFromNow.setDate(twoWeeksFromNow.getDate() + 14);
 
 const Template: StoryFn<typeof DatePicker> = (args: DatePickerProps) => (
-  <div className="usa-form-group">
-    <label className="usa-label" id="appointment-date-label" htmlFor={args.id}>
-      Appointment date
-    </label>
-    <div className="usa-hint" id="appointment-date-hint">
-      mm/dd/yyyy
-    </div>
-    <DatePicker
-      id={args.id}
-      name={args.name}
-      aria-describedby="appointment-date-label appointment-date-hint"
-      defaultValue={args.defaultValue}
-      minDate={args.minDate}
-      maxDate={args.maxDate}
-      dateRange={args.dateRange}
-    />
-  </div>
+  <DatePicker
+    id={args.id}
+    name={args.name}
+    required={args.required}
+    label={args.label}
+    helperText={args.helperText}
+    errors={args.errors}
+    validationStatus={args.validationStatus}
+    defaultValue={args.defaultValue}
+    minDate={args.minDate}
+    maxDate={args.maxDate}
+    dateRange={args.dateRange}
+  />
 );
 
 export const Standard = Template.bind({});
 Standard.args = {
   id: 'date-picker-1',
   name: 'date-picker-1',
+  required: false,
+  label: 'Appointment Date',
+  helperText: 'mm/dd/yyyy',
+  disabled: false,
 };
 
 export const DefaultValue = Template.bind({});
@@ -51,12 +54,18 @@ DefaultValue.args = {
   id: 'date-picker-2',
   name: 'date-picker-2',
   defaultValue: today.toString(),
+  required: false,
+  label: 'Appointment Date',
+  helperText: 'mm/dd/yyyy',
 };
 
 export const MinMax = Template.bind({});
 MinMax.args = {
   id: 'date-picker-3',
   name: 'date-picker-3',
+  required: false,
+  label: 'Appointment Date',
+  helperText: 'mm/dd/yyyy',
   minDate: sixtyDaysAgo,
   maxDate: twoWeeksFromNow,
 };
@@ -65,5 +74,20 @@ export const DateRange = Template.bind({});
 DateRange.args = {
   id: 'date-picker-4',
   name: 'date-picker-4',
+  required: false,
+  label: 'Appointment Date',
+  helperText: 'mm/dd/yyyy',
   dateRange: eightDaysAgo,
+};
+
+export const WithErrors = Template.bind({});
+WithErrors.args = {
+  id: 'date-picker-1',
+  name: 'date-picker-1',
+  required: false,
+  label: 'Appointment Date',
+  helperText: 'mm/dd/yyyy',
+  disabled: true,
+  errors: 'This field is required',
+  validationStatus: 'error',
 };

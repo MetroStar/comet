@@ -12,12 +12,16 @@ describe('FileInput', () => {
   const fileInputName = 'file-input-name';
 
   test('should render with no accessibility violations', async () => {
-    const { container } = render(<FileInput id={defaultId} name={fileInputName} />);
+    const { container } = render(
+      <FileInput id={defaultId} name={fileInputName} label="Upload file" />,
+    );
     expect(await axe(container)).toHaveNoViolations();
   });
 
   test('should render a standard file input successfully', () => {
-    const { baseElement } = customRender(<FileInput id={defaultId} name={fileInputName} />);
+    const { baseElement } = customRender(
+      <FileInput id={defaultId} name={fileInputName} label="Upload file" />,
+    );
     expect(baseElement).toBeTruthy();
     const input = baseElement.querySelector('input') as HTMLInputElement;
     input.classList.contains('usa-file-input__input');
@@ -27,15 +31,15 @@ describe('FileInput', () => {
 
   test('should render a disabled file input successfully', () => {
     const { baseElement } = customRender(
-      <FileInput id={defaultId} name={fileInputName} disabled />,
+      <FileInput id={defaultId} name={fileInputName} label="Upload file" disabled />,
     );
     expect(baseElement).toBeTruthy();
   });
 
-  test('should render a disabled file input successfully', async () => {
+  test('should render a default file input successfully', async () => {
     const onChange = vi.fn();
     const { baseElement } = customRender(
-      <FileInput id={defaultId} name={fileInputName} onChange={onChange} />,
+      <FileInput id={defaultId} name={fileInputName} label="Upload file" onChange={onChange} />,
     );
 
     const input = baseElement.querySelector(`#${defaultId}`) as HTMLInputElement;

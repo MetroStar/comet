@@ -48,3 +48,4 @@ export { default as Tag } from './tag';
 export { default as TextArea } from './text-area';
 export { default as TimePicker } from './time-picker';
 export { default as Tooltip } from './tooltip';
+export type { ValidationStatus } from './utils/types';
