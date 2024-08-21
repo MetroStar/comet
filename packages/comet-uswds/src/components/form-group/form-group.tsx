@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import Label from '../label';
 import HelperText from '../helper-text';
 import ErrorMessages from '../error-messages';
-import { ValidationStatus } from 'src/utils/types';
+import { ValidationStatus } from '../utils/types';
 
 export interface FormGroupProps {
   /**

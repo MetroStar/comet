@@ -1,6 +1,6 @@
 import classnames from 'classnames';
 import React, { ChangeEventHandler } from 'react';
-import { ValidationStatus } from 'src/utils/types';
+import { ValidationStatus } from '../utils/types';
 import FormGroup from '../form-group';
 
 export interface TextAreaProps {

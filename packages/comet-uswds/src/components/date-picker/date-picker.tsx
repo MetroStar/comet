@@ -1,7 +1,7 @@
 import datePicker from '@uswds/uswds/js/usa-date-picker';
 import React, { useLayoutEffect, useRef } from 'react';
 import FormGroup from '../form-group';
-import { ValidationStatus } from 'src/utils/types';
+import { ValidationStatus } from '../utils/types';
 import classNames from 'classnames';
 
 export interface DatePickerProps {

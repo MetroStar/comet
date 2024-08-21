@@ -2,7 +2,7 @@ import React, { ChangeEventHandler, ReactNode } from 'react';
 import classnames from 'classnames';
 import { getInputMode, getPattern, getPlaceholder, getType } from './input-utils';
 import FormGroup from '../form-group';
-import { ValidationStatus } from 'src/utils/types';
+import { ValidationStatus } from '../utils/types';
 
 export interface TextInputProps {
   /**
