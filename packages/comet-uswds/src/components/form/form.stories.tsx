@@ -1,7 +1,7 @@
 import { Meta, StoryFn } from '@storybook/react';
 import React, { FormEvent, useState } from 'react';
 import { Form, FormProps } from './form';
-import { Alert, Button, Select, TextInput } from '../..';
+import { Alert, Button, CheckboxGroup, RadioButtonGroup, Select, TextInput } from '../..';
 
 const meta: Meta<typeof Form> = {
   title: 'USWDS/Forms/Form',
@@ -30,6 +30,8 @@ const FormWrapper: React.FC = () => {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [gender, setGender] = useState('');
+  const [contactPreferences, setContactPreferences] = useState(['email']);
+  const [contactFrequency, setContactFrequency] = useState('weekly');
   const [nameError, setNameError] = useState('');
   const [emailError, setEmailError] = useState('');
   const [isValid, setIsValid] = useState(false);
@@ -113,6 +115,34 @@ const FormWrapper: React.FC = () => {
         helperText="Select from the list below"
         onChange={(e) => setGender(e.target.value)}
       />
+      <CheckboxGroup
+        id="contact-preferences"
+        name="contact-preferences"
+        label="Contact Preferences"
+        helperText="Select how you would like to be contacted"
+        data={[
+          { label: 'Email', value: 'email', defaultChecked: true },
+          { label: 'Phone', value: 'phone', defaultChecked: false },
+        ]}
+        onChange={(e) => {
+          const value = e.target.value;
+          if (contactPreferences.includes(value)) {
+            setContactPreferences(contactPreferences.filter((pref) => pref !== value));
+          } else {
+            setContactPreferences([...contactPreferences, value]);
+          }
+        }}
+      />
+      <RadioButtonGroup
+        id="contact-frequency"
+        name="contact-frequency"
+        label="Contact Frequency"
+        data={[
+          { label: 'Weekly', value: 'weekly', defaultChecked: true },
+          { label: 'Monthly', value: 'monthly', defaultChecked: false },
+        ]}
+        onChange={(e) => setContactFrequency(e.target.value)}
+      />
       <Button id="submit" type="submit">
         Submit
       </Button>
@@ -124,6 +154,8 @@ const FormWrapper: React.FC = () => {
             <div>Email: {email}</div>
             <div>Phone: {phone}</div>
             <div>Gender: {gender}</div>
+            <div>Contact Preferences: {contactPreferences.join(', ')}</div>
+            <div>Contact Frequency: {contactFrequency}</div>
           </Alert>
         </div>
       ) : (

@@ -1,5 +1,6 @@
 import React, { ChangeEventHandler, MouseEventHandler } from 'react';
 import classnames from 'classnames';
+import FormGroup from '../form-group';
 
 export interface CheckboxData {
   /**
@@ -102,6 +103,22 @@ export interface CheckboxGroupProps {
    */
   areTiles?: boolean;
   /**
+   * A boolean indicating whether or not the field is required
+   */
+  required?: boolean;
+  /**
+   * Label text to display with the input
+   */
+  label?: string;
+  /**
+   * Helper text to display with the input
+   */
+  helperText?: string;
+  /**
+   * An array of string error messages
+   */
+  errors?: string | string[];
+  /**
    * Event handler will be triggered when the checkbox value changes
    */
   onChange?: ChangeEventHandler<HTMLInputElement>;
@@ -116,28 +133,41 @@ export const CheckboxGroup = ({
   name,
   data,
   areTiles,
+  required,
+  label,
+  helperText,
+  errors,
   onChange,
   onClick,
 }: CheckboxGroupProps): React.ReactElement => {
   return (
-    <>
-      {data.map((checkboxData, checkboxIndex) => {
-        const checkBoxId = `${id}__checkbox${checkboxIndex}`;
-        return (
-          <Checkbox
-            id={checkBoxId}
-            name={name}
-            label={checkboxData.label}
-            value={checkboxData.value}
-            checked={checkboxData.checked}
-            defaultChecked={checkboxData.defaultChecked}
-            isTile={areTiles}
-            onChange={onChange}
-            onClick={onClick}
-            key={checkBoxId}
-          />
-        );
-      })}
-    </>
+    <FormGroup
+      id={`form-group-${id}`}
+      required={required}
+      label={label}
+      helperText={helperText}
+      errors={errors}
+      fieldControl={
+        <>
+          {data.map((checkboxData, checkboxIndex) => {
+            const checkBoxId = `${id}__checkbox${checkboxIndex}`;
+            return (
+              <Checkbox
+                id={checkBoxId}
+                name={name}
+                label={checkboxData.label}
+                value={checkboxData.value}
+                checked={checkboxData.checked}
+                defaultChecked={checkboxData.defaultChecked}
+                isTile={areTiles}
+                onChange={onChange}
+                onClick={onClick}
+                key={checkBoxId}
+              />
+            );
+          })}
+        </>
+      }
+    />
   );
 };
