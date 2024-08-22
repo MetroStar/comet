@@ -14,7 +14,9 @@ const meta: Meta<typeof SiteAlert> = {
 };
 export default meta;
 
-const Template: StoryFn<typeof SiteAlert> = (args: SiteAlertProps) => <SiteAlert {...args} />;
+const Template: StoryFn<typeof SiteAlert> = (args: SiteAlertProps) => (
+  <SiteAlert {...args}>This is the alert body</SiteAlert>
+);
 
 export const Default = Template.bind({});
 Default.args = {
