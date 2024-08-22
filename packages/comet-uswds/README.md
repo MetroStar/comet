@@ -4,7 +4,7 @@ Comet is a React with TypeScript Component Library based on USWDS 3.0.
 
 In order to utilize Comet within your app, you must first ensure USWDS is pre-configured in your app. Please review the following for details specific to USWDS prior proceeding: [USWDS Documentation](https://designsystem.digital.gov/documentation/developers/).
 
-## Getting started with the Comet Starter App (recommended)
+## Getting Started with the Comet Starter App (recommended)
 
 1. Clone the comet starter repo here: [Comet Starter](https://github.com/MetroStar/comet-starter)
 
