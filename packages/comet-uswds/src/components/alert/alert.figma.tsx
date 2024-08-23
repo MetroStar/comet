@@ -3,27 +3,33 @@ import figma from '@figma/code-connect';
 
 figma.connect(
   Alert,
-  'https://www.figma.com/design/U58Pbb84dLaZfvFvdtGVdT/Comet-UI-Kit?node-id=24-2717',
+  'https://www.figma.com/design/U58Pbb84dLaZfvFvdtGVdT/Comet-UI-Kit?node-id=523-6274',
   {
     props: {
-      heading: figma.string('Heading'),
+      heading: figma.boolean('Heading?', {
+        true: figma.string('Heading'),
+        false: undefined,
+      }),
+      body: figma.boolean('Description?', {
+        true: 'Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Proin eget tortor risus.',
+        false: undefined,
+      }),
       type: figma.enum('Type', {
-        Info: 'info',
+        Informational: 'info',
         Warning: 'warning',
-        Error: 'error',
         Success: 'success',
+        Error: 'error',
         Emergency: 'emergency',
       }),
-      slim: figma.enum('Variant', {
-        Slim: true,
-      }),
-      noIcon: figma.enum('Variant', {
-        'No icon': true,
+      slim: figma.boolean('Slim?'),
+      noIcon: figma.boolean('Icon?', {
+        true: false,
+        false: true,
       }),
     },
-    example: ({ heading, type, slim, noIcon }) => (
+    example: ({ heading, body, type, slim, noIcon }) => (
       <Alert id="alert" heading={heading} type={type} slim={slim} noIcon={noIcon}>
-        This is the body of the alert
+        {body}
       </Alert>
     ),
   },
