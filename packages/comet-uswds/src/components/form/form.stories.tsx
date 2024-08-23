@@ -33,7 +33,7 @@ export const Standard = Template.bind({
   isLarge: false,
 });
 
-const FormWrapper: React.FC = () => {
+const ContactFormTemplate: StoryFn<typeof Form> = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
@@ -183,6 +183,4 @@ const FormWrapper: React.FC = () => {
   );
 };
 
-const WrapperTemplate: StoryFn<typeof FormWrapper> = () => <FormWrapper />;
-
-export const ContactForm = WrapperTemplate.bind({});
+export const ContactForm = ContactFormTemplate.bind({});
