@@ -43,14 +43,14 @@ describe('Button', () => {
     expect(screen.getByTestId('button')).toHaveClass('usa-button--inverse');
   });
 
-  test('should render a big button', () => {
-    render(<Button id="button" variant="big"></Button>);
-    expect(screen.getByTestId('button')).toHaveClass('usa-button--big');
-  });
-
   test('should render a unstyled button', () => {
     render(<Button id="button" variant="unstyled"></Button>);
     expect(screen.getByTestId('button')).toHaveClass('usa-button--unstyled');
+  });
+
+  test('should render a big button', () => {
+    render(<Button id="button" size="big"></Button>);
+    expect(screen.getByTestId('button')).toHaveClass('usa-button--big');
   });
 
   test('should render a button with custom className', () => {
