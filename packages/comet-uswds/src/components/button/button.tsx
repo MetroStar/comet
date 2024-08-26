@@ -21,8 +21,11 @@ export interface ButtonProps {
     | 'base'
     | 'outline'
     | 'outline-inverse'
-    | 'big'
     | 'unstyled';
+  /**
+   * The size of the tag
+   */
+  size?: 'default' | 'big';
   /**
    * A custom class to apply to the component
    */
@@ -44,6 +47,7 @@ export const Button = ({
   id,
   type = 'button',
   variant = 'default',
+  size = 'default',
   className,
   children,
   ...props
@@ -57,8 +61,8 @@ export const Button = ({
       'usa-button--base': variant === 'base',
       'usa-button--outline': variant === 'outline',
       'usa-button--outline usa-button--inverse': variant === 'outline-inverse',
-      'usa-button--big': variant === 'big',
       'usa-button--unstyled': variant === 'unstyled',
+      'usa-button--big': size === 'big',
     },
     className,
   );
