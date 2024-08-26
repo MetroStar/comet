@@ -23,7 +23,7 @@ export interface ButtonProps {
     | 'outline-inverse'
     | 'unstyled';
   /**
-   * The size of the tag
+   * The size of the button
    */
   size?: 'default' | 'big';
   /**
