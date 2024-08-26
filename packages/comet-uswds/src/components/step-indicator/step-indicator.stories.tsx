@@ -2,6 +2,7 @@ import React, { useState, Dispatch, SetStateAction } from 'react';
 import { StoryFn, Meta } from '@storybook/react';
 import { StepIndicator, StepIndicatorProps } from './step-indicator';
 import Button from '../button/button';
+import ButtonGroup from '../button-group';
 
 const meta: Meta<typeof StepIndicator> = {
   title: 'USWDS/Step Indicator',
@@ -16,14 +17,14 @@ export default meta;
 
 const steps: string[] = ['Lorem', 'Ipsum', 'Dolor', 'Sit', 'Amet'];
 
-const StepIndicatorWrapper: React.FC<StepIndicatorProps> = (props: StepIndicatorProps) => {
-  const [currentStep, setCurrentStep] = useState(props.currentStep);
-  function prevNextButtons([currentStep, setCurrentStep]: [
+const Template: StoryFn<typeof StepIndicator> = (args: StepIndicatorProps) => {
+  const [currentStep, setCurrentStep] = useState(args.currentStep);
+  const prevNextButtons = ([currentStep, setCurrentStep]: [
     number,
     Dispatch<SetStateAction<number>>,
-  ]): JSX.Element {
+  ]) => {
     return (
-      <>
+      <ButtonGroup>
         <Button
           id="previous-button"
           disabled={currentStep <= 0}
@@ -38,11 +39,11 @@ const StepIndicatorWrapper: React.FC<StepIndicatorProps> = (props: StepIndicator
         >
           Next
         </Button>
-      </>
+      </ButtonGroup>
     );
-  }
+  };
 
-  const newProps = { ...props };
+  const newProps = { ...args };
   newProps.currentStep = currentStep;
 
   return (
@@ -52,10 +53,6 @@ const StepIndicatorWrapper: React.FC<StepIndicatorProps> = (props: StepIndicator
     </>
   );
 };
-
-const Template: StoryFn<typeof StepIndicator> = (args: StepIndicatorProps) => (
-  <StepIndicatorWrapper {...args} />
-);
 
 export const Standard = Template.bind({});
 Standard.args = {

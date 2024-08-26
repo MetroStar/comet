@@ -1,11 +1,14 @@
-/* eslint-disable no-console */
+#! /usr/bin/env node
+
 import { Command } from 'commander';
 import figlet from 'figlet';
 import fs from 'fs';
 import { exec } from 'child_process';
 import { API_REPO_URL, UI_REPO_URL } from './constants';
 
+/* eslint-disable-next-line no-console */
 const log = console.log;
+/* eslint-disable-next-line no-console */
 const error = console.error;
 
 const program = new Command();

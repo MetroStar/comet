@@ -10,6 +10,7 @@ const meta: Meta<typeof Button> = {
     id: { required: true },
     type: { control: 'select', required: true },
     variant: { control: 'select' },
+    size: { control: 'select' },
     disabled: { control: 'boolean' },
   },
 };
@@ -22,6 +23,7 @@ Default.args = {
   id: 'button-1',
   type: 'button',
   variant: 'default',
+  size: 'default',
   className: '',
   disabled: false,
 };

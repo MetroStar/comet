@@ -19,19 +19,15 @@ const onPage =
     setPage(page);
   };
 
-const PaginationWrapper: React.FC<PaginationProps> = (props: PaginationProps) => {
-  const [currentPage1, setCurrentPage1] = useState(props.currentPage);
+const Template: StoryFn<typeof Pagination> = (args: PaginationProps) => {
+  const [currentPage1, setCurrentPage1] = useState(args.currentPage);
 
-  const newProps = { ...props };
+  const newProps = { ...args };
   newProps.currentPage = currentPage1;
   newProps.onPage = onPage(setCurrentPage1);
 
   return <Pagination {...newProps} />;
 };
-
-const Template: StoryFn<typeof Pagination> = (args: PaginationProps) => (
-  <PaginationWrapper {...args} />
-);
 
 export const LargePagination = Template.bind({});
 LargePagination.args = {

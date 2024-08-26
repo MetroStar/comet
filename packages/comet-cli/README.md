@@ -8,11 +8,11 @@ CLI for creating Comet Apps
 
 ```sh
 # npm
-npm i g @metrostar/comet-cli
+npm i -g @metrostar/comet-cli
 ```
 
 2. To run the app, run the following:
 
 ```sh
-comet init --name [SOME_PROJECT_NAME]
+comet ui --name [SOME_PROJECT_NAME]
 ```
