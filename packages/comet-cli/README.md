@@ -24,6 +24,18 @@ comet init --type ui --name [SOME_PROJECT_NAME]
 comet init --type api --name [SOME_PROJECT_NAME]
 ```
 
+### Add a new Component
+
+```sh
+comet add component [SOME_COMPONENT_NAME] # Ex: comet add component SomeComponent
+```
+
+### Add a new Page
+
+```sh
+comet add page [SOME_PAGE_NAME] # Ex: comet add page SomePage
+```
+
 ### Getting Help
 
 ```sh
