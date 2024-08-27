@@ -6,7 +6,7 @@ export { default as Breadcrumb, BreadcrumbItem } from './breadcrumb';
 export type { BreadcrumbItemProps } from './breadcrumb';
 export { default as Button } from './button';
 export { default as ButtonGroup } from './button-group';
-export { default as Card, CardFooter, CardBody, CardHeader } from './card';
+export { default as Card, CardFooter, CardBody, CardHeader, CardMedia } from './card';
 export { default as CharacterCount, CharacterCountContainer } from './character-count';
 export { default as Checkbox, CheckboxGroup } from './checkbox';
 export type { CheckboxData } from './checkbox';
