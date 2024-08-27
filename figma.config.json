@@ -1,0 +1,10 @@
+{
+  "codeConnect": {
+    "include": ["packages/comet-uswds/src/components/**"],
+    "exclude": ["test/**", "docs/**", "build/**"],
+    "importPaths": {
+      "packages/comet-uswds/src/components/*": "@metrostar/comet-uswds"
+    },
+    "parser": "react"
+  }
+}

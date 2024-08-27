@@ -13,7 +13,6 @@ export default [
       },
     },
     languageOptions: {
-      globals: globals.browser,
       parserOptions: {
         ecmaFeatures: {
           jsx: true,
