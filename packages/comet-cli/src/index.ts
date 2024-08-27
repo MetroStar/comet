@@ -65,7 +65,6 @@ program
   .action((type, name) => {
     log(`Adding a new ${type} with name ${name}`);
     const dirName = getFriendlyDirectoryName(name);
-    log(dirName);
     if (fs.existsSync(dirName)) {
       log('Directory already exists!');
       process.exit(1);
