@@ -4,15 +4,41 @@ CLI for creating Comet Apps
 
 ## Getting Started
 
-1. To install the CLI, run the following:
+To install the CLI globally, run the following:
 
 ```sh
-# npm
-npm i -g @metrostar/comet-cli
+npm install -g @metrostar/comet-cli
 ```
 
-2. To run the app, run the following:
+## Example Commands
+
+### Generate a new Comet Stater UI (React with TypeScript)
 
 ```sh
-comet ui --name [SOME_PROJECT_NAME]
+comet init --type ui --name [SOME_PROJECT_NAME]
+```
+
+### Generate a new Comet Starter API (Python Fast API)
+
+```sh
+comet init --type api --name [SOME_PROJECT_NAME]
+```
+
+### Add a new Component
+
+```sh
+comet add component [SOME_COMPONENT_NAME] # Ex: comet add component SomeComponent
+```
+
+### Add a new Page
+
+```sh
+comet add page [SOME_PAGE_NAME] # Ex: comet add page SomePage
+```
+
+### Getting Help
+
+```sh
+comet --help
+comet init --help
 ```
