@@ -1,1 +1,1 @@
-export { default, CardHeader, CardBody, CardFooter } from './card';
+export { default, CardHeader, CardMedia, CardBody, CardFooter } from './card';
