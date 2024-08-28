@@ -63,11 +63,11 @@ export const Card = ({
   );
 };
 
-export const CardBody: React.FC<PropsWithChildren> = ({ children }: PropsWithChildren) => {
+export const CardBody = ({ children }: PropsWithChildren): React.ReactElement => {
   return <div className="usa-card__body">{children}</div>;
 };
 
-export const CardHeader: React.FC<PropsWithChildren> = ({ children }: PropsWithChildren) => {
+export const CardHeader = ({ children }: PropsWithChildren): React.ReactElement => {
   return (
     <div className="usa-card__header">
       <h2 className="usa-card__heading">{children}</h2>
@@ -75,11 +75,11 @@ export const CardHeader: React.FC<PropsWithChildren> = ({ children }: PropsWithC
   );
 };
 
-export const CardMedia: React.FC<CardMediaProps> = ({
+export const CardMedia = ({
   inset = false,
   exdent = false,
   children,
-}: CardMediaProps) => {
+}: CardMediaProps): React.ReactElement => {
   const classes = classnames(
     'usa-card__media',
     { 'usa-card__media--inset': inset },
@@ -93,7 +93,7 @@ export const CardMedia: React.FC<CardMediaProps> = ({
   );
 };
 
-export const CardFooter: React.FC<PropsWithChildren> = ({ children }: PropsWithChildren) => {
+export const CardFooter = ({ children }: PropsWithChildren): React.ReactElement => {
   return <div className="usa-card__footer">{children}</div>;
 };
 
