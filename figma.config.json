@@ -2,12 +2,14 @@
   "codeConnect": {
     "include": [
       "packages/comet-uswds/src/components/**",
-      "packages/comet-data-viz/src/components/**"
+      "packages/comet-data-viz/src/components/**",
+      "packages/comet-extras/src/components/**"
     ],
     "exclude": ["test/**", "docs/**", "build/**"],
     "importPaths": {
       "packages/comet-uswds/src/components/*": "@metrostar/comet-uswds",
-      "packages/comet-data-viz/src/components/*": "@metrostar/comet-data-viz"
+      "packages/comet-data-viz/src/components/*": "@metrostar/comet-data-viz",
+      "packages/comet-extras/src/components/*": "@metrostar/comet-extras"
     },
     "parser": "react"
   }
