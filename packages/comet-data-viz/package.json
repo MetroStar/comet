@@ -1,6 +1,6 @@
 {
   "name": "@metrostar/comet-data-viz",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "description": "A set of Victory Chart components provided as a Comet wrapper",
   "license": "Apache-2.0",
   "main": "./dist/cjs/index.js",
