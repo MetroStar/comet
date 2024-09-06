@@ -10,13 +10,13 @@
 
 ## Running the Project Locally
 
-After cloning the project to your machine, to install the dependencies, run:
+1. To install dependencies, run the following:
 
 ```sh
 npm install
 ```
 
-To run storybook, run:
+2. To start storybook, run the following:
 
 ```sh
 npm run storybook
