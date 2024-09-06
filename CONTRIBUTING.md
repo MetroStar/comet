@@ -19,7 +19,7 @@ npm install
 To run storybook, run:
 
 ```sh
-npm run start
+npm run storybook
 ```
 
 ## Running Unit Tests

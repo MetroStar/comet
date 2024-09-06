@@ -14,7 +14,8 @@ In the beginning, Comet was built with a primary focus of USWDS. Today however, 
 
 1. [Overview](#overview)
 2. [Getting Started](#getting-started)
-3. [Want to help?](#want-to-help)
+3. [Running the Project Locally](#running-the-project-locally)
+4. [Want to help?](#want-to-help)
 
 ## Overview
 
@@ -30,6 +31,20 @@ Comet consists of multiple packages, each providing specific functionality. Thes
 In order to simplify the process of getting started, we have provided a starter app which includes our components. This app also provides some additional opinionated tools to further accelerate the process of getting started. These additions are not required. The starter app repo can be found here: [Comet Starter App](https://github.com/MetroStar/comet-starter).
 
 See each package directory for additional information on getting started.
+
+## Running the Project Locally
+
+After cloning the project to your machine, to install the dependencies, run:
+
+```sh
+npm install
+```
+
+To run storybook, run:
+
+```sh
+npm run storybook
+```
 
 ## Want to help?
 
