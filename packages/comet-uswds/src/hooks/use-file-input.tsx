@@ -6,7 +6,7 @@ const useFileInput = () => {
     }
 
     // Get the Parent element based on USWDS file input HTML structure
-    const parent = elem?.parentElement as HTMLFormElement;
+    const parent = elem.parentElement as HTMLFormElement;
     if (parent === null) {
       return;
     }
