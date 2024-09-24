@@ -28,7 +28,7 @@ updates:
           - '>=18.2.0'
       - dependency-name: '@types/node'
         versions:
-          - '>=18.16.1'
+          - '>=18.19.50'
       - dependency-name: '@types/react'
         versions:
           - '>=18.2.0'
@@ -36,6 +36,8 @@ updates:
         versions:
           - '>=18.2.0'
       - dependency-name: '@rollup/plugin-typescript'
+        versions:
+          - '>=12.0.0'
       - dependency-name: '@storybook/addon-a11y'
       - dependency-name: '@storybook/addon-actions'
       - dependency-name: '@storybook/addon-essentials'
@@ -47,9 +49,6 @@ updates:
       - dependency-name: '@storybook/test'
       - dependency-name: '@storybook/theming'
       - dependency-name: 'storybook'
-      - dependency-name: 'typescript'
-      - dependency-name: 'rollup'
-      - dependency-name: 'rollup-plugin-dts'
   - package-ecosystem: 'npm'
     directory: '/packages/comet-cli'
     schedule:
