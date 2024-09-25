@@ -18,7 +18,7 @@ export default [
       },
       {
         file: './dist/esm/index.js',
-        format: 'esm',
+        format: 'es',
         sourcemap: true,
       },
     ],
