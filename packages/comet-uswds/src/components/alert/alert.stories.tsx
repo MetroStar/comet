@@ -37,7 +37,6 @@ AllowClose.args = {
   noIcon: false,
   allowClose: true,
   heading: 'Alert with close button',
-  body: <span>This is the alert body as a prop</span>,
   onClose: () => {
     // eslint-disable-next-line no-console
     console.log('Alert closed');
