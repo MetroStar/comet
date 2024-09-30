@@ -1,4 +1,8 @@
 import classnames from 'classnames';
+import Button from '../button';
+import Icon from '../icon';
+import { useState } from 'react';
+import './alert.style.css';
 
 export interface AlertProps {
   /**
@@ -22,6 +26,10 @@ export interface AlertProps {
    */
   noIcon?: boolean;
   /**
+   * Whether or not to display the close button
+   */
+  allowClose?: boolean;
+  /**
    * Whether or not to display the alert heading
    */
   heading?: string;
@@ -33,6 +41,10 @@ export interface AlertProps {
    * The body of the alert
    */
   children?: React.ReactNode;
+  /**
+   * The function to call when the alert is closed
+   * */
+  onClose?: () => void;
 }
 
 /**
@@ -44,10 +56,13 @@ export const Alert = ({
   show = true,
   slim,
   noIcon,
+  allowClose = false,
   heading,
   body,
   children,
+  onClose,
 }: AlertProps): React.ReactElement => {
+  const [closed, setClosed] = useState(!show);
   const classes = classnames('usa-alert', {
     'usa-alert--success': type === 'success',
     'usa-alert--warning': type === 'warning',
@@ -58,12 +73,35 @@ export const Alert = ({
     'usa-alert--no-icon': noIcon,
   });
 
-  if (!show) return <></>;
+  if (closed) return <></>;
 
   return (
     <div id={id} className={classes}>
       <div className="usa-alert__body">
-        {heading && <h4 className="usa-alert__heading">{heading}</h4>}
+        <div className="display-flex">
+          <div className="flex-1">
+            {heading && <h4 className="usa-alert__heading">{heading}</h4>}
+          </div>
+          <div className="flex-0">
+            {allowClose && (
+              <Button
+                id={`close-btn-${id}`}
+                variant="unstyled"
+                aria-label="Close"
+                onClick={() => {
+                  setClosed(true);
+                  if (onClose) {
+                    onClose();
+                  }
+                }}
+              >
+                <div className="margin-auto">
+                  <Icon id={`close-btn-icon-${id}`} type="close" />
+                </div>
+              </Button>
+            )}
+          </div>
+        </div>
         {body ?? <p className="usa-alert__text">{children}</p>}
       </div>
     </div>

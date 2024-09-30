@@ -24,7 +24,23 @@ Default.args = {
   slim: false,
   show: true,
   noIcon: false,
+  allowClose: false,
   heading: '',
+};
+
+export const AllowClose = Template.bind({});
+AllowClose.args = {
+  id: 'alert-close',
+  type: 'info',
+  slim: false,
+  show: true,
+  noIcon: false,
+  allowClose: true,
+  heading: 'Alert with close button',
+  onClose: () => {
+    // eslint-disable-next-line no-console
+    console.log('Alert closed');
+  },
 };
 
 const BodyTemplate: StoryFn<typeof Alert> = (args: AlertProps) => (
@@ -38,6 +54,7 @@ WithBody.args = {
   slim: false,
   show: true,
   noIcon: false,
+  allowClose: false,
   heading: '',
   body: <span>This is the alert body as a prop</span>,
 };

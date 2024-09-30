@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react';
+import { act, fireEvent, render } from '@testing-library/react';
 import { axe } from 'jest-axe';
 import Alert from './alert';
 
@@ -46,6 +46,27 @@ describe('Alert', () => {
   test('should render an alert with heading', () => {
     const { container } = render(<Alert id="alert" type="info" heading="some heading" />);
     expect(container.querySelector('.usa-alert__heading')).toBeTruthy();
+  });
+
+  test('should render a closable alert', () => {
+    const { container } = render(<Alert id="alert" type="info" allowClose={true} />);
+    const button = container.querySelector('.usa-button');
+    expect(button).toBeTruthy();
+    expect(button).toHaveAttribute('aria-label', 'Close');
+  });
+
+  test('should allow closing an alert', async () => {
+    const spy = vi.fn();
+    const { container } = render(<Alert id="alert" type="info" allowClose={true} onClose={spy} />);
+    const button = container.querySelector('.usa-button');
+    expect(button).toBeTruthy();
+    if (button) {
+      await act(async () => {
+        fireEvent.click(button);
+      });
+      expect(container.querySelector('#alert')).toBeFalsy();
+      expect(spy).toHaveBeenCalled();
+    }
   });
 
   test('should render an alert with body', () => {
