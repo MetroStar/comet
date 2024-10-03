@@ -84,7 +84,7 @@ export const LanguageSelector = ({
     return () => {
       languageSelector.off(accordionElement);
     };
-  });
+  }, []);
 
   // If there are 3 or more items, render as an accordion
   return (
