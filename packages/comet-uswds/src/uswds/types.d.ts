@@ -8,6 +8,7 @@ declare module '@uswds/uswds/js/usa-date-range-picker';
 declare module '@uswds/uswds/js/usa-file-input';
 declare module '@uswds/uswds/js/usa-header';
 declare module '@uswds/uswds/js/usa-input-mask';
+declare module '@uswds/uswds/js/usa-in-page-navigation';
 declare module '@uswds/uswds/js/usa-language-selector';
 declare module '@uswds/uswds/js/usa-modal';
 declare module '@uswds/uswds/js/usa-nav';

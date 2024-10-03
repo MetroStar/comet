@@ -20,6 +20,8 @@ export { default as Form } from './form';
 export { default as FormGroup } from './form-group';
 export { default as HelperText } from './helper-text';
 export { default as Icon } from './icon';
+export { default as InPageNavigation } from './in-page-navigation';
+export type { InPageNavigationItemProps } from './in-page-navigation';
 export { default as TextInput } from './text-input';
 export { default as Label } from './label';
 export { default as LanguageSelector } from './language-selector';
