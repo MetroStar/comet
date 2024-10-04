@@ -2,12 +2,12 @@ import { useEffect, useRef, useState } from 'react';
 import languageSelector from '@uswds/uswds/js/usa-language-selector';
 import classnames from 'classnames';
 
-export type LanguageOption = {
+export interface LanguageOptionProps {
   label: string;
   localLabel?: string;
   attr: string;
   onChange?: () => void;
-};
+}
 
 export interface LanguageSelectorProps {
   /**
@@ -25,7 +25,7 @@ export interface LanguageSelectorProps {
   /**
    * The list of language options to display
    */
-  items: LanguageOption[];
+  items: LanguageOptionProps[];
 }
 
 /**
