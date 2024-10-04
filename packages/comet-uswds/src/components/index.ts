@@ -25,6 +25,7 @@ export type { InPageNavigationItemProps } from './in-page-navigation';
 export { default as TextInput } from './text-input';
 export { default as Label } from './label';
 export { default as LanguageSelector } from './language-selector';
+export type { LanguageOptionProps } from './language-selector';
 export { default as List } from './list';
 export type { ListItem } from './list';
 export { default as MemorableDate } from './memorable-date';

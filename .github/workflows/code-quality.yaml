@@ -41,8 +41,8 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Run Jest tests with coverage
-        run: npm run test
+      - name: Run Vitest tests with coverage
+        run: npm run test:coverage
 
   run-lint-checks:
     runs-on: ubuntu-latest
