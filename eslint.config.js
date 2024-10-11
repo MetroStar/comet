@@ -3,6 +3,7 @@ import pluginJs from '@eslint/js';
 import tseslint from 'typescript-eslint';
 import prettierRecommended from 'eslint-plugin-prettier/recommended';
 import reactPlugin from 'eslint-plugin-react';
+import hooksPlugin from 'eslint-plugin-react-hooks';
 
 export default [
   {
@@ -54,8 +55,13 @@ export default [
     ignores: ['*.stories.tsx'],
   },
   {
+    plugins: {
+      'react-hooks': hooksPlugin,
+    },
     rules: {
       'react/react-in-jsx-scope': 'off',
+      ...hooksPlugin.configs.recommended.rules,
+      'react-hooks/exhaustive-deps': 'off',
     },
     ignores: ['*.test.tsx'],
   },

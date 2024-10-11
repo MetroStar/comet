@@ -50,11 +50,6 @@ export const Accordion = ({
   items,
   children,
 }: AccordionProps): ReactElement => {
-  // If no children and items provided, render partial
-  if (!children && !items) {
-    return <></>;
-  }
-
   // Ensure accordion JS is loaded
   const accordionRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -76,6 +71,11 @@ export const Accordion = ({
       }
     };
   });
+
+  // If no children and items provided, render partial
+  if (!children && !items) {
+    return <></>;
+  }
 
   return (
     <div

@@ -48,6 +48,22 @@ export const LanguageSelector = ({
     'usa-button--unstyled': variant === 'unstyled',
   });
 
+  // Ensure language selector JS is loaded
+  const languageSelectorRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const accordionElement = languageSelectorRef.current;
+    if (items.length >= 3) {
+      languageSelector.on(accordionElement);
+    }
+
+    // Ensure cleanup after the effect
+    return () => {
+      if (items.length >= 3) {
+        languageSelector.off(accordionElement);
+      }
+    };
+  }, []);
+
   // If there are less than 3 items, render as a button that toggles the options
   if (items.length < 3) {
     return (
@@ -73,18 +89,6 @@ export const LanguageSelector = ({
       </div>
     );
   }
-
-  // Ensure language selector JS is loaded
-  const languageSelectorRef = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    const accordionElement = languageSelectorRef.current;
-    languageSelector.on(accordionElement);
-
-    // Ensure cleanup after the effect
-    return () => {
-      languageSelector.off(accordionElement);
-    };
-  }, []);
 
   // If there are 3 or more items, render as an accordion
   return (
