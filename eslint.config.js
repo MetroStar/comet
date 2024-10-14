@@ -1,4 +1,3 @@
-import globals from 'globals';
 import pluginJs from '@eslint/js';
 import tseslint from 'typescript-eslint';
 import prettierRecommended from 'eslint-plugin-prettier/recommended';
@@ -6,6 +5,12 @@ import reactPlugin from 'eslint-plugin-react';
 import hooksPlugin from 'eslint-plugin-react-hooks';
 
 export default [
+  // Flat Configs
+  pluginJs.configs.recommended,
+  ...tseslint.configs.recommended,
+  reactPlugin.configs.flat.recommended,
+  prettierRecommended,
+  // Default Configs
   {
     files: ['**/*.{js,mjs,cjs,ts,jsx,tsx}'],
     settings: {
@@ -20,12 +25,9 @@ export default [
         },
       },
     },
-  },
-  pluginJs.configs.recommended,
-  ...tseslint.configs.recommended,
-  reactPlugin.configs.flat.recommended,
-  prettierRecommended,
-  {
+    plugins: {
+      'react-hooks': hooksPlugin,
+    },
     rules: {
       // Base Warnings
       'no-console': 'warn',
@@ -44,25 +46,21 @@ export default [
       ],
 
       // TypeScript
-      '@typescript-eslint/no-unused-vars': 'error',
-    },
-  },
-  {
-    rules: {
       '@typescript-eslint/no-explicit-any': 'off',
       '@typescript-eslint/no-unsafe-function-type': 'off',
-    },
-    ignores: ['*.stories.tsx'],
-  },
-  {
-    plugins: {
-      'react-hooks': hooksPlugin,
-    },
-    rules: {
-      'react/react-in-jsx-scope': 'off',
+
+      // React
       ...hooksPlugin.configs.recommended.rules,
       'react-hooks/exhaustive-deps': 'off',
+      'react/react-in-jsx-scope': 'off',
     },
-    ignores: ['*.test.tsx'],
+  },
+  // Storybook Configs
+  {
+    files: ['*.stories.tsx'],
+    rules: {
+      '@typescript-eslint/no-explicit-any': 'error',
+      '@typescript-eslint/no-unsafe-function-type': 'error',
+    },
   },
 ];
