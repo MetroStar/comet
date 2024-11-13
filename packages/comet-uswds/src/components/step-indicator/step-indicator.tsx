@@ -57,7 +57,7 @@ export const StepIndicator = ({
   });
 
   return (
-    <div id={id} className={classes} aria-label="progress">
+    <div id={id} className={classes}>
       <ol className="usa-step-indicator__segments">
         {steps.map((step, stepIndex) => {
           const attributes = {

@@ -28,7 +28,7 @@ Standard.args = {
   id: 'timepicker-1',
   required: false,
   label: 'Appointment Time',
-  helperText: 'hh:mm',
+  helperText: 'Select a time from the dropdown. Type into the input to filter options.',
   minTime: '08:00',
   maxTime: '17:00',
   step: 15,
