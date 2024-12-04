@@ -1,9 +1,11 @@
 {
-  "extends": "../../tsconfig.base.json",
+  "extends": "../../tsconfig.json",
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@uswds/*": ["node_modules/@uswds/*"]
+      "@uswds/*": [
+        "node_modules/@uswds/*"
+      ]
     }
   }
 }
