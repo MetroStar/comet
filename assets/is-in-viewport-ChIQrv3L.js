@@ -1,0 +1,1 @@
+var e,r;function c(){if(r)return e;r=1;function o(u,n=window,i=document.documentElement){const t=u.getBoundingClientRect();return t.top>=0&&t.left>=0&&t.bottom<=(n.innerHeight||i.clientHeight)&&t.right<=(n.innerWidth||i.clientWidth)}return e=o,e}export{c as r};
