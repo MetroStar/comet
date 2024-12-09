@@ -1,0 +1,6 @@
+import{j as a}from"./jsx-runtime-BjgbQsUx.js";import{b as s}from"./stack-graph-Brh1G0k6.js";import"./index-D2MAbzvX.js";import"./index-DDT2H6na.js";import"./_commonjsHelpers-Cpj98o6Y.js";const d={title:"Data Viz/Stack Graph",component:s,argTypes:{smooth:{control:"boolean"}}},i=p=>a.jsx("div",{style:{width:"600px",height:"400px"},children:a.jsx(s,{...p})}),t=i.bind({});t.args={chart:{title:"Stack graph",width:600,height:400},colors:["#0d7ea2","#cd425b"],data:[[{x:0,y:3},{x:1,y:9},{x:2,y:5},{x:3,y:12},{x:4,y:6},{x:5,y:10}],[{x:0,y:1},{x:1,y:4},{x:2,y:7},{x:3,y:2},{x:4,y:5},{x:5,y:7}]],smooth:!1};var r,e,o;t.parameters={...t.parameters,docs:{...(r=t.parameters)==null?void 0:r.docs,source:{originalSource:`(args: StackGraphProps) => <div style={{
+  width: '600px',
+  height: '400px'
+}}>
+    <StackGraph {...args} />
+  </div>`,...(o=(e=t.parameters)==null?void 0:e.docs)==null?void 0:o.source}}};const y=["Default"];export{t as Default,y as __namedExportsOrder,d as default};
