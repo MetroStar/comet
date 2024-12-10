@@ -91,7 +91,7 @@ export const ComboBox = ({
 
   const comboBoxAttributes: {
     className: string;
-    ref: RefObject<HTMLDivElement>;
+    ref: RefObject<HTMLDivElement | null>;
     'data-placeholder'?: string;
     'data-default-value'?: unknown;
   } = {
