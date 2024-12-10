@@ -1,3 +1,4 @@
+import { JSX } from 'react';
 import FormGroup from '../form-group';
 
 export interface RangeSliderProps {

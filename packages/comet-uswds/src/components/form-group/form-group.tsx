@@ -81,10 +81,14 @@ export const FormGroup = ({
   }
 
   // Get the id of the fieldControl element associated with the label
-  let fieldControlId = isValidElement(fieldControl) ? fieldControl.props.id : undefined;
   const fieldControlElement = isValidElement(fieldControl)
-    ? (fieldControl as React.ReactElement)
+    ? (fieldControl as React.ReactElement<{
+        id?: string;
+        className?: string;
+        children?: ReactNode;
+      }>)
     : undefined;
+  let fieldControlId = fieldControlElement?.props?.id;
 
   let fieldControlWithProps = fieldControlElement;
   const fieldControlClass = fieldControlWithProps?.props.className;
@@ -95,7 +99,11 @@ export const FormGroup = ({
     fieldControlClass === 'usa-date-picker'
   ) {
     const children = fieldControlElement?.props.children;
-    fieldControlId = children?.props.id;
+    if (
+      isValidElement(children) ? (children as React.ReactElement<{ id?: string }>).props.id : false
+    ) {
+      fieldControlId = (children as React.ReactElement<{ id?: string }>).props.id;
+    }
   } else {
     // Otherwise, we need to add aria-describedby to the fieldControl
     if (fieldControlElement) {

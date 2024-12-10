@@ -1,6 +1,6 @@
 import { render, RenderOptions, RenderResult } from '@testing-library/react';
 import { axe } from 'jest-axe';
-import React, { ReactNode } from 'react';
+import React, { JSX, ReactNode } from 'react';
 import Modal from './modal';
 
 const customRender = (ui: React.ReactElement, options?: RenderOptions): RenderResult =>

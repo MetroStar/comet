@@ -1,4 +1,4 @@
-import React, { ChangeEventHandler, MouseEventHandler } from 'react';
+import React, { ChangeEventHandler, JSX, MouseEventHandler } from 'react';
 import classnames from 'classnames';
 import FormGroup from '../form-group';
 

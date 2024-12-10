@@ -1,4 +1,4 @@
-import React, { FormEvent } from 'react';
+import React, { FormEvent, JSX } from 'react';
 import classnames from 'classnames';
 import searchIcon from '@uswds/uswds/img/usa-icons-bg/search--white.svg';
 

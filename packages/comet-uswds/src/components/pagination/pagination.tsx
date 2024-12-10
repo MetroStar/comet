@@ -1,4 +1,4 @@
-import React, { ReactNode, SyntheticEvent } from 'react';
+import React, { JSX, ReactNode, SyntheticEvent } from 'react';
 import classNames from 'classnames';
 import sprite from '@uswds/uswds/img/sprite.svg';
 

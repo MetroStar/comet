@@ -1,5 +1,5 @@
 import fileInput from '@uswds/uswds/js/usa-file-input';
-import React, { useLayoutEffect, useRef } from 'react';
+import React, { JSX, useLayoutEffect, useRef } from 'react';
 import FormGroup from '../form-group';
 
 export interface FileInputProps {

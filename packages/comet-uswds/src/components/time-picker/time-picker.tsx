@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import React, { useLayoutEffect, useRef } from 'react';
+import React, { JSX, useLayoutEffect, useRef } from 'react';
 import comboBox from '@uswds/uswds/js/usa-combo-box';
 import timePicker from '@uswds/uswds/js/usa-time-picker';
 import FormGroup from '../form-group';

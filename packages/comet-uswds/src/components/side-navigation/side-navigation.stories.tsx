@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { JSX } from 'react';
 import { Meta, StoryFn } from '@storybook/react';
 import SideNavigation, {
   SideNavigationItem,

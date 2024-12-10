@@ -1,4 +1,4 @@
-import React, { ReactElement, ReactNode } from 'react';
+import React, { JSX, ReactElement, ReactNode } from 'react';
 
 export interface SideNavigationItemProps {
   /**

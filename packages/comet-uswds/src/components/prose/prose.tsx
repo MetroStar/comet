@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { JSX, ReactNode } from 'react';
 import classnames from 'classnames';
 
 export interface ProseProps {
