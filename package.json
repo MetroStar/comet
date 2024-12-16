@@ -27,7 +27,7 @@
     "@figma/code-connect": "^1.2.4",
     "@rollup/plugin-commonjs": "^28.0.2",
     "@rollup/plugin-image": "^3.0.3",
-    "@rollup/plugin-node-resolve": "^15.3.0",
+    "@rollup/plugin-node-resolve": "^16.0.0",
     "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "11.1.6",
     "@storybook/addon-a11y": "8.4.7",
