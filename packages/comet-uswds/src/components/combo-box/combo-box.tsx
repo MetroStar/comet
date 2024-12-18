@@ -1,6 +1,13 @@
 import { createOption, SelectOptionProps, SelectProps } from '../select/select';
 import comboBox from '@uswds/uswds/js/usa-combo-box';
-import React, { ChangeEventHandler, ReactElement, RefObject, useLayoutEffect, useRef } from 'react';
+import React, {
+  ChangeEventHandler,
+  JSX,
+  ReactElement,
+  RefObject,
+  useLayoutEffect,
+  useRef,
+} from 'react';
 import FormGroup from '../form-group';
 import classNames from 'classnames';
 
@@ -84,7 +91,7 @@ export const ComboBox = ({
 
   const comboBoxAttributes: {
     className: string;
-    ref: RefObject<HTMLDivElement>;
+    ref: RefObject<HTMLDivElement | null>;
     'data-placeholder'?: string;
     'data-default-value'?: unknown;
   } = {

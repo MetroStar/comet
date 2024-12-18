@@ -11,6 +11,8 @@ figma.connect(
         Large: 'large',
       }),
     },
-    example: ({ type }) => <Spinner id="spinner" type={type} loadingText="Loading..." />,
+    example: ({ type }) => (
+      <Spinner id="spinner" type={type as 'small' | 'large'} loadingText="Loading..." />
+    ),
   },
 );

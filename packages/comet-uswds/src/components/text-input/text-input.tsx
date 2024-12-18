@@ -1,4 +1,4 @@
-import React, { ChangeEventHandler, ReactNode, useEffect, useRef } from 'react';
+import React, { ChangeEventHandler, JSX, ReactNode, useEffect, useRef } from 'react';
 import classnames from 'classnames';
 import { getInputMode, getPattern, getPlaceholder, getType } from './input-utils';
 import FormGroup from '../form-group';

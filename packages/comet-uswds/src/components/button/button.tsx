@@ -1,4 +1,4 @@
-import React, { ReactNode, SyntheticEvent } from 'react';
+import React, { JSX, ReactNode, SyntheticEvent } from 'react';
 import classnames from 'classnames';
 
 export interface ButtonProps {

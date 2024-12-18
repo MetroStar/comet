@@ -1,5 +1,5 @@
 import classnames from 'classnames';
-import React, { ChangeEventHandler } from 'react';
+import React, { ChangeEventHandler, JSX } from 'react';
 import { ValidationStatus } from '../utils/types';
 import FormGroup from '../form-group';
 

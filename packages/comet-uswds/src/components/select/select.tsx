@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import React, { ChangeEventHandler, ReactElement } from 'react';
+import React, { ChangeEventHandler, JSX, ReactElement } from 'react';
 import FormGroup from '../form-group';
 
 export interface SelectOptionProps {
