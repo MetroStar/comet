@@ -69,7 +69,7 @@ export const Modal = ({
           data-close-modal
         >
           <svg className="usa-icon" aria-hidden="true" focusable="false" role="img">
-            <use xlinkHref={`${iconSprite}#close`}></use>
+            <use href={`${iconSprite}#close`}></use>
           </svg>
         </button>
       </div>
