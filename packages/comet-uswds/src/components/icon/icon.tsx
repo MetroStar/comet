@@ -270,7 +270,7 @@ export const Icon = ({
 
   return (
     <svg id={id} className={classes} aria-hidden="true" focusable="false" role="img">
-      <use xlinkHref={`${iconSprite}#${type}`}></use>
+      <use href={`${iconSprite}#${type}`}></use>
     </svg>
   );
 };

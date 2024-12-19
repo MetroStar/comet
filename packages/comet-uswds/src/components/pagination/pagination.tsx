@@ -73,7 +73,7 @@ export const Pagination = ({
               aria-label="Previous page"
             >
               <svg className="usa-icon" aria-hidden="true" role="img">
-                <use xlinkHref={`${sprite}#navigate_before`}></use>
+                <use href={`${sprite}#navigate_before`}></use>
               </svg>
               <span className="usa-pagination__link-text">Previous</span>
             </a>
@@ -108,7 +108,7 @@ export const Pagination = ({
             >
               <span className="usa-pagination__link-text">Next</span>
               <svg className="usa-icon" aria-hidden="true" role="img">
-                <use xlinkHref={`${sprite}#navigate_next`}></use>
+                <use href={`${sprite}#navigate_next`}></use>
               </svg>
             </a>
           </li>
