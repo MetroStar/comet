@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import classnames from 'classnames';
+import './toast.style.css';
 
 // Props interface for the Toast component
 export interface ToastProps {
@@ -17,119 +19,29 @@ export interface ToastProps {
   /**
    * The type of toast which determines its color scheme
    * */
-  type?: 'success' | 'error' | 'warning' | 'info';
+  type?: 'success' | 'error' | 'warning' | 'info' | 'emergency';
   /**
    * Callback function when toast is closed either manually or automatically
    * */
   onClose?: () => void;
+  /**
+   * A custom class to apply to the component
+   */
+  className?: string;
 }
-
-const styles = {
-  toastContainer: {
-    position: 'fixed',
-    top: '20px',
-    right: '20px',
-    zIndex: 1000,
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '10px',
-  },
-  toast: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    minWidth: '300px',
-    maxWidth: '400px',
-    padding: '12px 16px',
-    borderRadius: '4px',
-    color: 'white',
-    boxShadow: '0 2px 5px rgba(0,0,0,0.2)',
-    animation: 'slideIn 0.3s ease-out forwards',
-  },
-  leaving: {
-    animation: 'slideOut 0.3s ease-in forwards',
-  },
-  closeButton: {
-    background: 'none',
-    border: 'none',
-    color: 'white',
-    cursor: 'pointer',
-    padding: '4px',
-    marginLeft: '12px',
-    borderRadius: '50%',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    transition: 'background-color 0.2s',
-  },
-  message: {
-    margin: 0,
-    flexGrow: 1,
-  },
-  '@keyframes slideIn': {
-    from: {
-      transform: 'translateX(100%)',
-      opacity: 0,
-    },
-    to: {
-      transform: 'translateX(0)',
-      opacity: 1,
-    },
-  },
-  '@keyframes slideOut': {
-    from: {
-      transform: 'translateX(0)',
-      opacity: 1,
-    },
-    to: {
-      transform: 'translateX(100%)',
-      opacity: 0,
-    },
-  },
-};
-
-const typeStyles = {
-  success: { background: '#4caf50' },
-  error: { background: '#f44336' },
-  warning: { background: '#ff9800' },
-  info: { background: '#2196f3' },
-};
-
-// Add keyframes to document
-const styleSheet = document.createElement('style');
-styleSheet.textContent = `
-  @keyframes slideIn {
-    from {
-      transform: translateX(100%);
-      opacity: 0;
-    }
-    to {
-      transform: translateX(0);
-      opacity: 1;
-    }
-  }
-  @keyframes slideOut {
-    from {
-      transform: translateX(0);
-      opacity: 1;
-    }
-    to {
-      transform: translateX(100%);
-      opacity: 0;
-    }
-  }
-`;
-document.head.appendChild(styleSheet);
 
 export const Toast = ({
   id,
   message = 'This is a toast notification',
   duration = 3000,
   type = 'info',
+  className = 'toast',
   onClose = () => {},
 }: ToastProps): React.ReactElement => {
   const [isVisible, setIsVisible] = useState(true);
   const [isLeaving, setIsLeaving] = useState(false);
+
+  const classes = classnames(`toast--${type}`, className, `${isLeaving ? 'toast--isLeaving' : ''}`);
 
   const dismissToast = () => {
     setIsLeaving(true);
@@ -152,16 +64,13 @@ export const Toast = ({
   if (!isVisible) return <></>;
 
   return (
-    <div
-      id={id}
-      style={{
-        ...styles.toast,
-        ...(isLeaving ? styles.leaving : {}),
-        ...typeStyles[type],
-      }}
-    >
-      <p style={styles.message}>{message}</p>
-      <button onClick={dismissToast} style={styles.closeButton} aria-label="Close notification">
+    <div id={id} className={classes}>
+      <p className="toast__message">{message}</p>
+      <button
+        onClick={dismissToast}
+        className="toast__close-button"
+        aria-label="Close notification"
+      >
         ✕
       </button>
     </div>

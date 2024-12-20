@@ -1,9 +1,8 @@
-import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
 import Toast, { ToastProps } from './toast';
 
-export default {
-  title: 'Toast Notification',
+const meta: Meta<typeof Toast> = {
+  title: 'Extras/Toast',
   component: Toast,
   argTypes: {
     id: { control: 'text' },
@@ -12,7 +11,8 @@ export default {
     type: { control: 'text' },
     onClose: { action: 'close' },
   },
-} as Meta<ToastProps>;
+};
+export default meta;
 
 const Template: StoryFn<ToastProps> = (args) => <Toast {...args} />;
 
@@ -46,4 +46,12 @@ Warning.args = {
   message: 'Toast warning notification bar',
   duration: 3000,
   type: 'warning',
+};
+
+export const Emergency = Template.bind({});
+Emergency.args = {
+  id: 'toast-emergency',
+  message: 'Toast emergency notification bar',
+  duration: 3000,
+  type: 'emergency',
 };
