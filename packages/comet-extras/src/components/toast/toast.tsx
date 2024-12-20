@@ -11,7 +11,7 @@ export interface ToastProps {
   /**
    * The message to display in the toast
    * */
-  message: string;
+  message?: string;
   /**
    * Duration in milliseconds to show the toast. Set to 0 for no auto-dismiss
    * */
