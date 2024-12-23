@@ -28,6 +28,10 @@ export interface ToastProps {
    * A custom class to apply to the component
    */
   className?: string;
+  /**
+   * Whether or not to display the close button
+   */
+  allowClose?: boolean;
 }
 
 export const Toast = ({
@@ -35,13 +39,20 @@ export const Toast = ({
   message = 'This is a toast notification',
   duration = 3000,
   type = 'info',
-  className = 'toast',
+  className = '',
   onClose = () => {},
+  allowClose = true,
 }: ToastProps): React.ReactElement => {
   const [isVisible, setIsVisible] = useState(true);
   const [isLeaving, setIsLeaving] = useState(false);
 
-  const classes = classnames(`toast--${type}`, className, `${isLeaving ? 'toast--isLeaving' : ''}`);
+  const classes = classnames(
+    'toast',
+    `toast--${type}`,
+    'toast--bottom-right',
+    className,
+    `${isLeaving ? 'toast--isLeaving' : ''}`,
+  );
 
   const dismissToast = () => {
     setIsLeaving(true);
@@ -66,13 +77,16 @@ export const Toast = ({
   return (
     <div id={id} className={classes}>
       <p className="toast__message">{message}</p>
-      <button
-        onClick={dismissToast}
-        className="toast__close-button"
-        aria-label="Close notification"
-      >
-        ✕
-      </button>
+      {allowClose && (
+        <button
+          onClick={dismissToast}
+          className="toast__close-button"
+          aria-label="Close notification"
+          role="button"
+        >
+          ✕
+        </button>
+      )}
     </div>
   );
 };

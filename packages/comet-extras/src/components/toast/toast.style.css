@@ -8,7 +8,13 @@
   padding: 12px 16px;
   color: #1b1b1b;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  animation: slideIn 0.3s ease-out forward;
+  animation: slideIn 0.3s ease-out forwards;
+  position: fixed;
+}
+
+.toast--bottom-right {
+  bottom: 20px;
+  right: 20px;
 }
 
 .toast--info {
