@@ -1,7 +1,0 @@
-import{j as t}from"./jsx-runtime-D_zvdyIk.js";import{useMDXComponents as i}from"./index-BjBhjGZp.js";import{ae as n,ah as m}from"./index-C3Q_miRh.js";import"./index-CtQTiInQ.js";import"./_commonjsHelpers-Cpj98o6Y.js";import"./iframe-BshRlpjt.js";import"../sb-preview/runtime.js";import"./index-Cdp0xV4M.js";import"./index-D-8MO0q_.js";import"./index-CHGET4sZ.js";import"./index-DrFu-skq.js";const e={type:{primary:"'Source Sans Pro','Helvetica Neue', 'Helvetica', 'Roboto', 'Arial', sans-serif"},weight:{light:"300",normal:"400",bold:"700"},size:{"3xs":12,"2xs":14,xs:16,sm:17,md:18,lg:24,xl:32,"2xl":40,"3xl":56}},p="Lorem ipsum dolor sit amet, consectetur adipiscing elit.";function o(s){const r={h1:"h1",p:"p",strong:"strong",...i(),...s.components};return t.jsxs(t.Fragment,{children:[t.jsx(n,{title:"Style Guide/Typography"}),`
-`,`
-`,`
-`,t.jsx(r.h1,{id:"typography",children:"Typography"}),`
-`,t.jsxs(r.p,{children:[t.jsx(r.strong,{children:"Font:"})," Source Sans Pro"]}),`
-`,t.jsxs(r.p,{children:[t.jsx(r.strong,{children:"Weights:"})," 300(light), 400(normal), 700(bold)"]}),`
-`,t.jsx(m,{fontSizes:[Number(e.size["3xs"]),Number(e.size["2xs"]),Number(e.size.xs),Number(e.size.sm),Number(e.size.md),Number(e.size.lg),Number(e.size.xl),Number(e.size["2xl"]),Number(e.size["3xl"])],fontWeight:e.weight.normal,sampleText:p,fontFamily:e.type.primary})]})}function z(s={}){const{wrapper:r}={...i(),...s.components};return r?t.jsx(r,{...s,children:t.jsx(o,{...s})}):o(s)}export{p as SampleText,z as default,e as typography};
