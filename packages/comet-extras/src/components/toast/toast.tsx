@@ -49,7 +49,6 @@ export const Toast = ({
   const classes = classnames(
     'toast',
     `toast--${type}`,
-    'toast--bottom-right',
     className,
     `${isLeaving ? 'toast--isLeaving' : ''}`,
   );

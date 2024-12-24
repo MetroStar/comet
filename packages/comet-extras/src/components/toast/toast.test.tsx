@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { describe, test, expect, vi } from 'vitest';
 import { axe } from 'jest-axe';
 import { Toast } from './toast'; // Assuming the Toast component is in the same directory
@@ -51,27 +51,6 @@ describe('Toast Component Tests', () => {
     expect(container.querySelector('#test-toast')).toHaveClass('toast--emergency');
   });
 
-  test('toast closes automatically after duration', () => {
-    vi.useFakeTimers();
-    const handleClose = vi.fn();
-    const duration = 3000;
-
-    render(
-      <Toast
-        id="auto-close-toast"
-        message="Test message"
-        duration={duration}
-        onClose={handleClose}
-      />,
-    );
-
-    // Advance timers by duration plus animation time
-    vi.advanceTimersByTime(duration + 300);
-
-    expect(handleClose).toHaveBeenCalled();
-    vi.useRealTimers();
-  });
-
   test('clicking close button triggers onClose', async () => {
     vi.useFakeTimers();
     const handleClose = vi.fn();
@@ -86,5 +65,15 @@ describe('Toast Component Tests', () => {
 
     expect(handleClose).toHaveBeenCalled();
     vi.useRealTimers();
+  });
+
+  test('should wait for toast to disappear', async () => {
+    const { container } = render(
+      <Toast id="test-toast" message="Testing message for notification" type="info" duration={1} />,
+    );
+    expect(container.querySelector('#test-toast')).toBeTruthy();
+    await waitFor(async () => {
+      expect(container.querySelector('#test-toast')).not.toBeTruthy();
+    });
   });
 });
