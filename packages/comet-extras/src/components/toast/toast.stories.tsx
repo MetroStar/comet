@@ -15,6 +15,13 @@ const meta: Meta<typeof Toast> = {
     allowClose: { control: 'boolean' },
     className: { control: false },
   },
+  parameters: {
+    docs: {
+      source: {
+        type: 'code',
+      },
+    },
+  },
 };
 export default meta;
 
