@@ -21,6 +21,10 @@ export interface ToastProps {
    * */
   type?: 'success' | 'error' | 'warning' | 'info' | 'emergency';
   /**
+   * The placement of toast which determines where it appears
+   * */
+  placement?: 'topRight' | 'bottomRight' | 'topLeft' | 'bottomLeft';
+  /**
    * Callback function when toast is closed either manually or automatically
    * */
   onClose?: () => void;
@@ -39,6 +43,7 @@ export const Toast = ({
   message = 'This is a toast notification',
   duration = 3000,
   type = 'info',
+  placement = 'topRight',
   className = '',
   onClose = () => {},
   allowClose = true,
@@ -49,6 +54,7 @@ export const Toast = ({
   const classes = classnames(
     'toast',
     `toast--${type}`,
+    `toast--${placement}`,
     className,
     `${isLeaving ? 'toast--isLeaving' : ''}`,
   );
