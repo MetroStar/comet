@@ -19,6 +19,32 @@ describe('Toast Component Tests', () => {
     expect(container.querySelector('#test-toast')).toHaveClass('toast--info');
   });
 
+  test('should render a Toast notification from the top left', () => {
+    const { container } = render(
+      <Toast
+        id="test-toast"
+        placement="topLeft"
+        message="Testing message for notification"
+        type="info"
+      />,
+    );
+    expect(container.querySelector('#test-toast')).toBeTruthy();
+    expect(container.querySelector('#test-toast')).toHaveClass('toast--topLeft');
+  });
+
+  test('should render a Toast notification from the bottom right', () => {
+    const { container } = render(
+      <Toast
+        id="test-toast"
+        placement="bottomRight"
+        message="Testing message for notification"
+        type="info"
+      />,
+    );
+    expect(container.querySelector('#test-toast')).toBeTruthy();
+    expect(container.querySelector('#test-toast')).toHaveClass('toast--bottomRight');
+  });
+
   test('should render a warning Toast notification', () => {
     const { container } = render(
       <Toast id="test-toast" message="Testing message for notification" type="warning" />,

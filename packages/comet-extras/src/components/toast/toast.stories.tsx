@@ -68,6 +68,7 @@ Default.args = {
   id: 'toast-info',
   message: 'This is a toast notification',
   type: 'info',
+  placement: 'topRight',
   duration: 3000,
   allowClose: true,
 };
