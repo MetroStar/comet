@@ -1,6 +1,6 @@
 {
   "name": "@metrostar/comet-data-viz",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "A set of Victory Chart components provided as a Comet wrapper",
   "license": "Apache-2.0",
   "main": "./dist/cjs/index.js",
@@ -21,8 +21,6 @@
   ],
   "types": "./dist/index.d.ts",
   "dependencies": {
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
     "victory": "^37.3.4"
   },
   "peerDependencies": {
