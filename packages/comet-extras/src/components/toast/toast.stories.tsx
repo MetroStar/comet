@@ -49,12 +49,12 @@ const Template: StoryFn<typeof Toast> = (args: ToastProps) => {
       <div>
         {toasts.map((toast) => (
           <Toast
-            key={toast['id']}
-            id={toast['id']}
-            message={toast['message']}
-            type={toast['type']}
-            duration={toast['duration']}
-            allowClose={toast['allowClose']}
+            key={toast.id}
+            id={toast.id}
+            message={toast.message}
+            type={toast.type}
+            duration={toast.duration}
+            allowClose={toast.allowClose}
           />
         ))}
       </div>
