@@ -11,6 +11,7 @@ const meta: Meta<typeof Toast> = {
     message: { control: 'text' },
     duration: { control: 'number' },
     type: { control: 'select', required: true },
+    placement: { control: 'select', required: true },
     onClose: { action: 'close' },
     allowClose: { control: 'boolean' },
     className: { control: false },
@@ -34,6 +35,7 @@ const Template: StoryFn<typeof Toast> = (args: ToastProps) => {
       id: `toast-${args.type}`,
       message: `${!args.message ? 'Default toast notification for ' + args.type : args.message}`,
       type: `${args.type}`,
+      placement: `${args.placement}`,
       duration: `${!args.duration ? 3000 : args.duration}`,
       allowClose: args.allowClose,
     };
@@ -46,18 +48,17 @@ const Template: StoryFn<typeof Toast> = (args: ToastProps) => {
         Send Toast
       </Button>
 
-      <div>
-        {toasts.map((toast) => (
-          <Toast
-            key={toast.id}
-            id={toast.id}
-            message={toast.message}
-            type={toast.type}
-            duration={toast.duration}
-            allowClose={toast.allowClose}
-          />
-        ))}
-      </div>
+      {toasts.map((toast) => (
+        <Toast
+          key={toast.id}
+          id={toast.id}
+          message={toast.message}
+          type={toast.type}
+          placement={toast.placement}
+          duration={toast.duration}
+          allowClose={toast.allowClose}
+        />
+      ))}
     </div>
   );
 };
