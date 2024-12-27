@@ -1,6 +1,6 @@
 {
   "name": "@metrostar/comet-extras",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "description": "A set of custom components, intended to fill in the gaps where USWDS does not provide an implementation.",
   "license": "Apache-2.0",
   "main": "./dist/cjs/index.js",
@@ -17,9 +17,7 @@
   ],
   "types": "./dist/index.d.ts",
   "dependencies": {
-    "@tanstack/react-table": "8.20.6",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "@tanstack/react-table": "8.20.6"
   },
   "peerDependencies": {
     "@tanstack/react-table": "8.20.6",
