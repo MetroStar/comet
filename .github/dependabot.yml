@@ -28,10 +28,10 @@ updates:
           - '>=19.0.0'
       - dependency-name: '@types/node'
         versions:
-          - '>=18.19.50'
+          - '>=19.0.0'
       - dependency-name: '@types/react'
         versions:
-          - '>=19.0.1'
+          - '>=19.0.0'
       - dependency-name: '@rollup/plugin-typescript'
         versions:
           - '>=12.0.0'
@@ -47,55 +47,3 @@ updates:
       - dependency-name: '@storybook/test'
       - dependency-name: '@storybook/theming'
       - dependency-name: 'storybook'
-  - package-ecosystem: 'npm'
-    directory: '/packages/comet-cli'
-    schedule:
-      interval: 'weekly'
-    open-pull-requests-limit: 10
-    labels:
-      - 'dependencies'
-  - package-ecosystem: 'npm'
-    directory: '/packages/comet-data-viz'
-    schedule:
-      interval: 'weekly'
-    open-pull-requests-limit: 10
-    labels:
-      - 'dependencies'
-    ignore:
-      - dependency-name: react
-        versions:
-          - '>=19.0.0'
-      - dependency-name: react-dom
-        versions:
-          - '>=19.0.0'
-      - dependency-name: 'victory'
-  - package-ecosystem: 'npm'
-    directory: '/packages/comet-extras'
-    schedule:
-      interval: 'weekly'
-    open-pull-requests-limit: 10
-    labels:
-      - 'dependencies'
-    ignore:
-      - dependency-name: react
-        versions:
-          - '>=19.0.0'
-      - dependency-name: react-dom
-        versions:
-          - '>=19.0.0'
-      - dependency-name: '@tanstack/react-table'
-  - package-ecosystem: 'npm'
-    directory: '/packages/comet-uswds'
-    schedule:
-      interval: 'weekly'
-    open-pull-requests-limit: 10
-    labels:
-      - 'dependencies'
-    ignore:
-      - dependency-name: react
-        versions:
-          - '>=19.0.0'
-      - dependency-name: react-dom
-        versions:
-          - '>=19.0.0'
-      - dependency-name: '@uswds/uswds'
