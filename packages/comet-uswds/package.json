@@ -22,7 +22,7 @@
     "classnames": "^2.5.1"
   },
   "peerDependencies": {
-    "@uswds/uswds": "3.11.0",
+    "@uswds/uswds": "^3.x",
     "react": "^18.x || ^19.x",
     "react-dom": "^18.x || ^19.x"
   },
