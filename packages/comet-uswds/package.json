@@ -1,6 +1,6 @@
 {
   "name": "@metrostar/comet-uswds",
-  "version": "3.7.2",
+  "version": "3.7.3",
   "description": "React with TypeScript Component Library based on USWDS 3.0.",
   "license": "Apache-2.0",
   "main": "./dist/cjs/index.js",
@@ -22,7 +22,6 @@
     "classnames": "^2.5.1"
   },
   "peerDependencies": {
-    "@uswds/uswds": "3.11.0",
     "react": "^18.x || ^19.x",
     "react-dom": "^18.x || ^19.x"
   },
