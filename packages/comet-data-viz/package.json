@@ -21,7 +21,7 @@
   ],
   "types": "./dist/index.d.ts",
   "dependencies": {
-    "victory": "^37.3.4"
+    "victory": "^37.3.6"
   },
   "peerDependencies": {
     "react": "^18.x || ^19.x",
