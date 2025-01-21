@@ -20,7 +20,7 @@
   "types": "./dist/index.d.ts",
   "dependencies": {
     "@types/figlet": "^1.7.0",
-    "commander": "^13.0.0",
+    "commander": "^13.1.0",
     "figlet": "^1.8.0"
   },
   "repository": {
