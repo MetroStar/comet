@@ -13,10 +13,6 @@ updates:
     labels:
       - 'dependencies'
     groups:
-      vitest:
-        patterns:
-          - '@vitest/coverage-v8'
-          - 'vitest'
       minor-and-patch:
         patterns:
           - '*'
