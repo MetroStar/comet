@@ -56,7 +56,7 @@
     "eslint-plugin-prettier": "^5.2.3",
     "eslint-plugin-react": "^7.37.4",
     "eslint-plugin-react-hooks": "5.2.0",
-    "jest-axe": "^9.0.0",
+    "jest-axe": "^10.0.0",
     "postcss": "^8.5.3",
     "prettier": "3.5.3",
     "react": "^19.0.0",
