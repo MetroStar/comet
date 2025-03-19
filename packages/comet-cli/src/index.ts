@@ -52,7 +52,16 @@ program
       if (err) {
         error(`Error: ${err.message}`);
       } else {
-        log('Project initialized successfully!');
+        // Remove existing .git directory and initialize a fresh repo
+        const gitCleanupCommand = `cd ${projectName} && rm -rf .git && git init && git add . && git commit -m "Initial commit"`;
+
+        exec(gitCleanupCommand, (cleanupErr: any) => {
+          if (cleanupErr) {
+            error(`Error setting up fresh git repo: ${cleanupErr.message}`);
+          } else {
+            log('Project initialized successfully with fresh git history!');
+          }
+        });
       }
     });
   });
