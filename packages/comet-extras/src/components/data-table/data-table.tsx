@@ -121,12 +121,7 @@ export const DataTable = ({
           {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id}>
               {headerGroup.headers.map((header) => (
-                <th
-                  id={header.id}
-                  key={header.id}
-                  scope="col"
-                  role="columnheader"
-                >
+                <th id={header.id} key={header.id} scope="col" role="columnheader">
                   <div
                     className={header.column.getCanSort() ? 'cursor-pointer select-none' : ''}
                     onClick={header.column.getToggleSortingHandler()}
@@ -173,8 +168,9 @@ export const DataTable = ({
               <button
                 id="table-paging-btn"
                 key={`paging-btn-${index}`}
-                className={`table-paging-btn table-paging-btn ${index === paging.pageIndex ? 'table-paging-btn-active' : ''
-                  }`}
+                className={`table-paging-btn table-paging-btn ${
+                  index === paging.pageIndex ? 'table-paging-btn-active' : ''
+                }`}
                 onClick={() => table.setPageIndex(index)}
               >
                 {index + 1}
