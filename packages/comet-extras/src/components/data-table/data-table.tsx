@@ -121,7 +121,12 @@ export const DataTable = ({
           {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id}>
               {headerGroup.headers.map((header) => (
-                <th id={header.id} key={header.id} scope="col" role="columnheader">
+                <th
+                  id={`${id}-th-${header.id}`}
+                  key={`${id}-th-${header.id}`}
+                  scope="col"
+                  role="columnheader"
+                >
                   <div
                     className={header.column.getCanSort() ? 'cursor-pointer select-none' : ''}
                     onClick={header.column.getToggleSortingHandler()}
@@ -156,7 +161,7 @@ export const DataTable = ({
       {pageable ? (
         <div className="table-paging">
           <button
-            id="table-paging-prev-btn"
+            id={`${id}-table-paging-prev-btn`}
             className="table-paging-btn table-paging-prev"
             onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}
@@ -166,8 +171,8 @@ export const DataTable = ({
           {getPageButtonArray().map((index) => {
             return (
               <button
-                id="table-paging-btn"
-                key={`paging-btn-${index}`}
+                id={`${id}-table-paging-btn-${index}`}
+                key={`${id}-table-paging-btn-${index}`}
                 className={`table-paging-btn table-paging-btn ${
                   index === paging.pageIndex ? 'table-paging-btn-active' : ''
                 }`}
@@ -178,7 +183,7 @@ export const DataTable = ({
             );
           })}
           <button
-            id="table-paging-next-btn"
+            id={`${id}-table-paging-next-btn`}
             className="table-paging-btn table-paging-next"
             onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}
