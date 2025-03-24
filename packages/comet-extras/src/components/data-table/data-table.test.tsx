@@ -185,9 +185,15 @@ describe('DataTable', () => {
 
     const pagingSection = baseElement.querySelector('.table-paging');
     if (pagingSection) {
-      const nextBtn = pagingSection.querySelector('#table-paging-next-btn') as HTMLButtonElement;
-      const prevBtn = pagingSection.querySelector('#table-paging-prev-btn') as HTMLButtonElement;
-      const pageBtn = pagingSection.querySelector('#table-paging-btn') as HTMLButtonElement;
+      const nextBtn = pagingSection.querySelector(
+        '#table-1-table-paging-next-btn',
+      ) as HTMLButtonElement;
+      const prevBtn = pagingSection.querySelector(
+        '#table-1-table-paging-prev-btn',
+      ) as HTMLButtonElement;
+      const pageBtn = pagingSection.querySelector(
+        '#table-1-table-paging-btn-0',
+      ) as HTMLButtonElement;
       if (nextBtn) {
         expect(nextBtn).toBeTruthy();
         await act(async () => {
