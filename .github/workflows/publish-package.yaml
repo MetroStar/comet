@@ -3,6 +3,17 @@ name: Publish Package
 on:
   release:
     types: [published]
+  workflow_dispatch:
+    inputs:
+      package:
+        description: 'Package to publish'
+        required: true
+        type: choice
+        options:
+          - comet-uswds
+          - comet-extras
+          - comet-data-viz
+          - comet-cli
 
 jobs:
   build-and-publish:
@@ -23,10 +34,19 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Determine Package to Build
+        id: set-package
+        run: |
+          PACKAGE="${{ github.event.inputs.package || 'comet-uswds' }}"
+          echo "package=$PACKAGE" >> $GITHUB_OUTPUT
+          echo "build_command=build:$PACKAGE" >> $GITHUB_OUTPUT
+
       - name: Build Package
-        run: npm run build:comet-uswds
+        run: npm run ${{ steps.set-package.outputs.build_command }}
 
       - name: Publish Package
-        run: cd packages/comet-uswds && npm publish --access public --provenance
+        run: |
+          cd packages/${{ steps.set-package.outputs.package }}
+          npm publish --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
