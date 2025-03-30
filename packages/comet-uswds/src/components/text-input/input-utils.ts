@@ -5,7 +5,7 @@ export const getPattern = (
   let newPattern = pattern ?? undefined;
   switch (mask) {
     case 'ssn':
-      newPattern = '^(?!(000|666|9))d{3} (?!00)d{2} (?!0000)d{4}$';
+      newPattern = '^(?!(000|666|9))\\d{3} (?!00)\\d{2} (?!0000)\\d{4}$';
       break;
     case 'phone_number':
       newPattern = '\\d{3}-\\d{3}-\\d{4}';
