@@ -1,0 +1,6 @@
+import{j as r}from"./jsx-runtime-D_zvdyIk.js";import{S as o}from"./stack-graph-3r91Eo1I.js";import"./iframe-B06jSXrt.js";const d={title:"Data Viz/Scatter Graph",component:o,argTypes:{size:{control:"number"}}},i=p=>r.jsx("div",{style:{width:"400px",height:"400px"},children:r.jsx(o,{...p})}),t=i.bind({});t.args={chart:{title:"Scatter graph",width:400,height:400},size:7,colors:["#0d7ea2","#cd425b"],data:[[{x:0,y:3},{x:1,y:9},{x:2,y:5},{x:3,y:12}],[{x:0,y:1},{x:1,y:2},{x:2,y:7},{x:3,y:2}]]};var e,a,s;t.parameters={...t.parameters,docs:{...(e=t.parameters)==null?void 0:e.docs,source:{originalSource:`(args: ScatterGraphProps) => <div style={{
+  width: '400px',
+  height: '400px'
+}}>
+    <ScatterGraph {...args} />
+  </div>`,...(s=(a=t.parameters)==null?void 0:a.docs)==null?void 0:s.source}}};const h=["Default"];export{t as Default,h as __namedExportsOrder,d as default};
