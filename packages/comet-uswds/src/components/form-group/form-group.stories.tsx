@@ -1,5 +1,5 @@
 import React from 'react';
-import { Meta, StoryFn } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react-vite';
 import { FormGroup, FormGroupProps } from './form-group';
 import { TextInput, Label, HelperText, ErrorMessages } from '../..';
 

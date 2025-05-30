@@ -1,5 +1,5 @@
 import React, { Dispatch, SetStateAction, SyntheticEvent, useState } from 'react';
-import { Meta, StoryFn } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react-vite';
 import { Pagination } from '../../index';
 import { PaginationProps } from './pagination';
 

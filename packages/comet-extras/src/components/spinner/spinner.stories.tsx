@@ -1,5 +1,5 @@
 import React from 'react';
-import { Meta, StoryFn } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react-vite';
 import Spinner, { SpinnerProps } from './spinner';
 
 const meta: Meta<typeof Spinner> = {

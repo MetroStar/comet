@@ -1,5 +1,5 @@
 import React from 'react';
-import { StoryFn, Meta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react-vite';
 import { PolarAxis } from '../../index';
 import { PolarAxisProps } from './polar-axis';
 

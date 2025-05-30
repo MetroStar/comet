@@ -1,5 +1,5 @@
 import React from 'react';
-import { Meta, StoryFn } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react-vite';
 import Tabs, { TabPanel, TabsProps } from './tabs';
 
 const meta: Meta<typeof Tabs> = {

@@ -1,5 +1,5 @@
 import React, { JSX } from 'react';
-import { Meta, StoryFn } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react-vite';
 import SideNavigation, {
   SideNavigationItem,
   SideNavigationItemProps,

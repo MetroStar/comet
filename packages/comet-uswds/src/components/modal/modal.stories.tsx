@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { StoryFn, Meta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react-vite';
 import { Modal, ModalProps } from './modal';
 import useModal from '../../hooks/use-modal';
 
