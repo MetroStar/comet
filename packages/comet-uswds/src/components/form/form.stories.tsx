@@ -1,4 +1,4 @@
-import { Meta, StoryFn } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react-vite';
 import React, { FormEvent, useState } from 'react';
 import { Form, FormProps } from './form';
 import {

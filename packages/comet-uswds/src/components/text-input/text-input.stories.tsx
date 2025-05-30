@@ -1,5 +1,5 @@
 import React from 'react';
-import { StoryFn, Meta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react-vite';
 import { Icon, TextInput } from '../../index';
 import { TextInputProps } from './text-input';
 

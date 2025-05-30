@@ -1,4 +1,4 @@
-import { Meta, StoryFn } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react-vite';
 import React, { FormEvent } from 'react';
 import { Search, SearchProps } from './search';
 

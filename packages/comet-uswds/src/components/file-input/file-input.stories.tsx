@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Meta, StoryFn } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react-vite';
 import { FileInput, FileInputProps } from './file-input';
 import { useFileInput } from '../../hooks';
 import Button from '../button';

@@ -1,5 +1,5 @@
 import React from 'react';
-import { StoryFn, Meta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react-vite';
 import { Accordion, AccordionItem } from '../../index';
 import { AccordionProps } from './accordion';
 

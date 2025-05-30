@@ -1,5 +1,5 @@
 import React from 'react';
-import { Meta, StoryFn } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react-vite';
 import { RangeSlider, RangeSliderProps } from './range-slider';
 
 const meta: Meta<typeof RangeSlider> = {

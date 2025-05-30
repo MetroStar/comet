@@ -1,5 +1,5 @@
 import React from 'react';
-import { Meta, StoryFn } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react-vite';
 import { Banner, BannerProps } from './banner';
 
 const meta: Meta<typeof Banner> = {

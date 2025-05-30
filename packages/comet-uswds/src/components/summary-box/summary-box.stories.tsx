@@ -1,5 +1,5 @@
 import React from 'react';
-import { Meta, StoryFn } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react-vite';
 import { SummaryBox, SummaryBoxProps } from './summary-box';
 
 const meta: Meta<typeof SummaryBox> = {

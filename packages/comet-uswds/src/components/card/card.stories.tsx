@@ -1,5 +1,5 @@
 import React from 'react';
-import { StoryFn, Meta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react-vite';
 import { Card, CardHeader, CardFooter, CardBody, Button } from '../../index';
 import { CardMedia, CardProps } from './card';
 

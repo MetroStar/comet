@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Meta, StoryFn } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react-vite';
 import Toast, { ToastProps } from './toast';
 import Button from '../../../../comet-uswds/src/components/button/button';
 

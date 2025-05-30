@@ -1,5 +1,5 @@
 import React from 'react';
-import { Meta, StoryFn } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react-vite';
 import { Checkbox, CheckboxGroup, CheckboxGroupProps, CheckboxProps } from './checkbox';
 
 const meta: Meta<typeof Checkbox> = {

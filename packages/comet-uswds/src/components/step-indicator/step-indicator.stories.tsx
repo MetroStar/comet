@@ -1,5 +1,5 @@
 import React, { useState, Dispatch, SetStateAction } from 'react';
-import { StoryFn, Meta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react-vite';
 import { StepIndicator, StepIndicatorProps } from './step-indicator';
 import Button from '../button/button';
 import ButtonGroup from '../button-group';
