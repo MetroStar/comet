@@ -1,5 +1,5 @@
 import React from 'react';
-import { Meta, StoryFn } from '@storybook/react-vite';
+import { Meta } from '@storybook/react-vite';
 import DataTable, { DataTableProps } from './data-table';
 import { createColumnHelper } from '@tanstack/react-table';
 
@@ -11,10 +11,6 @@ const meta: Meta<typeof DataTable> = {
   },
 };
 export default meta;
-
-const Template: StoryFn<typeof DataTable> = (args: DataTableProps) => (
-  <DataTable {...args}></DataTable>
-);
 
 interface Person {
   firstName: string;
@@ -115,17 +111,19 @@ const cols = [
   }),
 ];
 
-export const Default = Template.bind({});
-Default.args = {
-  id: 'table-1',
-  columns: cols,
-  data,
-  striped: false,
-  sortable: true,
-  sortDir: 'asc',
-  sortCol: 'lastName',
-  pageable: true,
-  pageIndex: 0,
-  pageSize: 3,
-  className: 'width-full',
+export const Default = {
+  args: {
+    id: 'table-1',
+    columns: cols,
+    data,
+    striped: false,
+    sortable: true,
+    sortDir: 'asc',
+    sortCol: 'lastName',
+    pageable: true,
+    pageIndex: 0,
+    pageSize: 3,
+    className: 'width-full',
+  },
+  render: (args: DataTableProps) => <DataTable {...args} />,
 };

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Meta, StoryFn } from '@storybook/react-vite';
+import { Meta } from '@storybook/react-vite';
 import Spinner, { SpinnerProps } from './spinner';
 
 const meta: Meta<typeof Spinner> = {
@@ -12,12 +12,12 @@ const meta: Meta<typeof Spinner> = {
 };
 export default meta;
 
-const Template: StoryFn<typeof Spinner> = (args: SpinnerProps) => <Spinner {...args} />;
-
-export const Default = Template.bind({});
-Default.args = {
-  id: 'spinner',
-  type: 'large',
-  loadingText: 'Loading...',
-  className: '',
+export const Default = {
+  args: {
+    id: 'spinner',
+    type: 'large',
+    loadingText: 'Loading...',
+    className: '',
+  },
+  render: (args: SpinnerProps) => <Spinner {...args} />,
 };

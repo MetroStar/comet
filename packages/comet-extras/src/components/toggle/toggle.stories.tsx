@@ -1,5 +1,5 @@
 import React from 'react';
-import { Meta, StoryFn } from '@storybook/react-vite';
+import { Meta } from '@storybook/react-vite';
 import Toggle, { ToggleProps } from './toggle';
 
 export default {
@@ -15,21 +15,24 @@ export default {
   },
 } as Meta<ToggleProps>;
 
-const Template: StoryFn<ToggleProps> = (args) => <Toggle {...args} />;
-
-export const Default = Template.bind({});
-Default.args = {
-  id: 'toggle',
-  name: 'toggle',
-  checked: false,
-  label: 'Toggle',
-  ariaLabel: 'Toggle button',
+export const Default = {
+  args: {
+    id: 'toggle',
+    name: 'toggle',
+    checked: false,
+    label: 'Toggle',
+    ariaLabel: 'Toggle button',
+  },
+  render: (args: ToggleProps) => <Toggle {...args} />,
 };
 
-export const Checked = Template.bind({});
-Checked.args = {
-  ...Default.args,
-  checked: true,
-  label: 'Checked Toggle',
-  ariaLabel: 'Checked toggle button',
+export const Checked = {
+  args: {
+    id: 'toggle',
+    name: 'toggle',
+    checked: true,
+    label: 'Checked Toggle',
+    ariaLabel: 'Checked toggle button',
+  },
+  render: (args: ToggleProps) => <Toggle {...args} />,
 };
