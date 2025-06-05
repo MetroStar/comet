@@ -1,5 +1,5 @@
 import React from 'react';
-import { StoryFn, Meta } from '@storybook/react-vite';
+import { Meta } from '@storybook/react-vite';
 import { BarGraph } from '../../index';
 import { BarGraphProps } from './bar-graph';
 
@@ -9,7 +9,15 @@ const meta: Meta<typeof BarGraph> = {
 };
 export default meta;
 
-const Template: StoryFn<typeof BarGraph> = (args: BarGraphProps) => (
+const data = [
+  { x: 'Cat', y: 2 },
+  { x: 'Dog', y: 7 },
+  { x: 'Fish', y: 3 },
+  { x: 'Snake', y: 1 },
+  { x: 'Rabbit', y: 2 },
+];
+
+const renderGraph = (args: BarGraphProps) => (
   <div
     style={{
       width: '400px',
@@ -20,37 +28,33 @@ const Template: StoryFn<typeof BarGraph> = (args: BarGraphProps) => (
   </div>
 );
 
-const data = [
-  { x: 'Cat', y: 2 },
-  { x: 'Dog', y: 7 },
-  { x: 'Fish', y: 3 },
-  { x: 'Snake', y: 1 },
-  { x: 'Rabbit', y: 2 },
-];
-
-export const Default = Template.bind({});
-Default.args = {
-  chart: {
-    title: 'Bar graph',
-    width: 400,
-    height: 300,
+export const Default = {
+  args: {
+    chart: {
+      title: 'Bar graph',
+      width: 400,
+      height: 300,
+    },
+    alignment: 'start',
+    color: '#0d7ea2',
+    barRatio: 1,
+    data,
   },
-  alignment: 'start',
-  color: '#0d7ea2',
-  barRatio: 1,
-  data,
+  render: renderGraph,
 };
 
-export const Horizontal = Template.bind({});
-Horizontal.args = {
-  chart: {
-    title: 'Bar graph',
-    width: 400,
-    height: 300,
-    horizontal: true,
+export const Horizontal = {
+  args: {
+    chart: {
+      title: 'Bar graph',
+      width: 400,
+      height: 300,
+      horizontal: true,
+    },
+    alignment: 'start',
+    color: '#0d7ea2',
+    barRatio: 1,
+    data,
   },
-  alignment: 'start',
-  color: '#0d7ea2',
-  barRatio: 1,
-  data,
+  render: renderGraph,
 };
