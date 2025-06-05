@@ -1,4 +1,4 @@
-import { Meta, StoryFn } from '@storybook/react-vite';
+import { Meta } from '@storybook/react-vite';
 import React from 'react';
 import { ComboBox, ComboBoxOptionProps, ComboBoxProps } from './combo-box';
 
@@ -20,25 +20,27 @@ const options = loremWords.map((word) => {
   return { value: word.toLowerCase(), label: word } as ComboBoxOptionProps;
 });
 
-const Template: StoryFn<typeof ComboBox> = (args: ComboBoxProps) => <ComboBox {...args} />;
-
-export const Standard = Template.bind({});
-Standard.args = {
-  id: 'combo-box-1',
-  name: 'combo-box-1',
-  options,
-  required: false,
-  label: 'Options',
-  helperText: 'Select from the list below',
-  disabled: false,
-  defaultValue: options[0].value,
+export const Standard = {
+  args: {
+    id: 'combo-box-1',
+    name: 'combo-box-1',
+    options,
+    required: false,
+    label: 'Options',
+    helperText: 'Select from the list below',
+    disabled: false,
+    defaultValue: options[0].value,
+  },
+  render: (args: ComboBoxProps) => <ComboBox {...args} />,
 };
 
-export const NoDefault = Template.bind({});
-NoDefault.args = {
-  id: 'combo-box-1',
-  name: 'combo-box-1',
-  options,
-  label: 'Pick one',
-  defaultValue: '',
+export const NoDefault = {
+  args: {
+    id: 'combo-box-1',
+    name: 'combo-box-1',
+    options,
+    label: 'Pick one',
+    defaultValue: '',
+  },
+  render: (args: ComboBoxProps) => <ComboBox {...args} />,
 };

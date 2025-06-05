@@ -1,5 +1,5 @@
-import { Meta, StoryFn } from '@storybook/react-vite';
 import React, { FormEvent } from 'react';
+import { Meta } from '@storybook/react-vite';
 import { Search, SearchProps } from './search';
 
 const meta: Meta<typeof Search> = {
@@ -12,27 +12,31 @@ const meta: Meta<typeof Search> = {
 };
 export default meta;
 
-const Template: StoryFn<typeof Search> = (args: SearchProps) => <Search {...args} />;
-
 const preventDefault = (event: FormEvent): void => event.preventDefault();
 
-export const Default = Template.bind({});
-Default.args = {
-  id: 'search-1',
-  type: 'default',
-  onSearch: preventDefault,
+export const Default = {
+  args: {
+    id: 'search-1',
+    type: 'default',
+    onSearch: preventDefault,
+  },
+  render: (args: SearchProps) => <Search {...args} />,
 };
 
-export const SmallSearch = Template.bind({});
-SmallSearch.args = {
-  id: 'search-2',
-  type: 'small',
-  onSearch: preventDefault,
+export const SmallSearch = {
+  args: {
+    id: 'search-2',
+    type: 'small',
+    onSearch: preventDefault,
+  },
+  render: (args: SearchProps) => <Search {...args} />,
 };
 
-export const BigSearch = Template.bind({});
-BigSearch.args = {
-  id: 'search-3',
-  type: 'big',
-  onSearch: preventDefault,
+export const BigSearch = {
+  args: {
+    id: 'search-3',
+    type: 'big',
+    onSearch: preventDefault,
+  },
+  render: (args: SearchProps) => <Search {...args} />,
 };

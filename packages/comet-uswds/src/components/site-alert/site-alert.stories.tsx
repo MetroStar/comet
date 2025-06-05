@@ -1,5 +1,5 @@
 import React from 'react';
-import { StoryFn, Meta } from '@storybook/react-vite';
+import { Meta } from '@storybook/react-vite';
 import SiteAlert, { SiteAlertProps } from './site-alert';
 
 const meta: Meta<typeof SiteAlert> = {
@@ -14,15 +14,13 @@ const meta: Meta<typeof SiteAlert> = {
 };
 export default meta;
 
-const Template: StoryFn<typeof SiteAlert> = (args: SiteAlertProps) => (
-  <SiteAlert {...args}>This is the alert body</SiteAlert>
-);
-
-export const Default = Template.bind({});
-Default.args = {
-  id: 'site-alert-1',
-  type: 'Info',
-  slim: false,
-  noIcon: false,
-  heading: 'Placeholder Heading Text',
+export const Default = {
+  args: {
+    id: 'site-alert-1',
+    type: 'Info',
+    slim: false,
+    noIcon: false,
+    heading: 'Placeholder Heading Text',
+  },
+  render: (args: SiteAlertProps) => <SiteAlert {...args}>This is the alert body</SiteAlert>,
 };

@@ -1,4 +1,5 @@
-import { StoryFn, Meta } from '@storybook/react-vite';
+import React from 'react';
+import { Meta } from '@storybook/react-vite';
 import { LanguageSelector } from '../../index';
 import { LanguageSelectorProps } from './language-selector';
 
@@ -18,39 +19,39 @@ const handleChange = (attr: string) => {
   console.log(`${attr} selected`);
 };
 
-const Template: StoryFn<typeof LanguageSelector> = (args: LanguageSelectorProps) => (
-  <LanguageSelector {...args} />
-);
-
-export const Default = Template.bind({});
-Default.args = {
-  id: 'selector-1',
-  items: [
-    { label: 'English', attr: 'en', onChange: () => handleChange('en') },
-    { label: 'Español', attr: 'es', onChange: () => handleChange('es') },
-  ],
-  variant: 'default',
-  size: 'default',
+export const Default = {
+  args: {
+    id: 'selector-1',
+    items: [
+      { label: 'English', attr: 'en', onChange: () => handleChange('en') },
+      { label: 'Español', attr: 'es', onChange: () => handleChange('es') },
+    ],
+    variant: 'default',
+    size: 'default',
+  },
+  render: (args: LanguageSelectorProps) => <LanguageSelector {...args} />,
 };
 
-export const ThreeOrMore = Template.bind({});
-ThreeOrMore.args = {
-  id: 'selector-2',
-  items: [
-    { label: 'English', attr: 'en', onChange: () => handleChange('en') },
-    {
-      label: 'Español',
-      localLabel: 'Spanish',
-      attr: 'es',
-      onChange: () => handleChange('es'),
-    },
-    {
-      label: 'Français',
-      localLabel: 'French',
-      attr: 'fr',
-      onChange: () => handleChange('fr'),
-    },
-  ],
-  variant: 'default',
-  size: 'small',
+export const ThreeOrMore = {
+  args: {
+    id: 'selector-2',
+    items: [
+      { label: 'English', attr: 'en', onChange: () => handleChange('en') },
+      {
+        label: 'Español',
+        localLabel: 'Spanish',
+        attr: 'es',
+        onChange: () => handleChange('es'),
+      },
+      {
+        label: 'Français',
+        localLabel: 'French',
+        attr: 'fr',
+        onChange: () => handleChange('fr'),
+      },
+    ],
+    variant: 'default',
+    size: 'small',
+  },
+  render: (args: LanguageSelectorProps) => <LanguageSelector {...args} />,
 };

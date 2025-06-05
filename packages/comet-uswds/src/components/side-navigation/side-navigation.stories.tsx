@@ -1,5 +1,5 @@
 import React, { JSX } from 'react';
-import { Meta, StoryFn } from '@storybook/react-vite';
+import { Meta } from '@storybook/react-vite';
 import SideNavigation, {
   SideNavigationItem,
   SideNavigationItemProps,
@@ -14,10 +14,6 @@ const meta: Meta<typeof SideNavigation> = {
   },
 };
 export default meta;
-
-const Template: StoryFn<typeof SideNavigation> = (args: SideNavigationProps) => (
-  <SideNavigation {...args} />
-);
 
 const ariaLabel = 'Secondary navigation';
 const createAnchor = (isCurrent = false): JSX.Element => (
@@ -36,11 +32,13 @@ const flatNavigation: SideNavigationItemProps[] = [
   }),
 ];
 
-export const FlatSideNavigation = Template.bind({});
-FlatSideNavigation.args = {
-  id: 'side-navigation-1',
-  items: flatNavigation,
-  ariaLabel,
+export const FlatSideNavigation = {
+  args: {
+    id: 'side-navigation-1',
+    items: flatNavigation,
+    ariaLabel,
+  },
+  render: (args: SideNavigationProps) => <SideNavigation {...args} />,
 };
 
 const twoLevelNavigation: SideNavigationItemProps[] = [
@@ -69,11 +67,13 @@ const twoLevelNavigation: SideNavigationItemProps[] = [
   }),
 ];
 
-export const TwoLevelSideNavigation = Template.bind({});
-TwoLevelSideNavigation.args = {
-  id: 'side-navigation-2',
-  items: twoLevelNavigation,
-  ariaLabel,
+export const TwoLevelSideNavigation = {
+  args: {
+    id: 'side-navigation-2',
+    items: twoLevelNavigation,
+    ariaLabel,
+  },
+  render: (args: SideNavigationProps) => <SideNavigation {...args} />,
 };
 
 const threeLevelNavigation: SideNavigationItemProps[] = [
@@ -122,22 +122,24 @@ const threeLevelNavigation: SideNavigationItemProps[] = [
   }),
 ];
 
-export const ThreeLevelSideNavigation = Template.bind({});
-ThreeLevelSideNavigation.args = {
-  id: 'side-navigation-3',
-  items: threeLevelNavigation,
-  ariaLabel,
+export const ThreeLevelSideNavigation = {
+  args: {
+    id: 'side-navigation-3',
+    items: threeLevelNavigation,
+    ariaLabel,
+  },
+  render: (args: SideNavigationProps) => <SideNavigation {...args} />,
 };
 
-const ChildrenTemplate: StoryFn<typeof SideNavigation> = (args: SideNavigationProps) => (
-  <SideNavigation {...args}>
-    <SideNavigationItem anchor={createAnchor(true)} />
-    <SideNavigationItem anchor={createAnchor(false)} />
-    <SideNavigationItem anchor={createAnchor(false)} />
-  </SideNavigation>
-);
-
-export const WithChildren = ChildrenTemplate.bind({});
-WithChildren.args = {
-  id: 'side-navigation-4',
+export const WithChildren = {
+  args: {
+    id: 'side-navigation-4',
+  },
+  render: (args: SideNavigationProps) => (
+    <SideNavigation {...args}>
+      <SideNavigationItem anchor={createAnchor(true)} />
+      <SideNavigationItem anchor={createAnchor(false)} />
+      <SideNavigationItem anchor={createAnchor(false)} />
+    </SideNavigation>
+  ),
 };

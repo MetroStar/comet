@@ -1,4 +1,4 @@
-import { Meta, StoryFn } from '@storybook/react-vite';
+import { Meta } from '@storybook/react-vite';
 import React from 'react';
 import { Select, SelectOption, SelectOptionProps, SelectProps } from './select';
 
@@ -19,41 +19,44 @@ const options = loremWords.map((word) => {
   return { value: word.toLowerCase(), label: word } as SelectOptionProps;
 });
 
-const Template: StoryFn<typeof Select> = (args: SelectProps) => <Select {...args} />;
-export const Standard = Template.bind({});
-Standard.args = {
-  id: 'select-1',
-  name: 'select-1',
-  options,
-  required: false,
-  label: 'Options',
-  helperText: 'Select from the list below',
-  disabled: false,
+export const Standard = {
+  args: {
+    id: 'select-1',
+    name: 'select-1',
+    options,
+    required: false,
+    label: 'Options',
+    helperText: 'Select from the list below',
+    disabled: false,
+  },
+  render: (args: SelectProps) => <Select {...args} />,
 };
 
-export const WithErrors = Template.bind({});
-WithErrors.args = {
-  id: 'select-1',
-  name: 'select-1',
-  options,
-  required: false,
-  label: 'Options',
-  helperText: 'Select from the list below',
-  errors: 'This field is required',
+export const WithErrors = {
+  args: {
+    id: 'select-1',
+    name: 'select-1',
+    options,
+    required: false,
+    label: 'Options',
+    helperText: 'Select from the list below',
+    errors: 'This field is required',
+  },
+  render: (args: SelectProps) => <Select {...args} />,
 };
 
-const ChildrenTemplate: StoryFn<typeof Select> = (args: SelectProps) => (
-  <Select {...args}>
-    <SelectOption value="1" label="Item 1" />
-    <SelectOption value="2" label="Item 2" />
-    <SelectOption value="3" label="Item 3" />
-  </Select>
-);
-
-export const WithChildren = ChildrenTemplate.bind({});
-WithChildren.args = {
-  id: 'select-2',
-  name: 'select-2',
-  label: 'Options',
-  helperText: 'Select from the list below',
+export const WithChildren = {
+  args: {
+    id: 'select-2',
+    name: 'select-2',
+    label: 'Options',
+    helperText: 'Select from the list below',
+  },
+  render: (args: SelectProps) => (
+    <Select {...args}>
+      <SelectOption value="1" label="Item 1" />
+      <SelectOption value="2" label="Item 2" />
+      <SelectOption value="3" label="Item 3" />
+    </Select>
+  ),
 };

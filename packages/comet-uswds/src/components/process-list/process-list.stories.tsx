@@ -1,5 +1,5 @@
 import React from 'react';
-import { Meta, StoryFn } from '@storybook/react-vite';
+import { Meta } from '@storybook/react-vite';
 import {
   ProcessList,
   ProcessListProps,
@@ -15,8 +15,6 @@ const meta: Meta<typeof ProcessList> = {
   },
 };
 export default meta;
-
-const Template: StoryFn<typeof ProcessList> = (args: ProcessListProps) => <ProcessList {...args} />;
 
 const steps: ProcessListStepProps[] = [
   {
@@ -59,73 +57,79 @@ const steps: ProcessListStepProps[] = [
   },
 ];
 
-export const Default = Template.bind({});
-Default.args = {
-  id: 'process-list-1',
-  steps,
+export const Default = {
+  args: {
+    id: 'process-list-1',
+    steps,
+  },
+  render: (args: ProcessListProps) => <ProcessList {...args} />,
 };
 
-export const CurrentStep = Template.bind({});
-CurrentStep.args = {
-  id: 'process-list-1b',
-  steps,
-  currentStep: 2,
+export const CurrentStep = {
+  args: {
+    id: 'process-list-1b',
+    steps,
+    currentStep: 2,
+  },
+  render: (args: ProcessListProps) => <ProcessList {...args} />,
 };
 
 const noContentSteps = steps.map((step) => {
   return { heading: step.heading, children: null };
 });
 
-export const NoStepContent = Template.bind({});
-NoStepContent.args = {
-  id: 'process-list-2',
-  steps: noContentSteps,
+export const NoStepContent = {
+  args: {
+    id: 'process-list-2',
+    steps: noContentSteps,
+  },
+  render: (args: ProcessListProps) => <ProcessList {...args} />,
 };
 
-const ChildrenTemplate: StoryFn<typeof ProcessList> = (args: ProcessListProps) => (
-  <ProcessList {...args}>
-    <ProcessListStep heading="Step 1">
-      Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi commodo, ipsum sed pharetra
-      gravida, orci magna rhoncus neque.
-    </ProcessListStep>
-    <ProcessListStep heading="Step 2">
-      Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi commodo, ipsum sed pharetra
-      gravida, orci magna rhoncus neque.
-    </ProcessListStep>
-    <ProcessListStep heading="Step 3">
-      Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi commodo, ipsum sed pharetra
-      gravida, orci magna rhoncus neque.
-    </ProcessListStep>
-  </ProcessList>
-);
-
-export const WithChildren = ChildrenTemplate.bind({});
-WithChildren.args = {
-  id: 'process-list-3',
+export const WithChildren = {
+  args: {
+    id: 'process-list-3',
+  },
+  render: (args: ProcessListProps) => (
+    <ProcessList {...args}>
+      <ProcessListStep heading="Step 1">
+        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi commodo, ipsum sed pharetra
+        gravida, orci magna rhoncus neque.
+      </ProcessListStep>
+      <ProcessListStep heading="Step 2">
+        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi commodo, ipsum sed pharetra
+        gravida, orci magna rhoncus neque.
+      </ProcessListStep>
+      <ProcessListStep heading="Step 3">
+        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi commodo, ipsum sed pharetra
+        gravida, orci magna rhoncus neque.
+      </ProcessListStep>
+    </ProcessList>
+  ),
 };
 
-const CustomSizingTemplate: StoryFn<typeof ProcessList> = (args: ProcessListProps) => (
-  <ProcessList {...args}>
-    <ProcessListStep
-      heading="Step 1"
-      headingElementName="h5"
-      headingClassName="font-sans-lg margin-top-1 text-light"
-    >
-      Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi commodo, ipsum sed pharetra
-      gravida, orci magna rhoncus neque.
-    </ProcessListStep>
-    <ProcessListStep
-      heading="Step 2"
-      headingElementName="h5"
-      headingClassName="font-sans-lg margin-top-1 text-light"
-    >
-      Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi commodo, ipsum sed pharetra
-      gravida, orci magna rhoncus neque.
-    </ProcessListStep>
-  </ProcessList>
-);
-
-export const CustomSizing = CustomSizingTemplate.bind({});
-CustomSizing.args = {
-  id: 'process-list-4',
+export const CustomSizing = {
+  args: {
+    id: 'process-list-4',
+  },
+  render: (args: ProcessListProps) => (
+    <ProcessList {...args}>
+      <ProcessListStep
+        heading="Step 1"
+        headingElementName="h5"
+        headingClassName="font-sans-lg margin-top-1 text-light"
+      >
+        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi commodo, ipsum sed pharetra
+        gravida, orci magna rhoncus neque.
+      </ProcessListStep>
+      <ProcessListStep
+        heading="Step 2"
+        headingElementName="h5"
+        headingClassName="font-sans-lg margin-top-1 text-light"
+      >
+        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi commodo, ipsum sed pharetra
+        gravida, orci magna rhoncus neque.
+      </ProcessListStep>
+    </ProcessList>
+  ),
 };

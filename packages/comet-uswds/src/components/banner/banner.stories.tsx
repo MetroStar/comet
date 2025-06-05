@@ -1,5 +1,5 @@
 import React from 'react';
-import { Meta, StoryFn } from '@storybook/react-vite';
+import { Meta } from '@storybook/react-vite';
 import { Banner, BannerProps } from './banner';
 
 const meta: Meta<typeof Banner> = {
@@ -12,10 +12,10 @@ const meta: Meta<typeof Banner> = {
 };
 export default meta;
 
-const Template: StoryFn<typeof Banner> = (args: BannerProps) => <Banner {...args} />;
-
-export const Default = Template.bind({});
-Default.args = {
-  id: 'banner-1',
-  type: 'gov',
+export const Default = {
+  args: {
+    id: 'banner-1',
+    type: 'gov',
+  },
+  render: (args: BannerProps) => <Banner {...args} />,
 };

@@ -1,5 +1,5 @@
 import React from 'react';
-import { StoryFn, Meta } from '@storybook/react-vite';
+import { Meta } from '@storybook/react-vite';
 import { Icon, TextInput } from '../../index';
 import { TextInputProps } from './text-input';
 
@@ -15,56 +15,66 @@ const meta: Meta<typeof TextInput> = {
 };
 export default meta;
 
-const Template: StoryFn<typeof TextInput> = (args: TextInputProps) => <TextInput {...args} />;
-
-export const Standard = Template.bind({});
-Standard.args = {
-  id: 'input-standard',
-  type: 'text',
-  required: false,
-  label: 'Input',
-  helperText: 'Enter your input',
-  disabled: false,
+export const Standard = {
+  args: {
+    id: 'input-standard',
+    type: 'text',
+    required: false,
+    label: 'Input',
+    helperText: 'Enter your input',
+    disabled: false,
+  },
+  render: (args: TextInputProps) => <TextInput {...args} />,
 };
 
-export const WithErrors = Template.bind({});
-WithErrors.args = {
-  id: 'input-errors',
-  type: 'text',
-  required: true,
-  label: 'Input',
-  helperText: 'Enter your input',
-  errors: 'This field is required',
-  validationStatus: 'error',
+export const WithErrors = {
+  args: {
+    id: 'input-errors',
+    type: 'text',
+    required: true,
+    label: 'Input',
+    helperText: 'Enter your input',
+    errors: 'This field is required',
+    validationStatus: 'error',
+  },
+  render: (args: TextInputProps) => <TextInput {...args} />,
 };
 
-export const WithMask = Template.bind({});
-WithMask.args = {
-  id: 'input-mask',
-  type: 'text',
-  mask: 'ssn',
+export const WithMask = {
+  args: {
+    id: 'input-mask',
+    type: 'text',
+    mask: 'ssn',
+  },
+  render: (args: TextInputProps) => <TextInput {...args} />,
 };
 
-export const WithPrefix = Template.bind({});
-WithPrefix.args = {
-  id: 'input-prefix',
-  type: 'text',
-  prefix: <Icon id="credit-card-icon" type="credit_card" />,
-  'aria-label': 'Input credit card',
+export const WithPrefix = {
+  args: {
+    id: 'input-prefix',
+    type: 'text',
+    prefix: <Icon id="credit-card-icon" type="credit_card" />,
+    'aria-label': 'Input credit card',
+  },
+  render: (args: TextInputProps) => <TextInput {...args} />,
 };
 
-export const WithSuffix = Template.bind({});
-WithSuffix.args = {
-  id: 'input-suffix',
-  type: 'number',
-  suffix: 'lbs',
-  'aria-label': 'Input pounds',
+export const WithSuffix = {
+  args: {
+    id: 'input-suffix',
+    type: 'number',
+    suffix: 'lbs',
+    'aria-label': 'Input pounds',
+  },
+  render: (args: TextInputProps) => <TextInput {...args} />,
 };
 
-export const WithChangeEvent = Template.bind({});
-WithChangeEvent.args = {
-  id: 'input-change-event',
-  type: 'text',
-  placeholder: 'Will alert on change...',
-  onChange: (e: any) => alert(e.target.value),
+export const WithChangeEvent = {
+  args: {
+    id: 'input-change-event',
+    type: 'text',
+    placeholder: 'Will alert on change...',
+    onChange: (e: any) => alert(e.target.value),
+  },
+  render: (args: TextInputProps) => <TextInput {...args} />,
 };

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Meta, StoryFn } from '@storybook/react-vite';
+import { Meta } from '@storybook/react-vite';
 import {
   RadioButton,
   RadioButtonGroup,
@@ -17,44 +17,42 @@ const meta: Meta<typeof RadioButton> = {
 };
 export default meta;
 
-const Template: StoryFn<typeof RadioButton> = (args: RadioButtonProps) => (
-  <RadioButton
-    id={args.id}
-    name={args.name}
-    label={args.label}
-    value={args.value}
-    defaultChecked={args.defaultChecked}
-    isTile={args.isTile}
-  />
-);
-
-export const Single = Template.bind({});
-Single.args = {
-  id: 'lorem-radio-button',
-  name: 'lorem-radio-button',
-  label: 'Lorem',
-  value: 'lorem',
-  isTile: false,
-  defaultChecked: true,
+export const Single = {
+  args: {
+    id: 'lorem-radio-button',
+    name: 'lorem-radio-button',
+    label: 'Lorem',
+    value: 'lorem',
+    isTile: false,
+    defaultChecked: true,
+  },
+  render: (args: RadioButtonProps) => (
+    <RadioButton
+      id={args.id}
+      name={args.name}
+      label={args.label}
+      value={args.value}
+      defaultChecked={args.defaultChecked}
+      isTile={args.isTile}
+    />
+  ),
 };
 
 const loremWords = ['Lorem', 'Ipsum', 'Dolor', 'Sit'];
 
-const GroupTemplate: StoryFn<typeof RadioButtonGroup> = (args: RadioButtonGroupProps) => (
-  <RadioButtonGroup {...args} />
-);
-
-export const Group = GroupTemplate.bind({});
-Group.args = {
-  id: 'radio-group',
-  name: 'radio-group',
-  data: loremWords.map((word, wordIndex) => ({
-    label: word,
-    value: word.toLowerCase(),
-    defaultChecked: wordIndex === 0,
-  })),
-  areTiles: false,
-  required: false,
-  label: 'Options',
-  helperText: 'Select from the list below',
+export const Group = {
+  args: {
+    id: 'radio-group',
+    name: 'radio-group',
+    data: loremWords.map((word, wordIndex) => ({
+      label: word,
+      value: word.toLowerCase(),
+      defaultChecked: wordIndex === 0,
+    })),
+    areTiles: false,
+    required: false,
+    label: 'Options',
+    helperText: 'Select from the list below',
+  },
+  render: (args: RadioButtonGroupProps) => <RadioButtonGroup {...args} />,
 };
