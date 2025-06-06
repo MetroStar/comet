@@ -1,5 +1,5 @@
 import React from 'react';
-import { Meta, StoryFn } from '@storybook/react-vite';
+import { Meta } from '@storybook/react-vite';
 import Tag, { TagProps } from './tag';
 
 const meta: Meta<typeof Tag> = {
@@ -12,11 +12,11 @@ const meta: Meta<typeof Tag> = {
 };
 export default meta;
 
-const Template: StoryFn<typeof Tag> = (args: TagProps) => <Tag {...args} />;
-
-export const Default = Template.bind({});
-Default.args = {
-  id: 'tag-1',
-  size: 'Default',
-  children: 'Placeholder tag text',
+export const Default = {
+  args: {
+    id: 'tag-1',
+    size: 'Default',
+    children: 'Placeholder tag text',
+  },
+  render: (args: TagProps) => <Tag {...args} />,
 };

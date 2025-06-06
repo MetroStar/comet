@@ -1,5 +1,5 @@
 import React from 'react';
-import { StoryFn, Meta } from '@storybook/react-vite';
+import { Meta } from '@storybook/react-vite';
 import { PolarAxis } from '../../index';
 import { PolarAxisProps } from './polar-axis';
 
@@ -9,24 +9,24 @@ const meta: Meta<typeof PolarAxis> = {
 };
 export default meta;
 
-const Template: StoryFn<typeof PolarAxis> = (args: PolarAxisProps) => (
-  <div
-    style={{
-      width: '400px',
-      height: '400px',
-    }}
-  >
-    <PolarAxis {...args} />
-  </div>
-);
-
-export const Default = Template.bind({});
-Default.args = {
-  chart: {
-    title: 'Polar Axis',
-    width: 400,
-    height: 400,
+export const Default = {
+  args: {
+    chart: {
+      title: 'Polar Axis',
+      width: 400,
+      height: 400,
+    },
+    color: '#0d7ea2',
+    data: [1, 3, 5, 1, 2, 1, 5],
   },
-  color: '#0d7ea2',
-  data: [1, 3, 5, 1, 2, 1, 5],
+  render: (args: PolarAxisProps) => (
+    <div
+      style={{
+        width: '400px',
+        height: '400px',
+      }}
+    >
+      <PolarAxis {...args} />
+    </div>
+  ),
 };

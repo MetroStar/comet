@@ -1,5 +1,5 @@
 import React from 'react';
-import { Meta, StoryFn } from '@storybook/react-vite';
+import { Meta } from '@storybook/react-vite';
 import { Label, LabelProps } from './label';
 
 const meta: Meta<typeof Label> = {
@@ -11,20 +11,16 @@ const meta: Meta<typeof Label> = {
 };
 export default meta;
 
-const Template: StoryFn<typeof Label> = (args: LabelProps) => (
-  <Label required={args.required}>Label</Label>
-);
-
-export const Standard = Template.bind({});
-Standard.args = {
-  required: false,
+export const Standard = {
+  args: {
+    required: false,
+  },
+  render: (args: LabelProps) => <Label required={args.required}>Label</Label>,
 };
 
-const RequiredTemplate: StoryFn<typeof Label> = (args: LabelProps) => (
-  <Label required={args.required}>Label</Label>
-);
-
-export const LabelWithRequired = RequiredTemplate.bind({});
-LabelWithRequired.args = {
-  required: true,
+export const LabelWithRequired = {
+  args: {
+    required: true,
+  },
+  render: (args: LabelProps) => <Label required={args.required}>Label</Label>,
 };

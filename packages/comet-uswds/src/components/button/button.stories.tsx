@@ -1,5 +1,5 @@
 import React from 'react';
-import { StoryFn, Meta } from '@storybook/react-vite';
+import { Meta } from '@storybook/react-vite';
 import { Button } from '../../index';
 import { ButtonProps } from './button';
 
@@ -16,14 +16,14 @@ const meta: Meta<typeof Button> = {
 };
 export default meta;
 
-const Template: StoryFn<typeof Button> = (args: ButtonProps) => <Button {...args}>Button</Button>;
-
-export const Default = Template.bind({});
-Default.args = {
-  id: 'button-1',
-  type: 'button',
-  variant: 'default',
-  size: 'default',
-  className: '',
-  disabled: false,
+export const Default = {
+  args: {
+    id: 'button-1',
+    type: 'button',
+    variant: 'default',
+    size: 'default',
+    className: '',
+    disabled: false,
+  },
+  render: (args: ButtonProps) => <Button {...args}>Button</Button>,
 };

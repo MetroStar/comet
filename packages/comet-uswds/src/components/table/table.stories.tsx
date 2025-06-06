@@ -1,5 +1,5 @@
 import React from 'react';
-import { StoryFn, Meta } from '@storybook/react-vite';
+import { Meta } from '@storybook/react-vite';
 import { Table } from '../../index';
 import { TableColumn, TableProps } from './table';
 
@@ -13,7 +13,7 @@ const meta: Meta<typeof Table> = {
 };
 export default meta;
 
-const Template: StoryFn<typeof Table> = (args: TableProps) => {
+const createTable = (args: TableProps) => {
   const columns: TableColumn[] = [
     { id: 'name', name: 'Name' },
     { id: 'orderAdmitted', name: 'Order admitted to union' },
@@ -90,32 +90,36 @@ const Template: StoryFn<typeof Table> = (args: TableProps) => {
   );
 };
 
-export const Default = Template.bind({});
-Default.args = {
-  id: 'table-1',
-  tabIndex: 1,
-  caption: 'Voter Data',
-  borderless: false,
-  striped: false,
-  scrollable: false,
-  sortable: true,
-  sortDir: 'ascending',
-  sortIndex: 0,
+export const Default = {
+  args: {
+    id: 'table-1',
+    tabIndex: 1,
+    caption: 'Voter Data',
+    borderless: false,
+    striped: false,
+    scrollable: false,
+    sortable: true,
+    sortDir: 'ascending',
+    sortIndex: 0,
+  },
+  render: (args: TableProps) => createTable(args),
 };
 
-export const OnSort = Template.bind({});
-OnSort.args = {
-  id: 'table-1',
-  tabIndex: 1,
-  caption: 'Voter Data',
-  borderless: false,
-  striped: false,
-  scrollable: false,
-  sortable: true,
-  sortDir: 'ascending',
-  sortIndex: 0,
-  onSort: () => {
-    // eslint-disable-next-line no-console
-    console.log('Sorting...');
+export const OnSort = {
+  args: {
+    id: 'table-1',
+    tabIndex: 1,
+    caption: 'Voter Data',
+    borderless: false,
+    striped: false,
+    scrollable: false,
+    sortable: true,
+    sortDir: 'ascending',
+    sortIndex: 0,
+    onSort: () => {
+      // eslint-disable-next-line no-console
+      console.log('Sorting...');
+    },
   },
+  render: (args: TableProps) => createTable(args),
 };

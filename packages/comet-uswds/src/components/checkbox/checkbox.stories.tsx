@@ -1,5 +1,5 @@
 import React from 'react';
-import { Meta, StoryFn } from '@storybook/react-vite';
+import { Meta } from '@storybook/react-vite';
 import { Checkbox, CheckboxGroup, CheckboxGroupProps, CheckboxProps } from './checkbox';
 
 const meta: Meta<typeof Checkbox> = {
@@ -12,44 +12,42 @@ const meta: Meta<typeof Checkbox> = {
 };
 export default meta;
 
-const Template: StoryFn<typeof Checkbox> = (args: CheckboxProps) => (
-  <Checkbox
-    id={args.id}
-    name={args.name}
-    label={args.label}
-    value={args.value}
-    defaultChecked={args.defaultChecked}
-    isTile={args.isTile}
-  />
-);
-
-export const Single = Template.bind({});
-Single.args = {
-  id: 'lorem-checkbox',
-  name: 'lorem-checkbox',
-  label: 'Lorem',
-  value: 'lorem',
-  isTile: false,
-  defaultChecked: true,
+export const Single = {
+  args: {
+    id: 'lorem-checkbox',
+    name: 'lorem-checkbox',
+    label: 'Lorem',
+    value: 'lorem',
+    isTile: false,
+    defaultChecked: true,
+  },
+  render: (args: CheckboxProps) => (
+    <Checkbox
+      id={args.id}
+      name={args.name}
+      label={args.label}
+      value={args.value}
+      defaultChecked={args.defaultChecked}
+      isTile={args.isTile}
+    />
+  ),
 };
 
 const loremWords = ['Lorem', 'Ipsum', 'Dolor', 'Sit'];
 
-const GroupTemplate: StoryFn<typeof CheckboxGroup> = (args: CheckboxGroupProps) => (
-  <CheckboxGroup {...args} />
-);
-
-export const Group = GroupTemplate.bind({});
-Group.args = {
-  id: 'checkbox-group',
-  name: 'checkbox-group',
-  data: loremWords.map((word, wordIndex) => ({
-    label: word,
-    value: word.toLowerCase(),
-    defaultChecked: wordIndex === 0,
-  })),
-  areTiles: false,
-  required: false,
-  label: 'Options',
-  helperText: 'Select from the list below',
+export const Group = {
+  args: {
+    id: 'checkbox-group',
+    name: 'checkbox-group',
+    data: loremWords.map((word, wordIndex) => ({
+      label: word,
+      value: word.toLowerCase(),
+      defaultChecked: wordIndex === 0,
+    })),
+    areTiles: false,
+    required: false,
+    label: 'Options',
+    helperText: 'Select from the list below',
+  },
+  render: (args: CheckboxGroupProps) => <CheckboxGroup {...args} />,
 };

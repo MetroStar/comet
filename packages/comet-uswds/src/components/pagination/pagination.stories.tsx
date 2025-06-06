@@ -1,5 +1,5 @@
 import React, { Dispatch, SetStateAction, SyntheticEvent, useState } from 'react';
-import { Meta, StoryFn } from '@storybook/react-vite';
+import { Meta } from '@storybook/react-vite';
 import { Pagination } from '../../index';
 import { PaginationProps } from './pagination';
 
@@ -19,30 +19,40 @@ const onPage =
     setPage(page);
   };
 
-const Template: StoryFn<typeof Pagination> = (args: PaginationProps) => {
-  const [currentPage1, setCurrentPage1] = useState(args.currentPage);
+export const LargePagination = {
+  args: {
+    id: 'pagination-1',
+    currentPage: 9,
+    amountOfPages: 24,
+    ariaLabel: 'Pagination 1',
+    amountOfVisiblePageItems: 3,
+  },
+  render: (args: PaginationProps) => {
+    const [currentPage, setCurrentPage] = useState(args.currentPage);
 
-  const newProps = { ...args };
-  newProps.currentPage = currentPage1;
-  newProps.onPage = onPage(setCurrentPage1);
+    const newProps = { ...args };
+    newProps.currentPage = currentPage;
+    newProps.onPage = onPage(setCurrentPage);
 
-  return <Pagination {...newProps} />;
+    return <Pagination {...newProps} />;
+  },
 };
 
-export const LargePagination = Template.bind({});
-LargePagination.args = {
-  id: 'pagination-1',
-  currentPage: 9,
-  amountOfPages: 24,
-  ariaLabel: 'Pagination 1',
-  amountOfVisiblePageItems: 3,
-};
+export const SmallPagination = {
+  args: {
+    id: 'pagination-2',
+    currentPage: 2,
+    amountOfPages: 5,
+    ariaLabel: 'Pagination 2',
+    amountOfVisiblePageItems: 1,
+  },
+  render: (args: PaginationProps) => {
+    const [currentPage, setCurrentPage] = useState(args.currentPage);
 
-export const SmallPagination = Template.bind({});
-SmallPagination.args = {
-  id: 'pagination-2',
-  currentPage: 2,
-  amountOfPages: 5,
-  ariaLabel: 'Pagination 2',
-  amountOfVisiblePageItems: 1,
+    const newProps = { ...args };
+    newProps.currentPage = currentPage;
+    newProps.onPage = onPage(setCurrentPage);
+
+    return <Pagination {...newProps} />;
+  },
 };

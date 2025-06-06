@@ -1,5 +1,5 @@
 import React from 'react';
-import { StoryFn, Meta } from '@storybook/react-vite';
+import { Meta } from '@storybook/react-vite';
 import { InPageNavigation } from '../../index';
 import { InPageNavigationProps } from './in-page-navigation';
 
@@ -44,40 +44,38 @@ const content = `
     libero. Vivamus pharetra posuere sapien.
 `;
 
-const Template: StoryFn<typeof InPageNavigation> = (args: InPageNavigationProps) => (
-  <InPageNavigation {...args} />
-);
-
-export const Default = Template.bind({});
-Default.args = {
-  id: 'nav-1',
-  navTitle: 'On this page',
-  pageTitle: 'Sample in-page navigation page',
-  items: [
-    {
-      heading: 'Lorem ipsum dolor',
-      content: content,
-      headingType: 'h2',
-    },
-    {
-      heading: 'Consectetuer adipiscing elit',
-      content: content,
-      headingType: 'h2',
-    },
-    {
-      heading: 'Nullam sit amet enim',
-      content: content,
-      headingType: 'h3',
-    },
-    {
-      heading: 'Vivamus pharetra posuere sapien',
-      content: content,
-      headingType: 'h3',
-    },
-    {
-      heading: 'Suspendisse id velit',
-      content: content,
-      headingType: 'h2',
-    },
-  ],
+export const Default = {
+  args: {
+    id: 'nav-1',
+    navTitle: 'On this page',
+    pageTitle: 'Sample in-page navigation page',
+    items: [
+      {
+        heading: 'Lorem ipsum dolor',
+        content: content,
+        headingType: 'h2',
+      },
+      {
+        heading: 'Consectetuer adipiscing elit',
+        content: content,
+        headingType: 'h2',
+      },
+      {
+        heading: 'Nullam sit amet enim',
+        content: content,
+        headingType: 'h3',
+      },
+      {
+        heading: 'Vivamus pharetra posuere sapien',
+        content: content,
+        headingType: 'h3',
+      },
+      {
+        heading: 'Suspendisse id velit',
+        content: content,
+        headingType: 'h2',
+      },
+    ],
+  },
+  render: (args: InPageNavigationProps) => <InPageNavigation {...args} />,
 };
