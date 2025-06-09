@@ -7,7 +7,7 @@
     "start": "storybook dev -p 6006",
     "storybook": "storybook dev -p 6006",
     "test": "vitest --run",
-    "test:coverage": "vitest --run --coverage",
+    "test:coverage": "vitest --run --project=unit --coverage",
     "test:unit": "vitest --run --project=unit",
     "test:storybook": "vitest --run --project=storybook",
     "lint": "npx eslint packages/**/src/ --fix --config eslint.config.js",
