@@ -47,6 +47,9 @@ jobs:
       - name: Run Vitest tests with coverage
         run: npm run test:coverage
 
+      - name: Run Storybook tests with accessibility checks
+        run: npm run test:storybook
+
   run-lint-checks:
     runs-on: ubuntu-latest
 
