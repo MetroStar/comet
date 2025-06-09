@@ -10,6 +10,9 @@ permissions:
 jobs:
   run-build:
     runs-on: ubuntu-latest
+    container:
+      # https://playwright.dev/docs/docker#pull-the-image
+      image: mcr.microsoft.com/playwright:v1.52.0-noble
 
     steps:
       - name: Checkout
