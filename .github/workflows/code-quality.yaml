@@ -50,6 +50,9 @@ jobs:
       - name: Run Vitest tests with coverage
         run: npm run test:coverage
 
+      - name: Install Playwright browsers
+        run: npx playwright install
+
       - name: Run Storybook tests with accessibility checks
         run: npm run test:storybook
 
