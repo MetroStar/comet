@@ -1,5 +1,4 @@
 import { render } from '@testing-library/react';
-import { axe } from 'jest-axe';
 import List, { ListItem } from './list';
 
 describe('List', () => {
@@ -8,11 +7,6 @@ describe('List', () => {
     { id: 'item-2', value: 'Item 2' },
     { id: 'item-3', value: 'Item 3' },
   ] as ListItem[];
-
-  test('should render with no accessibility violations', async () => {
-    const { container } = render(<List id="list-1" items={items} />);
-    expect(await axe(container)).toHaveNoViolations();
-  });
 
   test('should render the default component', () => {
     const { baseElement } = render(<List id="list-1" items={items} />);

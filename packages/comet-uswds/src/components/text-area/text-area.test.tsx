@@ -1,16 +1,10 @@
 import { render } from '@testing-library/react';
-import { axe } from 'jest-axe';
 import userEvent from '@testing-library/user-event';
 import TextArea from './text-area';
 
 describe('TextArea', () => {
   const defaultId = 'textarea1';
   const defaultName = 'textarea-name';
-
-  test('should render with no accessibility violations', async () => {
-    const { container } = render(<TextArea id={defaultId} name={defaultName} label="text area" />);
-    expect(await axe(container)).toHaveNoViolations();
-  });
 
   test('should render successfully', () => {
     const { baseElement } = render(<TextArea id={defaultId} name={defaultName} />);

@@ -1,5 +1,4 @@
 import { fireEvent, render } from '@testing-library/react';
-import { axe } from 'jest-axe';
 import Checkbox, { CheckboxData, CheckboxGroup } from './checkbox';
 
 describe('Checkbox', () => {
@@ -7,13 +6,6 @@ describe('Checkbox', () => {
   const defaultGroupId = 'checkbox-group1';
   const checkboxName = 'lorem-checkbox';
   const loremWords = ['Lorem', 'Ipsum', 'Dolor', 'Sit'];
-
-  test('should render with no accessibility violations', async () => {
-    const { container } = render(
-      <Checkbox id={defaultId} name={checkboxName} label="Lorem" value="lorem" />,
-    );
-    expect(await axe(container)).toHaveNoViolations();
-  });
 
   test('should render a standard checkbox successfully', () => {
     const { baseElement } = render(

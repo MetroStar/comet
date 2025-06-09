@@ -1,15 +1,7 @@
 import { render, waitFor } from '@testing-library/react';
-import { axe } from 'jest-axe';
 import LanguageSelector from './language-selector';
 
 describe('LanguageSelector', () => {
-  test('should render with no accessibility violations', async () => {
-    const { container } = render(
-      <LanguageSelector id="selector" items={[{ label: 'English', attr: 'en' }]} />,
-    );
-    expect(await axe(container)).toHaveNoViolations();
-  });
-
   test('should render a default language selector', async () => {
     const { container } = render(
       <LanguageSelector

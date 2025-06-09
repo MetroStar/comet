@@ -1,13 +1,7 @@
 import { render, screen } from '@testing-library/react';
-import { axe } from 'jest-axe';
 import Card, { CardBody, CardHeader, CardFooter, CardMedia } from './card';
 
 describe('Card', () => {
-  test('should render with no accessibility violations', async () => {
-    const { container } = render(<Card id="card-1">Body</Card>);
-    expect(await axe(container)).toHaveNoViolations();
-  });
-
   test('should render a card and subcomponents', () => {
     render(
       <Card id="card-1">

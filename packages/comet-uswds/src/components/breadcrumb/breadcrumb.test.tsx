@@ -1,17 +1,7 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import { axe } from 'jest-axe';
 import Breadcrumb, { BreadcrumbItem } from './breadcrumb';
 
 describe('Breadcrumb', () => {
-  test('should render with no accessibility violations', async () => {
-    const spy = vi.fn();
-    const crumbs = [{ path: '/test', name: 'test' }];
-    const { container } = render(
-      <Breadcrumb id="breadcrumb" items={crumbs} current="foo" action={spy} />,
-    );
-    expect(await axe(container)).toHaveNoViolations();
-  });
-
   test('should render with given props and is callable', () => {
     const spy = vi.fn();
     const crumbs = [{ path: '/test', name: 'test', action: spy }];

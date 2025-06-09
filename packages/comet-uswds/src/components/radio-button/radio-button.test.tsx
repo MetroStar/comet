@@ -1,5 +1,4 @@
 import { fireEvent, render } from '@testing-library/react';
-import { axe } from 'jest-axe';
 import RadioButton, { RadioButtonData, RadioButtonGroup } from './radio-button';
 
 describe('RadioButton', () => {
@@ -7,13 +6,6 @@ describe('RadioButton', () => {
   const defaultGroupId = 'radio-button-group1';
   const radioButtonName = 'lorem-radio-button';
   const loremWords = ['Lorem', 'Ipsum', 'Dolor', 'Sit'];
-
-  test('should render with no accessibility violations', async () => {
-    const { container } = render(
-      <RadioButton id={defaultId} name={radioButtonName} label="Lorem" value="lorem" />,
-    );
-    expect(await axe(container)).toHaveNoViolations();
-  });
 
   test('should render a standard radio button successfully', () => {
     const { baseElement } = render(

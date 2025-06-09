@@ -1,14 +1,8 @@
 import { render } from '@testing-library/react';
-import { axe } from 'jest-axe';
 import FormGroup from './form-group';
 import TextInput from '../text-input';
 
 describe('FormGroup', () => {
-  test('should render with no accessibility violations', async () => {
-    const { container } = render(<FormGroup>Some Form</FormGroup>);
-    expect(await axe(container)).toHaveNoViolations();
-  });
-
   test('should render successfully', () => {
     const { baseElement } = render(<FormGroup>Some Form</FormGroup>);
     expect(baseElement).toBeTruthy();

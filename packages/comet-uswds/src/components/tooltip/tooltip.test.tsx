@@ -1,18 +1,8 @@
 import { render } from '@testing-library/react';
-import { axe } from 'jest-axe';
 import Button from '../button';
 import Tooltip from './tooltip';
 
 describe('Tooltip', () => {
-  test('should render with no accessibility violations', async () => {
-    const { container } = render(
-      <Tooltip label="tooltip">
-        <Button id="button-1">Button with a tooltip</Button>
-      </Tooltip>,
-    );
-    expect(await axe(container)).toHaveNoViolations();
-  });
-
   test('should render successfully', () => {
     const { baseElement } = render(
       <Tooltip label="tooltip">

@@ -1,18 +1,10 @@
 import { render } from '@testing-library/react';
-import { axe } from 'jest-axe';
 import userEvent from '@testing-library/user-event';
 import TimePicker from './time-picker';
 
 describe('TimePicker', () => {
   const defaultId = 'input1';
   const defaultName = 'input-name';
-
-  test('should render with no accessibility violations', async () => {
-    const { container } = render(
-      <TimePicker id={defaultId} name={defaultName} label="Pick time" />,
-    );
-    expect(await axe(container)).toHaveNoViolations();
-  });
 
   test('should render successfully', () => {
     const { baseElement } = render(

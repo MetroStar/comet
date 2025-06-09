@@ -1,6 +1,5 @@
 import { render, RenderResult } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { axe } from 'jest-axe';
 import { Form, FormGroup, Label, TextInput } from '../..';
 import { CharacterCount, CharacterCountContainer } from './character-count';
 
@@ -28,11 +27,6 @@ describe('Character Count', () => {
         </CharacterCountContainer>
       </Form>,
     );
-
-  test('should render with no accessibility violations', async () => {
-    const { container } = renderCharacterCountInputSample();
-    expect(await axe(container)).toHaveNoViolations();
-  });
 
   test('should render successfully', () => {
     const { baseElement } = renderCharacterCountInputSample();

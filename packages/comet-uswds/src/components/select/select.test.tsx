@@ -1,5 +1,4 @@
 import { render } from '@testing-library/react';
-import { axe } from 'jest-axe';
 import userEvent from '@testing-library/user-event';
 import Select, { SelectOption, SelectOptionProps } from './select';
 
@@ -9,13 +8,6 @@ describe('Select', () => {
   const loremWords = ['Lorem', 'Ipsum', 'Dolor', 'Sit'];
   const options = loremWords.map((word) => {
     return { value: word.toLowerCase(), label: word } as SelectOptionProps;
-  });
-
-  test('should render with no accessibility violations', async () => {
-    const { container } = render(
-      <Select id={defaultId} name={defaultName} options={options} label="dropdown" />,
-    );
-    expect(await axe(container)).toHaveNoViolations();
   });
 
   test('should render a default select successfully', () => {

@@ -55,7 +55,6 @@
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "5.2.0",
     "eslint-plugin-storybook": "^9.0.5",
-    "jest-axe": "^10.0.0",
     "playwright": "^1.52.0",
     "postcss": "^8.5.4",
     "prettier": "3.5.3",

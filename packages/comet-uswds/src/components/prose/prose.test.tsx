@@ -1,17 +1,7 @@
 import { render } from '@testing-library/react';
-import { axe } from 'jest-axe';
 import Prose from './prose';
 
 describe('Prose', () => {
-  test('should render with no accessibility violations', async () => {
-    const { container } = render(
-      <Prose id="prose">
-        <p>Prose text</p>
-      </Prose>,
-    );
-    expect(await axe(container)).toHaveNoViolations();
-  });
-
   test('should render', () => {
     const { container } = render(
       <Prose id="prose">

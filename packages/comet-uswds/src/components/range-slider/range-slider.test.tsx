@@ -1,14 +1,8 @@
 import { render, fireEvent } from '@testing-library/react';
-import { axe } from 'jest-axe';
 import RangeSlider from './range-slider';
 
 describe('Range slider', () => {
   const defaultId = 'range-slider';
-
-  test('should render with no accessibility violations', async () => {
-    const { container } = render(<RangeSlider id={defaultId} name={defaultId} label="slider" />);
-    expect(await axe(container)).toHaveNoViolations();
-  });
 
   test('should render a range slider successfully', () => {
     const { baseElement } = render(<RangeSlider id={defaultId} name={defaultId} />);

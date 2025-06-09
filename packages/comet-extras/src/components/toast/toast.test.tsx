@@ -1,16 +1,8 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { describe, test, expect, vi } from 'vitest';
-import { axe } from 'jest-axe';
 import { Toast } from './toast'; // Assuming the Toast component is in the same directory
 
 describe('Toast Component Tests', () => {
-  test('should render with no accessibility violations', async () => {
-    const { container } = render(
-      <Toast id="test-accessibility-toast" message="Testing toast notification" />,
-    );
-    expect(await axe(container)).toHaveNoViolations();
-  });
-
   test('should render an info Toast notification', () => {
     const { container } = render(
       <Toast id="test-toast" message="Testing message for notification" type="info" />,

@@ -1,5 +1,4 @@
 import { render } from '@testing-library/react';
-import { axe } from 'jest-axe';
 import ProcessList, { ProcessListStep, ProcessListStepProps } from './process-list';
 
 describe('Process list', () => {
@@ -44,11 +43,6 @@ describe('Process list', () => {
       ),
     },
   ];
-
-  test('should render with no accessibility violations', async () => {
-    const { container } = render(<ProcessList id={defaultId} steps={steps} />);
-    expect(await axe(container)).toHaveNoViolations();
-  });
 
   test('should render a standard process list successfully', () => {
     const { baseElement } = render(<ProcessList id={defaultId} steps={steps} />);

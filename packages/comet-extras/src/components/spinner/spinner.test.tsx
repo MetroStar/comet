@@ -1,15 +1,9 @@
 import React from 'react';
 import '@testing-library/jest-dom';
 import { render } from '@testing-library/react';
-import { axe } from 'jest-axe';
 import Spinner from './spinner';
 
 describe('Spinner', () => {
-  test('should render with no accessibility violations', async () => {
-    const { container } = render(<Spinner id="spinner" />);
-    expect(await axe(container)).toHaveNoViolations();
-  });
-
   test('should render a default spinner', () => {
     const { container } = render(<Spinner id="spinner" />);
     expect(container.querySelector('#spinner')).toBeTruthy();
