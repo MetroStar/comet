@@ -26,11 +26,23 @@ npm run storybook
 
 To make sure your changes do not break any unit tests, run the following:
 
+1. To install Playwright browser binaries, run the following (first time only):
+
+```sh
+npx playwright install
+```
+
+2. To run execute unit tests, run the following:
+
 ```sh
 npm run test
 ```
 
-Ensure to review the coverage directory for code coverage details.
+3. To execute unit tests with code coverage, run the following:
+
+```sh
+npm run test:coverage
+```
 
 ## Running Code Quality Checks
 
