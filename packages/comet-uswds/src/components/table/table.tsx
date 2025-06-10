@@ -102,12 +102,7 @@ export const Table = ({
     const tableElement = tableRef.current;
     // If sortable, call table.on to enable functionality
     if (sortable) {
-      // Check for page locale to ensure proper sorting behavior
-      const locale = navigator.language;
-      console.log(`Table locale: ${locale}`);
-      if (locale) {
-        table.on(tableElement);
-      }
+      table.on(tableElement);
     }
 
     // Ensure cleanup after the effect
