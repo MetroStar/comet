@@ -1,5 +1,4 @@
 import { render } from '@testing-library/react';
-import { axe } from 'jest-axe';
 import InPageNavigation from './in-page-navigation';
 
 describe('InPageNavigation', () => {
@@ -12,17 +11,6 @@ describe('InPageNavigation', () => {
       disconnect: () => null,
     });
     window.IntersectionObserver = mockIntersectionObserver;
-  });
-
-  test('should render with no accessibility violations', async () => {
-    const { container } = render(
-      <InPageNavigation
-        id="nav"
-        pageTitle="Page Title"
-        items={[{ heading: 'Heading 1', content: 'Content 1', headingType: 'h2' }]}
-      />,
-    );
-    expect(await axe(container)).toHaveNoViolations();
   });
 
   test('should render a default in-page navigation', async () => {

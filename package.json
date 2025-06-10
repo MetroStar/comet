@@ -7,7 +7,9 @@
     "start": "storybook dev -p 6006",
     "storybook": "storybook dev -p 6006",
     "test": "vitest --run",
-    "test:coverage": "vitest --run --coverage",
+    "test:coverage": "vitest --run --project=unit --coverage",
+    "test:unit": "vitest --run --project=unit",
+    "test:storybook": "vitest --run --project=storybook",
     "lint": "npx eslint packages/**/src/ --fix --config eslint.config.js",
     "lint:ci": "npx eslint packages/**/src/ --config eslint.config.js",
     "format": "npx prettier packages/**/src --write",
@@ -35,6 +37,7 @@
     "@storybook/addon-a11y": "^9.0.5",
     "@storybook/addon-docs": "^9.0.5",
     "@storybook/addon-links": "^9.0.5",
+    "@storybook/addon-vitest": "^9.0.5",
     "@storybook/react-vite": "^9.0.5",
     "@testing-library/dom": "10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
@@ -51,7 +54,7 @@
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "5.2.0",
     "eslint-plugin-storybook": "^9.0.5",
-    "jest-axe": "^10.0.0",
+    "playwright": "^1.52.0",
     "postcss": "^8.5.4",
     "prettier": "3.5.3",
     "react": "^19.0.0",
@@ -64,7 +67,7 @@
     "typescript": "5.8.3",
     "typescript-eslint": "^8.33.1",
     "vite": "^6.3.5",
-    "vitest": "^3.0.5"
+    "vitest": "^3.2.2"
   },
   "optionalDependencies": {
     "@rollup/rollup-linux-x64-gnu": "4.24.0"

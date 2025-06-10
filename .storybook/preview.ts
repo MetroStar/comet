@@ -5,12 +5,14 @@ import './global.css';
 const preview = {
   parameters: {
     actions: { argTypesRegex: '^on[A-Z].*' },
+
     controls: {
       matchers: {
         color: /(background|color)$/i,
         date: /Date$/,
       },
     },
+
     options: {
       storySort: {
         order: [
@@ -22,6 +24,10 @@ const preview = {
           'Data Viz',
         ],
       },
+    },
+
+    a11y: {
+      test: 'error',
     },
   },
 

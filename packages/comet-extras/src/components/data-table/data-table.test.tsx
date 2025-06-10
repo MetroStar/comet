@@ -1,6 +1,5 @@
 import React from 'react';
 import { act, render } from '@testing-library/react';
-import { axe } from 'jest-axe';
 import DataTable from './data-table';
 import { createColumnHelper } from '@tanstack/react-table';
 
@@ -61,11 +60,6 @@ describe('DataTable', () => {
       header: () => 'Last Name',
     }),
   ];
-
-  test('should render with no accessibility violations', async () => {
-    const { container } = render(<DataTable id="table-1" columns={[]} data={[]}></DataTable>);
-    expect(await axe(container)).toHaveNoViolations();
-  });
 
   test('should render a basic data table successfully', () => {
     const { baseElement } = render(

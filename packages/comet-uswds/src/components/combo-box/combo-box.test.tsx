@@ -1,5 +1,4 @@
 import { render } from '@testing-library/react';
-import { axe } from 'jest-axe';
 import userEvent from '@testing-library/user-event';
 import ComboBox, { ComboBoxOptionProps } from './combo-box';
 
@@ -9,13 +8,6 @@ describe('ComboBox', () => {
   const loremWords = ['Lorem', 'Ipsum', 'Dolor', 'Sit'];
   const options = loremWords.map((word) => {
     return { value: word.toLowerCase(), label: word } as ComboBoxOptionProps;
-  });
-
-  test('should render with no accessibility violations', async () => {
-    const { container } = render(
-      <ComboBox id={defaultId} name={defaultName} options={options} label="Pick option" />,
-    );
-    expect(await axe(container)).toHaveNoViolations();
   });
 
   test('should render a default combo box successfully', () => {

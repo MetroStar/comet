@@ -1,14 +1,7 @@
 import { render, fireEvent, screen } from '@testing-library/react';
-import { axe } from 'jest-axe';
 import { Toggle } from './toggle'; // Assuming the Toggle component is in the same directory
 
 describe('Toggle Component Tests', () => {
-  test('should render with no accessibility violations', async () => {
-    const { container } = render(
-      <Toggle id="test-toggle" label="Test toggle" onChange={vi.fn()} />,
-    );
-    expect(await axe(container)).toHaveNoViolations();
-  });
   // Test to check if the Toggle renders correctly
   test('renders the Toggle component', () => {
     render(<Toggle id="test-toggle" />);

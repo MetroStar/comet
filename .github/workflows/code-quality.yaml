@@ -10,6 +10,9 @@ permissions:
 jobs:
   run-build:
     runs-on: ubuntu-latest
+    container:
+      # https://playwright.dev/docs/docker#pull-the-image
+      image: mcr.microsoft.com/playwright:v1.52.0-noble
 
     steps:
       - name: Checkout
@@ -46,6 +49,12 @@ jobs:
 
       - name: Run Vitest tests with coverage
         run: npm run test:coverage
+
+      - name: Install Playwright browsers
+        run: npx playwright install
+
+      - name: Run Storybook tests with accessibility checks
+        run: npm run test:storybook
 
   run-lint-checks:
     runs-on: ubuntu-latest

@@ -1,21 +1,7 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import { axe } from 'jest-axe';
 import Accordion from './accordion';
 
 describe('Accordion', () => {
-  test('should render with no accessibility violations', async () => {
-    const items = [
-      {
-        id: 'item-1',
-        label: 'foo',
-        expanded: false,
-        children: <span>bar</span>,
-      },
-    ];
-    const { container } = render(<Accordion id="accordion" items={items} />);
-    expect(await axe(container)).toHaveNoViolations();
-  });
-
   test('should render with given props', () => {
     const items = [
       {

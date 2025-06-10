@@ -1,5 +1,4 @@
 import { render, fireEvent } from '@testing-library/react';
-import { axe } from 'jest-axe';
 import userEvent from '@testing-library/user-event';
 import DatePicker from './date-picker';
 
@@ -7,11 +6,6 @@ describe('Date picker', () => {
   const defaultId = 'date-picker1';
   const defaultName = 'date-picker-name';
   const today = new Date();
-
-  test('should render with no accessibility violations', async () => {
-    const { container } = render(<DatePicker id={defaultId} name={defaultName} label="date" />);
-    expect(await axe(container)).toHaveNoViolations();
-  });
 
   test('should render a default date picker successfully', () => {
     const { baseElement } = render(<DatePicker id={defaultId} name={defaultName} />);

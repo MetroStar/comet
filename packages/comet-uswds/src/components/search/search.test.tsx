@@ -1,14 +1,9 @@
 import React, { FormEvent } from 'react';
 import { fireEvent, render } from '@testing-library/react';
-import { axe } from 'jest-axe';
 import Search from './search';
 
 describe('Search', () => {
   const defaultId = 'search1';
-  test('should render with no accessibility violations', async () => {
-    const { container } = render(<Search id={defaultId} />);
-    expect(await axe(container)).toHaveNoViolations();
-  });
 
   test('should render a default search successfully', () => {
     const { baseElement } = render(<Search id={defaultId} />);

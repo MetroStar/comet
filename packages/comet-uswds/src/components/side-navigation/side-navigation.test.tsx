@@ -1,5 +1,4 @@
 import { render } from '@testing-library/react';
-import { axe } from 'jest-axe';
 import SideNavigation, { SideNavigationItemProps } from './side-navigation';
 import { JSX } from 'react';
 
@@ -11,24 +10,6 @@ describe('SideNavigation', () => {
       Navigation Link
     </a>
   );
-
-  test('should render with no accessibility violations', async () => {
-    const flatNavigation: SideNavigationItemProps[] = [
-      {
-        anchor: createAnchor(true),
-      },
-      ...[...Array(4)].map(() => {
-        return {
-          anchor: createAnchor(),
-        };
-      }),
-    ];
-
-    const { container } = render(
-      <SideNavigation id={defaultId} ariaLabel={ariaLabel} items={flatNavigation} />,
-    );
-    expect(await axe(container)).toHaveNoViolations();
-  });
 
   test('should render a flat side navigation successfully', () => {
     const flatNavigation: SideNavigationItemProps[] = [

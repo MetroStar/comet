@@ -34,6 +34,7 @@ export const WithDefaultValue = {
     id: 'text-area-2',
     name: 'text-area-2',
     defaultValue: 'A long time ago in a galaxy far, far away....',
+    label: 'Text Area',
   },
   render: (args: TextAreaProps) => <TextArea {...args} />,
 };

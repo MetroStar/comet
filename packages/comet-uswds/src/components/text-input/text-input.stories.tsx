@@ -45,6 +45,8 @@ export const WithMask = {
     id: 'input-mask',
     type: 'text',
     mask: 'ssn',
+    label: 'Social Security Number',
+    helperText: 'Enter your SSN',
   },
   render: (args: TextInputProps) => <TextInput {...args} />,
 };
@@ -53,6 +55,8 @@ export const WithPrefix = {
   args: {
     id: 'input-prefix',
     type: 'text',
+    label: 'Input with Prefix',
+    helperText: 'Enter a credit card number',
     prefix: <Icon id="credit-card-icon" type="credit_card" />,
     'aria-label': 'Input credit card',
   },
@@ -63,6 +67,8 @@ export const WithSuffix = {
   args: {
     id: 'input-suffix',
     type: 'number',
+    label: 'Input with Suffix',
+    helperText: 'Enter a weight in pounds',
     suffix: 'lbs',
     'aria-label': 'Input pounds',
   },
@@ -73,6 +79,8 @@ export const WithChangeEvent = {
   args: {
     id: 'input-change-event',
     type: 'text',
+    label: 'Input with Change Event',
+    helperText: 'Type something to see an alert',
     placeholder: 'Will alert on change...',
     onChange: (e: any) => alert(e.target.value),
   },

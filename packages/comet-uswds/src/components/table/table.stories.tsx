@@ -93,7 +93,7 @@ const createTable = (args: TableProps) => {
 export const Default = {
   args: {
     id: 'table-1',
-    tabIndex: 1,
+    tabIndex: 0,
     caption: 'Voter Data',
     borderless: false,
     striped: false,
@@ -108,7 +108,7 @@ export const Default = {
 export const OnSort = {
   args: {
     id: 'table-1',
-    tabIndex: 1,
+    tabIndex: 0,
     caption: 'Voter Data',
     borderless: false,
     striped: false,
