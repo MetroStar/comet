@@ -7,16 +7,16 @@ const meta: Meta<typeof Spinner> = {
   component: Spinner,
   argTypes: {
     id: { required: true },
-    type: { 
+    type: {
       control: 'select',
       options: ['tiny', 'small', 'medium', 'large'],
-      defaultValue: 'medium'
+      defaultValue: 'medium',
     },
     textPosition: {
       control: 'select',
       options: ['top', 'right', 'bottom', 'left'],
-      defaultValue: 'bottom'
-    }
+      defaultValue: 'bottom',
+    },
   },
 };
 export default meta;

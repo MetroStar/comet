@@ -18,7 +18,9 @@ describe('Spinner', () => {
   });
 
   describe('size variations', () => {
-    test.each(['tiny', 'small', 'medium', 'large'] as const)('should render a %s spinner', (size) => {
+    test.each(['tiny', 'small', 'medium', 'large'] as const)(
+      'should render a %s spinner',
+      (size) => {
         const { container } = render(<Spinner id="spinner" type={size} />);
         expect(container.querySelector('#spinner > div')).toHaveClass(`spinner-${size}`);
       },
@@ -27,16 +29,16 @@ describe('Spinner', () => {
 
   describe('text positioning', () => {
     const loadingText = 'Loading...';
-    
+
     test.each(['top', 'right', 'bottom', 'left'] as const)(
       'should position text %s of spinner',
       (position) => {
         const { container } = render(
-          <Spinner id="spinner" loadingText={loadingText} textPosition={position} />
+          <Spinner id="spinner" loadingText={loadingText} textPosition={position} />,
         );
         expect(container.querySelector('#spinner')).toHaveClass(`text-position-${position}`);
         expect(container.querySelector('.loading-text')).toHaveTextContent(loadingText);
-      }
+      },
     );
 
     test('should default to bottom text position when not specified', () => {
