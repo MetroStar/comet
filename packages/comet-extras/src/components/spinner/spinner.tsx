@@ -39,7 +39,7 @@ export const Spinner = ({
   const classes = classnames(
     'spinner-container',
     `spinner-container-${type}`,
-    `text-position-${textPosition}`,
+    `spinner-text-position-${textPosition}`,
     className,
   );
 
