@@ -7,12 +7,18 @@ figma.connect(
   {
     props: {
       type: figma.enum('Type', {
+        Tiny: 'tiny',
         Small: 'small',
+        Medium: 'medium',
         Large: 'large',
       }),
     },
     example: ({ type }) => (
-      <Spinner id="spinner" type={type as 'small' | 'large'} loadingText="Loading..." />
+      <Spinner
+        id="spinner"
+        type={type as 'tiny' | 'small' | 'medium' | 'large'}
+        loadingText="Loading..."
+      />
     ),
   },
 );
