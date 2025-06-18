@@ -5,20 +5,20 @@
   gap: 0.75rem;
 }
 
-.text-position-left {
+.spinner-text-position-left {
   flex-direction: row-reverse;
 }
 
-.text-position-right {
+.spinner-text-position-right {
   flex-direction: row;
 }
 
-.text-position-top {
+.spinner-text-position-top {
   flex-direction: column-reverse;
   text-align: center;
 }
 
-.text-position-bottom {
+.spinner-text-position-bottom {
   flex-direction: column;
   text-align: center;
 }
