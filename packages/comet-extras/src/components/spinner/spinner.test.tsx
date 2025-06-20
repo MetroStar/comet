@@ -30,14 +30,16 @@ describe('Spinner', () => {
         const { container } = render(
           <Spinner id="spinner" loadingText={loadingText} textPosition={position} />,
         );
-        expect(container.querySelector('#spinner')).toHaveClass(`text-position-${position}`);
+        expect(container.querySelector('#spinner')).toHaveClass(
+          `spinner-text-position-${position}`,
+        );
         expect(container.querySelector('.loading-text')).toHaveTextContent(loadingText);
       },
     );
 
     test('should default to bottom text position when not specified', () => {
       const { container } = render(<Spinner id="spinner" loadingText={loadingText} />);
-      expect(container.querySelector('#spinner')).toHaveClass('text-position-bottom');
+      expect(container.querySelector('#spinner')).toHaveClass('spinner-text-position-bottom');
     });
   });
 
