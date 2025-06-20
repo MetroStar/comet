@@ -10,11 +10,15 @@ export interface SpinnerProps {
   /**
    * The size of the spinner to display
    */
-  type?: 'small' | 'large';
+  type?: 'tiny' | 'small' | 'medium' | 'large';
   /**
    * An optional text value to display with the indicator
    */
   loadingText?: string;
+  /**
+   * Position of the loading text relative to the spinner
+   */
+  textPosition?: 'top' | 'right' | 'bottom' | 'left';
   /**
    * A custom class to apply to the component
    */
@@ -26,22 +30,22 @@ export interface SpinnerProps {
  */
 export const Spinner = ({
   id,
-  type = 'large',
-  loadingText = 'Loading...',
+  type = 'medium',
+  loadingText = '',
+  textPosition = 'bottom',
   className,
   ...props
 }: SpinnerProps & JSX.IntrinsicElements['div']): React.ReactElement => {
   const classes = classnames(
-    { 'spinner-container-large': type === 'large' },
-    { 'spinner-container-small': type === 'small' },
+    'spinner-container',
+    `spinner-container-${type}`,
+    `spinner-text-position-${textPosition}`,
     className,
   );
 
   return (
     <div id={id} className={classes} {...props}>
-      <div className={type === 'large' ? 'spinner-large' : 'spinner-small'}>
-        <div className={type === 'large' ? 'dot-spinner-large' : 'dot-spinner-small'}></div>
-      </div>
+      <div className={`spinner-${type}`} />
       {loadingText && <div className="loading-text">{loadingText}</div>}
     </div>
   );

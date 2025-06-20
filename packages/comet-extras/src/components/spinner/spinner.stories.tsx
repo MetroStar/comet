@@ -7,7 +7,16 @@ const meta: Meta<typeof Spinner> = {
   component: Spinner,
   argTypes: {
     id: { required: true },
-    type: { control: 'select' },
+    type: {
+      control: 'select',
+      options: ['tiny', 'small', 'medium', 'large'],
+      defaultValue: 'medium',
+    },
+    textPosition: {
+      control: 'select',
+      options: ['top', 'right', 'bottom', 'left'],
+      defaultValue: 'bottom',
+    },
   },
 };
 export default meta;
@@ -15,8 +24,9 @@ export default meta;
 export const Default = {
   args: {
     id: 'spinner',
-    type: 'large',
-    loadingText: 'Loading...',
+    type: 'medium',
+    loadingText: '',
+    textPosition: 'bottom',
     className: '',
   },
   render: (args: SpinnerProps) => <Spinner {...args} />,
