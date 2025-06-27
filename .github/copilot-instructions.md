@@ -1,4 +1,4 @@
-# Comet Starter Project
+# Comet
 
 This project is a React with TypeScript Component Library based on USWDS. It is designed to provide a set of modular tools to accelerate developer productivity and simplify the use of Design Systems, particularly USWDS.
 
