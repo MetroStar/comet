@@ -21,7 +21,7 @@
   "dependencies": {
     "@types/figlet": "^1.7.0",
     "commander": "^14.0.0",
-    "figlet": "^1.8.1"
+    "figlet": "^1.8.2"
   },
   "repository": {
     "type": "git",
