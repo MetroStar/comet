@@ -6,6 +6,8 @@
 
 [![GitHub license](https://img.shields.io/github/license/metrostar/comet.svg)](https://github.com/metrostar/comet/blob/main/LICENSE)
 [![Build Status](https://img.shields.io/github/actions/workflow/status/metrostar/comet/build-and-deploy.yaml?branch=main)](https://github.com/metrostar/comet/actions)
+[![Coverage Status](https://img.shields.io/codecov/c/github/metrostar/comet.svg)](https://codecov.io/gh/metrostar/comet)
+[![npm downloads](https://img.shields.io/npm/dm/@metrostar/comet-uswds.svg)](https://www.npmjs.com/package/metrostar/comet-uswds)
 [![node version](https://img.shields.io/node/v/@metrostar/comet-uswds)](https://www.npmjs.com/package/@metrostar/comet-uswds)
 [![uswds version](https://img.shields.io/github/package-json/dependency-version/metrostar/comet/@uswds/uswds?filename=packages%2Fcomet-uswds%2Fpackage.json)](https://www.npmjs.com/package/@uswds/uswds)
 <br/>
