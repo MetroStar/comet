@@ -1,6 +1,6 @@
 {
   "name": "@metrostar/comet-extras",
-  "version": "1.7.2",
+  "version": "1.7.3",
   "description": "A set of custom components, intended to fill in the gaps where USWDS does not provide an implementation.",
   "license": "Apache-2.0",
   "main": "./dist/cjs/index.js",
@@ -28,5 +28,8 @@
     "type": "git",
     "url": "https://github.com/MetroStar/comet.git",
     "directory": "packages/comet-extras"
+  },
+  "engines": {
+    "node": ">= 20"
   }
 }
