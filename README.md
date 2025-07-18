@@ -1,10 +1,18 @@
-<p style="text-align: center;">
+<p>
   <picture>
     <img alt="Comet Component Library" src="https://raw.githubusercontent.com/MetroStar/comet/main/images/comet-logo.png" width="400px">
   </picture>
 </p>
 
+[![GitHub license](https://img.shields.io/github/license/metrostar/comet.svg)](https://github.com/metrostar/comet/blob/main/LICENSE)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/metrostar/comet/build-and-deploy.yaml?branch=main)](https://github.com/metrostar/comet/actions)
+[![node version](https://img.shields.io/node/v/@metrostar/comet-uswds)](https://www.npmjs.com/package/@metrostar/comet-uswds)
+[![uswds version](https://img.shields.io/github/package-json/dependency-version/metrostar/comet/@uswds/uswds?filename=packages%2Fcomet-uswds%2Fpackage.json)](https://www.npmjs.com/package/@uswds/uswds)
 <br/>
+[![Comet USWDS](https://img.shields.io/npm/v/@metrostar/comet-uswds.svg?label=comet-uswds)](https://www.npmjs.com/package/@metrostar/comet-uswds)
+[![Comet Extras](https://img.shields.io/npm/v/@metrostar/comet-extras.svg?label=comet-extras)](https://www.npmjs.com/package/@metrostar/comet-extras)
+[![Comet Data Viz](https://img.shields.io/npm/v/@metrostar/comet-data-viz.svg?label=comet-data-viz)](https://www.npmjs.com/package/@metrostar/comet-data-viz)
+[![Comet CLI](https://img.shields.io/npm/v/@metrostar/comet-cli.svg?label=comet-cli)](https://www.npmjs.com/package/@metrostar/comet-cli)
 
 Comet is a React with TypeScript Component Library based on USWDS.
 
