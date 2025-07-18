@@ -4,7 +4,7 @@
   </picture>
 </p>
 
-[![GitHub license](https://img.shields.io/github/license/metrostar/comet.svg)](https://github.com/metrostar/comet/blob/main/LICENSE)
+[![GitHub license](https://img.shields.io/github/license/metrostar/comet.svg)](https://github.com/metrostar/comet/blob/main/LICENSE.md)
 [![Build Status](https://img.shields.io/github/actions/workflow/status/metrostar/comet/build-and-deploy.yaml?branch=main)](https://github.com/metrostar/comet/actions)
 [![Coverage Status](https://img.shields.io/codecov/c/github/metrostar/comet.svg)](https://codecov.io/gh/metrostar/comet)
 [![npm downloads](https://img.shields.io/npm/dm/@metrostar/comet-uswds.svg)](https://www.npmjs.com/package/@metrostar/comet-uswds)
