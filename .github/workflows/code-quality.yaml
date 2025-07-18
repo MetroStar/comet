@@ -57,6 +57,7 @@ jobs:
         uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
+          files: coverage
 
       - name: Install Playwright browsers
         run: npx playwright install
