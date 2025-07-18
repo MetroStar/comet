@@ -3,6 +3,9 @@ name: Code Quality Checks
 on:
   pull_request:
     branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -49,6 +52,11 @@ jobs:
 
       - name: Run Vitest tests with coverage
         run: npm run test:coverage
+
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
 
       - name: Install Playwright browsers
         run: npx playwright install
