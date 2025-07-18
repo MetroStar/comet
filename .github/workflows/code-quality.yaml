@@ -3,6 +3,9 @@ name: Code Quality Checks
 on:
   pull_request:
     branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -54,7 +57,6 @@ jobs:
         uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          files: coverage
 
       - name: Install Playwright browsers
         run: npx playwright install
