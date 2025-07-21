@@ -1,6 +1,7 @@
 import { render } from '@testing-library/react';
 import FormGroup from './form-group';
 import TextInput from '../text-input';
+import React from 'react';
 
 describe('FormGroup', () => {
   test('should render successfully', () => {
@@ -63,5 +64,106 @@ describe('FormGroup', () => {
     const { baseElement } = render(<FormGroup errors={errors}>Some Form</FormGroup>);
     const formGroup = baseElement.querySelector('.usa-form-group--error');
     expect(formGroup).toBeTruthy();
+  });
+
+  test('should extract fieldControlId from children when fieldControl has usa-combo-box class', () => {
+    const mockChild = <input id="child-input" />;
+    const mockFieldControl = <div className="usa-combo-box">{mockChild}</div>;
+
+    const { baseElement } = render(
+      <FormGroup id="form-group-1" fieldControl={mockFieldControl} label="Test Label" />,
+    );
+
+    const label = baseElement.querySelector('label');
+    expect(label).toHaveAttribute('for', 'child-input');
+  });
+
+  test('should extract fieldControlId from children when fieldControl has usa-time-picker class', () => {
+    const mockChild = <input id="time-input" />;
+    const mockFieldControl = <div className="usa-time-picker">{mockChild}</div>;
+
+    const { baseElement } = render(
+      <FormGroup id="form-group-1" fieldControl={mockFieldControl} label="Test Label" />,
+    );
+
+    const label = baseElement.querySelector('label');
+    expect(label).toHaveAttribute('for', 'time-input');
+  });
+
+  test('should extract fieldControlId from children when fieldControl has usa-date-picker class', () => {
+    const mockChild = <input id="date-input" />;
+    const mockFieldControl = <div className="usa-date-picker">{mockChild}</div>;
+
+    const { baseElement } = render(
+      <FormGroup id="form-group-1" fieldControl={mockFieldControl} label="Test Label" />,
+    );
+
+    const label = baseElement.querySelector('label');
+    expect(label).toHaveAttribute('for', 'date-input');
+  });
+
+  test('should handle fieldControl with special class but children without id', () => {
+    const mockChild = <input name="no-id-input" />;
+    const mockFieldControl = <div className="usa-combo-box">{mockChild}</div>;
+
+    const { baseElement } = render(
+      <FormGroup id="form-group-1" fieldControl={mockFieldControl} label="Test Label" />,
+    );
+
+    const label = baseElement.querySelector('label');
+    // Should not have for attribute when child has no id
+    expect(label).not.toHaveAttribute('for');
+  });
+
+  test('should handle fieldControl with special class but children is not a valid React element', () => {
+    const mockFieldControl = (
+      <div className="usa-combo-box">{'just a string, not a React element'}</div>
+    );
+
+    const { baseElement } = render(
+      <FormGroup id="form-group-1" fieldControl={mockFieldControl} label="Test Label" />,
+    );
+
+    const label = baseElement.querySelector('label');
+    // Should not have for attribute when children is not a valid React element
+    expect(label).not.toHaveAttribute('for');
+  });
+
+  test('should add aria-describedby when fieldControl does not have special wrapper classes', () => {
+    const mockFieldControl = <input id="regular-input" name="regular-input" />;
+
+    const { baseElement } = render(
+      <FormGroup
+        id="form-group-1"
+        fieldControl={mockFieldControl}
+        label="Test Label"
+        helperText="Helper text"
+      />,
+    );
+
+    const input = baseElement.querySelector('input');
+    expect(input).toHaveAttribute('aria-describedby', 'form-group-1-helper-text');
+
+    const label = baseElement.querySelector('label');
+    expect(label).toHaveAttribute('for', 'regular-input');
+  });
+
+  test('should handle fieldControl with no className', () => {
+    const mockFieldControl = <input id="no-class-input" />;
+
+    const { baseElement } = render(
+      <FormGroup
+        id="form-group-1"
+        fieldControl={mockFieldControl}
+        label="Test Label"
+        helperText="Helper text"
+      />,
+    );
+
+    const input = baseElement.querySelector('input');
+    expect(input).toHaveAttribute('aria-describedby', 'form-group-1-helper-text');
+
+    const label = baseElement.querySelector('label');
+    expect(label).toHaveAttribute('for', 'no-class-input');
   });
 });
