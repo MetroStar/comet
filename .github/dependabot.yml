@@ -30,7 +30,7 @@ updates:
           - '>=19.0.0'
       - dependency-name: '@types/node'
         versions:
-          - '>=19.0.0'
+          - '>=20.0.0'
       - dependency-name: '@types/react'
         versions:
           - '>=19.0.0'
