@@ -73,5 +73,8 @@
   },
   "overrides": {
     "storybook": "$storybook"
+  },
+  "dependencies": {
+    "@vitest/browser": "^3.2.4"
   }
 }
