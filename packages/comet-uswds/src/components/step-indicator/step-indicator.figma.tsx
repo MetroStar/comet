@@ -22,7 +22,13 @@ figma.connect(
         'Small counters': true,
       }),
     },
-    example: ({ hideLabels, hideCounterHeading, showCounters, centerCounters, showSmallCounters }) => (
+    example: ({
+      hideLabels,
+      hideCounterHeading,
+      showCounters,
+      centerCounters,
+      showSmallCounters,
+    }) => (
       <StepIndicator
         id="step-indicator"
         hideLabels={hideLabels}

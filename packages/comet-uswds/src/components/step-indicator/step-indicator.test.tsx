@@ -56,7 +56,12 @@ describe('StepIndicator', () => {
 
   test('should render step indicator with hidden counter heading', () => {
     const { baseElement } = render(
-      <StepIndicator id="step-indicator1" steps={steps} currentStep={0} hideCounterHeading={true} />,
+      <StepIndicator
+        id="step-indicator1"
+        steps={steps}
+        currentStep={0}
+        hideCounterHeading={true}
+      />,
     );
     const stepIndicator = baseElement.querySelector('.usa-step-indicator');
     expect(stepIndicator?.classList).not.toContain('usa-step-indicator__heading-counter');
