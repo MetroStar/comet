@@ -9,6 +9,9 @@ figma.connect(
       hideLabels: figma.enum('Type', {
         'No labels': true,
       }),
+      hideCounterHeading: figma.enum('Type', {
+        'No counter heading': true,
+      }),
       showCounters: figma.enum('Type', {
         Counters: true,
       }),
@@ -19,10 +22,17 @@ figma.connect(
         'Small counters': true,
       }),
     },
-    example: ({ hideLabels, showCounters, centerCounters, showSmallCounters }) => (
+    example: ({
+      hideLabels,
+      hideCounterHeading,
+      showCounters,
+      centerCounters,
+      showSmallCounters,
+    }) => (
       <StepIndicator
         id="step-indicator"
         hideLabels={hideLabels}
+        hideCounterHeading={hideCounterHeading}
         showCounters={showCounters}
         centerCounters={centerCounters}
         showSmallCounters={showSmallCounters}

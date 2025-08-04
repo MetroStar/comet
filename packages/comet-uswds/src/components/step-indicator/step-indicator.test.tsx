@@ -54,6 +54,19 @@ describe('StepIndicator', () => {
     expect(stepIndicator?.classList).toContain('usa-step-indicator--no-labels');
   });
 
+  test('should render step indicator with hidden counter heading', () => {
+    const { baseElement } = render(
+      <StepIndicator
+        id="step-indicator1"
+        steps={steps}
+        currentStep={0}
+        hideCounterHeading={true}
+      />,
+    );
+    const stepIndicator = baseElement.querySelector('.usa-step-indicator');
+    expect(stepIndicator?.classList).not.toContain('usa-step-indicator__heading-counter');
+  });
+
   test('should render step indicator with counters', () => {
     const { baseElement } = render(
       <StepIndicator id="step-indicator1" steps={steps} currentStep={0} showCounters={true} />,
