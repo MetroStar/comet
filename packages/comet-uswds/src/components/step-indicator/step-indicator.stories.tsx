@@ -23,6 +23,7 @@ export const Standard = {
     steps,
     currentStep: 0,
     hideLabels: false,
+    hideCounterHeading: false,
     showCounters: false,
     showSmallCounters: false,
     centerCounters: false,

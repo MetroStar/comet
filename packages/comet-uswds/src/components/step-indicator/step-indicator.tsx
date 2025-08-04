@@ -18,6 +18,10 @@ export interface StepIndicatorProps {
    * Hides labels of step indicator if set to true. Defaults to false.
    */
   hideLabels?: boolean;
+    /**
+   * Hides the counter heading for current step of total steps. Defaults to false.
+   */
+  hideCounterHeading?: boolean;
   /**
    * Shows step number in step indicator if set to true. Defaults to false.
    */
@@ -44,6 +48,7 @@ export const StepIndicator = ({
   steps,
   currentStep,
   hideLabels = false,
+  hideCounterHeading = false,
   showCounters = false,
   showSmallCounters = false,
   centerCounters = false,
@@ -85,7 +90,7 @@ export const StepIndicator = ({
           );
         })}
       </ol>
-      <div className="usa-step-indicator__header">
+      {!hideCounterHeading && <div className="usa-step-indicator__header">
         {createElement(
           headingLevel,
           { className: 'usa-step-indicator__heading' },
@@ -98,7 +103,8 @@ export const StepIndicator = ({
             <span className="usa-step-indicator__heading-text">{steps[currentStep]}</span>
           </>,
         )}
-      </div>
+      </div>}
+      
     </div>
   );
 };
