@@ -148,7 +148,7 @@ export const Default = {
     sortCol: 'lastName',
     pageable: true,
     pageIndex: 0,
-    pageSize: 3,
+    pageSize: 5,
     className: 'width-full',
   },
   render: (args: DataTableProps) => <DataTable {...args} />,
@@ -156,7 +156,7 @@ export const Default = {
 
 export const WithExpandableRows = {
   args: {
-    id: 'table-expandable',
+    id: 'table-expanded',
     columns: cols,
     data,
     striped: false,
@@ -165,10 +165,10 @@ export const WithExpandableRows = {
     sortCol: 'lastName',
     pageable: true,
     pageIndex: 0,
-    pageSize: 5,
+    pageSize: 3,
     expandable: true,
     getChildRows: (row: Person) => row.children,
-    initialExpanded: { '0': true, '1': true },
+    initialExpanded: { '0': true, '2': true },
     className: 'width-full',
   },
   render: (args: DataTableProps) => <DataTable {...args} />,

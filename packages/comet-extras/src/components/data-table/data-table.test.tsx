@@ -294,4 +294,123 @@ describe('DataTable', () => {
     const childRows = baseElement.querySelectorAll('.child-row');
     expect(childRows).toHaveLength(1); // John Doe's child should be expanded
   });
+
+  test('should handle pagination with expandable rows correctly', () => {
+    const dataWithChildren: Person[] = [
+      {
+        firstName: 'John',
+        lastName: 'Doe',
+        children: [
+          {
+            firstName: 'Johnny',
+            lastName: 'Doe Jr',
+          },
+        ],
+      },
+      {
+        firstName: 'Jane',
+        lastName: 'Smith',
+        children: [
+          {
+            firstName: 'Janie',
+            lastName: 'Smith Jr',
+          },
+        ],
+      },
+      {
+        firstName: 'Bob',
+        lastName: 'Wilson',
+        children: [
+          {
+            firstName: 'Bobby',
+            lastName: 'Wilson Jr',
+          },
+        ],
+      },
+    ];
+
+    const { baseElement } = render(
+      <DataTable
+        id="table-paginated-expandable"
+        columns={cols}
+        data={dataWithChildren}
+        expandable={true}
+        getChildRows={(row: Person) => row.children}
+        pageable={true}
+        pageSize={2}
+      ></DataTable>,
+    );
+
+    const table = baseElement.querySelector('#table-paginated-expandable');
+    expect(table).toBeTruthy();
+
+    // Should show 2 parent rows (John and Jane) on first page
+    const allRows = baseElement.querySelectorAll('tbody tr');
+    expect(allRows).toHaveLength(2); // 2 parent rows (child rows not expanded initially)
+
+    // Should have pagination buttons since we have 3 total parent rows with pageSize 2
+    const pageButtons = baseElement.querySelectorAll(
+      '.table-paging-btn:not(.table-paging-prev):not(.table-paging-next)',
+    );
+    expect(pageButtons.length).toBeGreaterThan(0); // Should have page buttons
+  });
+
+  test('should not count child rows against pagination when expanded', async () => {
+    const dataWithChildren: Person[] = [
+      {
+        firstName: 'John',
+        lastName: 'Doe',
+        children: [
+          {
+            firstName: 'Johnny',
+            lastName: 'Doe Jr',
+          },
+          {
+            firstName: 'Jenny',
+            lastName: 'Doe Jr',
+          },
+        ],
+      },
+      {
+        firstName: 'Jane',
+        lastName: 'Smith',
+        children: [
+          {
+            firstName: 'Janie',
+            lastName: 'Smith Jr',
+          },
+        ],
+      },
+      {
+        firstName: 'Bob',
+        lastName: 'Wilson',
+      },
+    ];
+
+    const { baseElement } = render(
+      <DataTable
+        id="table-pagination-test"
+        columns={cols}
+        data={dataWithChildren}
+        expandable={true}
+        getChildRows={(row: Person) => row.children}
+        pageable={true}
+        pageSize={2}
+        initialExpanded={{ '0': true }}
+      ></DataTable>,
+    );
+
+    // Should show 2 parent rows (John and Jane) on first page, plus John's expanded children
+    const allRows = baseElement.querySelectorAll('tbody tr');
+    expect(allRows).toHaveLength(4); // 2 parent rows + 2 child rows from John
+
+    // Verify we have child rows
+    const childRows = baseElement.querySelectorAll('.child-row');
+    expect(childRows).toHaveLength(2); // Johnny and Jenny
+
+    // Should still have pagination buttons since Bob is on page 2
+    const nextButton = baseElement.querySelector('#table-pagination-test-table-paging-next-btn');
+    expect(nextButton).toBeTruthy();
+    expect(nextButton?.hasAttribute('disabled')).toBe(false);
+  });
 });

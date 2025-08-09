@@ -95,29 +95,50 @@ export const DataTable = ({
   );
   const [paging, setPaging] = React.useState<PaginationState>({ pageIndex, pageSize });
   const [expanded, setExpanded] = React.useState<ExpandedState>(initialExpanded);
+
+  // When expandable is enabled, we need to handle pagination differently
+  // Only parent rows should count towards pagination
+  const paginatedData = React.useMemo(() => {
+    if (!pageable || !expandable) {
+      return data;
+    }
+
+    // Calculate pagination based on parent rows only
+    const startIndex = paging.pageIndex * paging.pageSize;
+    const endIndex = startIndex + paging.pageSize;
+    return data.slice(startIndex, endIndex);
+  }, [data, pageable, expandable, paging.pageIndex, paging.pageSize]);
+
   const table = useReactTable({
-    data,
+    data: expandable && pageable ? paginatedData : data,
     columns,
     state: {
       sorting,
-      pagination: paging,
+      pagination: expandable && pageable ? { pageIndex: 0, pageSize: 1000 } : paging, // Use large page size to disable TanStack pagination
       expanded,
     },
     enableSorting: sortable,
     enableExpanding: expandable,
     onSortingChange: setSorting,
-    onPaginationChange: setPaging,
+    onPaginationChange: expandable && pageable ? () => {} : setPaging,
     onExpandedChange: setExpanded,
     getSubRows: getChildRows,
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
+    ...(expandable && pageable ? {} : { getPaginationRowModel: getPaginationRowModel() }),
     getExpandedRowModel: getExpandedRowModel(),
   });
 
   const getPageButtonArray = (): number[] => {
-    const totalPages = table.getPageCount();
-    const array = Array.from({ length: totalPages }, (_, index) => index++);
+    let totalPages;
+    if (expandable && pageable) {
+      // Calculate total pages based on parent rows only
+      totalPages = Math.ceil(data.length / paging.pageSize);
+    } else {
+      totalPages = table.getPageCount();
+    }
+
+    const array = Array.from({ length: totalPages }, (_, index) => index);
     // Display up to 5 paging buttons at a time
     if (totalPages <= 5) {
       return array.slice(0, totalPages);
@@ -130,6 +151,38 @@ export const DataTable = ({
         const lastPage = firstPage + 5;
         return array.slice(firstPage, lastPage);
       }
+    }
+  };
+
+  const canPreviousPage =
+    expandable && pageable ? paging.pageIndex > 0 : table.getCanPreviousPage();
+  const canNextPage =
+    expandable && pageable
+      ? paging.pageIndex < Math.ceil(data.length / paging.pageSize) - 1
+      : table.getCanNextPage();
+
+  const handlePreviousPage = () => {
+    if (expandable && pageable) {
+      setPaging((prev) => ({ ...prev, pageIndex: Math.max(0, prev.pageIndex - 1) }));
+    } else {
+      table.previousPage();
+    }
+  };
+
+  const handleNextPage = () => {
+    if (expandable && pageable) {
+      const maxPage = Math.ceil(data.length / paging.pageSize) - 1;
+      setPaging((prev) => ({ ...prev, pageIndex: Math.min(maxPage, prev.pageIndex + 1) }));
+    } else {
+      table.nextPage();
+    }
+  };
+
+  const handleSetPage = (pageIndex: number) => {
+    if (expandable && pageable) {
+      setPaging((prev) => ({ ...prev, pageIndex }));
+    } else {
+      table.setPageIndex(pageIndex);
     }
   };
 
@@ -210,8 +263,8 @@ export const DataTable = ({
           <button
             id={`${id}-table-paging-prev-btn`}
             className="table-paging-btn table-paging-prev"
-            onClick={() => table.previousPage()}
-            disabled={!table.getCanPreviousPage()}
+            onClick={handlePreviousPage}
+            disabled={!canPreviousPage}
           >
             {'<'}
           </button>
@@ -223,7 +276,7 @@ export const DataTable = ({
                 className={`table-paging-btn table-paging-btn ${
                   index === paging.pageIndex ? 'table-paging-btn-active' : ''
                 }`}
-                onClick={() => table.setPageIndex(index)}
+                onClick={() => handleSetPage(index)}
               >
                 {index + 1}
               </button>
@@ -232,8 +285,8 @@ export const DataTable = ({
           <button
             id={`${id}-table-paging-next-btn`}
             className="table-paging-btn table-paging-next"
-            onClick={() => table.nextPage()}
-            disabled={!table.getCanNextPage()}
+            onClick={handleNextPage}
+            disabled={!canNextPage}
           >
             {'>'}
           </button>
