@@ -113,6 +113,22 @@ table.data-table.striped tr.child-row:nth-child(even):hover {
   border-radius: 6px;
 }
 
+.table-paging .table-paging-prev,
+.table-paging .table-paging-next {
+  font-size: 24px;
+  font-weight: bold;
+  padding: 8px 12px;
+  color: #22543d;
+  border: none;
+  background-color: transparent;
+}
+
+.table-paging .table-paging-prev:disabled,
+.table-paging .table-paging-next:disabled {
+  color: #999999;
+  cursor: not-allowed;
+}
+
 .table-paging .table-paging-btn:not(:disabled) {
   cursor: pointer;
 }

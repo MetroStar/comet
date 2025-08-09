@@ -266,7 +266,7 @@ export const DataTable = ({
             onClick={handlePreviousPage}
             disabled={!canPreviousPage}
           >
-            {'<'}
+            {'‹'}
           </button>
           {getPageButtonArray().map((index) => {
             return (
@@ -288,7 +288,7 @@ export const DataTable = ({
             onClick={handleNextPage}
             disabled={!canNextPage}
           >
-            {'>'}
+            {'›'}
           </button>
         </div>
       ) : (
