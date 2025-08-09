@@ -7,6 +7,8 @@ import {
   useReactTable,
   getPaginationRowModel,
   PaginationState,
+  ExpandedState,
+  getExpandedRowModel,
 } from '@tanstack/react-table';
 import classNames from 'classnames';
 import './data-table.style.css';
@@ -53,6 +55,18 @@ export interface DataTableProps<T = any> {
    */
   pageSize?: number;
   /**
+   * A boolean indicating if the table supports expandable rows
+   */
+  expandable?: boolean;
+  /**
+   * A function that returns the child rows for a given parent row
+   */
+  getChildRows?: (row: T) => T[] | undefined;
+  /**
+   * Initial expanded state for rows (object with row IDs as keys and boolean values)
+   */
+  initialExpanded?: Record<string, boolean>;
+  /**
    * Additional class names for the table
    */
   className?: string;
@@ -71,25 +85,34 @@ export const DataTable = ({
   pageable = false,
   pageIndex = 0,
   pageSize = 10,
+  expandable = false,
+  getChildRows,
+  initialExpanded = {},
   className,
 }: DataTableProps): React.ReactElement => {
   const [sorting, setSorting] = React.useState<SortingState>(
     sortable ? [{ id: sortCol ?? columns[0], desc: sortDir === 'desc' }] : [],
   );
   const [paging, setPaging] = React.useState<PaginationState>({ pageIndex, pageSize });
+  const [expanded, setExpanded] = React.useState<ExpandedState>(initialExpanded);
   const table = useReactTable({
     data,
     columns,
     state: {
       sorting,
       pagination: paging,
+      expanded,
     },
     enableSorting: sortable,
+    enableExpanding: expandable,
     onSortingChange: setSorting,
     onPaginationChange: setPaging,
+    onExpandedChange: setExpanded,
+    getSubRows: getChildRows,
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
+    getExpandedRowModel: getExpandedRowModel(),
   });
 
   const getPageButtonArray = (): number[] => {
@@ -145,15 +168,39 @@ export const DataTable = ({
         <tbody>
           {table.getRowModel().rows.map((row) => {
             return (
-              <tr key={row.id}>
-                {row.getVisibleCells().map((cell) => {
-                  return (
-                    <td key={cell.id}>
-                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                    </td>
-                  );
-                })}
-              </tr>
+              <React.Fragment key={row.id}>
+                <tr key={row.id} className={row.depth > 0 ? 'child-row' : ''}>
+                  {row.getVisibleCells().map((cell, cellIndex) => {
+                    return (
+                      <td key={cell.id}>
+                        {cellIndex === 0 && expandable && row.depth === 0 && (
+                          <button
+                            className="expand-button"
+                            onClick={row.getToggleExpandedHandler()}
+                            style={{
+                              marginRight: '8px',
+                              cursor: row.getCanExpand() ? 'pointer' : 'default',
+                              visibility: row.getCanExpand() ? 'visible' : 'hidden',
+                            }}
+                            aria-label={row.getIsExpanded() ? 'Collapse row' : 'Expand row'}
+                          >
+                            {row.getIsExpanded() ? '−' : '+'}
+                          </button>
+                        )}
+                        {cellIndex === 0 && row.depth > 0 && (
+                          <span
+                            style={{
+                              marginLeft: `${row.depth * 20}px`,
+                              marginRight: '8px',
+                            }}
+                          />
+                        )}
+                        {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                      </td>
+                    );
+                  })}
+                </tr>
+              </React.Fragment>
             );
           })}
         </tbody>

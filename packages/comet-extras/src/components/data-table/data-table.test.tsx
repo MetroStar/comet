@@ -6,6 +6,7 @@ import { createColumnHelper } from '@tanstack/react-table';
 export interface Person {
   firstName: string;
   lastName: string;
+  children?: Person[];
 }
 
 describe('DataTable', () => {
@@ -215,5 +216,82 @@ describe('DataTable', () => {
     );
     const table = baseElement.querySelector('#table-1.width-full');
     expect(table).toBeTruthy();
+  });
+
+  test('should render a table with expandable rows successfully', () => {
+    const dataWithChildren: Person[] = [
+      {
+        firstName: 'John',
+        lastName: 'Doe',
+        children: [
+          {
+            firstName: 'Johnny',
+            lastName: 'Doe Jr',
+          },
+        ],
+      },
+      {
+        firstName: 'Jane',
+        lastName: 'Smith',
+      },
+    ];
+
+    const { baseElement } = render(
+      <DataTable
+        id="table-expandable"
+        columns={cols}
+        data={dataWithChildren}
+        expandable={true}
+        getChildRows={(row: Person) => row.children}
+      ></DataTable>,
+    );
+
+    const table = baseElement.querySelector('#table-expandable');
+    expect(table).toBeTruthy();
+
+    // Check for expand buttons - should have one for each parent row
+    const expandButtons = baseElement.querySelectorAll('.expand-button');
+    expect(expandButtons).toHaveLength(2); // Both rows get expand buttons, but only one is visible for expandable row
+
+    // Initially child rows should not be visible
+    const childRows = baseElement.querySelectorAll('.child-row');
+    expect(childRows).toHaveLength(0);
+  });
+
+  test('should render a table with initial expanded state', () => {
+    const dataWithChildren: Person[] = [
+      {
+        firstName: 'John',
+        lastName: 'Doe',
+        children: [
+          {
+            firstName: 'Johnny',
+            lastName: 'Doe Jr',
+          },
+        ],
+      },
+      {
+        firstName: 'Jane',
+        lastName: 'Smith',
+      },
+    ];
+
+    const { baseElement } = render(
+      <DataTable
+        id="table-initial-expanded"
+        columns={cols}
+        data={dataWithChildren}
+        expandable={true}
+        getChildRows={(row: Person) => row.children}
+        initialExpanded={{ '0': true }}
+      ></DataTable>,
+    );
+
+    const table = baseElement.querySelector('#table-initial-expanded');
+    expect(table).toBeTruthy();
+
+    // With initial expanded state, child rows should be visible
+    const childRows = baseElement.querySelectorAll('.child-row');
+    expect(childRows).toHaveLength(1); // John Doe's child should be expanded
   });
 });

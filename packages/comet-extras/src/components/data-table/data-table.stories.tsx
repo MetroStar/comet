@@ -18,6 +18,7 @@ interface Person {
   middleName?: string;
   age: number;
   gender: 'M' | 'F' | 'NA';
+  children?: Person[];
 }
 
 const data: Person[] = [
@@ -27,6 +28,22 @@ const data: Person[] = [
     middleName: 'L',
     age: 30,
     gender: 'M',
+    children: [
+      {
+        firstName: 'Johnny',
+        lastName: 'Doe',
+        middleName: '',
+        age: 5,
+        gender: 'M',
+      },
+      {
+        firstName: 'Jenny',
+        lastName: 'Doe',
+        middleName: '',
+        age: 3,
+        gender: 'F',
+      },
+    ],
   },
   {
     firstName: 'Jane',
@@ -34,6 +51,15 @@ const data: Person[] = [
     middleName: 'M',
     age: 29,
     gender: 'F',
+    children: [
+      {
+        firstName: 'Happy',
+        lastName: 'Trees',
+        middleName: '',
+        age: 25,
+        gender: 'M',
+      },
+    ],
   },
   {
     firstName: 'Bob',
@@ -123,6 +149,26 @@ export const Default = {
     pageable: true,
     pageIndex: 0,
     pageSize: 3,
+    className: 'width-full',
+  },
+  render: (args: DataTableProps) => <DataTable {...args} />,
+};
+
+export const WithExpandableRows = {
+  args: {
+    id: 'table-expandable',
+    columns: cols,
+    data,
+    striped: false,
+    sortable: true,
+    sortDir: 'asc',
+    sortCol: 'lastName',
+    pageable: true,
+    pageIndex: 0,
+    pageSize: 5,
+    expandable: true,
+    getChildRows: (row: Person) => row.children,
+    initialExpanded: { '0': true, '1': true },
     className: 'width-full',
   },
   render: (args: DataTableProps) => <DataTable {...args} />,
