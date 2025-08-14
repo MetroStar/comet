@@ -96,30 +96,54 @@ export const DataTable = ({
   const [paging, setPaging] = React.useState<PaginationState>({ pageIndex, pageSize });
   const [expanded, setExpanded] = React.useState<ExpandedState>(initialExpanded);
 
+  // Apply sorting to the full dataset first, then handle pagination
+  const sortedData = React.useMemo(() => {
+    if (!sortable || sorting.length === 0) {
+      return data;
+    }
+
+    const sortConfig = sorting[0];
+    return [...data].sort((a, b) => {
+      const aValue = a[sortConfig.id];
+      const bValue = b[sortConfig.id];
+
+      if (aValue === bValue) return 0;
+
+      let comparison = 0;
+      if (aValue > bValue) {
+        comparison = 1;
+      } else if (aValue < bValue) {
+        comparison = -1;
+      }
+
+      return sortConfig.desc ? comparison * -1 : comparison;
+    });
+  }, [data, sorting, sortable]);
+
   // When expandable is enabled, we need to handle pagination differently
   // Only parent rows should count towards pagination
   const paginatedData = React.useMemo(() => {
     if (!pageable || !expandable) {
-      return data;
+      return sortedData;
     }
 
     // Calculate pagination based on parent rows only
     const startIndex = paging.pageIndex * paging.pageSize;
     const endIndex = startIndex + paging.pageSize;
-    return data.slice(startIndex, endIndex);
-  }, [data, pageable, expandable, paging.pageIndex, paging.pageSize]);
+    return sortedData.slice(startIndex, endIndex);
+  }, [sortedData, pageable, expandable, paging.pageIndex, paging.pageSize]);
 
   const table = useReactTable({
-    data: expandable && pageable ? paginatedData : data,
+    data: expandable && pageable ? paginatedData : sortedData,
     columns,
     state: {
-      sorting,
+      sorting: expandable && pageable ? [] : sorting, // Disable TanStack sorting when we handle it manually
       pagination: expandable && pageable ? { pageIndex: 0, pageSize: 1000 } : paging, // Use large page size to disable TanStack pagination
       expanded,
     },
-    enableSorting: sortable,
+    enableSorting: sortable && !(expandable && pageable), // Disable TanStack sorting when we handle it manually
     enableExpanding: expandable,
-    onSortingChange: setSorting,
+    onSortingChange: expandable && pageable ? () => {} : setSorting,
     onPaginationChange: expandable && pageable ? () => {} : setPaging,
     onExpandedChange: setExpanded,
     getSubRows: getChildRows,
@@ -133,7 +157,7 @@ export const DataTable = ({
     let totalPages;
     if (expandable && pageable) {
       // Calculate total pages based on parent rows only
-      totalPages = Math.ceil(data.length / paging.pageSize);
+      totalPages = Math.ceil(sortedData.length / paging.pageSize);
     } else {
       totalPages = table.getPageCount();
     }
@@ -158,7 +182,7 @@ export const DataTable = ({
     expandable && pageable ? paging.pageIndex > 0 : table.getCanPreviousPage();
   const canNextPage =
     expandable && pageable
-      ? paging.pageIndex < Math.ceil(data.length / paging.pageSize) - 1
+      ? paging.pageIndex < Math.ceil(sortedData.length / paging.pageSize) - 1
       : table.getCanNextPage();
 
   const handlePreviousPage = () => {
@@ -171,7 +195,7 @@ export const DataTable = ({
 
   const handleNextPage = () => {
     if (expandable && pageable) {
-      const maxPage = Math.ceil(data.length / paging.pageSize) - 1;
+      const maxPage = Math.ceil(sortedData.length / paging.pageSize) - 1;
       setPaging((prev) => ({ ...prev, pageIndex: Math.min(maxPage, prev.pageIndex + 1) }));
     } else {
       table.nextPage();
@@ -196,25 +220,67 @@ export const DataTable = ({
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id}>
-              {headerGroup.headers.map((header) => (
-                <th
-                  id={`${id}-th-${header.id}`}
-                  key={`${id}-th-${header.id}`}
-                  scope="col"
-                  role="columnheader"
-                >
-                  <div
-                    className={header.column.getCanSort() ? 'cursor-pointer select-none' : ''}
-                    onClick={header.column.getToggleSortingHandler()}
+              {headerGroup.headers.map((header) => {
+                const isSortableColumn = sortable && (header.column.columnDef as any).accessorKey;
+                const currentSort = sorting.find((s) => s.id === header.column.id);
+
+                const handleSortClick = () => {
+                  if (!isSortableColumn) return;
+
+                  if (expandable && pageable) {
+                    // Handle sorting manually for expandable + pageable tables
+                    setSorting((prevSorting) => {
+                      const existingSort = prevSorting.find((s) => s.id === header.column.id);
+                      if (existingSort) {
+                        // Toggle direction or remove if already desc
+                        if (existingSort.desc) {
+                          return prevSorting.filter((s) => s.id !== header.column.id);
+                        } else {
+                          return [{ ...existingSort, desc: true }];
+                        }
+                      } else {
+                        // Add new sort
+                        return [{ id: header.column.id, desc: false }];
+                      }
+                    });
+                  } else {
+                    // Use TanStack's built-in sorting
+                    const toggleHandler = header.column.getToggleSortingHandler();
+                    if (toggleHandler) {
+                      toggleHandler({} as any);
+                    }
+                  }
+                };
+
+                return (
+                  <th
+                    id={`${id}-th-${header.id}`}
+                    key={`${id}-th-${header.id}`}
+                    scope="col"
+                    role="columnheader"
                   >
-                    {flexRender(header.column.columnDef.header, header.getContext())}
-                    {{
-                      asc: '  ↑',
-                      desc: '  ↓',
-                    }[header.column.getIsSorted() as string] ?? null}
-                  </div>
-                </th>
-              ))}
+                    <div
+                      className={isSortableColumn ? 'cursor-pointer select-none' : ''}
+                      onClick={handleSortClick}
+                    >
+                      {flexRender(header.column.columnDef.header, header.getContext())}
+                      {/* Show custom sorting indicators for expandable+pageable tables */}
+                      {expandable &&
+                        pageable &&
+                        isSortableColumn &&
+                        currentSort &&
+                        (currentSort.desc ? '  ↓' : '  ↑')}
+                      {/* Show TanStack sorting indicators for non-expandable+pageable tables */}
+                      {!(expandable && pageable) &&
+                        ({
+                          asc: '  ↑',
+                          desc: '  ↓',
+                        }[header.column.getIsSorted() as string] ??
+                          null)}
+                    </div>
+                  </th>
+                );
+              })}
             </tr>
           ))}
         </thead>
