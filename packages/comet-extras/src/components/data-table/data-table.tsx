@@ -7,6 +7,8 @@ import {
   useReactTable,
   getPaginationRowModel,
   PaginationState,
+  ExpandedState,
+  getExpandedRowModel,
 } from '@tanstack/react-table';
 import classNames from 'classnames';
 import './data-table.style.css';
@@ -53,6 +55,18 @@ export interface DataTableProps<T = any> {
    */
   pageSize?: number;
   /**
+   * A boolean indicating if the table supports expandable rows
+   */
+  expandable?: boolean;
+  /**
+   * A function that returns the child rows for a given parent row
+   */
+  getChildRows?: (row: T) => T[] | undefined;
+  /**
+   * Initial expanded state for rows (object with row IDs as keys and boolean values)
+   */
+  initialExpanded?: Record<string, boolean>;
+  /**
    * Additional class names for the table
    */
   className?: string;
@@ -71,30 +85,84 @@ export const DataTable = ({
   pageable = false,
   pageIndex = 0,
   pageSize = 10,
+  expandable = false,
+  getChildRows,
+  initialExpanded = {},
   className,
 }: DataTableProps): React.ReactElement => {
   const [sorting, setSorting] = React.useState<SortingState>(
     sortable ? [{ id: sortCol ?? columns[0], desc: sortDir === 'desc' }] : [],
   );
   const [paging, setPaging] = React.useState<PaginationState>({ pageIndex, pageSize });
+  const [expanded, setExpanded] = React.useState<ExpandedState>(initialExpanded);
+
+  // Apply sorting to the full dataset first, then handle pagination
+  const sortedData = React.useMemo(() => {
+    if (!sortable || sorting.length === 0) {
+      return data;
+    }
+
+    const sortConfig = sorting[0];
+    return [...data].sort((a, b) => {
+      const aValue = a[sortConfig.id];
+      const bValue = b[sortConfig.id];
+
+      if (aValue === bValue) return 0;
+
+      let comparison = 0;
+      if (aValue > bValue) {
+        comparison = 1;
+      } else if (aValue < bValue) {
+        comparison = -1;
+      }
+
+      return sortConfig.desc ? comparison * -1 : comparison;
+    });
+  }, [data, sorting, sortable]);
+
+  // When expandable is enabled, we need to handle pagination differently
+  // Only parent rows should count towards pagination
+  const paginatedData = React.useMemo(() => {
+    if (!pageable || !expandable) {
+      return sortedData;
+    }
+
+    // Calculate pagination based on parent rows only
+    const startIndex = paging.pageIndex * paging.pageSize;
+    const endIndex = startIndex + paging.pageSize;
+    return sortedData.slice(startIndex, endIndex);
+  }, [sortedData, pageable, expandable, paging.pageIndex, paging.pageSize]);
+
   const table = useReactTable({
-    data,
+    data: expandable && pageable ? paginatedData : sortedData,
     columns,
     state: {
-      sorting,
-      pagination: paging,
+      sorting: expandable && pageable ? [] : sorting, // Disable TanStack sorting when we handle it manually
+      pagination: expandable && pageable ? { pageIndex: 0, pageSize: 1000 } : paging, // Use large page size to disable TanStack pagination
+      expanded,
     },
-    enableSorting: sortable,
-    onSortingChange: setSorting,
-    onPaginationChange: setPaging,
+    enableSorting: sortable && !(expandable && pageable), // Disable TanStack sorting when we handle it manually
+    enableExpanding: expandable,
+    onSortingChange: expandable && pageable ? () => {} : setSorting,
+    onPaginationChange: expandable && pageable ? () => {} : setPaging,
+    onExpandedChange: setExpanded,
+    getSubRows: getChildRows,
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
+    ...(expandable && pageable ? {} : { getPaginationRowModel: getPaginationRowModel() }),
+    getExpandedRowModel: getExpandedRowModel(),
   });
 
   const getPageButtonArray = (): number[] => {
-    const totalPages = table.getPageCount();
-    const array = Array.from({ length: totalPages }, (_, index) => index++);
+    let totalPages;
+    if (expandable && pageable) {
+      // Calculate total pages based on parent rows only
+      totalPages = Math.ceil(sortedData.length / paging.pageSize);
+    } else {
+      totalPages = table.getPageCount();
+    }
+
+    const array = Array.from({ length: totalPages }, (_, index) => index);
     // Display up to 5 paging buttons at a time
     if (totalPages <= 5) {
       return array.slice(0, totalPages);
@@ -110,6 +178,38 @@ export const DataTable = ({
     }
   };
 
+  const canPreviousPage =
+    expandable && pageable ? paging.pageIndex > 0 : table.getCanPreviousPage();
+  const canNextPage =
+    expandable && pageable
+      ? paging.pageIndex < Math.ceil(sortedData.length / paging.pageSize) - 1
+      : table.getCanNextPage();
+
+  const handlePreviousPage = () => {
+    if (expandable && pageable) {
+      setPaging((prev) => ({ ...prev, pageIndex: Math.max(0, prev.pageIndex - 1) }));
+    } else {
+      table.previousPage();
+    }
+  };
+
+  const handleNextPage = () => {
+    if (expandable && pageable) {
+      const maxPage = Math.ceil(sortedData.length / paging.pageSize) - 1;
+      setPaging((prev) => ({ ...prev, pageIndex: Math.min(maxPage, prev.pageIndex + 1) }));
+    } else {
+      table.nextPage();
+    }
+  };
+
+  const handleSetPage = (pageIndex: number) => {
+    if (expandable && pageable) {
+      setPaging((prev) => ({ ...prev, pageIndex }));
+    } else {
+      table.setPageIndex(pageIndex);
+    }
+  };
+
   useEffect(() => {
     setPaging({ pageIndex, pageSize });
   }, [pageIndex, pageSize]);
@@ -120,40 +220,134 @@ export const DataTable = ({
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id}>
-              {headerGroup.headers.map((header) => (
-                <th
-                  id={`${id}-th-${header.id}`}
-                  key={`${id}-th-${header.id}`}
-                  scope="col"
-                  role="columnheader"
-                >
-                  <div
-                    className={header.column.getCanSort() ? 'cursor-pointer select-none' : ''}
-                    onClick={header.column.getToggleSortingHandler()}
+              {headerGroup.headers.map((header) => {
+                const isSortableColumn = sortable && (header.column.columnDef as any).accessorKey;
+                const currentSort = sorting.find((s) => s.id === header.column.id);
+
+                const handleSortClick = () => {
+                  if (!isSortableColumn) return;
+
+                  if (expandable && pageable) {
+                    // Handle sorting manually for expandable + pageable tables
+                    setSorting((prevSorting) => {
+                      const existingSort = prevSorting.find((s) => s.id === header.column.id);
+                      if (existingSort) {
+                        // Toggle direction or remove if already desc
+                        if (existingSort.desc) {
+                          return prevSorting.filter((s) => s.id !== header.column.id);
+                        } else {
+                          return [{ ...existingSort, desc: true }];
+                        }
+                      } else {
+                        // Add new sort
+                        return [{ id: header.column.id, desc: false }];
+                      }
+                    });
+                  } else {
+                    // Use TanStack's built-in sorting
+                    const toggleHandler = header.column.getToggleSortingHandler();
+                    if (toggleHandler) {
+                      toggleHandler({} as any);
+                    }
+                  }
+                };
+
+                return (
+                  <th
+                    id={`${id}-th-${header.id}`}
+                    key={`${id}-th-${header.id}`}
+                    scope="col"
+                    role="columnheader"
                   >
-                    {flexRender(header.column.columnDef.header, header.getContext())}
-                    {{
-                      asc: '  ↑',
-                      desc: '  ↓',
-                    }[header.column.getIsSorted() as string] ?? null}
-                  </div>
-                </th>
-              ))}
+                    <div
+                      className={isSortableColumn ? 'cursor-pointer select-none' : ''}
+                      onClick={handleSortClick}
+                    >
+                      {flexRender(header.column.columnDef.header, header.getContext())}
+                      {/* Show custom sorting indicators for expandable+pageable tables */}
+                      {expandable &&
+                        pageable &&
+                        isSortableColumn &&
+                        currentSort &&
+                        (currentSort.desc ? '  ↓' : '  ↑')}
+                      {/* Show TanStack sorting indicators for non-expandable+pageable tables */}
+                      {!(expandable && pageable) &&
+                        ({
+                          asc: '  ↑',
+                          desc: '  ↓',
+                        }[header.column.getIsSorted() as string] ??
+                          null)}
+                    </div>
+                  </th>
+                );
+              })}
             </tr>
           ))}
         </thead>
         <tbody>
           {table.getRowModel().rows.map((row) => {
             return (
-              <tr key={row.id}>
-                {row.getVisibleCells().map((cell) => {
-                  return (
-                    <td key={cell.id}>
-                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                    </td>
-                  );
-                })}
-              </tr>
+              <React.Fragment key={row.id}>
+                <tr key={row.id} className={row.depth > 0 ? 'child-row' : ''}>
+                  {row.getVisibleCells().map((cell, cellIndex) => {
+                    return (
+                      <td key={cell.id}>
+                        {cellIndex === 0 && expandable && row.depth === 0 && (
+                          <button
+                            className="expand-button"
+                            onClick={row.getToggleExpandedHandler()}
+                            style={{
+                              marginRight: '8px',
+                              cursor: row.getCanExpand() ? 'pointer' : 'default',
+                              visibility: row.getCanExpand() ? 'visible' : 'hidden',
+                            }}
+                            aria-label={row.getIsExpanded() ? 'Collapse row' : 'Expand row'}
+                          >
+                            {row.getIsExpanded() ? (
+                              <svg
+                                width="16"
+                                height="16"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                              >
+                                <polyline points="8 5 12 9 16 5" />
+                                <polyline points="8 19 12 15 16 19" />
+                              </svg>
+                            ) : (
+                              <svg
+                                width="16"
+                                height="16"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                              >
+                                <polyline points="8 9 12 5 16 9" />
+                                <polyline points="8 15 12 19 16 15" />
+                              </svg>
+                            )}
+                          </button>
+                        )}
+                        {cellIndex === 0 && row.depth > 0 && (
+                          <span
+                            style={{
+                              marginLeft: `${row.depth * 20}px`,
+                              marginRight: '8px',
+                            }}
+                          />
+                        )}
+                        {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                      </td>
+                    );
+                  })}
+                </tr>
+              </React.Fragment>
             );
           })}
         </tbody>
@@ -163,10 +357,10 @@ export const DataTable = ({
           <button
             id={`${id}-table-paging-prev-btn`}
             className="table-paging-btn table-paging-prev"
-            onClick={() => table.previousPage()}
-            disabled={!table.getCanPreviousPage()}
+            onClick={handlePreviousPage}
+            disabled={!canPreviousPage}
           >
-            {'<'}
+            {'‹'}
           </button>
           {getPageButtonArray().map((index) => {
             return (
@@ -176,7 +370,7 @@ export const DataTable = ({
                 className={`table-paging-btn table-paging-btn ${
                   index === paging.pageIndex ? 'table-paging-btn-active' : ''
                 }`}
-                onClick={() => table.setPageIndex(index)}
+                onClick={() => handleSetPage(index)}
               >
                 {index + 1}
               </button>
@@ -185,10 +379,10 @@ export const DataTable = ({
           <button
             id={`${id}-table-paging-next-btn`}
             className="table-paging-btn table-paging-next"
-            onClick={() => table.nextPage()}
-            disabled={!table.getCanNextPage()}
+            onClick={handleNextPage}
+            disabled={!canNextPage}
           >
-            {'>'}
+            {'›'}
           </button>
         </div>
       ) : (
