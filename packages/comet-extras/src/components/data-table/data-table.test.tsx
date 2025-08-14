@@ -1,5 +1,5 @@
 import React from 'react';
-import { act, render, fireEvent } from '@testing-library/react';
+import { act, render } from '@testing-library/react';
 import DataTable from './data-table';
 import { createColumnHelper } from '@tanstack/react-table';
 
