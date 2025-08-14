@@ -237,7 +237,35 @@ export const DataTable = ({
                             }}
                             aria-label={row.getIsExpanded() ? 'Collapse row' : 'Expand row'}
                           >
-                            {row.getIsExpanded() ? '−' : '+'}
+                            {row.getIsExpanded() ? (
+                              <svg
+                                width="16"
+                                height="16"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                              >
+                                <polyline points="8 5 12 9 16 5" />
+                                <polyline points="8 19 12 15 16 19" />
+                              </svg>
+                            ) : (
+                              <svg
+                                width="16"
+                                height="16"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                              >
+                                <polyline points="8 9 12 5 16 9" />
+                                <polyline points="8 15 12 19 16 15" />
+                              </svg>
+                            )}
                           </button>
                         )}
                         {cellIndex === 0 && row.depth > 0 && (
