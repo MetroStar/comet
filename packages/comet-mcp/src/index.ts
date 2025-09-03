@@ -2,7 +2,11 @@
 
 import { Server } from '@modelcontextprotocol/sdk/server/index.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
-import { CallToolRequestSchema, ListToolsRequestSchema } from '@modelcontextprotocol/sdk/types.js';
+import {
+  CallToolRequestSchema,
+  ListToolsRequestSchema,
+  CallToolRequest,
+} from '@modelcontextprotocol/sdk/types.js';
 import fs from 'fs';
 import { exec } from 'child_process';
 import { promisify } from 'util';
@@ -89,7 +93,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
 });
 
 // Tool implementations
-server.setRequestHandler(CallToolRequestSchema, async (request) => {
+server.setRequestHandler(CallToolRequestSchema, async (request: CallToolRequest) => {
   const { name, arguments: args } = request.params;
 
   try {

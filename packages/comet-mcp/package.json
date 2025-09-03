@@ -1,5 +1,6 @@
 {
   "name": "@metrostar/comet-mcp",
+  "type": "module",
   "version": "1.0.0",
   "description": "Model Context Protocol server for Comet development workflow",
   "license": "Apache-2.0",
