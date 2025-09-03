@@ -20,9 +20,7 @@
   ],
   "types": "./dist/index.d.ts",
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^0.6.0",
-    "@types/figlet": "^1.7.0",
-    "figlet": "^1.8.2"
+    "@modelcontextprotocol/sdk": "^0.6.0"
   },
   "repository": {
     "type": "git",

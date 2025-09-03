@@ -6,7 +6,7 @@ import { CallToolRequestSchema, ListToolsRequestSchema } from '@modelcontextprot
 import fs from 'fs';
 import { exec } from 'child_process';
 import { promisify } from 'util';
-import figlet from 'figlet';
+
 import { API_REPO_URL, PROJECT_TYPES, UI_REPO_URL } from './constants.js';
 import {
   addPageRoute,
@@ -97,9 +97,6 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       case 'init_project': {
         const { type, name: projectName } = args as { type: string; name: string };
 
-        log('');
-        log(figlet.textSync('Comet MCP'));
-        log('');
         log(`Creating a new Comet app with type: ${type} and name: ${projectName}`);
 
         if (fs.existsSync(projectName)) {
