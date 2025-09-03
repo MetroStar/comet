@@ -1,5 +1,7 @@
 # Comet CLI
 
+> **⚠️ DEPRECATED**: This CLI is deprecated and will be removed in a future version. Please use [@metrostar/comet-mcp](../comet-mcp) instead for enhanced integration with AI coding assistants.
+
 CLI for creating Comet Apps
 
 ## Getting Started

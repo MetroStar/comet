@@ -1,17 +1,17 @@
 {
-  "name": "@metrostar/comet-cli",
-  "version": "2.1.1",
-  "description": "A CLI for creating Comet Apps. DEPRECATED: Use @metrostar/comet-mcp instead.",
-  "deprecated": "Please use @metrostar/comet-mcp for enhanced AI coding assistant integration",
+  "name": "@metrostar/comet-mcp",
+  "version": "1.0.0",
+  "description": "Model Context Protocol server for Comet development workflow",
   "license": "Apache-2.0",
   "main": "./dist/index.js",
   "bin": {
-    "comet": "./dist/index.js"
+    "comet-mcp": "./dist/index.js"
   },
   "keywords": [
-    "node",
+    "mcp",
+    "model-context-protocol",
     "comet",
-    "cli",
+    "development-tools",
     "open source"
   ],
   "files": [
@@ -20,13 +20,13 @@
   ],
   "types": "./dist/index.d.ts",
   "dependencies": {
+    "@modelcontextprotocol/sdk": "^0.6.0",
     "@types/figlet": "^1.7.0",
-    "commander": "^14.0.0",
     "figlet": "^1.8.2"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/MetroStar/comet.git",
-    "directory": "packages/comet-cli"
+    "directory": "packages/comet-mcp"
   }
 }

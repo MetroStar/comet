@@ -19,10 +19,12 @@
     "build:comet-data-viz": "cd packages/comet-data-viz && rollup -c",
     "build:comet-extras": "cd packages/comet-extras && rollup -c",
     "build:comet-cli": "cd packages/comet-cli && npx tsc",
+    "build:comet-mcp": "cd packages/comet-mcp && npx tsc",
     "publish:comet-uswds": "cd packages/comet-uswds && npm publish --access public",
     "publish:comet-data-viz": "cd packages/comet-data-viz && npm publish --access public",
     "publish:comet-extras": "cd packages/comet-extras && npm publish --access public",
     "publish:comet-cli": "cd packages/comet-cli && npm publish --access public",
+    "publish:comet-mcp": "cd packages/comet-mcp && npm publish --access public",
     "publish:ui-kit": "npx figma connect publish",
     "unpublish:ui-kit": "npx figma connect unpublish"
   },
