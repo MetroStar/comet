@@ -93,7 +93,7 @@ export const addPageRoute = (componentName: string, friendlyName: string) => {
 
   // Insert the import statement at the top
   const updatedContent = appFileContent.replace(
-    /((?:import[ \t]+[^\n;]+;[ \t]*)+)(?![\s\S]*import)/,
+    /^((?:[ \t]*import[^\n;]+;[ \t]*\n?)*)/m,
     `${importStatement}$&`,
   );
 
