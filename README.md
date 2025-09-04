@@ -14,7 +14,7 @@
 [![Comet USWDS](https://img.shields.io/npm/v/@metrostar/comet-uswds.svg?label=comet-uswds)](https://www.npmjs.com/package/@metrostar/comet-uswds)
 [![Comet Extras](https://img.shields.io/npm/v/@metrostar/comet-extras.svg?label=comet-extras)](https://www.npmjs.com/package/@metrostar/comet-extras)
 [![Comet Data Viz](https://img.shields.io/npm/v/@metrostar/comet-data-viz.svg?label=comet-data-viz)](https://www.npmjs.com/package/@metrostar/comet-data-viz)
-[![Comet CLI](https://img.shields.io/npm/v/@metrostar/comet-cli.svg?label=comet-cli)](https://www.npmjs.com/package/@metrostar/comet-cli)
+[![Comet MCP](https://img.shields.io/npm/v/@metrostar/comet-mcp.svg?label=comet-mcp)](https://www.npmjs.com/package/@metrostar/comet-mcp)
 
 Comet is a React with TypeScript Component Library based on USWDS.
 
@@ -34,7 +34,7 @@ Comet consists of multiple packages, each providing specific functionality. Thes
 - [comet-uswds](https://github.com/MetroStar/comet/tree/main/packages/comet-uswds) - The base USWDS component library implemented in React with TypeScript.
 - [comet-data-viz](https://github.com/MetroStar/comet/tree/main/packages/comet-data-viz) - A set of Victory Chart components provided as a Comet wrapper.
 - [comet-extras](https://github.com/MetroStar/comet/tree/main/packages/comet-extras) - A set of custom components, intended to fill in the gaps where USWDS does not provide an implementation.
-- [comet-cli](https://github.com/MetroStar/comet/tree/main/packages/comet-cli) - A CLI for creating Comet Apps.
+- [comet-mcp](https://github.com/MetroStar/comet/tree/main/packages/comet-mcp) - Model Context Protocol server for Comet development workflow.
 
 ## Getting Started
 
