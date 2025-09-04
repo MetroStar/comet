@@ -207,15 +207,19 @@ const findComponentFile = (
 /**
  * Extracts JSDoc description from component file
  */
-const extractJSDocDescription = (content: string): string | undefined => {
-  const jsdocMatch = content.match(/\/\*\*\s*\n\s*\*\s*([^\n*]+)/);
-  return jsdocMatch ? jsdocMatch[1].trim() : undefined;
+export const extractJSDocDescription = (content: string): string | undefined => {
+  const jsdocMatch = content.match(/\/\*\*\s*\n\s*\*\s*([^\n*@]+)/);
+  if (jsdocMatch) {
+    const description = jsdocMatch[1].trim();
+    return description.length > 0 ? description : undefined;
+  }
+  return undefined;
 };
 
 /**
  * Extracts prop names from TypeScript interface definitions
  */
-const extractProps = (content: string): string[] => {
+export const extractProps = (content: string): string[] => {
   const props: string[] = [];
 
   // Look for interface definitions
@@ -240,7 +244,7 @@ const extractProps = (content: string): string[] => {
 /**
  * Extracts exported type names from the file
  */
-const extractTypes = (content: string): string[] => {
+export const extractTypes = (content: string): string[] => {
   const types: string[] = [];
 
   // Look for exported types and interfaces
