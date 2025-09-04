@@ -13,7 +13,7 @@ on:
           - comet-uswds
           - comet-extras
           - comet-data-viz
-          - comet-cli
+          - comet-mcp
 
 jobs:
   build-and-publish:
