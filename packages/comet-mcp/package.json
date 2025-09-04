@@ -5,6 +5,10 @@
   "description": "Model Context Protocol server for Comet development workflow",
   "license": "Apache-2.0",
   "main": "./dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node ./dist/index.js"
+  },
   "bin": {
     "comet-mcp": "./dist/index.js"
   },

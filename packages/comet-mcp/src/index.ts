@@ -12,16 +12,7 @@ import { exec } from 'child_process';
 import { promisify } from 'util';
 
 import { API_REPO_URL, PROJECT_TYPES, UI_REPO_URL } from './constants.js';
-import {
-  addPageRoute,
-  error,
-  getComponentTemplate,
-  getComponentTestTemplate,
-  getFriendlyDirectoryName,
-  getPageTemplate,
-  getPageTestTemplate,
-  log,
-} from './utils.js';
+import { log } from './utils.js';
 
 const execAsync = promisify(exec);
 
@@ -58,34 +49,6 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
             },
           },
           required: ['type', 'name'],
-        },
-      },
-      {
-        name: 'add_component',
-        description: 'Add a new React component to the Comet project',
-        inputSchema: {
-          type: 'object',
-          properties: {
-            name: {
-              type: 'string',
-              description: 'Component name in PascalCase',
-            },
-          },
-          required: ['name'],
-        },
-      },
-      {
-        name: 'add_page',
-        description: 'Add a new React page component to the Comet project',
-        inputSchema: {
-          type: 'object',
-          properties: {
-            name: {
-              type: 'string',
-              description: 'Page component name in PascalCase',
-            },
-          },
-          required: ['name'],
         },
       },
     ],
@@ -133,78 +96,6 @@ server.setRequestHandler(CallToolRequestSchema, async (request: CallToolRequest)
             {
               type: 'text',
               text: `Successfully created new ${type} project: ${projectName}`,
-            },
-          ],
-        };
-      }
-
-      case 'add_component': {
-        const { name: componentName } = args as { name: string };
-
-        log(`Adding a new component with name ${componentName}`);
-        const dirName = getFriendlyDirectoryName(componentName);
-
-        if (fs.existsSync(`src/components/${dirName}`)) {
-          throw new Error('Directory already exists!');
-        }
-
-        const rootDir = 'src/components';
-        const componentTemplate = getComponentTemplate(componentName);
-        const testTemplate = getComponentTestTemplate(componentName, dirName);
-
-        // Create new directory and files
-        fs.mkdirSync(`${rootDir}/${dirName}`, { recursive: true });
-        fs.writeFileSync(`${rootDir}/${dirName}/${dirName}.tsx`, componentTemplate);
-        fs.writeFileSync(`${rootDir}/${dirName}/${dirName}.test.tsx`, testTemplate);
-
-        log(`Component added successfully!`);
-
-        return {
-          content: [
-            {
-              type: 'text',
-              text: `Successfully added component: ${componentName} at ${rootDir}/${dirName}`,
-            },
-          ],
-        };
-      }
-
-      case 'add_page': {
-        const { name: pageName } = args as { name: string };
-
-        log(`Adding a new page with name ${pageName}`);
-        const dirName = getFriendlyDirectoryName(pageName);
-
-        if (fs.existsSync(`src/pages/${dirName}`)) {
-          throw new Error('Directory already exists!');
-        }
-
-        const rootDir = 'src/pages';
-        const pageTemplate = getPageTemplate(pageName);
-        const testTemplate = getPageTestTemplate(pageName, dirName);
-
-        // Create new directory and files
-        fs.mkdirSync(`${rootDir}/${dirName}`, { recursive: true });
-        fs.writeFileSync(`${rootDir}/${dirName}/${dirName}.tsx`, pageTemplate);
-        fs.writeFileSync(`${rootDir}/${dirName}/${dirName}.test.tsx`, testTemplate);
-
-        // Add route to App.tsx
-        addPageRoute(pageName, dirName);
-
-        // Ensure no formatting issues after insert
-        try {
-          await execAsync('npm run format');
-        } catch (err) {
-          error(`Error formatting: ${err}`);
-        }
-
-        log(`Page added successfully!`);
-
-        return {
-          content: [
-            {
-              type: 'text',
-              text: `Successfully added page: ${pageName} at ${rootDir}/${dirName} and updated routing`,
             },
           ],
         };
