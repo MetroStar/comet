@@ -187,7 +187,6 @@ async function main() {
 }
 
 main().catch((error) => {
-  // eslint-disable-next-line no-console
-  console.error('Server failed to start:', error);
+  log('Server failed to start:', error);
   process.exit(1);
 });
