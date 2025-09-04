@@ -14,7 +14,9 @@ Create an MCP configuration file to connect VS Code Copilot to the Comet MCP ser
     "comet": {
       "command": "npx",
       "args": ["@metrostar/comet-mcp"],
-      "env": {}
+      "env": {
+        "PROJECT_ROOT": "/ABSOLUTE/PATH/TO/YOUR/CURRENT/PROJECT"
+      }
     }
   }
 }
@@ -26,28 +28,12 @@ Create an MCP configuration file to connect VS Code Copilot to the Comet MCP ser
 npm install -g @metrostar/comet-mcp
 ```
 
-### Available Tools
+## Available Tools
 
-#### `init_project`
-
-Initialize a new Comet project (UI or API)
-
-**Parameters:**
-
-- `type`: Project type - either "ui" or "api"
-- `name`: Project name and directory name
-
-**Example:**
-
-```json
-{
-  "name": "init_project",
-  "arguments": {
-    "type": "ui",
-    "name": "my-comet-app"
-  }
-}
-```
+| Tool                | Description                                            | Parameters                                                                      |
+| ------------------- | ------------------------------------------------------ | ------------------------------------------------------------------------------- |
+| `get_comet_version` | Get the current version of Comet Packages and Versions | None                                                                            |
+| `init_project`      | Initialize a new Comet project (UI or API)             | `type`: Project type ("ui" or "api")<br>`name`: Project name and directory name |
 
 ## Running the Project Locally
 
@@ -66,7 +52,10 @@ npm run build:comet-mcp
   "mcpServers": {
     "comet": {
       "command": "node",
-      "args": ["/ABSOLUTE/PATH/TO/YOUR/COMET/PROJECT/packages/comet-mcp/dist/index.js"]
+      "args": ["/ABSOLUTE/PATH/TO/YOUR/COMET/PROJECT/packages/comet-mcp/dist/index.js"],
+      "env": {
+        "PROJECT_ROOT": "/ABSOLUTE/PATH/TO/YOUR/CURRENT/PROJECT"
+      }
     }
   }
 }

@@ -8,6 +8,7 @@ import {
   CallToolRequest,
 } from '@modelcontextprotocol/sdk/types.js';
 import fs from 'fs';
+import path from 'path';
 import { exec } from 'child_process';
 import { promisify } from 'util';
 
@@ -32,6 +33,14 @@ const server = new Server(
 server.setRequestHandler(ListToolsRequestSchema, async () => {
   return {
     tools: [
+      {
+        name: 'get_comet_version',
+        description: 'Get version information for Comet packages from package.json',
+        inputSchema: {
+          type: 'object',
+          properties: {},
+        },
+      },
       {
         name: 'init_project',
         description: 'Initialize a new Comet project (UI or API)',
@@ -61,6 +70,58 @@ server.setRequestHandler(CallToolRequestSchema, async (request: CallToolRequest)
 
   try {
     switch (name) {
+      case 'get_comet_version': {
+        const currentDir = process.env.PROJECT_ROOT || process.cwd();
+        const packageJsonPath = path.join(currentDir, 'package.json');
+
+        if (!fs.existsSync(packageJsonPath)) {
+          throw new Error(`No package.json found in current directory: ${currentDir}`);
+        }
+
+        const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
+        const dependencies = { ...packageJson.dependencies, ...packageJson.devDependencies };
+
+        const cometPackages = [
+          '@metrostar/comet-uswds',
+          '@metrostar/comet-extras',
+          '@metrostar/comet-data-viz',
+        ];
+
+        const versionInfo: Record<string, string> = {};
+        let foundPackages = 0;
+
+        cometPackages.forEach((pkg) => {
+          if (dependencies[pkg]) {
+            versionInfo[pkg] = dependencies[pkg];
+            foundPackages++;
+          }
+        });
+
+        if (foundPackages === 0) {
+          return {
+            content: [
+              {
+                type: 'text',
+                text: `No Comet packages found in package.json dependencies in directory: ${currentDir}`,
+              },
+            ],
+          };
+        }
+
+        const versionText = Object.entries(versionInfo)
+          .map(([pkg, version]) => `${pkg}: ${version}`)
+          .join('\n');
+
+        return {
+          content: [
+            {
+              type: 'text',
+              text: `Comet package versions (from ${currentDir}):\n${versionText}`,
+            },
+          ],
+        };
+      }
+
       case 'init_project': {
         const { type, name: projectName } = args as { type: string; name: string };
 
