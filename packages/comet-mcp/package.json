@@ -1,0 +1,35 @@
+{
+  "name": "@metrostar/comet-mcp",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Model Context Protocol server for Comet development workflow",
+  "license": "Apache-2.0",
+  "main": "./dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node ./dist/index.js"
+  },
+  "bin": {
+    "comet-mcp": "./dist/index.js"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "comet",
+    "development-tools",
+    "open source"
+  ],
+  "files": [
+    "./dist",
+    "README.md"
+  ],
+  "types": "./dist/index.d.ts",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^0.6.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MetroStar/comet.git",
+    "directory": "packages/comet-mcp"
+  }
+}
