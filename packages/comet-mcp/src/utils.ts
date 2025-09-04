@@ -3,7 +3,7 @@
 import fs from 'fs';
 import path from 'path';
 
-export const log = console.log;
+export const log = console.error; // Use stderr for logging in MCP servers
 export const error = console.error;
 
 export const getFriendlyDirectoryName = (name: string) => {

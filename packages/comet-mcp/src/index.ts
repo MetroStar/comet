@@ -379,7 +379,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request: CallToolRequest)
 async function main() {
   const transport = new StdioServerTransport();
   await server.connect(transport);
-  log('Comet MCP server running on stdio');
+  log('Comet MCP server running on stdio'); // Now uses stderr via updated log function
 }
 
 main().catch((error) => {
