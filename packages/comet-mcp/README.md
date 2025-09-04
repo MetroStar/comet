@@ -36,6 +36,7 @@ npm install -g @metrostar/comet-mcp
 | `get_comet_version`     | Get the current version of Comet Packages and Versions | None                                                                                                                |
 | `list_components`       | Get a list of all available Comet components           | `package`: Filter by package ("all", "comet-uswds", "comet-extras", "comet-data-viz") - optional, defaults to "all" |
 | `get_component_details` | Get detailed information about a specific component    | `componentName`: The name of the component to get details for (required)                                            |
+| `get_env_variables`     | Get current Node.js environment variables              | `filter`: Optional filter to search for specific variables (case-insensitive)                                       |
 
 ### Component Tools
 
@@ -52,6 +53,15 @@ The `get_component_details` tool provides detailed information about a specific 
 - File path location
 - Available props (extracted from TypeScript interfaces)
 - Exported types and interfaces
+
+### Environment Variables Tool
+
+The `get_env_variables` tool helps inspect the current Node.js environment variables:
+
+- **Filtering**: Use the `filter` parameter to search for specific variables by name (case-insensitive)
+- **Truncation**: Long values are truncated to 100 characters for readability
+
+This tool is useful for debugging environment configuration, checking if required variables are set, and understanding the runtime environment.
 
 ## Running the Project Locally
 

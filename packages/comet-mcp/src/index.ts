@@ -89,6 +89,20 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
           required: ['componentName'],
         },
       },
+      {
+        name: 'get_env_variables',
+        description: 'Get current Node.js environment variables',
+        inputSchema: {
+          type: 'object',
+          properties: {
+            filter: {
+              type: 'string',
+              description:
+                'Optional filter to search for specific environment variables (case-insensitive)',
+            },
+          },
+        },
+      },
     ],
   };
 });
@@ -274,6 +288,65 @@ server.setRequestHandler(CallToolRequestSchema, async (request: CallToolRequest)
           result += details.types.map((type) => `- ${type}`).join('\n');
           result += '\n\n';
         }
+
+        return {
+          content: [
+            {
+              type: 'text',
+              text: result.trim(),
+            },
+          ],
+        };
+      }
+
+      case 'get_env_variables': {
+        const { filter } = args as {
+          filter?: string;
+        };
+
+        const envVars = process.env;
+        const filteredVars: Record<string, string> = {};
+
+        Object.keys(envVars).forEach((key) => {
+          const value = envVars[key];
+
+          // Skip undefined values
+          if (value === undefined) return;
+
+          // Filter by search term if provided
+          if (filter && !key.toLowerCase().includes(filter.toLowerCase())) {
+            return;
+          }
+
+          filteredVars[key] = value;
+        });
+
+        const sortedKeys = Object.keys(filteredVars).sort();
+
+        if (sortedKeys.length === 0) {
+          const filterText = filter ? ` matching "${filter}"` : '';
+          return {
+            content: [
+              {
+                type: 'text',
+                text: `No environment variables found${filterText}.`,
+              },
+            ],
+          };
+        }
+
+        let result = `# Environment Variables (${sortedKeys.length} found)\n\n`;
+
+        if (filter) {
+          result += `**Filter:** "${filter}"\n\n`;
+        }
+
+        sortedKeys.forEach((key) => {
+          const value = filteredVars[key];
+          // Truncate very long values for readability
+          const displayValue = value.length > 100 ? `${value.substring(0, 100)}...` : value;
+          result += `**${key}:** \`${displayValue}\`\n\n`;
+        });
 
         return {
           content: [
