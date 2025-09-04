@@ -1,6 +1,6 @@
 {
   "name": "@metrostar/comet-cli",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "A CLI for creating Comet Apps. DEPRECATED: Use @metrostar/comet-mcp instead.",
   "deprecated": "Please use @metrostar/comet-mcp for enhanced AI coding assistant integration",
   "license": "Apache-2.0",
