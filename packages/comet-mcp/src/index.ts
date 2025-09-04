@@ -183,8 +183,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request: CallToolRequest)
 async function main() {
   const transport = new StdioServerTransport();
   await server.connect(transport);
-  // eslint-disable-next-line no-console
-  console.error('Comet MCP server running on stdio');
+  log('Comet MCP server running on stdio');
 }
 
 main().catch((error) => {
