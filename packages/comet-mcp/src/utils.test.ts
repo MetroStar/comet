@@ -15,6 +15,8 @@ describe('MCP Utils', () => {
     vi.clearAllMocks();
     // Mock path.join to return predictable paths
     mockedPath.join.mockImplementation((...args) => args.join('/'));
+    // Mock process.cwd() to return a consistent value for testing
+    vi.spyOn(process, 'cwd').mockReturnValue('/mock/project/root');
   });
 
   afterEach(() => {
@@ -51,10 +53,10 @@ describe('MCP Utils', () => {
         'CardFooter',
       ]);
       expect(mockedFs.existsSync).toHaveBeenCalledWith(
-        '/Users/jbouder/repos/comet/node_modules/@metrostar/comet-uswds',
+        '/mock/project/root/node_modules/@metrostar/comet-uswds',
       );
       expect(mockedFs.existsSync).toHaveBeenCalledWith(
-        '/Users/jbouder/repos/comet/node_modules/@metrostar/comet-uswds/dist/index.d.ts',
+        '/mock/project/root/node_modules/@metrostar/comet-uswds/dist/index.d.ts',
       );
     });
 
@@ -91,7 +93,7 @@ describe('MCP Utils', () => {
 
       expect(components).toEqual([]);
       expect(mockedFs.existsSync).toHaveBeenCalledWith(
-        '/Users/jbouder/repos/comet/node_modules/@metrostar/comet-nonexistent',
+        '/mock/project/root/node_modules/@metrostar/comet-nonexistent',
       );
     });
 
@@ -102,10 +104,10 @@ describe('MCP Utils', () => {
 
       expect(components).toEqual([]);
       expect(mockedFs.existsSync).toHaveBeenCalledWith(
-        '/Users/jbouder/repos/comet/node_modules/@metrostar/comet-uswds',
+        '/mock/project/root/node_modules/@metrostar/comet-uswds',
       );
       expect(mockedFs.existsSync).toHaveBeenCalledWith(
-        '/Users/jbouder/repos/comet/node_modules/@metrostar/comet-uswds/dist/index.d.ts',
+        '/mock/project/root/node_modules/@metrostar/comet-uswds/dist/index.d.ts',
       );
     });
 
@@ -162,7 +164,8 @@ describe('MCP Utils', () => {
 
     test('should use PROJECT_ROOT environment variable when available', () => {
       const originalEnv = process.env.PROJECT_ROOT;
-      process.env.PROJECT_ROOT = '/custom/root';
+      const customRoot = '/custom/root';
+      process.env.PROJECT_ROOT = customRoot;
 
       mockedFs.existsSync.mockReturnValue(true);
       mockedFs.readFileSync.mockReturnValue(`
@@ -172,7 +175,7 @@ describe('MCP Utils', () => {
       getComponentsFromPackage('@metrostar/comet-uswds');
 
       expect(mockedPath.join).toHaveBeenCalledWith(
-        '/custom/root/node_modules/@metrostar/comet-uswds',
+        `${customRoot}/node_modules/@metrostar/comet-uswds`,
         'dist',
         'index.d.ts',
       );
