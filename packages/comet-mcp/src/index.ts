@@ -103,6 +103,14 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
           },
         },
       },
+      {
+        name: 'add_comet',
+        description: 'Add comet packages and configurations to an existing app',
+        inputSchema: {
+          type: 'object',
+          properties: {},
+        },
+      },
     ],
   };
 });
@@ -294,6 +302,80 @@ server.setRequestHandler(CallToolRequestSchema, async (request: CallToolRequest)
             {
               type: 'text',
               text: result.trim(),
+            },
+          ],
+        };
+      }
+
+      case 'add_comet': {
+        const currentDir = process.env.PROJECT_ROOT || process.cwd();
+        const packageJsonPath = path.join(currentDir, 'package.json');
+
+        if (!fs.existsSync(packageJsonPath)) {
+          throw new Error(`No package.json found in current directory: ${currentDir}`);
+        }
+
+        const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
+        const dependencies = { ...packageJson.dependencies, ...packageJson.devDependencies };
+
+        // Step 1: Check if comet packages are already added
+        const cometPackages = [
+          '@metrostar/comet-uswds',
+          '@metrostar/comet-extras',
+          '@metrostar/comet-data-viz',
+        ];
+
+        const installedCometPackages = cometPackages.filter((pkg) => dependencies[pkg]);
+
+        if (installedCometPackages.length > 0) {
+          return {
+            content: [
+              {
+                type: 'text',
+                text: `Comet packages are already configured in this project:\n${installedCometPackages
+                  .map((pkg) => `- ${pkg}: ${dependencies[pkg]}`)
+                  .join('\n')}\n\nNothing more to do.`,
+              },
+            ],
+          };
+        }
+
+        // Step 2: Check for Vite and SCSS
+        const hasVite =
+          dependencies['vite'] ||
+          dependencies['@vitejs/plugin-react'] ||
+          dependencies['@vitejs/plugin-react-swc'];
+        const hasScss = dependencies['sass'] || dependencies['scss'] || dependencies['node-sass'];
+
+        let result = '# Comet Setup Analysis\n\n';
+        result += '## Status\n';
+        result += 'Comet packages are not yet configured in this project.\n\n';
+
+        result += '## Prerequisites Check\n';
+        result += `- **Vite**: ${hasVite ? '✅ Found' : '❌ Not found'}\n`;
+        result += `- **SCSS**: ${hasScss ? '✅ Found' : '❌ Not found'}\n\n`;
+
+        if (!hasVite || !hasScss) {
+          result += '## Required Dependencies\n';
+          if (!hasVite) {
+            result +=
+              '- Vite is required for Comet packages. Install with: `npm install --save-dev vite @vitejs/plugin-react`\n';
+          }
+          if (!hasScss) {
+            result +=
+              '- SCSS/Sass is required for Comet styling. Install with: `npm install --save-dev sass`\n';
+          }
+          result += '\nPlease install the required dependencies before adding Comet packages.\n';
+        } else {
+          result += '## Ready for Comet\n';
+          result += 'All prerequisites are met! You can proceed with adding Comet packages.\n';
+        }
+
+        return {
+          content: [
+            {
+              type: 'text',
+              text: result,
             },
           ],
         };
