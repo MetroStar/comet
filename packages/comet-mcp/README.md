@@ -30,10 +30,38 @@ npm install -g @metrostar/comet-mcp
 
 ## Available Tools
 
-| Tool                | Description                                            | Parameters                                                                      |
-| ------------------- | ------------------------------------------------------ | ------------------------------------------------------------------------------- |
-| `get_comet_version` | Get the current version of Comet Packages and Versions | None                                                                            |
-| `init_project`      | Initialize a new Comet project (UI or API)             | `type`: Project type ("ui" or "api")<br>`name`: Project name and directory name |
+| Tool                    | Description                                            | Parameters                                                                                                          |
+| ----------------------- | ------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------- |
+| `init_project`          | Initialize a new Comet project (UI or API)             | `type`: Project type ("ui" or "api")<br>`name`: Project name and directory name                                     |
+| `get_comet_version`     | Get the current version of Comet Packages and Versions | None                                                                                                                |
+| `list_components`       | Get a list of all available Comet components           | `package`: Filter by package ("all", "comet-uswds", "comet-extras", "comet-data-viz") - optional, defaults to "all" |
+| `get_component_details` | Get detailed information about a specific component    | `componentName`: The name of the component to get details for (required)                                            |
+| `get_env_variables`     | Get current Node.js environment variables              | `filter`: Optional filter to search for specific variables (case-insensitive)                                       |
+
+### Component Tools
+
+The `list_components` tool provides a comprehensive list of all components available across the three main Comet packages:
+
+- **@metrostar/comet-uswds**: Core USWDS-based components
+- **@metrostar/comet-extras**: Additional utility components
+- **@metrostar/comet-data-viz**: Data visualization components
+
+The `get_component_details` tool provides detailed information about a specific component including:
+
+- Package information
+- Component description (from JSDoc comments)
+- File path location
+- Available props (extracted from TypeScript interfaces)
+- Exported types and interfaces
+
+### Environment Variables Tool
+
+The `get_env_variables` tool helps inspect the current Node.js environment variables:
+
+- **Filtering**: Use the `filter` parameter to search for specific variables by name (case-insensitive)
+- **Truncation**: Long values are truncated to 100 characters for readability
+
+This tool is useful for debugging environment configuration, checking if required variables are set, and understanding the runtime environment.
 
 ## Running the Project Locally
 
