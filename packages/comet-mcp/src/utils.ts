@@ -151,7 +151,7 @@ export const getComponentDetails = (componentName: string): ComponentDetails | n
 /**
  * Finds the component directory based on the component name
  */
-const findComponentDirectory = (
+export const findComponentDirectory = (
   packagePath: string,
   componentName: string,
   isLocalDev: boolean,
@@ -182,7 +182,7 @@ const findComponentDirectory = (
 /**
  * Finds the main component file
  */
-const findComponentFile = (
+export const findComponentFile = (
   componentDir: string,
   componentName: string,
   isLocalDev: boolean,

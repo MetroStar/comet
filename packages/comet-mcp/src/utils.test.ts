@@ -5,6 +5,8 @@ import {
   extractJSDocDescription,
   extractProps,
   extractTypes,
+  findComponentFile,
+  findComponentDirectory,
 } from './utils';
 import fs from 'fs';
 import path from 'path';
@@ -815,6 +817,455 @@ export { type AnotherType, interface SomeInterface } from './another-module';
       const result = extractTypes(content);
       // Current implementation only catches direct export type/interface declarations
       expect(result).toEqual(['NewType']);
+    });
+  });
+
+  describe('findComponentFile', () => {
+    beforeEach(() => {
+      vi.clearAllMocks();
+    });
+
+    test('should find index.tsx file in local development', () => {
+      const componentDir = '/path/to/button';
+      const componentName = 'Button';
+
+      mockedFs.existsSync.mockImplementation((filePath) => {
+        return filePath === '/path/to/button/index.tsx';
+      });
+
+      const result = findComponentFile(componentDir, componentName, true);
+
+      expect(result).toBe('/path/to/button/index.tsx');
+      expect(mockedFs.existsSync).toHaveBeenCalledWith('/path/to/button/index.tsx');
+    });
+
+    test('should find component-named file when index.tsx does not exist', () => {
+      const componentDir = '/path/to/alert';
+      const componentName = 'Alert';
+
+      mockedFs.existsSync.mockImplementation((filePath) => {
+        return filePath === '/path/to/alert/Alert.tsx';
+      });
+
+      const result = findComponentFile(componentDir, componentName, true);
+
+      expect(result).toBe('/path/to/alert/Alert.tsx');
+      expect(mockedFs.existsSync).toHaveBeenCalledWith('/path/to/alert/index.tsx');
+      expect(mockedFs.existsSync).toHaveBeenCalledWith('/path/to/alert/Alert.tsx');
+    });
+
+    test('should find lowercase component file when others do not exist', () => {
+      const componentDir = '/path/to/card';
+      const componentName = 'Card';
+
+      mockedFs.existsSync.mockImplementation((filePath) => {
+        return filePath === '/path/to/card/card.tsx';
+      });
+
+      const result = findComponentFile(componentDir, componentName, true);
+
+      expect(result).toBe('/path/to/card/card.tsx');
+      expect(mockedFs.existsSync).toHaveBeenCalledWith('/path/to/card/index.tsx');
+      expect(mockedFs.existsSync).toHaveBeenCalledWith('/path/to/card/Card.tsx');
+      expect(mockedFs.existsSync).toHaveBeenCalledWith('/path/to/card/card.tsx');
+    });
+
+    test('should return null when no files exist in local development', () => {
+      const componentDir = '/path/to/nonexistent';
+      const componentName = 'NonExistent';
+
+      mockedFs.existsSync.mockReturnValue(false);
+
+      const result = findComponentFile(componentDir, componentName, true);
+
+      expect(result).toBeNull();
+      expect(mockedFs.existsSync).toHaveBeenCalledWith('/path/to/nonexistent/index.tsx');
+      expect(mockedFs.existsSync).toHaveBeenCalledWith('/path/to/nonexistent/NonExistent.tsx');
+      expect(mockedFs.existsSync).toHaveBeenCalledWith('/path/to/nonexistent/nonexistent.tsx');
+    });
+
+    test('should return first matching file when multiple exist', () => {
+      const componentDir = '/path/to/button';
+      const componentName = 'Button';
+
+      // Mock both index.tsx and Button.tsx to exist
+      mockedFs.existsSync.mockReturnValue(true);
+
+      const result = findComponentFile(componentDir, componentName, true);
+
+      // Should return index.tsx since it's checked first
+      expect(result).toBe('/path/to/button/index.tsx');
+      expect(mockedFs.existsSync).toHaveBeenCalledWith('/path/to/button/index.tsx');
+    });
+
+    test('should return null when not in local development mode', () => {
+      const componentDir = '/path/to/button';
+      const componentName = 'Button';
+
+      mockedFs.existsSync.mockReturnValue(true);
+
+      const result = findComponentFile(componentDir, componentName, false);
+
+      expect(result).toBeNull();
+      expect(mockedFs.existsSync).not.toHaveBeenCalled();
+    });
+
+    test('should handle complex component names correctly', () => {
+      const componentDir = '/path/to/data-table';
+      const componentName = 'DataTable';
+
+      mockedFs.existsSync.mockImplementation((filePath) => {
+        return filePath === '/path/to/data-table/datatable.tsx';
+      });
+
+      const result = findComponentFile(componentDir, componentName, true);
+
+      expect(result).toBe('/path/to/data-table/datatable.tsx');
+      expect(mockedFs.existsSync).toHaveBeenCalledWith('/path/to/data-table/index.tsx');
+      expect(mockedFs.existsSync).toHaveBeenCalledWith('/path/to/data-table/DataTable.tsx');
+      expect(mockedFs.existsSync).toHaveBeenCalledWith('/path/to/data-table/datatable.tsx');
+    });
+
+    test('should handle single character component names', () => {
+      const componentDir = '/path/to/x';
+      const componentName = 'X';
+
+      mockedFs.existsSync.mockImplementation((filePath) => {
+        return filePath === '/path/to/x/X.tsx';
+      });
+
+      const result = findComponentFile(componentDir, componentName, true);
+
+      expect(result).toBe('/path/to/x/X.tsx');
+      expect(mockedFs.existsSync).toHaveBeenCalledWith('/path/to/x/index.tsx');
+      expect(mockedFs.existsSync).toHaveBeenCalledWith('/path/to/x/X.tsx');
+    });
+
+    test('should handle empty component directory path', () => {
+      const componentDir = '';
+      const componentName = 'Button';
+
+      mockedFs.existsSync.mockReturnValue(false);
+
+      const result = findComponentFile(componentDir, componentName, true);
+
+      expect(result).toBeNull();
+      expect(mockedFs.existsSync).toHaveBeenCalledWith('/index.tsx');
+      expect(mockedFs.existsSync).toHaveBeenCalledWith('/Button.tsx');
+      expect(mockedFs.existsSync).toHaveBeenCalledWith('/button.tsx');
+    });
+
+    test('should handle empty component name', () => {
+      const componentDir = '/path/to/component';
+      const componentName = '';
+
+      mockedFs.existsSync.mockImplementation((filePath) => {
+        return filePath === '/path/to/component/index.tsx';
+      });
+
+      const result = findComponentFile(componentDir, componentName, true);
+
+      expect(result).toBe('/path/to/component/index.tsx');
+      expect(mockedFs.existsSync).toHaveBeenCalledWith('/path/to/component/index.tsx');
+      // When index.tsx exists, the function returns early and doesn't check other files
+    });
+
+    test('should handle component names with numbers', () => {
+      const componentDir = '/path/to/form2';
+      const componentName = 'Form2';
+
+      mockedFs.existsSync.mockImplementation((filePath) => {
+        return filePath === '/path/to/form2/form2.tsx';
+      });
+
+      const result = findComponentFile(componentDir, componentName, true);
+
+      expect(result).toBe('/path/to/form2/form2.tsx');
+      expect(mockedFs.existsSync).toHaveBeenCalledWith('/path/to/form2/index.tsx');
+      expect(mockedFs.existsSync).toHaveBeenCalledWith('/path/to/form2/Form2.tsx');
+      expect(mockedFs.existsSync).toHaveBeenCalledWith('/path/to/form2/form2.tsx');
+    });
+
+    test('should use path.join correctly for cross-platform compatibility', () => {
+      const componentDir = '/path/to/button';
+      const componentName = 'Button';
+
+      mockedFs.existsSync.mockReturnValue(false);
+      mockedPath.join.mockImplementation((...args) => args.join('/'));
+
+      findComponentFile(componentDir, componentName, true);
+
+      expect(mockedPath.join).toHaveBeenCalledWith('/path/to/button', 'index.tsx');
+      expect(mockedPath.join).toHaveBeenCalledWith('/path/to/button', 'Button.tsx');
+      expect(mockedPath.join).toHaveBeenCalledWith('/path/to/button', 'button.tsx');
+    });
+  });
+
+  describe('findComponentDirectory', () => {
+    beforeEach(() => {
+      vi.clearAllMocks();
+    });
+
+    test('should find component directory with exact match in local development', () => {
+      const packagePath = '/path/to/package';
+      const componentName = 'Button';
+
+      mockedFs.existsSync.mockImplementation((filePath) => {
+        return filePath === '/path/to/package/src/components';
+      });
+
+      mockedFs.readdirSync.mockReturnValue([
+        { name: 'button', isDirectory: () => true },
+        { name: 'alert', isDirectory: () => true },
+        { name: 'card', isDirectory: () => true },
+      ] as any);
+
+      const result = findComponentDirectory(packagePath, componentName, true);
+
+      expect(result).toBe('/path/to/package/src/components/button');
+      expect(mockedPath.join).toHaveBeenCalledWith(packagePath, 'src', 'components');
+      expect(mockedFs.existsSync).toHaveBeenCalledWith('/path/to/package/src/components');
+      expect(mockedFs.readdirSync).toHaveBeenCalledWith('/path/to/package/src/components', {
+        withFileTypes: true,
+      });
+    });
+
+    test('should find component directory with kebab-case match', () => {
+      const packagePath = '/path/to/package';
+      const componentName = 'DataTable';
+
+      mockedFs.existsSync.mockReturnValue(true);
+      mockedFs.readdirSync.mockReturnValue([
+        { name: 'data-table', isDirectory: () => true },
+        { name: 'button', isDirectory: () => true },
+        { name: 'card', isDirectory: () => true },
+      ] as any);
+
+      const result = findComponentDirectory(packagePath, componentName, true);
+
+      expect(result).toBe('/path/to/package/src/components/data-table');
+    });
+
+    test('should find component directory with lowercase match', () => {
+      const packagePath = '/path/to/package';
+      const componentName = 'Alert';
+
+      mockedFs.existsSync.mockReturnValue(true);
+      mockedFs.readdirSync.mockReturnValue([
+        { name: 'alert', isDirectory: () => true },
+        { name: 'button', isDirectory: () => true },
+        { name: 'card', isDirectory: () => true },
+      ] as any);
+
+      const result = findComponentDirectory(packagePath, componentName, true);
+
+      expect(result).toBe('/path/to/package/src/components/alert');
+    });
+
+    test('should find component directory with exact case match', () => {
+      const packagePath = '/path/to/package';
+      const componentName = 'Card';
+
+      mockedFs.existsSync.mockReturnValue(true);
+      mockedFs.readdirSync.mockReturnValue([
+        { name: 'Card', isDirectory: () => true },
+        { name: 'button', isDirectory: () => true },
+        { name: 'alert', isDirectory: () => true },
+      ] as any);
+
+      const result = findComponentDirectory(packagePath, componentName, true);
+
+      expect(result).toBe('/path/to/package/src/components/Card');
+    });
+
+    test('should prioritize kebab-case over other matches', () => {
+      const packagePath = '/path/to/package';
+      const componentName = 'DataTable';
+
+      mockedFs.existsSync.mockReturnValue(true);
+      mockedFs.readdirSync.mockReturnValue([
+        { name: 'data-table', isDirectory: () => true },
+        { name: 'datatable', isDirectory: () => true },
+        { name: 'DataTable', isDirectory: () => true },
+      ] as any);
+
+      const result = findComponentDirectory(packagePath, componentName, true);
+
+      // The find method returns the first match, which should be kebab-case
+      expect(result).toBe('/path/to/package/src/components/data-table');
+    });
+
+    test('should return null when components directory does not exist', () => {
+      const packagePath = '/path/to/package';
+      const componentName = 'Button';
+
+      mockedFs.existsSync.mockReturnValue(false);
+
+      const result = findComponentDirectory(packagePath, componentName, true);
+
+      expect(result).toBeNull();
+      expect(mockedFs.existsSync).toHaveBeenCalledWith('/path/to/package/src/components');
+      expect(mockedFs.readdirSync).not.toHaveBeenCalled();
+    });
+
+    test('should return null when no matching directory found', () => {
+      const packagePath = '/path/to/package';
+      const componentName = 'NonExistent';
+
+      mockedFs.existsSync.mockReturnValue(true);
+      mockedFs.readdirSync.mockReturnValue([
+        { name: 'button', isDirectory: () => true },
+        { name: 'alert', isDirectory: () => true },
+        { name: 'card', isDirectory: () => true },
+      ] as any);
+
+      const result = findComponentDirectory(packagePath, componentName, true);
+
+      expect(result).toBeNull();
+    });
+
+    test('should filter out non-directories', () => {
+      const packagePath = '/path/to/package';
+      const componentName = 'Button';
+
+      mockedFs.existsSync.mockReturnValue(true);
+      mockedFs.readdirSync.mockReturnValue([
+        { name: 'button', isDirectory: () => true },
+        { name: 'readme.md', isDirectory: () => false },
+        { name: 'index.ts', isDirectory: () => false },
+        { name: 'alert', isDirectory: () => true },
+      ] as any);
+
+      const result = findComponentDirectory(packagePath, componentName, true);
+
+      expect(result).toBe('/path/to/package/src/components/button');
+    });
+
+    test('should return package path when not in local development mode', () => {
+      const packagePath = '/path/to/node_modules/package';
+      const componentName = 'Button';
+
+      const result = findComponentDirectory(packagePath, componentName, false);
+
+      expect(result).toBe(packagePath);
+      expect(mockedFs.existsSync).not.toHaveBeenCalled();
+      expect(mockedFs.readdirSync).not.toHaveBeenCalled();
+    });
+
+    test('should handle complex component names with multiple capital letters', () => {
+      const packagePath = '/path/to/package';
+      const componentName = 'XMLHttpRequest';
+
+      mockedFs.existsSync.mockReturnValue(true);
+      mockedFs.readdirSync.mockReturnValue([
+        { name: 'xmlhttp-request', isDirectory: () => true },
+        { name: 'button', isDirectory: () => true },
+      ] as any);
+
+      const result = findComponentDirectory(packagePath, componentName, true);
+
+      expect(result).toBe('/path/to/package/src/components/xmlhttp-request');
+    });
+
+    test('should handle component names with numbers', () => {
+      const packagePath = '/path/to/package';
+      const componentName = 'Form2';
+
+      mockedFs.existsSync.mockReturnValue(true);
+      mockedFs.readdirSync.mockReturnValue([
+        { name: 'form2', isDirectory: () => true },
+        { name: 'form', isDirectory: () => true },
+      ] as any);
+
+      const result = findComponentDirectory(packagePath, componentName, true);
+
+      expect(result).toBe('/path/to/package/src/components/form2');
+    });
+
+    test('should handle single character component names', () => {
+      const packagePath = '/path/to/package';
+      const componentName = 'X';
+
+      mockedFs.existsSync.mockReturnValue(true);
+      mockedFs.readdirSync.mockReturnValue([
+        { name: 'x', isDirectory: () => true },
+        { name: 'button', isDirectory: () => true },
+      ] as any);
+
+      const result = findComponentDirectory(packagePath, componentName, true);
+
+      expect(result).toBe('/path/to/package/src/components/x');
+    });
+
+    test('should handle empty components directory', () => {
+      const packagePath = '/path/to/package';
+      const componentName = 'Button';
+
+      mockedFs.existsSync.mockReturnValue(true);
+      mockedFs.readdirSync.mockReturnValue([]);
+
+      const result = findComponentDirectory(packagePath, componentName, true);
+
+      expect(result).toBeNull();
+    });
+
+    test('should handle directory with only files (no subdirectories)', () => {
+      const packagePath = '/path/to/package';
+      const componentName = 'Button';
+
+      mockedFs.existsSync.mockReturnValue(true);
+      mockedFs.readdirSync.mockReturnValue([
+        { name: 'index.ts', isDirectory: () => false },
+        { name: 'types.ts', isDirectory: () => false },
+        { name: 'utils.ts', isDirectory: () => false },
+      ] as any);
+
+      const result = findComponentDirectory(packagePath, componentName, true);
+
+      expect(result).toBeNull();
+    });
+
+    test('should use path.join correctly for cross-platform compatibility', () => {
+      const packagePath = '/path/to/package';
+      const componentName = 'Button';
+
+      mockedFs.existsSync.mockReturnValue(true);
+      mockedFs.readdirSync.mockReturnValue([{ name: 'button', isDirectory: () => true }] as any);
+      mockedPath.join.mockImplementation((...args) => args.join('/'));
+
+      findComponentDirectory(packagePath, componentName, true);
+
+      expect(mockedPath.join).toHaveBeenCalledWith(packagePath, 'src', 'components');
+      expect(mockedPath.join).toHaveBeenCalledWith('/path/to/package/src/components', 'button');
+    });
+
+    test('should handle readdir error gracefully', () => {
+      const packagePath = '/path/to/package';
+      const componentName = 'Button';
+
+      mockedFs.existsSync.mockReturnValue(true);
+      mockedFs.readdirSync.mockImplementation(() => {
+        throw new Error('Permission denied');
+      });
+
+      expect(() => {
+        findComponentDirectory(packagePath, componentName, true);
+      }).toThrow('Permission denied');
+    });
+
+    test('should handle special characters in component names', () => {
+      const packagePath = '/path/to/package';
+      const componentName = 'My$Component';
+
+      mockedFs.existsSync.mockReturnValue(true);
+      mockedFs.readdirSync.mockReturnValue([
+        { name: 'my$component', isDirectory: () => true },
+        { name: 'button', isDirectory: () => true },
+      ] as any);
+
+      const result = findComponentDirectory(packagePath, componentName, true);
+
+      expect(result).toBe('/path/to/package/src/components/my$component');
     });
   });
 });
