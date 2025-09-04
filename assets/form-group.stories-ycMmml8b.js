@@ -1,0 +1,22 @@
+import{j as r}from"./jsx-runtime-D_zvdyIk.js";import{F as m}from"./form-group-DRHOEtVf.js";import{T as p}from"./table-CRIHftcn.js";import"./banner-tI4i3dHX.js";import"./button-CIuKbjxD.js";import"./button-group-gBk2q1RT.js";import"./checkbox-C0p4yiuP.js";import"./combo-box-C1ab52c3.js";import"./date-picker-yjT1zarg.js";import{E as s}from"./error-messages-_lA7co94.js";import"./index-CzGQz90s.js";import{H as i}from"./helper-text-BRA2CuHl.js";import"./icon-BkCLabQh.js";import{L as a}from"./label-0qqEdO1f.js";import"./modal-x7UqWS9_.js";import"./process-list-DEWXnXmu.js";import"./radio-button-C1xT2Qy8.js";import"./range-slider--uBQoswA.js";import"./search-BCqjbBHN.js";import"./select-gcVG_7Gs.js";import"./side-navigation-BnGWXKbX.js";import"./site-alert-DOusDcvs.js";import"./step-indicator-DoMwYytm.js";import"./summary-box-BAt1BHtX.js";import"./tag-dpfiBseI.js";import"./text-area-C6LgDorB.js";import"./time-picker-Dwz4Iy3u.js";import"./tooltip-CSQbHOdo.js";import"./index-Dz-2O1NT.js";import"./iframe-BsmwYSRM.js";import"./index-BVkfGhKT.js";import"./config-ODXtjL5r.js";import"./select-or-matches-DM7yTSmT.js";import"./events-CleOcHg4.js";import"./sanitizer-BDKKlE4O.js";import"./index-BPUyFTct.js";import"./is-in-viewport-ChIQrv3L.js";import"./sprite-Cw9lcZJJ.js";import"./index-D0eiXkeB.js";import"./active-element-BuxAly_Z.js";const V={title:"USWDS/Forms/Form Group",component:m},e={args:{id:"form-group-1"},render:o=>r.jsxs(m,{id:o.id,errors:o.errors,children:[r.jsx(a,{htmlFor:"input1",children:"Name"}),r.jsx(i,{children:"Enter your full name"}),r.jsx(s,{errors:o.errors}),r.jsx(p,{id:"input1",name:"input1"})]})},t={args:{id:"form-group-2",errors:"some error"},render:o=>r.jsxs(m,{id:o.id,errors:o.errors,children:[r.jsx(a,{htmlFor:"input1",children:"Name"}),r.jsx(i,{children:"Enter your full name"}),r.jsx(s,{errors:o.errors}),r.jsx(p,{id:"input1",name:"input1"})]})};e.parameters={...e.parameters,docs:{...e.parameters?.docs,source:{originalSource:`{
+  args: {
+    id: 'form-group-1'
+  },
+  render: (args: FormGroupProps) => <FormGroup id={args.id} errors={args.errors}>
+      <Label htmlFor="input1">Name</Label>
+      <HelperText>Enter your full name</HelperText>
+      <ErrorMessages errors={args.errors} />
+      <TextInput id="input1" name="input1" />
+    </FormGroup>
+}`,...e.parameters?.docs?.source}}};t.parameters={...t.parameters,docs:{...t.parameters?.docs,source:{originalSource:`{
+  args: {
+    id: 'form-group-2',
+    errors: 'some error'
+  },
+  render: (args: FormGroupProps) => <FormGroup id={args.id} errors={args.errors}>
+      <Label htmlFor="input1">Name</Label>
+      <HelperText>Enter your full name</HelperText>
+      <ErrorMessages errors={args.errors} />
+      <TextInput id="input1" name="input1" />
+    </FormGroup>
+}`,...t.parameters?.docs?.source}}};const X=["Standard","WithErrors"];export{e as Standard,t as WithErrors,X as __namedExportsOrder,V as default};
