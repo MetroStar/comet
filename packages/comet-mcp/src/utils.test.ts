@@ -2,6 +2,7 @@ import { describe, test, expect, vi, beforeEach, afterEach } from 'vitest';
 import {
   getFriendlyDirectoryName,
   getComponentsFromPackage,
+  getComponentDetails,
   extractJSDocDescription,
   extractProps,
   extractTypes,
@@ -1266,6 +1267,86 @@ export { type AnotherType, interface SomeInterface } from './another-module';
       const result = findComponentDirectory(packagePath, componentName, true);
 
       expect(result).toBe('/path/to/package/src/components/my$component');
+    });
+  });
+
+  describe('getComponentDetails', () => {
+    test('should return component details when component is found', () => {
+      const componentName = 'Button';
+
+      // Set PROJECT_ROOT environment variable
+      const originalEnv = process.env.PROJECT_ROOT;
+      process.env.PROJECT_ROOT = '/mock/project/root';
+
+      // Mock that the package directory exists
+      mockedFs.existsSync.mockReturnValueOnce(true); // package exists
+      mockedFs.existsSync.mockReturnValueOnce(true); // index.d.ts exists
+
+      // Mock the package index file content
+      mockedFs.readFileSync.mockReturnValueOnce(`
+        export { default as Button } from './button';
+        export { default as Alert } from './alert';
+      `);
+
+      // Mock that component directory doesn't exist in node_modules (so it checks local dev)
+      mockedFs.existsSync.mockReturnValueOnce(false); // node_modules path
+      mockedFs.existsSync.mockReturnValueOnce(true); // local packages path
+      mockedFs.existsSync.mockReturnValueOnce(true); // src/components directory
+
+      // Mock reading the components directory
+      mockedFs.readdirSync.mockReturnValueOnce([
+        { name: 'button', isDirectory: () => true },
+        { name: 'alert', isDirectory: () => true },
+      ] as any);
+
+      // Mock that component file exists and read its content
+      mockedFs.existsSync.mockReturnValueOnce(true); // index.tsx exists
+      mockedFs.readFileSync.mockReturnValueOnce(`
+        /**
+         * A reusable button component
+         */
+        export interface ButtonProps {
+          variant?: 'primary' | 'secondary';
+          size?: 'small' | 'medium' | 'large';
+          disabled?: boolean;
+          children: React.ReactNode;
+        }
+        
+        export type ButtonVariant = 'primary' | 'secondary';
+        
+        const Button: React.FC<ButtonProps> = ({ children, ...props }) => {
+          return <button {...props}>{children}</button>;
+        };
+        
+        export default Button;
+      `);
+
+      const result = getComponentDetails(componentName);
+
+      expect(result).toEqual({
+        name: 'Button',
+        package: '@metrostar/comet-uswds',
+        filePath: '/mock/project/root/packages/comet-uswds/src/components/button',
+        description: 'A reusable button component',
+        props: ['children', 'disabled', 'size', 'variant'],
+        types: ['ButtonProps', 'ButtonVariant'],
+      });
+
+      // Restore environment
+      process.env.PROJECT_ROOT = originalEnv;
+    });
+
+    test('should return null when component is not found', () => {
+      // Mock that packages exist but don't contain the component
+      mockedFs.existsSync.mockReturnValue(true);
+      mockedFs.readFileSync.mockReturnValue(`
+        export { default as Alert } from './alert';
+        export { default as Card } from './card';
+      `);
+
+      const result = getComponentDetails('NonExistentComponent');
+
+      expect(result).toBeNull();
     });
   });
 });
