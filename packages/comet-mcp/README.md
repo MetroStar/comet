@@ -30,10 +30,28 @@ npm install -g @metrostar/comet-mcp
 
 ## Available Tools
 
-| Tool                | Description                                            | Parameters                                                                      |
-| ------------------- | ------------------------------------------------------ | ------------------------------------------------------------------------------- |
-| `get_comet_version` | Get the current version of Comet Packages and Versions | None                                                                            |
-| `init_project`      | Initialize a new Comet project (UI or API)             | `type`: Project type ("ui" or "api")<br>`name`: Project name and directory name |
+| Tool                    | Description                                            | Parameters                                                                                                          |
+| ----------------------- | ------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------- |
+| `init_project`          | Initialize a new Comet project (UI or API)             | `type`: Project type ("ui" or "api")<br>`name`: Project name and directory name                                     |
+| `get_comet_version`     | Get the current version of Comet Packages and Versions | None                                                                                                                |
+| `list_components`       | Get a list of all available Comet components           | `package`: Filter by package ("all", "comet-uswds", "comet-extras", "comet-data-viz") - optional, defaults to "all" |
+| `get_component_details` | Get detailed information about a specific component    | `componentName`: The name of the component to get details for (required)                                            |
+
+### Component Tools
+
+The `list_components` tool provides a comprehensive list of all components available across the three main Comet packages:
+
+- **@metrostar/comet-uswds**: Core USWDS-based components
+- **@metrostar/comet-extras**: Additional utility components
+- **@metrostar/comet-data-viz**: Data visualization components
+
+The `get_component_details` tool provides detailed information about a specific component including:
+
+- Package information
+- Component description (from JSDoc comments)
+- File path location
+- Available props (extracted from TypeScript interfaces)
+- Exported types and interfaces
 
 ## Running the Project Locally
 

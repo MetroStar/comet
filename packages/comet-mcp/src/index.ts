@@ -13,7 +13,7 @@ import { exec } from 'child_process';
 import { promisify } from 'util';
 
 import { API_REPO_URL, PROJECT_TYPES, UI_REPO_URL } from './constants.js';
-import { log } from './utils.js';
+import { log, getComponentsFromPackage, getComponentDetails } from './utils.js';
 
 const execAsync = promisify(exec);
 
@@ -58,6 +58,35 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
             },
           },
           required: ['type', 'name'],
+        },
+      },
+      {
+        name: 'list_components',
+        description:
+          'Get a list of all available Comet components from comet-uswds, comet-extras, and comet-data-viz packages',
+        inputSchema: {
+          type: 'object',
+          properties: {
+            package: {
+              type: 'string',
+              enum: ['all', 'comet-uswds', 'comet-extras', 'comet-data-viz'],
+              description: 'Filter components by package (default: all)',
+            },
+          },
+        },
+      },
+      {
+        name: 'get_component_details',
+        description: 'Get detailed information about a specific Comet component',
+        inputSchema: {
+          type: 'object',
+          properties: {
+            componentName: {
+              type: 'string',
+              description: 'The name of the component to get details for',
+            },
+          },
+          required: ['componentName'],
         },
       },
     ],
@@ -157,6 +186,100 @@ server.setRequestHandler(CallToolRequestSchema, async (request: CallToolRequest)
             {
               type: 'text',
               text: `Successfully created new ${type} project: ${projectName}`,
+            },
+          ],
+        };
+      }
+
+      case 'list_components': {
+        const { package: packageFilter = 'all' } = args as { package?: string };
+
+        const cometUswdsComponents = getComponentsFromPackage('@metrostar/comet-uswds');
+        const cometExtrasComponents = getComponentsFromPackage('@metrostar/comet-extras');
+        const cometDataVizComponents = getComponentsFromPackage('@metrostar/comet-data-viz');
+
+        let result = '';
+
+        if (packageFilter === 'all' || packageFilter === 'comet-uswds') {
+          result += `## @metrostar/comet-uswds (${cometUswdsComponents.length} components)\n`;
+          result += cometUswdsComponents.map((component) => `- ${component}`).join('\n');
+          result += '\n\n';
+        }
+
+        if (packageFilter === 'all' || packageFilter === 'comet-extras') {
+          result += `## @metrostar/comet-extras (${cometExtrasComponents.length} components)\n`;
+          result += cometExtrasComponents.map((component) => `- ${component}`).join('\n');
+          result += '\n\n';
+        }
+
+        if (packageFilter === 'all' || packageFilter === 'comet-data-viz') {
+          result += `## @metrostar/comet-data-viz (${cometDataVizComponents.length} components)\n`;
+          result += cometDataVizComponents.map((component) => `- ${component}`).join('\n');
+          result += '\n\n';
+        }
+
+        if (packageFilter === 'all') {
+          const totalComponents =
+            cometUswdsComponents.length +
+            cometExtrasComponents.length +
+            cometDataVizComponents.length;
+          result = `# Comet Components (${totalComponents} total)\n\n${result}`;
+        }
+
+        return {
+          content: [
+            {
+              type: 'text',
+              text: result.trim(),
+            },
+          ],
+        };
+      }
+
+      case 'get_component_details': {
+        const { componentName } = args as { componentName: string };
+
+        const details = getComponentDetails(componentName);
+
+        if (!details) {
+          return {
+            content: [
+              {
+                type: 'text',
+                text: `Component "${componentName}" not found in any Comet package.`,
+              },
+            ],
+          };
+        }
+
+        let result = `# ${details.name}\n\n`;
+        result += `**Package:** ${details.package}\n\n`;
+
+        if (details.description) {
+          result += `**Description:** ${details.description}\n\n`;
+        }
+
+        if (details.filePath) {
+          result += `**File Path:** ${details.filePath}\n\n`;
+        }
+
+        if (details.props && details.props.length > 0) {
+          result += `**Props:** (${details.props.length})\n`;
+          result += details.props.map((prop) => `- ${prop}`).join('\n');
+          result += '\n\n';
+        }
+
+        if (details.types && details.types.length > 0) {
+          result += `**Exported Types:** (${details.types.length})\n`;
+          result += details.types.map((type) => `- ${type}`).join('\n');
+          result += '\n\n';
+        }
+
+        return {
+          content: [
+            {
+              type: 'text',
+              text: result.trim(),
             },
           ],
         };
