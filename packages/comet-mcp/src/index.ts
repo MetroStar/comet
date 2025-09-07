@@ -342,10 +342,10 @@ server.setRequestHandler(CallToolRequestSchema, async (request: CallToolRequest)
 
         // Step 2: Check for Vite and SCSS
         const hasVite =
-          dependencies['vite'] ||
-          dependencies['@vitejs/plugin-react'] ||
-          dependencies['@vitejs/plugin-react-swc'];
-        const hasScss = dependencies['sass'] || dependencies['scss'] || dependencies['node-sass'];
+          'vite' in dependencies ||
+          '@vitejs/plugin-react' in dependencies ||
+          '@vitejs/plugin-react-swc' in dependencies;
+        const hasScss = 'sass' in dependencies || 'scss' in dependencies || 'node-sass' in dependencies;
 
         let result = '# Comet Setup Analysis\n\n';
         result += '## Status\n';
