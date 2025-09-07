@@ -102,7 +102,18 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
+        api: 'legacy',
         includePaths: ['node_modules/@uswds/uswds/packages'],
+        // Silence warnings coming from USWDS SCSS
+        quietDeps: true,
+        logger: {
+          warn: (msg) => {
+            if (msg.includes('legacy-js-api')) {
+              return;
+            }
+            console.warn(msg);
+          },
+        },
       },
     },
     postcss: {

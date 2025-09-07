@@ -367,8 +367,94 @@ server.setRequestHandler(CallToolRequestSchema, async (request: CallToolRequest)
           }
           result += '\nPlease install the required dependencies before adding Comet packages.\n';
         } else {
-          result += '## Ready for Comet\n';
-          result += 'All prerequisites are met! You can proceed with adding Comet packages.\n';
+          // All prerequisites are met, proceed with installation
+          result += '## Installation Steps\n';
+          result +=
+            'All prerequisites are met! Follow these steps to add Comet to your project:\n\n';
+
+          result += '### 1. Add Comet to your project:\n';
+          result += '```sh\n';
+          result += '# npm\n';
+          result += 'npm i --save @uswds/uswds @metrostar/comet-uswds\n\n';
+          result += '# or yarn\n';
+          result += 'yarn add @uswds/uswds @metrostar/comet-uswds\n';
+          result += '```\n\n';
+
+          result += '### 2. Add uswds directory to your src folder\n\n';
+
+          result += '### 3. Add base USWDS file (uswds.scss) to the uswds directory:\n';
+          result += '```scss\n';
+          result += '// Include a USWDS settings file (required)\n';
+          result += "@forward './uswds-settings.scss';\n\n";
+          result += '// Point to the USWDS source code (required)\n';
+          result += "@forward '~uswds/packages/uswds';\n\n";
+          result += "// Include your project's custom Sass (optional)\n";
+          result += '// @forward "project-custom.scss";\n';
+          result += '```\n\n';
+
+          result +=
+            '### 4. Add base USWDS settings file (uswds-settings.scss) to the uswds directory:\n';
+          result += '```scss\n';
+          result += "@use 'uswds-core' with (\n";
+          result += '  // General settings\n';
+          result += '  $theme-show-notifications: false,\n';
+          result += "  $theme-font-path: '~uswds/dist/fonts',\n";
+          result += "  $theme-image-path: '~uswds/dist/img'\n";
+          result += ');\n';
+          result += '```\n\n';
+
+          result += '### 5. Add uswds to the top of your SASS entry point (styles.scss):\n';
+          result += '```scss\n';
+          result += "@forward 'uswds/uswds.scss';\n";
+          result += '```\n\n';
+
+          result +=
+            '### 6. Update your Vite config file (vite.config.ts) with USWDS configurations:\n';
+          result += '```ts\n';
+          result += "import react from '@vitejs/plugin-react';\n";
+          result += "import autoprefixer from 'autoprefixer';\n";
+          result += "import path from 'path';\n";
+          result += "import { fileURLToPath } from 'url';\n";
+          result += "import { defineConfig } from 'vite';\n";
+          result += "import EnvironmentPlugin from 'vite-plugin-environment';\n";
+          result += "import eslint from 'vite-plugin-eslint';\n";
+          result += "import tsconfigPaths from 'vite-tsconfig-paths';\n\n";
+          result += 'const __filename = fileURLToPath(import.meta.url);\n';
+          result += 'const __dirname = path.dirname(__filename);\n\n';
+          result += '// https://vitejs.dev/config/\n';
+          result += 'export default defineConfig({\n';
+          result += "  plugins: [react(), tsconfigPaths(), eslint(), EnvironmentPlugin('all')],\n";
+          result += '  resolve: {\n';
+          result += '    alias: {\n';
+          result += "      '~uswds': path.resolve(__dirname, 'node_modules/@uswds/uswds'),\n";
+          result += '    },\n';
+          result += '  },\n';
+          result += '  css: {\n';
+          result += '    preprocessorOptions: {\n';
+          result += '      scss: {\n';
+          result += "        api: 'legacy',\n";
+          result += "        includePaths: ['node_modules/@uswds/uswds/packages'],\n";
+          result += '        // Silence warnings coming from USWDS SCSS\n';
+          result += '        quietDeps: true,\n';
+          result += '        logger: {\n';
+          result += '          warn: (msg) => {\n';
+          result += "            if (msg.includes('legacy-js-api')) {\n";
+          result += '              return;\n';
+          result += '            }\n';
+          result += '            console.warn(msg);\n';
+          result += '          },\n';
+          result += '        },\n';
+          result += '      },\n';
+          result += '    },\n';
+          result += '    postcss: {\n';
+          result += '      plugins: [autoprefixer],\n';
+          result += '    },\n';
+          result += '  },\n';
+          result += '});\n';
+          result += '```\n\n';
+
+          result +=
+            'For additional troubleshooting, refer to the [Comet Starter](https://github.com/MetroStar/comet-starter) app.\n';
         }
 
         return {
