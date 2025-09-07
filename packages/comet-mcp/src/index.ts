@@ -103,6 +103,14 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
           },
         },
       },
+      {
+        name: 'add_comet',
+        description: 'Add comet packages and configurations to an existing app',
+        inputSchema: {
+          type: 'object',
+          properties: {},
+        },
+      },
     ],
   };
 });
@@ -294,6 +302,167 @@ server.setRequestHandler(CallToolRequestSchema, async (request: CallToolRequest)
             {
               type: 'text',
               text: result.trim(),
+            },
+          ],
+        };
+      }
+
+      case 'add_comet': {
+        const currentDir = process.env.PROJECT_ROOT || process.cwd();
+        const packageJsonPath = path.join(currentDir, 'package.json');
+
+        if (!fs.existsSync(packageJsonPath)) {
+          throw new Error(`No package.json found in current directory: ${currentDir}`);
+        }
+
+        const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
+        const dependencies = { ...packageJson.dependencies, ...packageJson.devDependencies };
+
+        // Step 1: Check if comet packages are already added
+        const cometPackages = [
+          '@metrostar/comet-uswds',
+          '@metrostar/comet-extras',
+          '@metrostar/comet-data-viz',
+        ];
+
+        const installedCometPackages = cometPackages.filter((pkg) => dependencies[pkg]);
+
+        if (installedCometPackages.length > 0) {
+          return {
+            content: [
+              {
+                type: 'text',
+                text: `Comet packages are already configured in this project:\n${installedCometPackages
+                  .map((pkg) => `- ${pkg}: ${dependencies[pkg]}`)
+                  .join('\n')}\n\nNothing more to do.`,
+              },
+            ],
+          };
+        }
+
+        // Step 2: Check for Vite and SCSS
+        const hasVite =
+          'vite' in dependencies ||
+          '@vitejs/plugin-react' in dependencies ||
+          '@vitejs/plugin-react-swc' in dependencies;
+        const hasScss =
+          'sass' in dependencies || 'scss' in dependencies || 'node-sass' in dependencies;
+
+        let result = '# Comet Setup Analysis\n\n';
+        result += '## Status\n';
+        result += 'Comet packages are not yet configured in this project.\n\n';
+
+        result += '## Prerequisites Check\n';
+        result += `- **Vite**: ${hasVite ? '✅ Found' : '❌ Not found'}\n`;
+        result += `- **SCSS**: ${hasScss ? '✅ Found' : '❌ Not found'}\n\n`;
+
+        if (!hasVite || !hasScss) {
+          result += '## Required Dependencies\n';
+          if (!hasVite) {
+            result +=
+              '- Vite is required for Comet packages. Install with: `npm install --save-dev vite @vitejs/plugin-react`\n';
+          }
+          if (!hasScss) {
+            result +=
+              '- SCSS/Sass is required for Comet styling. Install with: `npm install --save-dev sass`\n';
+          }
+          result += '\nPlease install the required dependencies before adding Comet packages.\n';
+        } else {
+          // All prerequisites are met, proceed with installation
+          result += '## Installation Steps\n';
+          result +=
+            'All prerequisites are met! Follow these steps to add Comet to your project:\n\n';
+
+          result += '### 1. Add Comet to your project:\n';
+          result += '```sh\n';
+          result += '# npm\n';
+          result += 'npm i --save @uswds/uswds @metrostar/comet-uswds\n\n';
+          result += '# or yarn\n';
+          result += 'yarn add @uswds/uswds @metrostar/comet-uswds\n';
+          result += '```\n\n';
+
+          result += '### 2. Add uswds directory to your src folder\n\n';
+
+          result += '### 3. Add base USWDS file (uswds.scss) to the uswds directory:\n';
+          result += '```scss\n';
+          result += '// Include a USWDS settings file (required)\n';
+          result += "@forward './uswds-settings.scss';\n\n";
+          result += '// Point to the USWDS source code (required)\n';
+          result += "@forward '~uswds/packages/uswds';\n\n";
+          result += "// Include your project's custom Sass (optional)\n";
+          result += '// @forward "project-custom.scss";\n';
+          result += '```\n\n';
+
+          result +=
+            '### 4. Add base USWDS settings file (uswds-settings.scss) to the uswds directory:\n';
+          result += '```scss\n';
+          result += "@use 'uswds-core' with (\n";
+          result += '  // General settings\n';
+          result += '  $theme-show-notifications: false,\n';
+          result += "  $theme-font-path: '~uswds/dist/fonts',\n";
+          result += "  $theme-image-path: '~uswds/dist/img'\n";
+          result += ');\n';
+          result += '```\n\n';
+
+          result += '### 5. Add uswds to the top of your SASS entry point (styles.scss):\n';
+          result += '```scss\n';
+          result += "@forward 'uswds/uswds.scss';\n";
+          result += '```\n\n';
+
+          result +=
+            '### 6. Update your Vite config file (vite.config.ts) with USWDS configurations:\n';
+          result += '```ts\n';
+          result += "import react from '@vitejs/plugin-react';\n";
+          result += "import autoprefixer from 'autoprefixer';\n";
+          result += "import path from 'path';\n";
+          result += "import { fileURLToPath } from 'url';\n";
+          result += "import { defineConfig } from 'vite';\n";
+          result += "import EnvironmentPlugin from 'vite-plugin-environment';\n";
+          result += "import eslint from 'vite-plugin-eslint';\n";
+          result += "import tsconfigPaths from 'vite-tsconfig-paths';\n\n";
+          result += 'const __filename = fileURLToPath(import.meta.url);\n';
+          result += 'const __dirname = path.dirname(__filename);\n\n';
+          result += '// https://vitejs.dev/config/\n';
+          result += 'export default defineConfig({\n';
+          result += "  plugins: [react(), tsconfigPaths(), eslint(), EnvironmentPlugin('all')],\n";
+          result += '  resolve: {\n';
+          result += '    alias: {\n';
+          result += "      '~uswds': path.resolve(__dirname, 'node_modules/@uswds/uswds'),\n";
+          result += '    },\n';
+          result += '  },\n';
+          result += '  css: {\n';
+          result += '    preprocessorOptions: {\n';
+          result += '      scss: {\n';
+          result += "        api: 'legacy',\n";
+          result += "        includePaths: ['node_modules/@uswds/uswds/packages'],\n";
+          result += '        // Silence warnings coming from USWDS SCSS\n';
+          result += '        quietDeps: true,\n';
+          result += '        logger: {\n';
+          result += '          warn: (msg) => {\n';
+          result += "            if (msg.includes('legacy-js-api')) {\n";
+          result += '              return;\n';
+          result += '            }\n';
+          result += '            console.warn(msg);\n';
+          result += '          },\n';
+          result += '        },\n';
+          result += '      },\n';
+          result += '    },\n';
+          result += '    postcss: {\n';
+          result += '      plugins: [autoprefixer],\n';
+          result += '    },\n';
+          result += '  },\n';
+          result += '});\n';
+          result += '```\n\n';
+
+          result +=
+            'For additional troubleshooting, refer to the [Comet Starter](https://github.com/MetroStar/comet-starter) app.\n';
+        }
+
+        return {
+          content: [
+            {
+              type: 'text',
+              text: result,
             },
           ],
         };
