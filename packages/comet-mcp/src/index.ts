@@ -345,7 +345,8 @@ server.setRequestHandler(CallToolRequestSchema, async (request: CallToolRequest)
           'vite' in dependencies ||
           '@vitejs/plugin-react' in dependencies ||
           '@vitejs/plugin-react-swc' in dependencies;
-        const hasScss = 'sass' in dependencies || 'scss' in dependencies || 'node-sass' in dependencies;
+        const hasScss =
+          'sass' in dependencies || 'scss' in dependencies || 'node-sass' in dependencies;
 
         let result = '# Comet Setup Analysis\n\n';
         result += '## Status\n';
