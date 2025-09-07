@@ -13,7 +13,15 @@ import { exec } from 'child_process';
 import { promisify } from 'util';
 
 import { API_REPO_URL, PROJECT_TYPES, UI_REPO_URL } from './constants.js';
-import { log, getComponentsFromPackage, getComponentDetails } from './utils.js';
+import {
+  log,
+  getComponentsFromPackage,
+  getComponentDetails,
+  fetchUrl,
+  parseSitemapForUrls,
+  extractUSWDSContent,
+  USWDSDocContent,
+} from './utils.js';
 
 const execAsync = promisify(exec);
 
@@ -109,6 +117,27 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
         inputSchema: {
           type: 'object',
           properties: {},
+        },
+      },
+      {
+        name: 'search_uswds',
+        description:
+          'Search USWDS design system documentation for utilities, classes, design tokens, and other information from https://designsystem.digital.gov/',
+        inputSchema: {
+          type: 'object',
+          properties: {
+            query: {
+              type: 'string',
+              description: 'Search query for USWDS documentation (utilities, design tokens, etc.)',
+            },
+            limit: {
+              type: 'number',
+              description: 'Maximum number of results to return (default: 5)',
+              minimum: 1,
+              maximum: 20,
+            },
+          },
+          required: ['query'],
         },
       },
     ],
@@ -525,6 +554,155 @@ server.setRequestHandler(CallToolRequestSchema, async (request: CallToolRequest)
             },
           ],
         };
+      }
+
+      case 'search_uswds': {
+        const { query, limit = 5 } = args as {
+          query: string;
+          limit?: number;
+        };
+
+        try {
+          // Always search both utilities and design-tokens
+          const patterns = ['/utilities/', '/design-tokens/'];
+
+          // Fetch sitemap
+          const sitemapUrl = 'https://designsystem.digital.gov/sitemap.xml';
+          log(`Fetching sitemap from: ${sitemapUrl}`);
+          const sitemapContent = await fetchUrl(sitemapUrl);
+
+          // Parse sitemap for relevant URLs
+          const relevantUrls = parseSitemapForUrls(sitemapContent, patterns);
+          log(`Found ${relevantUrls.length} relevant URLs`);
+
+          if (relevantUrls.length === 0) {
+            return {
+              content: [
+                {
+                  type: 'text',
+                  text: 'No USWDS documentation found',
+                },
+              ],
+            };
+          }
+
+          // Fetch content from relevant URLs and search for query
+          const searchResults: USWDSDocContent[] = [];
+          const searchLimit = Math.min(limit, relevantUrls.length);
+
+          for (let i = 0; i < searchLimit && searchResults.length < limit; i++) {
+            const url = relevantUrls[i];
+            try {
+              log(`Fetching content from: ${url}`);
+              const htmlContent = await fetchUrl(url);
+              const docContent = extractUSWDSContent(htmlContent, url);
+
+              // Check if content matches the search query
+              const queryLower = query.toLowerCase();
+              const matchesQuery =
+                docContent.title.toLowerCase().includes(queryLower) ||
+                docContent.content.toLowerCase().includes(queryLower) ||
+                docContent.utilities.some((util) => util.toLowerCase().includes(queryLower)) ||
+                docContent.codeExamples.some((code) => code.toLowerCase().includes(queryLower));
+
+              if (matchesQuery) {
+                searchResults.push(docContent);
+              }
+            } catch (error) {
+              log(`Error fetching ${url}:`, error);
+              // Continue with next URL
+            }
+          }
+
+          // If we have fewer results than the limit, try searching more URLs
+          if (searchResults.length < limit && searchLimit < relevantUrls.length) {
+            for (
+              let i = searchLimit;
+              i < relevantUrls.length && searchResults.length < limit;
+              i++
+            ) {
+              const url = relevantUrls[i];
+              try {
+                log(`Fetching additional content from: ${url}`);
+                const htmlContent = await fetchUrl(url);
+                const docContent = extractUSWDSContent(htmlContent, url);
+
+                const queryLower = query.toLowerCase();
+                const matchesQuery =
+                  docContent.title.toLowerCase().includes(queryLower) ||
+                  docContent.content.toLowerCase().includes(queryLower) ||
+                  docContent.utilities.some((util) => util.toLowerCase().includes(queryLower)) ||
+                  docContent.codeExamples.some((code) => code.toLowerCase().includes(queryLower));
+
+                if (matchesQuery) {
+                  searchResults.push(docContent);
+                }
+              } catch (error) {
+                log(`Error fetching ${url}:`, error);
+                // Continue with next URL
+              }
+            }
+          }
+
+          if (searchResults.length === 0) {
+            return {
+              content: [
+                {
+                  type: 'text',
+                  text: `No USWDS documentation found matching "${query}"`,
+                },
+              ],
+            };
+          }
+
+          // Format results
+          let result = `# USWDS Search Results\n\n`;
+          result += `**Query:** "${query}"\n`;
+          result += `**Results:** ${searchResults.length}\n\n`;
+
+          searchResults.forEach((doc, index) => {
+            result += `## ${index + 1}. ${doc.title}\n\n`;
+            result += `**Type:** ${doc.type}\n`;
+            result += `**URL:** ${doc.url}\n\n`;
+
+            if (doc.content) {
+              result += `**Content:**\n${doc.content}\n\n`;
+            }
+
+            if (doc.utilities.length > 0) {
+              result += `**Utilities/Classes:** ${doc.utilities.slice(0, 10).join(', ')}\n\n`;
+            }
+
+            if (doc.codeExamples.length > 0) {
+              result += `**Code Examples:**\n`;
+              doc.codeExamples.slice(0, 3).forEach((code) => {
+                result += `\`\`\`\n${code}\n\`\`\`\n\n`;
+              });
+            }
+
+            result += '---\n\n';
+          });
+
+          return {
+            content: [
+              {
+                type: 'text',
+                text: result.trim(),
+              },
+            ],
+          };
+        } catch (error) {
+          const errorMessage = error instanceof Error ? error.message : String(error);
+          return {
+            content: [
+              {
+                type: 'text',
+                text: `Error searching USWDS documentation: ${errorMessage}`,
+              },
+            ],
+            isError: true,
+          };
+        }
       }
 
       default:
