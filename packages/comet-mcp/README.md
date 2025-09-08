@@ -116,6 +116,77 @@ The `search_uswds` tool provides direct access to the official USWDS design syst
 
 This tool is essential for developers working with USWDS who need quick access to the latest utility classes, design tokens, and implementation patterns without leaving their development environment.
 
+### Init Project Tool
+
+The `init_project` tool helps you quickly bootstrap new Comet applications with the proper structure and configurations:
+
+**Parameters:**
+
+- `type`: Project type - either "ui" or "api"
+- `name`: Project name and directory name
+
+**Key Features:**
+
+- **Project Type Selection**: Choose between UI (React/TypeScript) or API (Node.js) project templates
+- **Complete Setup**: Creates a fully configured project with all necessary dependencies
+- **USWDS Integration**: UI projects come pre-configured with Comet USWDS components
+- **Best Practices**: Follows Comet project structure and development guidelines
+- **Ready to Develop**: Generated projects include build tools, testing setup, and development scripts
+
+**UI Project Includes:**
+
+- React with TypeScript configuration
+- Vite for development and building
+- Comet USWDS component library pre-installed
+- SCSS setup for styling
+- Vitest for testing
+- ESLint and Prettier for code quality
+- Storybook for component documentation
+
+**API Project Includes:**
+
+- Node.js with TypeScript configuration
+- Express.js framework setup
+- Environment configuration
+- Testing framework
+- Build and development scripts
+
+**When to use:**
+
+- Starting a new Comet application from scratch
+- Creating a prototype or proof of concept
+- Setting up a new microservice or component library
+
+### Get Comet Version Tool
+
+The `get_comet_version` tool provides information about Comet packages and their versions in your current project:
+
+**Key Features:**
+
+- **Package Detection**: Automatically scans your project's `package.json` to find installed Comet packages
+- **Version Information**: Shows current versions of all Comet packages in your project
+- **Dependency Analysis**: Identifies both direct dependencies and devDependencies
+- **Package Overview**: Provides a comprehensive list of all Comet-related packages
+
+**Supported Packages:**
+
+- `@metrostar/comet-uswds` - Core USWDS components
+- `@metrostar/comet-extras` - Additional utility components
+- `@metrostar/comet-data-viz` - Data visualization components
+- `@metrostar/comet-cli` - Command line interface tools
+- `@metrostar/comet-mcp` - Model Context Protocol server
+
+**Use Cases:**
+
+- **Version Auditing**: Check which versions of Comet packages are installed
+- **Dependency Management**: Understand your project's Comet dependencies
+- **Troubleshooting**: Verify package versions when debugging issues
+- **Upgrade Planning**: Identify which packages may need updates
+- **Documentation**: Generate reports of current Comet package usage
+
+**Example Output:**
+The tool returns information about installed packages, their versions, and installation type (dependency vs devDependency), helping you maintain and manage your Comet-based applications effectively.
+
 ## Running the Project Locally
 
 The MCP server is built using the official TypeScript MCP SDK and follows the existing Comet project structure and patterns.
