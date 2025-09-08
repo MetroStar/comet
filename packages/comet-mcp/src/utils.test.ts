@@ -8,6 +8,10 @@ import {
   extractTypes,
   findComponentFile,
   findComponentDirectory,
+  fetchUrl,
+  parseSitemapForUrls,
+  extractUSWDSContent,
+  determineContentType,
 } from './utils';
 import fs from 'fs';
 import path from 'path';
@@ -1347,6 +1351,602 @@ export { type AnotherType, interface SomeInterface } from './another-module';
       const result = getComponentDetails('NonExistentComponent');
 
       expect(result).toBeNull();
+    });
+  });
+
+  describe('fetchUrl', () => {
+    beforeEach(() => {
+      // Mock the global fetch function
+      global.fetch = vi.fn();
+    });
+
+    afterEach(() => {
+      vi.restoreAllMocks();
+    });
+
+    test('should successfully fetch content from a URL', async () => {
+      const mockContent = '<html><body>Test content</body></html>';
+      const mockResponse = {
+        ok: true,
+        status: 200,
+        text: vi.fn().mockResolvedValue(mockContent),
+      };
+
+      vi.mocked(global.fetch).mockResolvedValue(mockResponse as any);
+
+      const result = await fetchUrl('https://example.com');
+
+      expect(global.fetch).toHaveBeenCalledWith('https://example.com');
+      expect(mockResponse.text).toHaveBeenCalled();
+      expect(result).toBe(mockContent);
+    });
+
+    test('should throw error when response is not ok', async () => {
+      const mockResponse = {
+        ok: false,
+        status: 404,
+        text: vi.fn(),
+      };
+
+      vi.mocked(global.fetch).mockResolvedValue(mockResponse as any);
+
+      await expect(fetchUrl('https://example.com/not-found')).rejects.toThrow(
+        'HTTP error! status: 404',
+      );
+
+      expect(global.fetch).toHaveBeenCalledWith('https://example.com/not-found');
+      expect(mockResponse.text).not.toHaveBeenCalled();
+    });
+
+    test('should throw error when fetch throws an exception', async () => {
+      const fetchError = new Error('Network error');
+      vi.mocked(global.fetch).mockRejectedValue(fetchError);
+
+      await expect(fetchUrl('https://example.com')).rejects.toThrow('Network error');
+
+      expect(global.fetch).toHaveBeenCalledWith('https://example.com');
+    });
+
+    test('should handle different HTTP status codes', async () => {
+      const mockResponse = {
+        ok: false,
+        status: 500,
+        text: vi.fn(),
+      };
+
+      vi.mocked(global.fetch).mockResolvedValue(mockResponse as any);
+
+      await expect(fetchUrl('https://example.com/server-error')).rejects.toThrow(
+        'HTTP error! status: 500',
+      );
+    });
+
+    test('should handle empty response content', async () => {
+      const mockResponse = {
+        ok: true,
+        status: 200,
+        text: vi.fn().mockResolvedValue(''),
+      };
+
+      vi.mocked(global.fetch).mockResolvedValue(mockResponse as any);
+
+      const result = await fetchUrl('https://example.com/empty');
+
+      expect(result).toBe('');
+    });
+
+    test('should handle response.text() rejection', async () => {
+      const mockResponse = {
+        ok: true,
+        status: 200,
+        text: vi.fn().mockRejectedValue(new Error('Failed to read response')),
+      };
+
+      vi.mocked(global.fetch).mockResolvedValue(mockResponse as any);
+
+      await expect(fetchUrl('https://example.com')).rejects.toThrow('Failed to read response');
+    });
+  });
+
+  describe('parseSitemapForUrls', () => {
+    test('should extract URLs that match patterns from sitemap XML', () => {
+      const sitemapContent = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://example.com/components/button</loc>
+    <lastmod>2023-01-01</lastmod>
+  </url>
+  <url>
+    <loc>https://example.com/utilities/spacing</loc>
+    <lastmod>2023-01-02</lastmod>
+  </url>
+  <url>
+    <loc>https://example.com/about</loc>
+    <lastmod>2023-01-03</lastmod>
+  </url>
+</urlset>`;
+
+      const patterns = ['components', 'utilities'];
+      const result = parseSitemapForUrls(sitemapContent, patterns);
+
+      expect(result).toEqual([
+        'https://example.com/components/button',
+        'https://example.com/utilities/spacing',
+      ]);
+    });
+
+    test('should return empty array when no URLs match patterns', () => {
+      const sitemapContent = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://example.com/about</loc>
+  </url>
+  <url>
+    <loc>https://example.com/contact</loc>
+  </url>
+</urlset>`;
+
+      const patterns = ['components', 'utilities'];
+      const result = parseSitemapForUrls(sitemapContent, patterns);
+
+      expect(result).toEqual([]);
+    });
+
+    test('should handle empty sitemap content', () => {
+      const patterns = ['components'];
+      const result = parseSitemapForUrls('', patterns);
+
+      expect(result).toEqual([]);
+    });
+
+    test('should handle malformed XML gracefully', () => {
+      const sitemapContent = 'not valid xml content';
+      const patterns = ['components'];
+      const result = parseSitemapForUrls(sitemapContent, patterns);
+
+      expect(result).toEqual([]);
+    });
+
+    test('should handle sitemap without loc tags', () => {
+      const sitemapContent = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <lastmod>2023-01-01</lastmod>
+  </url>
+</urlset>`;
+
+      const patterns = ['components'];
+      const result = parseSitemapForUrls(sitemapContent, patterns);
+
+      expect(result).toEqual([]);
+    });
+
+    test('should handle empty patterns array', () => {
+      const sitemapContent = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://example.com/components/button</loc>
+  </url>
+</urlset>`;
+
+      const patterns: string[] = [];
+      const result = parseSitemapForUrls(sitemapContent, patterns);
+
+      expect(result).toEqual([]);
+    });
+
+    test('should perform case-insensitive pattern matching', () => {
+      const sitemapContent = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://example.com/components/Button</loc>
+  </url>
+  <url>
+    <loc>https://example.com/utilities/spacing</loc>
+  </url>
+</urlset>`;
+
+      const patterns = ['COMPONENTS', 'UTILITIES'];
+      const result = parseSitemapForUrls(sitemapContent, patterns);
+
+      expect(result).toEqual([
+        'https://example.com/components/Button',
+        'https://example.com/utilities/spacing',
+      ]);
+    });
+
+    test('should handle multiple pattern matches for same URL', () => {
+      const sitemapContent = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://example.com/components/utilities/button-utils</loc>
+  </url>
+</urlset>`;
+
+      const patterns = ['components', 'utilities'];
+      const result = parseSitemapForUrls(sitemapContent, patterns);
+
+      expect(result).toEqual(['https://example.com/components/utilities/button-utils']);
+    });
+
+    test('should handle URLs with special characters', () => {
+      const sitemapContent = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://example.com/components/button-group?version=1.0&amp;type=primary</loc>
+  </url>
+</urlset>`;
+
+      const patterns = ['components'];
+      const result = parseSitemapForUrls(sitemapContent, patterns);
+
+      expect(result).toEqual([
+        'https://example.com/components/button-group?version=1.0&amp;type=primary',
+      ]);
+    });
+
+    test('should handle partial pattern matches', () => {
+      const sitemapContent = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://example.com/component-library</loc>
+  </url>
+  <url>
+    <loc>https://example.com/utility-classes</loc>
+  </url>
+</urlset>`;
+
+      const patterns = ['component', 'utility'];
+      const result = parseSitemapForUrls(sitemapContent, patterns);
+
+      expect(result).toEqual([
+        'https://example.com/component-library',
+        'https://example.com/utility-classes',
+      ]);
+    });
+
+    test('should handle large sitemap with many URLs', () => {
+      const urls = Array.from({ length: 100 }, (_, i) => {
+        const type = i % 3 === 0 ? 'components' : i % 3 === 1 ? 'utilities' : 'other';
+        return `  <url><loc>https://example.com/${type}/item-${i}</loc></url>`;
+      }).join('\n');
+
+      const sitemapContent = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${urls}
+</urlset>`;
+
+      const patterns = ['components', 'utilities'];
+      const result = parseSitemapForUrls(sitemapContent, patterns);
+
+      // Should find approximately 66 URLs (components and utilities, not 'other')
+      expect(result.length).toBe(67); // 34 components + 33 utilities
+      expect(result.every((url) => url.includes('components') || url.includes('utilities'))).toBe(
+        true,
+      );
+    });
+  });
+
+  describe('determineContentType', () => {
+    test('should return "utility" for utility URLs', () => {
+      const url = 'https://designsystem.digital.gov/utilities/spacing/';
+      expect(determineContentType(url)).toBe('utility');
+    });
+
+    test('should return "design-token" for design token URLs', () => {
+      const url = 'https://designsystem.digital.gov/design-tokens/color/';
+      expect(determineContentType(url)).toBe('design-token');
+    });
+
+    test('should return "component" for component URLs', () => {
+      const url = 'https://designsystem.digital.gov/components/button/';
+      expect(determineContentType(url)).toBe('component');
+    });
+
+    test('should return "pattern" for pattern URLs', () => {
+      const url = 'https://designsystem.digital.gov/patterns/create-a-user-profile/';
+      expect(determineContentType(url)).toBe('pattern');
+    });
+
+    test('should return "template" for template URLs', () => {
+      const url = 'https://designsystem.digital.gov/templates/landing-page/';
+      expect(determineContentType(url)).toBe('template');
+    });
+
+    test('should return "other" for unrecognized URLs', () => {
+      const url = 'https://designsystem.digital.gov/about/';
+      expect(determineContentType(url)).toBe('other');
+    });
+
+    test('should handle URLs with multiple matching segments', () => {
+      const url = 'https://designsystem.digital.gov/components/utilities/button/';
+      expect(determineContentType(url)).toBe('utility'); // First match wins
+    });
+  });
+
+  describe('extractUSWDSContent', () => {
+    test('should extract basic content from HTML with main tag', () => {
+      const html = `
+        <!DOCTYPE html>
+        <html>
+          <head>
+            <title>Button Component - USWDS</title>
+          </head>
+          <body>
+            <nav>Navigation content</nav>
+            <main>
+              <h1>Button Component</h1>
+              <p>The button component allows users to take actions.</p>
+              <code>usa-button</code>
+              <p>Available classes: usa-button, usa-button--secondary</p>
+            </main>
+            <footer>Footer content</footer>
+          </body>
+        </html>
+      `;
+
+      const result = extractUSWDSContent(
+        html,
+        'https://designsystem.digital.gov/components/button/',
+      );
+
+      expect(result.url).toBe('https://designsystem.digital.gov/components/button/');
+      expect(result.title).toBe('Button Component - USWDS');
+      expect(result.content).toContain('Button Component');
+      expect(result.content).toContain('The button component allows users to take actions');
+      expect(result.content).not.toContain('Navigation content');
+      expect(result.content).not.toContain('Footer content');
+      expect(result.codeExamples).toEqual(['usa-button']);
+      expect(result.type).toBe('component');
+    });
+
+    test('should extract content from HTML with article tag', () => {
+      const html = `
+        <html>
+          <head><title>Spacing Utility</title></head>
+          <body>
+            <article>
+              <h1>Spacing Utilities</h1>
+              <p>Use spacing utilities to control margin and padding.</p>
+              <code>margin-1</code>
+              <code>padding-2</code>
+            </article>
+          </body>
+        </html>
+      `;
+
+      const result = extractUSWDSContent(
+        html,
+        'https://designsystem.digital.gov/utilities/spacing/',
+      );
+
+      expect(result.title).toBe('Spacing Utility');
+      expect(result.content).toContain('Spacing Utilities');
+      expect(result.codeExamples).toEqual(['margin-1', 'padding-2']);
+      expect(result.type).toBe('utility');
+    });
+
+    test('should extract content from HTML with content class div', () => {
+      const html = `
+        <html>
+          <head><title>Design Tokens</title></head>
+          <body>
+            <div class="main-content">
+              <h1>Color Tokens</h1>
+              <p>Color tokens provide consistent color values.</p>
+              <code>color-primary</code>
+            </div>
+          </body>
+        </html>
+      `;
+
+      const result = extractUSWDSContent(
+        html,
+        'https://designsystem.digital.gov/design-tokens/color/',
+      );
+
+      expect(result.title).toBe('Design Tokens');
+      expect(result.content).toContain('Color Tokens');
+      expect(result.codeExamples).toEqual(['color-primary']);
+      expect(result.type).toBe('design-token');
+    });
+
+    test('should fall back to body content when no main containers found', () => {
+      const html = `
+        <html>
+          <head><title>Simple Page</title></head>
+          <body>
+            <h1>Simple Content</h1>
+            <p>This is body content without main containers.</p>
+            <code>simple-class</code>
+          </body>
+        </html>
+      `;
+
+      const result = extractUSWDSContent(html, 'https://example.com/other/');
+
+      expect(result.title).toBe('Simple Page');
+      expect(result.content).toContain('Simple Content');
+      expect(result.codeExamples).toEqual(['simple-class']);
+      expect(result.type).toBe('other');
+    });
+
+    test('should remove script and style tags', () => {
+      const html = `
+        <html>
+          <head>
+            <title>Test Page</title>
+            <style>body { margin: 0; }</style>
+          </head>
+          <body>
+            <script>console.log('test');</script>
+            <main>
+              <h1>Clean Content</h1>
+              <p>This content should remain.</p>
+            </main>
+            <script src="analytics.js"></script>
+          </body>
+        </html>
+      `;
+
+      const result = extractUSWDSContent(html, 'https://example.com/');
+
+      expect(result.content).toContain('Clean Content');
+      expect(result.content).not.toContain('console.log');
+      expect(result.content).not.toContain('margin: 0');
+      expect(result.content).not.toContain('analytics.js');
+    });
+
+    test('should handle empty title', () => {
+      const html = `
+        <html>
+          <head></head>
+          <body>
+            <main>Content without title</main>
+          </body>
+        </html>
+      `;
+
+      const result = extractUSWDSContent(html, 'https://example.com/');
+
+      expect(result.title).toBe('');
+      expect(result.content).toContain('Content without title');
+    });
+
+    test('should normalize whitespace in title and content', () => {
+      const html = `
+        <html>
+          <head>
+            <title>   Multiple   Spaces   Title   </title>
+          </head>
+          <body>
+            <main>
+              <h1>   Header   with   spaces   </h1>
+              <p>   Text   with   multiple   spaces   </p>
+            </main>
+          </body>
+        </html>
+      `;
+
+      const result = extractUSWDSContent(html, 'https://example.com/');
+
+      expect(result.title).toBe('Multiple Spaces Title');
+      expect(result.content).toMatch(/Header with spaces/);
+      expect(result.content).toMatch(/Text with multiple spaces/);
+      expect(result.content).not.toMatch(/ {3}/); // No multiple spaces
+    });
+
+    test('should extract utilities from content', () => {
+      const html = `
+        <html>
+          <body>
+            <main>
+              <p>Use margin-top and padding-left for spacing.</p>
+              <p>Available classes: .usa-button, text-center, bg-primary.</p>
+              <p>Responsive: tablet:margin, desktop:padding</p>
+            </main>
+          </body>
+        </html>
+      `;
+
+      const result = extractUSWDSContent(html, 'https://example.com/');
+
+      // Remove console.log and test what actually works
+      expect(result.utilities).toContain('usa-button');
+      expect(result.utilities).toContain('text-center');
+      expect(result.utilities).toContain('bg-primary');
+      expect(result.utilities).toContain('margin-top');
+      expect(result.utilities).toContain('padding-left');
+    });
+
+    test('should limit content length to 2000 characters', () => {
+      const longContent = 'a'.repeat(3000);
+      const html = `
+        <html>
+          <body>
+            <main>${longContent}</main>
+          </body>
+        </html>
+      `;
+
+      const result = extractUSWDSContent(html, 'https://example.com/');
+
+      expect(result.content.length).toBe(2000);
+      expect(result.content).toBe('a'.repeat(2000));
+    });
+
+    test('should handle code tags with attributes', () => {
+      const html = `
+        <html>
+          <body>
+            <main>
+              <code class="language-html">usa-button</code>
+              <code data-lang="css">margin-top-1</code>
+              <code>simple-code</code>
+            </main>
+          </body>
+        </html>
+      `;
+
+      const result = extractUSWDSContent(html, 'https://example.com/');
+
+      expect(result.codeExamples).toEqual(['usa-button', 'margin-top-1', 'simple-code']);
+    });
+
+    test('should handle empty HTML', () => {
+      const html = '';
+
+      const result = extractUSWDSContent(html, 'https://example.com/');
+
+      expect(result.url).toBe('https://example.com/');
+      expect(result.title).toBe('');
+      expect(result.content).toBe('');
+      expect(result.codeExamples).toEqual([]);
+      expect(result.utilities).toEqual([]);
+      expect(result.type).toBe('other');
+    });
+
+    test('should remove nav, header, and footer content', () => {
+      const html = `
+        <html>
+          <body>
+            <header>Header navigation</header>
+            <nav>Main navigation</nav>
+            <main>
+              <h1>Main Content</h1>
+              <p>This is the important content.</p>
+            </main>
+            <footer>Footer links</footer>
+          </body>
+        </html>
+      `;
+
+      const result = extractUSWDSContent(html, 'https://example.com/');
+
+      expect(result.content).toContain('Main Content');
+      expect(result.content).toContain('important content');
+      expect(result.content).not.toContain('Header navigation');
+      expect(result.content).not.toContain('Main navigation');
+      expect(result.content).not.toContain('Footer links');
+    });
+
+    test('should handle malformed HTML gracefully', () => {
+      const html = `
+        <html>
+          <head><title>Test</title>
+          <body>
+            <main>
+              <p>Content with unclosed tags
+              <div>More content
+            </main>
+        </html>
+      `;
+
+      const result = extractUSWDSContent(html, 'https://example.com/');
+
+      expect(result.title).toBe('Test');
+      expect(result.content).toContain('Content with unclosed tags');
+      expect(result.content).toContain('More content');
     });
   });
 });

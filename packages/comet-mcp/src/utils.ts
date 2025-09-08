@@ -259,3 +259,135 @@ export const extractTypes = (content: string): string[] => {
 
   return types.sort();
 };
+
+/**
+ * HTTP utilities for fetching web content
+ */
+
+/**
+ * Fetches content from a URL
+ */
+export const fetchUrl = async (url: string): Promise<string> => {
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    return await response.text();
+  } catch (error) {
+    log(`Error fetching ${url}:`, error);
+    throw error;
+  }
+};
+
+/**
+ * Parses sitemap XML and extracts URLs that match patterns
+ */
+export const parseSitemapForUrls = (sitemapContent: string, patterns: string[]): string[] => {
+  const urls: string[] = [];
+
+  // Simple XML parsing to extract <loc> tags
+  const locMatches = sitemapContent.match(/<loc>(.*?)<\/loc>/g) || [];
+
+  locMatches.forEach((match) => {
+    const url = match.replace(/<\/?loc>/g, '');
+
+    // Check if URL matches any of the patterns
+    const matchesPattern = patterns.some((pattern) => url.includes(pattern.toLowerCase()));
+
+    if (matchesPattern) {
+      urls.push(url);
+    }
+  });
+
+  return urls;
+};
+
+/**
+ * Extracts relevant content from USWDS documentation HTML
+ */
+export const extractUSWDSContent = (html: string, url: string): USWDSDocContent => {
+  // Remove script tags and other non-content elements
+  const cleanHtml = html
+    .replace(/<script[^>]*>[\s\S]*?<\/script>/gi, '')
+    .replace(/<style[^>]*>[\s\S]*?<\/style>/gi, '')
+    .replace(/<nav[^>]*>[\s\S]*?<\/nav>/gi, '')
+    .replace(/<header[^>]*>[\s\S]*?<\/header>/gi, '')
+    .replace(/<footer[^>]*>[\s\S]*?<\/footer>/gi, '');
+
+  // Extract title
+  const titleMatch = cleanHtml.match(/<title[^>]*>(.*?)<\/title>/i);
+  const title = titleMatch ? titleMatch[1].replace(/\s+/g, ' ').trim() : '';
+
+  // Extract main content - look for common content containers
+  const contentMatchers = [
+    /<main[^>]*>([\s\S]*?)<\/main>/i,
+    /<article[^>]*>([\s\S]*?)<\/article>/i,
+    /<div[^>]*class="[^"]*content[^"]*"[^>]*>([\s\S]*?)<\/div>/i,
+    /<div[^>]*class="[^"]*main[^"]*"[^>]*>([\s\S]*?)<\/div>/i,
+  ];
+
+  let content = '';
+  for (const matcher of contentMatchers) {
+    const match = cleanHtml.match(matcher);
+    if (match) {
+      content = match[1];
+      break;
+    }
+  }
+
+  // If no main content found, use the whole body
+  if (!content) {
+    const bodyMatch = cleanHtml.match(/<body[^>]*>([\s\S]*?)<\/body>/i);
+    content = bodyMatch ? bodyMatch[1] : cleanHtml;
+  }
+
+  // Extract text content and clean it up
+  const textContent = content
+    .replace(/<[^>]*>/g, ' ') // Remove HTML tags
+    .replace(/\s+/g, ' ') // Normalize whitespace
+    .trim();
+
+  // Extract code examples
+  const codeMatches = html.match(/<code[^>]*>(.*?)<\/code>/gi) || [];
+  const codeExamples = codeMatches.map((match) => match.replace(/<\/?code[^>]*>/gi, '').trim());
+
+  // Extract class names and utilities mentioned
+  const classMatches = textContent.match(/\b[a-z-]+:[a-z-]+\b|\b\.?[a-z-]+\b/gi) || [];
+  const utilities = [...new Set(classMatches)].filter((item) =>
+    item.match(/^\.?[a-z][a-z0-9-]*[a-z0-9]$|^[a-z]+:[a-z-]+$/i),
+  );
+
+  return {
+    url,
+    title,
+    content: textContent.substring(0, 2000), // Limit content length
+    codeExamples,
+    utilities,
+    type: determineContentType(url),
+  };
+};
+
+/**
+ * Determines the type of USWDS content based on URL
+ */
+export const determineContentType = (url: string): string => {
+  if (url.includes('/utilities/')) return 'utility';
+  if (url.includes('/design-tokens/')) return 'design-token';
+  if (url.includes('/components/')) return 'component';
+  if (url.includes('/patterns/')) return 'pattern';
+  if (url.includes('/templates/')) return 'template';
+  return 'other';
+};
+
+/**
+ * Interface for USWDS documentation content
+ */
+export interface USWDSDocContent {
+  url: string;
+  title: string;
+  content: string;
+  codeExamples: string[];
+  utilities: string[];
+  type: string;
+}
