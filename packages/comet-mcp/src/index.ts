@@ -31,7 +31,9 @@ const server = new Server(
     version: '1.3.0',
   },
   {
-    capabilities: {},
+    capabilities: {
+      tools: {},
+    },
   },
 );
 
