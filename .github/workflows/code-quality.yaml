@@ -34,6 +34,7 @@ jobs:
           npm run build:comet-uswds
           npm run build:comet-extras
           npm run build:comet-data-viz
+          npm run build:comet-mcp
 
   run-test-checks:
     runs-on: ubuntu-latest
