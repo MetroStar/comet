@@ -4,13 +4,26 @@ Comet MCP provides a set of tools that can be used by AI coding assistants like 
 
 ## Getting Started
 
-Create an MCP configuration file to connect VS Code Copilot to the Comet MCP server:
+Add the following to your mcp.json to connect VS Code Copilot to the Comet MCP server:
 
-### Example MCP Client Configuration
+### Workspace Configuration (Recommended)
 
 ```json
 {
-  "mcpServers": {
+  "servers": {
+    "comet": {
+      "command": "npx",
+      "args": ["@metrostar/comet-mcp"]
+    }
+  }
+}
+```
+
+### Profile Configuration
+
+```json
+{
+  "servers": {
     "comet": {
       "command": "npx",
       "args": ["@metrostar/comet-mcp"],
@@ -20,12 +33,6 @@ Create an MCP configuration file to connect VS Code Copilot to the Comet MCP ser
     }
   }
 }
-```
-
-### Manual Installation
-
-```sh
-npm install -g @metrostar/comet-mcp
 ```
 
 ## Available Tools
