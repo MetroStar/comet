@@ -97,10 +97,9 @@ export const ComboBox = ({
   } = {
     className: 'usa-combo-box',
     ref: comboBoxRef,
+    ...(placeholder && { 'data-placeholder': placeholder }),
+    ...(defaultValue && { 'data-default-value': defaultValue }),
   };
-
-  if (placeholder) comboBoxAttributes['data-placeholder'] = placeholder;
-  if (defaultValue) comboBoxAttributes['data-default-value'] = defaultValue;
 
   return (
     <FormGroup
