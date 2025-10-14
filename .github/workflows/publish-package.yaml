@@ -48,5 +48,3 @@ jobs:
         run: |
           cd packages/${{ steps.set-package.outputs.package }}
           npm publish --access public --provenance
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
