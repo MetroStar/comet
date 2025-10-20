@@ -919,6 +919,21 @@ describe('DataTable', () => {
 
       expect(expandButton?.getAttribute('aria-label')).toBe('Collapse row');
     });
+
+    test('should have an aria-label on the table', () => {
+      const { baseElement } = render(
+        <DataTable
+          id="table-1"
+          columns={cols}
+          data={basicData}
+          ariaLabel="Example Table"
+        ></DataTable>,
+      );
+
+      const table = baseElement.querySelector('#table-1');
+      expect(table).toBeTruthy();
+      expect(table?.getAttribute('aria-label')).toBe('Example Table');
+    });
   });
 
   describe('handleSortClick', () => {

@@ -70,6 +70,10 @@ export interface DataTableProps<T = any> {
    * Additional class names for the table
    */
   className?: string;
+  /**
+   * An accessible label for the table
+   */
+  ariaLabel?: string;
 }
 /**
  * A Data Table shows information in columns and rows, with advanced functionality.
@@ -89,6 +93,7 @@ export const DataTable = ({
   getChildRows,
   initialExpanded = {},
   className,
+  ariaLabel,
 }: DataTableProps): React.ReactElement => {
   const [sorting, setSorting] = React.useState<SortingState>(
     sortable ? [{ id: sortCol ?? columns[0], desc: sortDir === 'desc' }] : [],
@@ -216,7 +221,11 @@ export const DataTable = ({
 
   return (
     <>
-      <table id={id} className={classNames('data-table', { striped }, className)}>
+      <table
+        id={id}
+        className={classNames('data-table', { striped }, className)}
+        aria-label={ariaLabel}
+      >
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id}>
