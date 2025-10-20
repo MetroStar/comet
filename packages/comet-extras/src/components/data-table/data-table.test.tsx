@@ -927,7 +927,7 @@ describe('DataTable', () => {
           columns={cols}
           data={basicData}
           ariaLabel="Example Table"
-        ></DataTable>
+        ></DataTable>,
       );
 
       const table = baseElement.querySelector('#table-1');
