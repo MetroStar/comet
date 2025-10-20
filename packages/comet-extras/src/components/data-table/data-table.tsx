@@ -71,7 +71,7 @@ export interface DataTableProps<T = any> {
    */
   className?: string;
   /**
-   * An accessible label for the toggle
+   * An accessible label for the table
    */
   ariaLabel?: string;
 }
