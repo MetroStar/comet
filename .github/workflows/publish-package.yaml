@@ -36,7 +36,7 @@ jobs:
       - run: npm install -g npm@latest
       
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
       - name: Determine Package to Build
         id: set-package
