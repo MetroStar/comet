@@ -1,0 +1,11 @@
+import{j as i}from"./jsx-runtime-D_zvdyIk.js";import"./table-sgBBeN_3.js";import"./banner-BlKhwcl-.js";import{B as r}from"./button-s6X5UBaR.js";import"./button-group-B1aWv9gb.js";import"./checkbox-cnQ_-peT.js";import"./combo-box-ByFKHUsq.js";import"./date-picker-CdtWHcRU.js";import"./error-messages-_lA7co94.js";import"./index-CRpSyyh9.js";import"./form-group-B-Pr4jGu.js";import"./helper-text-BRA2CuHl.js";import"./icon-DDcUgKz8.js";import"./label-0qqEdO1f.js";import"./modal-B-Ar_YiJ.js";import"./process-list-B1j8-mm9.js";import"./radio-button-B5LIr0wS.js";import"./range-slider-CCd_gb87.js";import"./search-B2v06REB.js";import"./select-CFmg9oUl.js";import"./side-navigation-BnGWXKbX.js";import"./site-alert-T3keRwyR.js";import"./step-indicator-BjOG0FUs.js";import"./summary-box-Dep7O2aS.js";import"./tag-CvARMcmu.js";import"./text-area-ktJJJxPq.js";import"./time-picker-Dpbrbtdg.js";import"./tooltip-Ce_IMZUp.js";import"./index-BrPJmFEP.js";import"./iframe-CUeiGFJS.js";import"./preload-helper-PPVm8Dsz.js";import"./index-hkmjj3pC.js";import"./config-ODXtjL5r.js";import"./select-or-matches-DM7yTSmT.js";import"./events-CleOcHg4.js";import"./sanitizer-BDKKlE4O.js";import"./index-BPUyFTct.js";import"./is-in-viewport-ChIQrv3L.js";import"./sprite-Cw9lcZJJ.js";import"./index-DUB1n4uP.js";import"./active-element-BuxAly_Z.js";const K={title:"USWDS/Button",component:r,argTypes:{id:{required:!0},type:{control:"select",required:!0},variant:{control:"select"},size:{control:"select"},disabled:{control:"boolean"}}},t={args:{id:"button-1",type:"button",variant:"default",size:"default",className:"",disabled:!1},render:o=>i.jsx(r,{...o,children:"Button"})};t.parameters={...t.parameters,docs:{...t.parameters?.docs,source:{originalSource:`{
+  args: {
+    id: 'button-1',
+    type: 'button',
+    variant: 'default',
+    size: 'default',
+    className: '',
+    disabled: false
+  },
+  render: (args: ButtonProps) => <Button {...args}>Button</Button>
+}`,...t.parameters?.docs?.source}}};const L=["Default"];export{t as Default,L as __namedExportsOrder,K as default};
