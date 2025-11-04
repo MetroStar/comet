@@ -4,13 +4,12 @@ import InPageNavigation from './in-page-navigation';
 describe('InPageNavigation', () => {
   beforeEach(() => {
     // IntersectionObserver isn't available in test environment
-    const mockIntersectionObserver = vi.fn();
-    mockIntersectionObserver.mockReturnValue({
-      observe: () => null,
-      unobserve: () => null,
-      disconnect: () => null,
-    });
-    window.IntersectionObserver = mockIntersectionObserver;
+    class MockIntersectionObserver {
+      observe = vi.fn();
+      unobserve = vi.fn();
+      disconnect = vi.fn();
+    }
+    window.IntersectionObserver = MockIntersectionObserver as any;
   });
 
   test('should render a default in-page navigation', async () => {
