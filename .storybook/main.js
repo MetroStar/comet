@@ -1,4 +1,5 @@
-import { dirname, join } from 'path';
+import { fileURLToPath } from 'node:url';
+import { dirname } from 'node:path';
 /** @type { import('@storybook/react-vite').StorybookConfig } */
 const config = {
   stories: [
@@ -28,9 +29,6 @@ const config = {
 };
 export default config;
 
-/*global require*/
-/*eslint no-undef: "error"*/
-
 function getAbsolutePath(value) {
-  return dirname(require.resolve(join(value, 'package.json')));
+  return dirname(fileURLToPath(import.meta.resolve(`${value}/package.json`)));
 }
