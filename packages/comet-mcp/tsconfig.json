@@ -11,5 +11,6 @@
     "moduleResolution": "node",
     "declaration": true,
     "declarationMap": true
-  }
+  },
+  "exclude": ["**/*.test.ts", "**/*.test.tsx"]
 }
