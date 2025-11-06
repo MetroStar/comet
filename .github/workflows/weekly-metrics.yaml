@@ -134,3 +134,10 @@ jobs:
                   EOF
 
                   cat final_report.md
+
+            - name: Upload Metrics Report
+              uses: actions/upload-artifact@v3
+              with:
+                  name: weekly-metrics-report
+                  path: final_report.md
+                  retention-days: 90
