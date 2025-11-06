@@ -82,31 +82,34 @@ jobs:
                   total_week=$((uswds_week + extras_week + dataviz_week + mcp_week))
                   total_month=$((uswds_month + extras_month + dataviz_month + mcp_month))
 
-                  # Create the report
-                  cat > metrics_report.md << 'EOF'
+                  # Get current date
+                  report_date=$(date +"%B %d, %Y")
+
+                  # Create the report with actual values
+                  cat > final_report.md << EOF
                   # 📊 Weekly Metrics Report
 
-                  **Report Date:** $(date +"%B %d, %Y")
+                  **Report Date:** ${report_date}
 
                   ## NPM Package Downloads
 
                   ### Last Week
                   | Package | Downloads |
                   |---------|-----------|
-                  | @metrostar/comet-uswds | $(printf "%'d" $uswds_week) |
-                  | @metrostar/comet-extras | $(printf "%'d" $extras_week) |
-                  | @metrostar/comet-data-viz | $(printf "%'d" $dataviz_week) |
-                  | @metrostar/comet-mcp | $(printf "%'d" $mcp_week) |
-                  | **Total** | **$(printf "%'d" $total_week)** |
+                  | @metrostar/comet-uswds | ${uswds_week} |
+                  | @metrostar/comet-extras | ${extras_week} |
+                  | @metrostar/comet-data-viz | ${dataviz_week} |
+                  | @metrostar/comet-mcp | ${mcp_week} |
+                  | **Total** | **${total_week}** |
 
                   ### Last Month
                   | Package | Downloads |
                   |---------|-----------|
-                  | @metrostar/comet-uswds | $(printf "%'d" $uswds_month) |
-                  | @metrostar/comet-extras | $(printf "%'d" $extras_month) |
-                  | @metrostar/comet-data-viz | $(printf "%'d" $dataviz_month) |
-                  | @metrostar/comet-mcp | $(printf "%'d" $mcp_month) |
-                  | **Total** | **$(printf "%'d" $total_month)** |
+                  | @metrostar/comet-uswds | ${uswds_month} |
+                  | @metrostar/comet-extras | ${extras_month} |
+                  | @metrostar/comet-data-viz | ${dataviz_month} |
+                  | @metrostar/comet-mcp | ${mcp_month} |
+                  | **Total** | **${total_month}** |
 
                   ## GitHub Repository Metrics
 
@@ -127,12 +130,7 @@ jobs:
                   - [GitHub Repository](https://github.com/${{ github.repository }})
 
                   ---
-                  *This report is automatically generated every Tuesday. To disable, edit `.github/workflows/weekly-metrics.yaml`*
+                  *This report is automatically generated every Tuesday. To disable, edit \`.github/workflows/weekly-metrics.yaml\`*
                   EOF
-
-                  # Evaluate variables in the report
-                  eval "cat > final_report.md << 'EVALEOF'
-                  $(cat metrics_report.md)
-                  EVALEOF"
 
                   cat final_report.md
