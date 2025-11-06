@@ -136,7 +136,7 @@ jobs:
                   cat final_report.md
 
             - name: Upload Metrics Report
-              uses: actions/upload-artifact@v3
+              uses: actions/upload-artifact@v4
               with:
                   name: weekly-metrics-report
                   path: final_report.md
