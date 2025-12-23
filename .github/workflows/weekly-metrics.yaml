@@ -1,143 +1,208 @@
 name: Weekly Metrics
 
 on:
-    schedule:
-        # Run every Tuesday at 8:00 AM EST (1:00 PM UTC)
-        - cron: "0 13 * * 2"
-    workflow_dispatch: # Allow manual trigger
+  schedule:
+    # Run every Tuesday at 8:00 AM EST (1:00 PM UTC)
+    - cron: "0 13 * * 2"
+  workflow_dispatch: # Allow manual trigger
 
 permissions:
-    contents: write
+  contents: write
 
 jobs:
-    gather-metrics:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout
-              uses: actions/checkout@v3
+  gather-metrics:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
 
-            - name: Set up Node environment
-              uses: actions/setup-node@v3
-              with:
-                  node-version: 20.x
+      - name: Set up Node environment
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20.x
 
-            - name: Get NPM Download Stats
-              id: npm-stats
-              run: |
-                  # Function to get NPM downloads for a package
-                  get_npm_downloads() {
-                    package_name=$1
-                    # Get last week's downloads
-                    last_week=$(curl -s "https://api.npmjs.org/downloads/point/last-week/$package_name" | jq -r '.downloads')
-                    # Get last month's downloads
-                    last_month=$(curl -s "https://api.npmjs.org/downloads/point/last-month/$package_name" | jq -r '.downloads')
-                    echo "$package_name|$last_week|$last_month"
-                  }
+      - name: Get NPM Download Stats
+        id: npm-stats
+        run: |
+          # Function to get NPM downloads for a package
+          get_npm_downloads() {
+            package_name=$1
+            # Get last week's downloads
+            last_week=$(curl -s "https://api.npmjs.org/downloads/point/last-week/$package_name" | jq -r '.downloads')
+            # Get last month's downloads
+            last_month=$(curl -s "https://api.npmjs.org/downloads/point/last-month/$package_name" | jq -r '.downloads')
+            echo "$package_name|$last_week|$last_month"
+          }
 
-                  # Get stats for all packages
-                  uswds_stats=$(get_npm_downloads "@metrostar/comet-uswds")
-                  extras_stats=$(get_npm_downloads "@metrostar/comet-extras")
-                  dataviz_stats=$(get_npm_downloads "@metrostar/comet-data-viz")
-                  mcp_stats=$(get_npm_downloads "@metrostar/comet-mcp")
+          # Get stats for all packages
+          uswds_stats=$(get_npm_downloads "@metrostar/comet-uswds")
+          extras_stats=$(get_npm_downloads "@metrostar/comet-extras")
+          dataviz_stats=$(get_npm_downloads "@metrostar/comet-data-viz")
+          mcp_stats=$(get_npm_downloads "@metrostar/comet-mcp")
 
-                  # Store in environment
-                  echo "uswds_stats=$uswds_stats" >> $GITHUB_OUTPUT
-                  echo "extras_stats=$extras_stats" >> $GITHUB_OUTPUT
-                  echo "dataviz_stats=$dataviz_stats" >> $GITHUB_OUTPUT
-                  echo "mcp_stats=$mcp_stats" >> $GITHUB_OUTPUT
+          # Store in environment
+          echo "uswds_stats=$uswds_stats" >> $GITHUB_OUTPUT
+          echo "extras_stats=$extras_stats" >> $GITHUB_OUTPUT
+          echo "dataviz_stats=$dataviz_stats" >> $GITHUB_OUTPUT
+          echo "mcp_stats=$mcp_stats" >> $GITHUB_OUTPUT
 
-            - name: Get GitHub Repository Stats
-              id: repo-stats
-              run: |
-                  # Get repository stats using GitHub API
-                  repo_data=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-                    "https://api.github.com/repos/${{ github.repository }}")
+      - name: Get GitHub Repository Stats
+        id: repo-stats
+        run: |
+          # Get repository stats using GitHub API
+          repo_data=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            "https://api.github.com/repos/${{ github.repository }}")
 
-                  stars=$(echo $repo_data | jq -r '.stargazers_count')
-                  forks=$(echo $repo_data | jq -r '.forks_count')
-                  watchers=$(echo $repo_data | jq -r '.subscribers_count')
-                  open_issues=$(echo $repo_data | jq -r '.open_issues_count')
+          stars=$(echo $repo_data | jq -r '.stargazers_count')
+          forks=$(echo $repo_data | jq -r '.forks_count')
+          watchers=$(echo $repo_data | jq -r '.subscribers_count')
+          open_issues=$(echo $repo_data | jq -r '.open_issues_count')
 
-                  # Get contributor count
-                  contributors=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-                    "https://api.github.com/repos/${{ github.repository }}/contributors?per_page=1" \
-                    | jq '. | length')
+          # Get contributor count
+          contributors=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            "https://api.github.com/repos/${{ github.repository }}/contributors?per_page=1" \
+            | jq '. | length')
 
-                  echo "stars=$stars" >> $GITHUB_OUTPUT
-                  echo "forks=$forks" >> $GITHUB_OUTPUT
-                  echo "watchers=$watchers" >> $GITHUB_OUTPUT
-                  echo "open_issues=$open_issues" >> $GITHUB_OUTPUT
-                  echo "contributors=$contributors" >> $GITHUB_OUTPUT
+          echo "stars=$stars" >> $GITHUB_OUTPUT
+          echo "forks=$forks" >> $GITHUB_OUTPUT
+          echo "watchers=$watchers" >> $GITHUB_OUTPUT
+          echo "open_issues=$open_issues" >> $GITHUB_OUTPUT
+          echo "contributors=$contributors" >> $GITHUB_OUTPUT
 
-            - name: Create Metrics Report
-              id: create-report
-              run: |
-                  # Parse NPM stats
-                  IFS='|' read -r uswds_name uswds_week uswds_month <<< "${{ steps.npm-stats.outputs.uswds_stats }}"
-                  IFS='|' read -r extras_name extras_week extras_month <<< "${{ steps.npm-stats.outputs.extras_stats }}"
-                  IFS='|' read -r dataviz_name dataviz_week dataviz_month <<< "${{ steps.npm-stats.outputs.dataviz_stats }}"
-                  IFS='|' read -r mcp_name mcp_week mcp_month <<< "${{ steps.npm-stats.outputs.mcp_stats }}"
+      - name: Create Metrics Report
+        id: create-report
+        run: |
+          # Parse NPM stats
+          IFS='|' read -r uswds_name uswds_week uswds_month <<< "${{ steps.npm-stats.outputs.uswds_stats }}"
+          IFS='|' read -r extras_name extras_week extras_month <<< "${{ steps.npm-stats.outputs.extras_stats }}"
+          IFS='|' read -r dataviz_name dataviz_week dataviz_month <<< "${{ steps.npm-stats.outputs.dataviz_stats }}"
+          IFS='|' read -r mcp_name mcp_week mcp_month <<< "${{ steps.npm-stats.outputs.mcp_stats }}"
 
-                  # Calculate total downloads
-                  total_week=$((uswds_week + extras_week + dataviz_week + mcp_week))
-                  total_month=$((uswds_month + extras_month + dataviz_month + mcp_month))
+          # Calculate total downloads
+          total_week=$((uswds_week + extras_week + dataviz_week + mcp_week))
+          total_month=$((uswds_month + extras_month + dataviz_month + mcp_month))
 
-                  # Get current date
-                  report_date=$(date +"%B %d, %Y")
+          # Get current date
+          report_date=$(date +"%B %d, %Y")
 
-                  # Create the report with actual values
-                  cat > final_report.md << EOF
-                  # 📊 Weekly Metrics Report
+          # Create the report with actual values
+          cat > WEEKLY-METRICS-REPORT.md << EOF
+          # 📊 Weekly Metrics Report
 
-                  **Report Date:** ${report_date}
+          **Report Date:** ${report_date}
 
-                  ## NPM Package Downloads
+          ## NPM Package Downloads
 
-                  ### Last Week
-                  | Package | Downloads |
-                  |---------|-----------|
-                  | @metrostar/comet-uswds | ${uswds_week} |
-                  | @metrostar/comet-extras | ${extras_week} |
-                  | @metrostar/comet-data-viz | ${dataviz_week} |
-                  | @metrostar/comet-mcp | ${mcp_week} |
-                  | **Total** | **${total_week}** |
+          ### Last Week
+          | Package | Downloads |
+          |---------|-----------|
+          | @metrostar/comet-uswds | ${uswds_week} |
+          | @metrostar/comet-extras | ${extras_week} |
+          | @metrostar/comet-data-viz | ${dataviz_week} |
+          | @metrostar/comet-mcp | ${mcp_week} |
+          | **Total** | **${total_week}** |
 
-                  ### Last Month
-                  | Package | Downloads |
-                  |---------|-----------|
-                  | @metrostar/comet-uswds | ${uswds_month} |
-                  | @metrostar/comet-extras | ${extras_month} |
-                  | @metrostar/comet-data-viz | ${dataviz_month} |
-                  | @metrostar/comet-mcp | ${mcp_month} |
-                  | **Total** | **${total_month}** |
+          ### Last Month
+          | Package | Downloads |
+          |---------|-----------|
+          | @metrostar/comet-uswds | ${uswds_month} |
+          | @metrostar/comet-extras | ${extras_month} |
+          | @metrostar/comet-data-viz | ${dataviz_month} |
+          | @metrostar/comet-mcp | ${mcp_month} |
+          | **Total** | **${total_month}** |
 
-                  ## GitHub Repository Metrics
+          ## GitHub Repository Metrics
 
-                  | Metric | Count |
-                  |--------|-------|
-                  | ⭐ Stars | ${{ steps.repo-stats.outputs.stars }} |
-                  | 🍴 Forks | ${{ steps.repo-stats.outputs.forks }} |
-                  | 👀 Watchers | ${{ steps.repo-stats.outputs.watchers }} |
-                  | 🐛 Open Issues | ${{ steps.repo-stats.outputs.open_issues }} |
-                  | 👥 Contributors | ${{ steps.repo-stats.outputs.contributors }} |
+          | Metric | Count |
+          |--------|-------|
+          | ⭐ Stars | ${{ steps.repo-stats.outputs.stars }} |
+          | 🍴 Forks | ${{ steps.repo-stats.outputs.forks }} |
+          | 👀 Watchers | ${{ steps.repo-stats.outputs.watchers }} |
+          | 🐛 Open Issues | ${{ steps.repo-stats.outputs.open_issues }} |
+          | 👥 Contributors | ${{ steps.repo-stats.outputs.contributors }} |
 
-                  ## Links
+          ## Links
 
-                  - [NPM - comet-uswds](https://www.npmjs.com/package/@metrostar/comet-uswds)
-                  - [NPM - comet-extras](https://www.npmjs.com/package/@metrostar/comet-extras)
-                  - [NPM - comet-data-viz](https://www.npmjs.com/package/@metrostar/comet-data-viz)
-                  - [NPM - comet-mcp](https://www.npmjs.com/package/@metrostar/comet-mcp)
-                  - [GitHub Repository](https://github.com/${{ github.repository }})
+          - [NPM - comet-uswds](https://www.npmjs.com/package/@metrostar/comet-uswds)
+          - [NPM - comet-extras](https://www.npmjs.com/package/@metrostar/comet-extras)
+          - [NPM - comet-data-viz](https://www.npmjs.com/package/@metrostar/comet-data-viz)
+          - [NPM - comet-mcp](https://www.npmjs.com/package/@metrostar/comet-mcp)
+          - [GitHub Repository](https://github.com/${{ github.repository }})
 
-                  ---
-                  *This report is automatically generated every Tuesday. To disable, edit \`.github/workflows/weekly-metrics.yaml\`*
-                  EOF
+          ---
+          *This report is automatically generated every Tuesday. To disable, edit \`.github/workflows/weekly-metrics.yaml\`*
+          EOF
 
-                  cat final_report.md
+          echo "📊 Report generated"
+          cat WEEKLY-METRICS-REPORT.md
 
-            - name: Upload Metrics Report
-              uses: actions/upload-artifact@v4
-              with:
-                  name: weekly-metrics-report
-                  path: final_report.md
-                  retention-days: 90
+      # Create timestamped directory for archival
+      - name: Archive results
+        run: |
+          TIMESTAMP=$(date +%Y-%m-%d_%H-%M-%S)
+          mkdir -p metrics-reports/$TIMESTAMP
+          cp WEEKLY-METRICS-REPORT.md metrics-reports/$TIMESTAMP/
+
+          echo "📁 Results archived to metrics-reports/$TIMESTAMP"
+
+      # Upload artifacts
+      - name: Upload metrics artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: weekly-metrics-${{ github.run_number }}
+          path: |
+            WEEKLY-METRICS-REPORT.md
+            metrics-reports/
+
+      # Summary for workflow run
+      - name: Generate summary
+        run: |
+          # Parse NPM stats
+          IFS='|' read -r uswds_name uswds_week uswds_month <<< "${{ steps.npm-stats.outputs.uswds_stats }}"
+          IFS='|' read -r extras_name extras_week extras_month <<< "${{ steps.npm-stats.outputs.extras_stats }}"
+          IFS='|' read -r dataviz_name dataviz_week dataviz_month <<< "${{ steps.npm-stats.outputs.dataviz_stats }}"
+          IFS='|' read -r mcp_name mcp_week mcp_month <<< "${{ steps.npm-stats.outputs.mcp_stats }}"
+
+          # Calculate total downloads
+          total_week=$((uswds_week + extras_week + dataviz_week + mcp_week))
+          total_month=$((uswds_month + extras_month + dataviz_month + mcp_month))
+
+          cat >> $GITHUB_STEP_SUMMARY <<EOF
+          ## 📊 Weekly Metrics Report
+
+          **Run Type:** ${{ github.event_name }}
+          **Timestamp:** $(date -u +"%Y-%m-%d %H:%M:%S UTC")
+
+          ### NPM Package Downloads
+
+          #### Last Week
+          | Package | Downloads |
+          |---------|-----------|
+          | @metrostar/comet-uswds | ${uswds_week} |
+          | @metrostar/comet-extras | ${extras_week} |
+          | @metrostar/comet-data-viz | ${dataviz_week} |
+          | @metrostar/comet-mcp | ${mcp_week} |
+          | **Total** | **${total_week}** |
+
+          #### Last Month
+          | Package | Downloads |
+          |---------|-----------|
+          | @metrostar/comet-uswds | ${uswds_month} |
+          | @metrostar/comet-extras | ${extras_month} |
+          | @metrostar/comet-data-viz | ${dataviz_month} |
+          | @metrostar/comet-mcp | ${mcp_month} |
+          | **Total** | **${total_month}** |
+
+          ### GitHub Repository Metrics
+
+          | Metric | Count |
+          |--------|-------|
+          | ⭐ Stars | ${{ steps.repo-stats.outputs.stars }} |
+          | 🍴 Forks | ${{ steps.repo-stats.outputs.forks }} |
+          | 👀 Watchers | ${{ steps.repo-stats.outputs.watchers }} |
+          | 🐛 Open Issues | ${{ steps.repo-stats.outputs.open_issues }} |
+          | 👥 Contributors | ${{ steps.repo-stats.outputs.contributors }} |
+
+          ### 📥 Download Results
+          Reports are available as workflow artifacts for 90 days.
+          EOF
