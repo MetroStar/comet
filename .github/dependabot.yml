@@ -8,9 +8,10 @@ updates:
   - package-ecosystem: 'npm'
     directory: '/'
     schedule:
-      interval: 'cron'
-      cronjob: '0 9 * * 1'
-      timezone: 'US/Eastern'
+      interval: "monthly"
+      day: "monday"
+      time: "08:00"
+      timezone: "US/Eastern"
     open-pull-requests-limit: 10
     labels:
       - 'dependencies'
