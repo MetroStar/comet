@@ -21,8 +21,8 @@
   "types": "./dist/index.d.ts",
   "dependencies": {
     "@types/figlet": "^1.7.0",
-    "commander": "^14.0.2",
-    "figlet": "^1.9.4"
+    "commander": "^14.0.3",
+    "figlet": "^1.10.0"
   },
   "repository": {
     "type": "git",
