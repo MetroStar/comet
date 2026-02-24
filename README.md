@@ -36,7 +36,8 @@ What started as a USWDS implementation has evolved into a comprehensive toolkit 
 3. [Getting Started](#getting-started)
 4. [Running the Project Locally](#running-the-project-locally)
 5. [Documentation & Demo](#documentation--demo)
-6. [Want to help?](#want-to-help)
+6. [Publishing Packages](#publishing-packages)
+7. [Want to help?](#want-to-help)
 
 ## Overview
 
@@ -147,6 +148,19 @@ To contribute to Comet or run the project locally for development:
 - **📚 [Component Documentation & Examples](https://metrostar.github.io/comet/)** - Interactive Storybook with all components, usage examples, and documentation
 - **🚀 [Live Demo App](https://metrostar.github.io/comet-starter/)** - See Comet in action with a full application example
 - **📖 [USWDS Documentation](https://designsystem.digital.gov/)** - Official U.S. Web Design System documentation
+
+## Publishing Packages
+
+If you're a maintainer looking to publish new versions of Comet packages to NPM, please refer to our detailed release documentation:
+
+📦 **[Release Process Guide](RELEASING.md)** - Complete instructions for publishing comet-uswds, comet-extras, comet-data-viz, and other packages
+
+The release guide covers:
+
+- Semantic versioning guidelines
+- Step-by-step release workflows
+- GitHub Actions automation
+- NPM publishing verification
 
 ## Want to help?
 
