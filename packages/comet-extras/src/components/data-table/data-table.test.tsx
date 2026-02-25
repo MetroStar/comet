@@ -355,6 +355,60 @@ describe('DataTable', () => {
     expect(pageButtons.length).toBeGreaterThan(0); // Should have page buttons
   });
 
+  test('should display all rows initially expanded', () => {
+    const dataWithChildren: Person[] = [
+      {
+        firstName: 'John',
+        lastName: 'Doe',
+        children: [
+          {
+            firstName: 'Johnny',
+            lastName: 'Doe Jr',
+          },
+        ],
+      },
+      {
+        firstName: 'Jane',
+        lastName: 'Smith',
+        children: [
+          {
+            firstName: 'Janie',
+            lastName: 'Smith Jr',
+          },
+        ],
+      },
+      {
+        firstName: 'Bob',
+        lastName: 'Wilson',
+        children: [
+          {
+            firstName: 'Bobby',
+            lastName: 'Wilson Jr',
+          },
+        ],
+      },
+    ];
+
+    const { baseElement } = render(
+      <DataTable
+        id="table-all-expanded"
+        columns={cols}
+        data={dataWithChildren}
+        expandable={true}
+        initialExpanded={true}
+        getChildRows={(row: Person) => row.children}
+      ></DataTable>,
+    );
+
+    // Should show 3 parent rows, each with 1 child row
+    const allRows = baseElement.querySelectorAll('tbody tr');
+    expect(allRows).toHaveLength(6); // 3 parents rows + 1 child row each
+
+    // Verify we have 3 child rows
+    const childRows = baseElement.querySelectorAll('.child-row');
+    expect(childRows).toHaveLength(3); // 1 child row each
+  });
+
   test('should not count child rows against pagination when expanded', async () => {
     const dataWithChildren: Person[] = [
       {
