@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { Dispatch, SetStateAction, useEffect } from 'react';
 import {
   SortingState,
   flexRender,
@@ -63,9 +63,20 @@ export interface DataTableProps<T = any> {
    */
   getChildRows?: (row: T) => T[] | undefined;
   /**
-   * Initial expanded state for rows (object with row IDs as keys and boolean values)
+   * An optional state value from parent representing the expanded rows.
+   * Value: object with row IDs as keys and boolean values, or true to expand all.
    */
-  initialExpanded?: Record<string, boolean>;
+  parentExpanded?: Record<string, boolean> | true;
+  /**
+   * An optional state setter function from parent for the expanded rows state.
+   */
+  setParentExpanded?: Dispatch<SetStateAction<Record<string, boolean> | true>>;
+  /**
+   * Initial expanded state for rows (object with row IDs as keys and boolean values
+   * or true to expand all).
+   * Only used if parent state value and setter function are not provided.
+   */
+  initialExpanded?: Record<string, boolean> | true;
   /**
    * Additional class names for the table
    */
@@ -91,6 +102,8 @@ export const DataTable = ({
   pageSize = 10,
   expandable = false,
   getChildRows,
+  parentExpanded,
+  setParentExpanded,
   initialExpanded = {},
   className,
   ariaLabel,
@@ -99,7 +112,12 @@ export const DataTable = ({
     sortable ? [{ id: sortCol ?? columns[0], desc: sortDir === 'desc' }] : [],
   );
   const [paging, setPaging] = React.useState<PaginationState>({ pageIndex, pageSize });
-  const [expanded, setExpanded] = React.useState<ExpandedState>(initialExpanded);
+  const [internalExpanded, setInternalExpanded] = React.useState<ExpandedState>(initialExpanded);
+
+  // Set which state value and setter function to use for tracking expanded rows.
+  // Use the parent state if passed in via props, otherwise track with internal state.
+  const expanded = parentExpanded ?? internalExpanded;
+  const setExpanded = setParentExpanded ?? setInternalExpanded;
 
   // Apply sorting to the full dataset first, then handle pagination
   const sortedData = React.useMemo(() => {
