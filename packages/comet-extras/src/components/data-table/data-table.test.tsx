@@ -1,5 +1,6 @@
-import React from 'react';
-import { act, render } from '@testing-library/react';
+import React, { useState } from 'react';
+import { act, render, screen } from '@testing-library/react';
+import { userEvent } from '@testing-library/user-event';
 import DataTable from './data-table';
 import { createColumnHelper } from '@tanstack/react-table';
 
@@ -407,6 +408,86 @@ describe('DataTable', () => {
     // Verify we have 3 child rows
     const childRows = baseElement.querySelectorAll('.child-row');
     expect(childRows).toHaveLength(3); // 1 child row each
+  });
+
+  test('external expanded row state', async () => {
+    const dataWithChildren: Person[] = [
+      {
+        firstName: 'John',
+        lastName: 'Doe',
+        children: [
+          {
+            firstName: 'Johnny',
+            lastName: 'Doe Jr',
+          },
+        ],
+      },
+      {
+        firstName: 'Jane',
+        lastName: 'Smith',
+        children: [
+          {
+            firstName: 'Janie',
+            lastName: 'Smith Jr',
+          },
+        ],
+      },
+      {
+        firstName: 'Bob',
+        lastName: 'Wilson',
+        children: [
+          {
+            firstName: 'Bobby',
+            lastName: 'Wilson Jr',
+          },
+        ],
+      },
+    ];
+
+    const Parent = () => {
+      const [expandedRows, setExpandedRows] = useState<Record<string, boolean> | true>({});
+      return (
+        <>
+          <p id="expanded-rows">Expanded rows: [{Object.keys(expandedRows).join()}]</p>
+          <DataTable
+            id="table-all-expanded"
+            columns={cols}
+            data={dataWithChildren}
+            expandable={true}
+            parentExpanded={expandedRows}
+            setParentExpanded={setExpandedRows}
+            getChildRows={(row: Person) => row.children}
+          ></DataTable>
+        </>
+      );
+    };
+
+    const { baseElement } = render(<Parent />);
+
+    // Should show 3 parent rows
+    const allRows = baseElement.querySelectorAll('tbody tr');
+    expect(allRows).toHaveLength(3); // 3 parents rows
+
+    const expandButtons = screen.getAllByRole('button', { name: 'Expand row' });
+    expect(expandButtons).toHaveLength(3); // 3 expandable rows
+
+    await userEvent.click(expandButtons[0]);
+    const parentsPlusOneChild = baseElement.querySelectorAll('tbody tr');
+    expect(parentsPlusOneChild).toHaveLength(4); // 3 parents rows + 1 child
+    // test the external expanded row state is updated correctly
+    let expandedRows = screen.getByText('Expanded rows: [0]');
+    expect(expandedRows).toBeInTheDocument();
+
+    await userEvent.click(expandButtons[2]);
+    const parentsPlusTwoChildren = baseElement.querySelectorAll('tbody tr');
+    expect(parentsPlusTwoChildren).toHaveLength(5); // 3 parents rows + 2 children
+    // test the external expanded row state is updated correctly
+    expandedRows = screen.getByText('Expanded rows: [0,2]');
+    expect(expandedRows).toBeInTheDocument();
+
+    // Verify we have 2 child rows
+    const childRows = baseElement.querySelectorAll('.child-row');
+    expect(childRows).toHaveLength(2); // rows 1 and 3 expanded each with 1 child
   });
 
   test('should not count child rows against pagination when expanded', async () => {
