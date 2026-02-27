@@ -46,7 +46,7 @@ const StackGraph: React.FC<StackGraphProps> = (props: StackGraphProps) => {
               },
             }}
             data={d}
-            interpolation={props.smooth && props.smooth ? 'natural' : undefined}
+            interpolation={props.smooth ? 'natural' : undefined}
             animate={{
               duration: 2000,
               onLoad: { duration: 1000 },
