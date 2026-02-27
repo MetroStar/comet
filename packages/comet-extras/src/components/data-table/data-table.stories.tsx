@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Meta } from '@storybook/react-vite';
 import DataTable, { DataTableProps } from './data-table';
 import { createColumnHelper } from '@tanstack/react-table';
@@ -172,4 +172,38 @@ export const WithExpandableRows = {
     className: 'width-full',
   },
   render: (args: DataTableProps) => <DataTable {...args} />,
+};
+
+export const WithExternalExpandedRowState = {
+  args: {
+    id: 'table-parent-state',
+    columns: cols,
+    data,
+    striped: false,
+    sortable: true,
+    sortDir: 'asc',
+    sortCol: 'lastName',
+    pageable: true,
+    pageIndex: 0,
+    pageSize: 3,
+    expandable: true,
+    getChildRows: (row: Person) => row.children,
+    className: 'width-full',
+  },
+  parameters: {
+    docs: {
+      source: {
+        type: 'code',
+      },
+    },
+  },
+  render: (args: DataTableProps) => {
+    const [expandedRows, setExpandedRows] = useState<Record<string, boolean> | true>({});
+    return (
+      <div>
+        <p>External state - expanded rows: [{Object.keys(expandedRows).join()}]</p>
+        <DataTable {...args} parentExpanded={expandedRows} setParentExpanded={setExpandedRows} />
+      </div>
+    );
+  },
 };
