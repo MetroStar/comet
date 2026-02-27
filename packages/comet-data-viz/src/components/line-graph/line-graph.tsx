@@ -49,7 +49,7 @@ const LineGraph: React.FC<LineGraphProps> = (props: LineGraphProps) => {
             duration: 2000,
             onLoad: { duration: 1000 },
           }}
-          interpolation={props.smooth && props.smooth ? 'natural' : undefined}
+          interpolation={props.smooth ? 'natural' : undefined}
         />
       ))}
     </VictoryChart>
