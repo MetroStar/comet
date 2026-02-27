@@ -5,7 +5,7 @@ import Tabs, { TabPanel } from './tabs';
 describe('Tabs', () => {
   test('should render a tabs component successfully', () => {
     const { baseElement } = render(
-      <Tabs id="UNIT TEST" defaultTabId="1">
+      <Tabs id="tabs" defaultTabId="1">
         <TabPanel id="1" label="UNIT TEST 1">
           UNIT TEST 1
         </TabPanel>
@@ -20,7 +20,7 @@ describe('Tabs', () => {
 
   test('should have correct class for active tab', () => {
     const { baseElement } = render(
-      <Tabs id="UNIT TEST" defaultTabId="1">
+      <Tabs id="tabs" defaultTabId="1">
         <TabPanel id="1" label="UNIT TEST LABEL 1">
           UNIT TEST 1
         </TabPanel>
@@ -36,7 +36,7 @@ describe('Tabs', () => {
 
   test('should have correct class for inactive tab', () => {
     const { baseElement } = render(
-      <Tabs id="UNIT TEST" defaultTabId="2">
+      <Tabs id="tabs" defaultTabId="2">
         <TabPanel id="1" label="UNIT TEST 1">
           UNIT TEST 1
         </TabPanel>
@@ -52,7 +52,7 @@ describe('Tabs', () => {
 
   test('should contain correct class name when provided as a prop', () => {
     const { baseElement } = render(
-      <Tabs id="UNIT TEST" defaultTabId="1" className="UNIT-TEST-CLASS">
+      <Tabs id="tabs" defaultTabId="1" className="UNIT-TEST-CLASS">
         <TabPanel id="1" label="UNIT TEST LABEL 1">
           UNIT TEST 1
         </TabPanel>
@@ -68,7 +68,7 @@ describe('Tabs', () => {
 
   test('should apply correct class names when user clicks on a tab', () => {
     render(
-      <Tabs id="UNIT TEST" defaultTabId="2">
+      <Tabs id="tabs" defaultTabId="2">
         <TabPanel id="1" label="UNIT TEST LABEL 1">
           UNIT TEST 1
         </TabPanel>
