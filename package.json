@@ -27,7 +27,7 @@
     "unpublish:ui-kit": "npx figma connect unpublish"
   },
   "devDependencies": {
-    "@eslint/js": "^9.39.2",
+    "@eslint/js": "^10.0.1",
     "@figma/code-connect": "1.4.1",
     "@rollup/plugin-commonjs": "^29.0.0",
     "@rollup/plugin-image": "^3.0.3",
