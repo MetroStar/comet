@@ -16,15 +16,15 @@ export interface DatePickerProps {
   /**
    * The date picker will not allow a date selection before this date. The date should be in the format YYYY-MM-DD. Typing in an earlier date will cause native form validation error. A default min date or 0000-01-01 is used as a default.
    */
-  minDate?: Date | string;
+  minDate?: Date | string | number;
   /**
    * The date picker will not allow a date selection after this date. The date should be in the format YYYY-MM-DD. Typing in an later date will cause native form validation error. There is no default maximum date.
    */
-  maxDate?: Date | string;
+  maxDate?: Date | string | number;
   /**
    * The date picker will show a range selection from the range date. The date should be in the format YYYY-MM-DD.
    */
-  dateRange?: Date | string;
+  dateRange?: Date | string | number;
   /**
    * The date picker input will set this value if it is a valid date. The date should be in the format YYYY-MM-DD.
    */
@@ -130,11 +130,18 @@ export const DatePicker = ({
 
 export default DatePicker;
 
-function getDateString(minDate: string | Date): string {
-  if (typeof minDate === 'string') {
-    const date = new Date(minDate);
+/**
+ * Converts a date value to YYYY-MM-DD format string.
+ * If the date is passed as a string or number (timestamp), it will be converted
+ * to a Date object first before formatting.
+ * @param dateValue - The date as a Date object, string, or number (timestamp)
+ * @returns The date formatted as YYYY-MM-DD
+ */
+function getDateString(dateValue: string | number | Date): string {
+  if (typeof dateValue === 'string' || typeof dateValue === 'number') {
+    const date = new Date(dateValue);
     return date.toISOString().substring(0, 10);
   } else {
-    return minDate.toISOString().substring(0, 10);
+    return dateValue.toISOString().substring(0, 10);
   }
 }
