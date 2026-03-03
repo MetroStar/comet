@@ -183,4 +183,37 @@ describe('Date picker', () => {
     expect(onChange).toBeCalledTimes(3);
     expect(input.value).toBe('01/01/2020');
   });
+
+  test('should render a date picker with minDate as number (timestamp) successfully', () => {
+    const minDate = new Date('2021-09-01').getTime(); // Unix timestamp
+    const { baseElement } = render(
+      <DatePicker id={defaultId} name={defaultName} minDate={minDate} />,
+    );
+    expect(baseElement).toBeTruthy();
+    expect(baseElement.querySelector('.usa-date-picker')?.getAttribute('data-min-date')).toBe(
+      '2021-09-01',
+    );
+  });
+
+  test('should render a date picker with maxDate as number (timestamp) successfully', () => {
+    const maxDate = new Date('2021-09-30').getTime(); // Unix timestamp
+    const { baseElement } = render(
+      <DatePicker id={defaultId} name={defaultName} maxDate={maxDate} />,
+    );
+    expect(baseElement).toBeTruthy();
+    expect(baseElement.querySelector('.usa-date-picker')?.getAttribute('data-max-date')).toBe(
+      '2021-09-30',
+    );
+  });
+
+  test('should render a date picker with dateRange as number (timestamp) successfully', () => {
+    const dateRange = new Date('2021-09-15').getTime(); // Unix timestamp
+    const { baseElement } = render(
+      <DatePicker id={defaultId} name={defaultName} dateRange={dateRange} />,
+    );
+    expect(baseElement).toBeTruthy();
+    expect(baseElement.querySelector('.usa-date-picker')?.getAttribute('data-range-date')).toBe(
+      '2021-09-15',
+    );
+  });
 });
