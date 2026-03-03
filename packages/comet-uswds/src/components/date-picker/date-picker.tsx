@@ -14,15 +14,15 @@ export interface DatePickerProps {
    */
   name?: string;
   /**
-   * The date picker will not allow a date selection before this date. The date should be in the format YYYY-MM-DD. Typing in an earlier date will cause native form validation error. A default min date or 0000-01-01 is used as a default.
+   * The date picker will not allow a date selection before this date. Accepts a Date object, a string in the format YYYY-MM-DD, or a number (Unix timestamp in milliseconds). Typing in an earlier date will cause native form validation error. A default min date or 0000-01-01 is used as a default.
    */
   minDate?: Date | string | number;
   /**
-   * The date picker will not allow a date selection after this date. The date should be in the format YYYY-MM-DD. Typing in an later date will cause native form validation error. There is no default maximum date.
+   * The date picker will not allow a date selection after this date. Accepts a Date object, a string in the format YYYY-MM-DD, or a number (Unix timestamp in milliseconds). Typing in an later date will cause native form validation error. There is no default maximum date.
    */
   maxDate?: Date | string | number;
   /**
-   * The date picker will show a range selection from the range date. The date should be in the format YYYY-MM-DD.
+   * The date picker will show a range selection from the range date. Accepts a Date object, a string in the format YYYY-MM-DD, or a number (Unix timestamp in milliseconds).
    */
   dateRange?: Date | string | number;
   /**
