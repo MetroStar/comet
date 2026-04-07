@@ -22,7 +22,7 @@ This project is built with the following tools and libraries:
 - Use default exports for components.
 - Use PascalCase for component names.
 - Use kebab-case for file names and directories.
-- New components should be added to their own directory and should include at least: component, stories, test, figma file, and index.
+- New components should be added to their own directory and should include at least: component, stories, test, and index.
 - New components should be exported from an `index.ts` file in their directory.
 - New components should be exported from the main `index.ts` file in the package.
 - New components should include jsdoc comments.

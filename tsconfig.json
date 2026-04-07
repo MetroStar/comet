@@ -12,7 +12,7 @@
     "declarationDir": "types",
     "sourceMap": true,
     "outDir": "dist",
-    "moduleResolution": "Node",
+    "moduleResolution": "Bundler",
     "allowSyntheticDefaultImports": true,
     "emitDeclarationOnly": true,
     "types": ["vite/client", "vitest/globals"]

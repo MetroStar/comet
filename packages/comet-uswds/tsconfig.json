@@ -1,11 +1,10 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "baseUrl": ".",
+    "rootDir": "./src",
+    "outDir": "./dist",
     "paths": {
-      "@uswds/*": [
-        "node_modules/@uswds/*"
-      ]
+      "@uswds/*": ["./node_modules/@uswds/*"]
     }
   }
 }

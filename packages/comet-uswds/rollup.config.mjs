@@ -28,7 +28,12 @@ export default [
       commonjs(),
       typescript({
         tsconfig: './tsconfig.json',
-        exclude: ['**/*.test.tsx', '**/*.stories.tsx', '**/*.figma.tsx'],
+        exclude: ['**/*.test.tsx', '**/*.stories.tsx'],
+        compilerOptions: {
+          outDir: './dist/esm',
+          declarationDir: './dist/esm/types',
+          declaration: true,
+        },
       }),
       postcss(),
       terser(),

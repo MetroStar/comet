@@ -1,6 +1,7 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "baseUrl": "packages/comet-data-viz"
+    "rootDir": "./src",
+    "outDir": "./dist"
   }
 }

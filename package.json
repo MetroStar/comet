@@ -22,9 +22,7 @@
     "publish:comet-uswds": "cd packages/comet-uswds && npm publish --access public",
     "publish:comet-data-viz": "cd packages/comet-data-viz && npm publish --access public",
     "publish:comet-extras": "cd packages/comet-extras && npm publish --access public",
-    "publish:comet-mcp": "cd packages/comet-mcp && npm publish --access public",
-    "publish:ui-kit": "npx figma connect publish",
-    "unpublish:ui-kit": "npx figma connect unpublish"
+    "publish:comet-mcp": "cd packages/comet-mcp && npm publish --access public"
   },
   "devDependencies": {
     "@eslint/js": "^9.15.0",
@@ -73,5 +71,8 @@
   },
   "overrides": {
     "storybook": "$storybook"
+  },
+  "engines": {
+    "node": "^20.19.0"
   }
 }
