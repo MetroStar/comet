@@ -41,7 +41,7 @@ export const getComponentsFromPackage = (packageName: string): string[] => {
 
     // Match export patterns like "export { default as ComponentName }"
     const defaultExportMatches = indexContent.match(/export\s*{\s*default\s+as\s+(\w+)/g) || [];
-    defaultExportMatches.forEach((match) => {
+    defaultExportMatches.forEach((match: string) => {
       const componentName = match.match(/as\s+(\w+)/)?.[1];
       if (componentName) {
         components.push(componentName);
@@ -50,9 +50,9 @@ export const getComponentsFromPackage = (packageName: string): string[] => {
 
     // Match export patterns like "export { ComponentName, OtherComponent }"
     const namedExportMatches = indexContent.match(/export\s*{\s*([^}]+)\s*}/g) || [];
-    namedExportMatches.forEach((match) => {
+    namedExportMatches.forEach((match: string) => {
       const exportContent = match.replace(/export\s*{\s*/, '').replace(/\s*}/, '');
-      const exports = exportContent.split(',').map((exp) => {
+      const exports = exportContent.split(',').map((exp: string) => {
         // Clean up the export name, handling "default as Name" patterns
         const cleaned = exp
           .trim()
@@ -163,13 +163,14 @@ export const findComponentDirectory = (
 
     const dirs = fs
       .readdirSync(componentsDir, { withFileTypes: true })
-      .filter((dirent) => dirent.isDirectory())
-      .map((dirent) => dirent.name);
+      .filter((dirent: import('fs').Dirent) => dirent.isDirectory())
+      .map((dirent: import('fs').Dirent) => dirent.name);
 
     // Look for exact match or kebab-case version
     const kebabName = componentName.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
     const matchingDir = dirs.find(
-      (dir) => dir === kebabName || dir === componentName.toLowerCase() || dir === componentName,
+      (dir: string) =>
+        dir === kebabName || dir === componentName.toLowerCase() || dir === componentName,
     );
 
     return matchingDir ? path.join(componentsDir, matchingDir) : null;
