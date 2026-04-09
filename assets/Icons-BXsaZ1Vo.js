@@ -1,0 +1,3 @@
+import{n as e}from"./chunk-BneVvdWh.js";import{r as t}from"./react-DcZ8auaY.js";import{t as n}from"./jsx-runtime-MmJhrRyC.js";import{l as r,s as i}from"./blocks-DjwuIMdM.js";import{t as a}from"./mdx-react-shim-BzixBfUz.js";function o(e){let n={a:`a`,h1:`h1`,p:`p`,...t(),...e.components};return(0,c.jsxs)(c.Fragment,{children:[(0,c.jsx)(i,{title:`Style Guide/Icons`}),`
+`,(0,c.jsx)(n.h1,{id:`icons`,children:`Icons`}),`
+`,(0,c.jsxs)(n.p,{children:[`Comet provides USWDS icons as a React component. Examples can be found `,(0,c.jsx)(n.a,{href:`/docs/uswds-icon--docs`,children:`here`}),`.`]})]})}function s(e={}){let{wrapper:n}={...t(),...e.components};return n?(0,c.jsx)(n,{...e,children:(0,c.jsx)(o,{...e})}):o(e)}var c;e((()=>{c=n(),a(),r()}))();export{s as default};
