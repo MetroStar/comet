@@ -38,4 +38,21 @@ describe('Toggle Component Tests', () => {
     render(<Toggle id="test-toggle" label={testLabel} onChange={() => {}} />);
     expect(screen.getByText(testLabel)).toBeInTheDocument();
   });
+
+  // Test uncontrolled mode - toggle works without checked prop
+  test('works in uncontrolled mode without checked prop', () => {
+    render(<Toggle id="test-toggle" />);
+    const toggle = screen.getByRole('checkbox');
+
+    // Initially unchecked
+    expect(toggle).not.toBeChecked();
+
+    // Click to check
+    fireEvent.click(toggle);
+    expect(toggle).toBeChecked();
+
+    // Click to uncheck
+    fireEvent.click(toggle);
+    expect(toggle).not.toBeChecked();
+  });
 });

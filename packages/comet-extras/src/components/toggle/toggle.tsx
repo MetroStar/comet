@@ -1,5 +1,5 @@
 import './toggle.style.css';
-import React, { ChangeEventHandler } from 'react';
+import React, { ChangeEvent, ChangeEventHandler, useState } from 'react';
 
 export interface ToggleProps {
   /**
@@ -34,11 +34,25 @@ export interface ToggleProps {
 export const Toggle = ({
   id,
   name,
-  checked = false,
+  checked,
   label,
   ariaLabel,
   onChange,
 }: ToggleProps): React.ReactElement => {
+  // Support both controlled and uncontrolled usage
+  const [internalChecked, setInternalChecked] = useState(false);
+  const isControlled = checked !== undefined;
+  const isChecked = isControlled ? checked : internalChecked;
+
+  const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
+    // Update internal state if uncontrolled
+    if (!isControlled) {
+      setInternalChecked(event.target.checked);
+    }
+    // Call parent onChange if provided
+    onChange?.(event);
+  };
+
   return (
     <div className="toggle">
       <label htmlFor={id} className="toggle-label" tabIndex={0} aria-label={ariaLabel}>
@@ -48,12 +62,12 @@ export const Toggle = ({
             id={id}
             name={name}
             className="toggle-sr-only"
-            checked={checked}
-            onChange={onChange}
+            checked={isChecked}
+            onChange={handleChange}
             tabIndex={-1}
           />
-          <div className={`toggle-body ${checked ? 'toggle-body-on' : ''}`}></div>
-          <div className={`toggle-dot ${checked ? 'ml-6' : 'ml-0'}`}></div>
+          <div className={`toggle-body ${isChecked ? 'toggle-body-on' : ''}`}></div>
+          <div className={`toggle-dot ${isChecked ? 'ml-6' : 'ml-0'}`}></div>
         </div>
         {label && <span className="toggle-label ml-3">{label}</span>}
       </label>
