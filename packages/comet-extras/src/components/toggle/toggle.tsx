@@ -1,5 +1,5 @@
 import './toggle.style.css';
-import React, { ChangeEvent, ChangeEventHandler, useEffect, useState } from 'react';
+import React, { ChangeEvent, ChangeEventHandler, useState } from 'react';
 
 export interface ToggleProps {
   /**
@@ -34,20 +34,24 @@ export interface ToggleProps {
 export const Toggle = ({
   id,
   name,
-  checked = false,
+  checked,
   label,
   ariaLabel,
   onChange,
 }: ToggleProps): React.ReactElement => {
-  const [isChecked, setIsChecked] = useState(false);
-  const toggleHandler = (event: ChangeEvent<HTMLInputElement>): void => {
-    setIsChecked(!isChecked);
+  // Support both controlled and uncontrolled usage
+  const [internalChecked, setInternalChecked] = useState(false);
+  const isControlled = checked !== undefined;
+  const isChecked = isControlled ? checked : internalChecked;
+
+  const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
+    // Update internal state if uncontrolled
+    if (!isControlled) {
+      setInternalChecked(event.target.checked);
+    }
+    // Call parent onChange if provided
     onChange?.(event);
   };
-
-  useEffect(() => {
-    setIsChecked(checked);
-  }, [checked]);
 
   return (
     <div className="toggle">
@@ -59,7 +63,7 @@ export const Toggle = ({
             name={name}
             className="toggle-sr-only"
             checked={isChecked}
-            onChange={toggleHandler}
+            onChange={handleChange}
             tabIndex={-1}
           />
           <div className={`toggle-body ${isChecked ? 'toggle-body-on' : ''}`}></div>
