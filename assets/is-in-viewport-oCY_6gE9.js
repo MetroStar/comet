@@ -1,1 +1,0 @@
-import{t as e}from"./chunk-BneVvdWh.js";var t=e(((e,t)=>{function n(e,t=window,n=document.documentElement){let r=e.getBoundingClientRect();return r.top>=0&&r.left>=0&&r.bottom<=(t.innerHeight||n.clientHeight)&&r.right<=(t.innerWidth||n.clientWidth)}t.exports=n}));export{t};

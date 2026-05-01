@@ -1,1 +1,0 @@
-import{t as e}from"./chunk-BneVvdWh.js";var t=e(((e,t)=>{t.exports={CLICK:`click`}}));export{t};
