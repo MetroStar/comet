@@ -3,7 +3,7 @@ name: Weekly Metrics
 on:
   schedule:
     # Run every Tuesday at 8:00 AM EST (1:00 PM UTC)
-    - cron: "0 13 * * 2"
+    - cron: '0 13 * * 2'
   workflow_dispatch: # Allow manual trigger
 
 permissions:
@@ -19,7 +19,7 @@ jobs:
       - name: Set up Node environment
         uses: actions/setup-node@v3
         with:
-          node-version: 20.x
+          node-version: 22.22.x
 
       - name: Get NPM Download Stats
         id: npm-stats
