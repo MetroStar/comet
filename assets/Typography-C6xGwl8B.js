@@ -1,7 +1,0 @@
-import{i as e}from"./preload-helper-xPQekRTU.js";import{c as t,l as n,s as r,x as i}from"./blocks-C_4sYQEI.js";import{t as a}from"./jsx-runtime-CaZkqeYb.js";import{t as o}from"./mdx-react-shim-SVtkT6Vx.js";function s(e){let n={h1:`h1`,p:`p`,strong:`strong`,...i(),...e.components};return(0,l.jsxs)(l.Fragment,{children:[(0,l.jsx)(r,{title:`Style Guide/Typography`}),`
-`,`
-`,`
-`,(0,l.jsx)(n.h1,{id:`typography`,children:`Typography`}),`
-`,(0,l.jsxs)(n.p,{children:[(0,l.jsx)(n.strong,{children:`Font:`}),` Source Sans Pro`]}),`
-`,(0,l.jsxs)(n.p,{children:[(0,l.jsx)(n.strong,{children:`Weights:`}),` 300(light), 400(normal), 700(bold)`]}),`
-`,(0,l.jsx)(t,{fontSizes:[Number(u.size[`3xs`]),Number(u.size[`2xs`]),Number(u.size.xs),Number(u.size.sm),Number(u.size.md),Number(u.size.lg),Number(u.size.xl),Number(u.size[`2xl`]),Number(u.size[`3xl`])],fontWeight:u.weight.normal,sampleText:d,fontFamily:u.type.primary})]})}function c(e={}){let{wrapper:t}={...i(),...e.components};return t?(0,l.jsx)(t,{...e,children:(0,l.jsx)(s,{...e})}):s(e)}var l,u,d;e((()=>{l=a(),o(),n(),u={type:{primary:`'Source Sans Pro','Helvetica Neue', 'Helvetica', 'Roboto', 'Arial', sans-serif`},weight:{light:`300`,normal:`400`,bold:`700`},size:{"3xs":12,"2xs":14,xs:16,sm:17,md:18,lg:24,xl:32,"2xl":40,"3xl":56}},d=`Lorem ipsum dolor sit amet, consectetur adipiscing elit.`}))();export{d as SampleText,c as default,u as typography};
