@@ -1,0 +1,1 @@
+import{t as e}from"./rolldown-runtime-DkW27tQK.js";var t=e(((e,t)=>{t.exports=(e=document)=>e.activeElement}));export{t};
