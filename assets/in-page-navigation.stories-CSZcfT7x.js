@@ -1,4 +1,4 @@
-import{n as e}from"./rolldown-runtime-DkW27tQK.js";import{t}from"./react-BZJXY1be.js";import{t as n}from"./jsx-runtime-DeHZSEgm.js";import{g as r,t as i}from"./src-B-safDYQ.js";var a,o,s,c,l;function u(){return(u=e((()=>{t(),i(),a=n(),o={title:`USWDS/In-Page Navigation`,component:r,argTypes:{id:{required:!0}}},s=`
+import{n as e}from"./rolldown-runtime-DkW27tQK.js";import{t}from"./react-BZJXY1be.js";import{t as n}from"./jsx-runtime-DeHZSEgm.js";import{g as r,t as i}from"./src-DaZweiw7.js";var a,o,s,c,l;function u(){return(u=e((()=>{t(),i(),a=n(),o={title:`USWDS/In-Page Navigation`,component:r,argTypes:{id:{required:!0}}},s=`
     Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi commodo,
     ipsum sed pharetra gravida, orci magna rhoncus neque, id pulvinar odio
     lorem non turpis. Nullam sit amet enim. Suspendisse id velit vitae ligula
