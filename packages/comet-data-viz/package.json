@@ -33,6 +33,6 @@
     "directory": "packages/comet-data-viz"
   },
   "engines": {
-    "node": ">= 20"
+    "node": ">= 24"
   }
 }

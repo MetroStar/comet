@@ -30,6 +30,6 @@
     "directory": "packages/comet-extras"
   },
   "engines": {
-    "node": ">= 20"
+    "node": ">= 24"
   }
 }
