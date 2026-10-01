@@ -55,19 +55,12 @@ export const getType = (mask: string | undefined, type: string | undefined): str
   return newType;
 };
 
+type InputMode = 'tel' | 'text' | 'numeric' | 'email' | 'search' | 'url' | 'none' | 'decimal';
+
 export const getInputMode = (
   mask: string | undefined,
-  inputMode:
-    | 'tel'
-    | 'text'
-    | 'numeric'
-    | 'email'
-    | 'search'
-    | 'url'
-    | 'none'
-    | 'decimal'
-    | undefined,
-): 'tel' | 'text' | 'numeric' | 'email' | 'search' | 'url' | 'none' | 'decimal' | undefined => {
+  inputMode: InputMode | undefined,
+): InputMode | undefined => {
   let newInputMode = inputMode ?? 'text';
   switch (mask) {
     case 'ssn':

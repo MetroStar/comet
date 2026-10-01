@@ -1,6 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import { VictoryPie } from 'victory';
 
+type Palette = 'grayscale' | 'qualitative' | 'heatmap' | 'warm' | 'cool';
+
 export interface PieChartProps {
   /**
    * Applies a title attribute to the outer svg element.
@@ -17,16 +19,8 @@ export interface PieChartProps {
   /**
    * An string color scale or array of hex values used to colorize chart sections
    */
-  colors?:
-    | 'grayscale'
-    | 'qualitative'
-    | 'heatmap'
-    | 'warm'
-    | 'cool'
-    | 'red'
-    | 'green'
-    | 'blue'
-    | string[];
+  colors?: Palette | 'red' | 'green' | 'blue' | string[];
+
   /**
    * A number of pixels between the center of the chart and the inner edge of a donut chart
    */
