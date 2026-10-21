@@ -66,7 +66,7 @@
     "storybook": "10.6.0",
     "typescript": "6.0.3",
     "typescript-eslint": "^8.70.1",
-    "vite": "^8.3.1",
+    "vite": "^8.3.5",
     "vitest": "^4.1.10",
     "zod": "^4.6.5",
     "zod-validation-error": "^5.0.0"
