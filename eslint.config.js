@@ -4,22 +4,18 @@ import storybook from 'eslint-plugin-storybook';
 import pluginJs from '@eslint/js';
 import tseslint from 'typescript-eslint';
 import prettierRecommended from 'eslint-plugin-prettier/recommended';
-import reactPlugin from 'eslint-plugin-react';
+import reactPlugin from '@eslint-react/eslint-plugin';
 import hooksPlugin from 'eslint-plugin-react-hooks';
 
 export default [
   // Flat Configs
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
-  reactPlugin.configs.flat.recommended,
+  reactPlugin.configs['recommended-typescript'],
+  reactPlugin.configs['disable-conflict-eslint-plugin-react-hooks'],
   prettierRecommended, // Default Configs
   {
     files: ['**/*.{js,mjs,cjs,ts,jsx,tsx}'],
-    settings: {
-      react: {
-        version: 'detect',
-      },
-    },
     languageOptions: {
       parserOptions: {
         ecmaFeatures: {
@@ -54,7 +50,13 @@ export default [
       // React
       ...hooksPlugin.configs.recommended.rules,
       'react-hooks/exhaustive-deps': 'off',
-      'react/react-in-jsx-scope': 'off',
+      '@eslint-react/exhaustive-deps': 'off',
+      '@eslint-react/rules-of-hooks': 'off',
+      '@eslint-react/no-array-index-key': 'off',
+      '@eslint-react/no-clone-element': 'off',
+      '@eslint-react/no-children-map': 'off',
+      '@eslint-react/no-unnecessary-use-prefix': 'off',
+      '@eslint-react/set-state-in-effect': 'off',
     },
   }, // Storybook Configs
   {

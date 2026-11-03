@@ -156,6 +156,8 @@ export const DataTable = ({
     return sortedData.slice(startIndex, endIndex);
   }, [sortedData, pageable, expandable, paging.pageIndex, paging.pageSize]);
 
+  // TanStack Table's returned functions can't be memoized by React Compiler.
+  // eslint-disable-next-line react-hooks/incompatible-library
   const table = useReactTable({
     data: expandable && pageable ? paginatedData : sortedData,
     columns,
